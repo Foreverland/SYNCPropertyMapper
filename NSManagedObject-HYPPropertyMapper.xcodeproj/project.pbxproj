@@ -1,0 +1,67 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXGroup section */
+		BDF44C2819C5FFC300E6BAD4 = {
+			isa = PBXGroup;
+			children = (
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXProject section */
+		BDF44C2919C5FFC300E6BAD4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+			};
+			buildConfigurationList = BDF44C2C19C5FFC300E6BAD4 /* Build configuration list for PBXProject "NSManagedObject-HYPPropertyMapper" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = BDF44C2819C5FFC300E6BAD4;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+			);
+		};
+/* End PBXProject section */
+
+/* Begin XCBuildConfiguration section */
+		BDF44C2D19C5FFC300E6BAD4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		BDF44C2E19C5FFC300E6BAD4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BDF44C2C19C5FFC300E6BAD4 /* Build configuration list for PBXProject "NSManagedObject-HYPPropertyMapper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BDF44C2D19C5FFC300E6BAD4 /* Debug */,
+				BDF44C2E19C5FFC300E6BAD4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BDF44C2919C5FFC300E6BAD4 /* Project object */;
+}
