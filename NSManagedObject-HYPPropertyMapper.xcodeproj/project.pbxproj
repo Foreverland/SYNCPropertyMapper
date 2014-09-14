@@ -6,14 +6,98 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		BDF44C3719C600AB00E6BAD4 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDF44C3619C600AB00E6BAD4 /* XCTest.framework */; };
+		BDF44C3D19C600AB00E6BAD4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BDF44C3B19C600AB00E6BAD4 /* InfoPlist.strings */; };
+		BDF44C3F19C600AB00E6BAD4 /* NSManagedObject_HYPPropertyMapperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BDF44C3E19C600AB00E6BAD4 /* NSManagedObject_HYPPropertyMapperTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		BDF44C3319C600AB00E6BAD4 /* NSManagedObject-HYPPropertyMapperTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "NSManagedObject-HYPPropertyMapperTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BDF44C3619C600AB00E6BAD4 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		BDF44C3A19C600AB00E6BAD4 /* NSManagedObject-HYPPropertyMapperTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "NSManagedObject-HYPPropertyMapperTests-Info.plist"; sourceTree = "<group>"; };
+		BDF44C3C19C600AB00E6BAD4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		BDF44C3E19C600AB00E6BAD4 /* NSManagedObject_HYPPropertyMapperTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSManagedObject_HYPPropertyMapperTests.m; sourceTree = "<group>"; };
+		BDF44C4019C600AB00E6BAD4 /* NSManagedObject-HYPPropertyMapperTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject-HYPPropertyMapperTests-Prefix.pch"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BDF44C3019C600AB00E6BAD4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BDF44C3719C600AB00E6BAD4 /* XCTest.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
 /* Begin PBXGroup section */
 		BDF44C2819C5FFC300E6BAD4 = {
 			isa = PBXGroup;
 			children = (
+				BDF44C3819C600AB00E6BAD4 /* NSManagedObject-HYPPropertyMapperTests */,
+				BDF44C3519C600AB00E6BAD4 /* Frameworks */,
+				BDF44C3419C600AB00E6BAD4 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
+		BDF44C3419C600AB00E6BAD4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BDF44C3319C600AB00E6BAD4 /* NSManagedObject-HYPPropertyMapperTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BDF44C3519C600AB00E6BAD4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BDF44C3619C600AB00E6BAD4 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BDF44C3819C600AB00E6BAD4 /* NSManagedObject-HYPPropertyMapperTests */ = {
+			isa = PBXGroup;
+			children = (
+				BDF44C3E19C600AB00E6BAD4 /* NSManagedObject_HYPPropertyMapperTests.m */,
+				BDF44C3919C600AB00E6BAD4 /* Supporting Files */,
+			);
+			path = "NSManagedObject-HYPPropertyMapperTests";
+			sourceTree = "<group>";
+		};
+		BDF44C3919C600AB00E6BAD4 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				BDF44C3A19C600AB00E6BAD4 /* NSManagedObject-HYPPropertyMapperTests-Info.plist */,
+				BDF44C3B19C600AB00E6BAD4 /* InfoPlist.strings */,
+				BDF44C4019C600AB00E6BAD4 /* NSManagedObject-HYPPropertyMapperTests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BDF44C3219C600AB00E6BAD4 /* NSManagedObject-HYPPropertyMapperTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BDF44C4119C600AB00E6BAD4 /* Build configuration list for PBXNativeTarget "NSManagedObject-HYPPropertyMapperTests" */;
+			buildPhases = (
+				BDF44C2F19C600AB00E6BAD4 /* Sources */,
+				BDF44C3019C600AB00E6BAD4 /* Frameworks */,
+				BDF44C3119C600AB00E6BAD4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "NSManagedObject-HYPPropertyMapperTests";
+			productName = "NSManagedObject-HYPPropertyMapperTests";
+			productReference = BDF44C3319C600AB00E6BAD4 /* NSManagedObject-HYPPropertyMapperTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		BDF44C2919C5FFC300E6BAD4 /* Project object */ = {
@@ -29,12 +113,47 @@
 				en,
 			);
 			mainGroup = BDF44C2819C5FFC300E6BAD4;
+			productRefGroup = BDF44C3419C600AB00E6BAD4 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
+				BDF44C3219C600AB00E6BAD4 /* NSManagedObject-HYPPropertyMapperTests */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BDF44C3119C600AB00E6BAD4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BDF44C3D19C600AB00E6BAD4 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BDF44C2F19C600AB00E6BAD4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BDF44C3F19C600AB00E6BAD4 /* NSManagedObject_HYPPropertyMapperTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		BDF44C3B19C600AB00E6BAD4 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BDF44C3C19C600AB00E6BAD4 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		BDF44C2D19C5FFC300E6BAD4 /* Debug */ = {
@@ -49,6 +168,94 @@
 			};
 			name = Release;
 		};
+		BDF44C4219C600AB00E6BAD4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "NSManagedObject-HYPPropertyMapperTests/NSManagedObject-HYPPropertyMapperTests-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "NSManagedObject-HYPPropertyMapperTests/NSManagedObject-HYPPropertyMapperTests-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		BDF44C4319C600AB00E6BAD4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "NSManagedObject-HYPPropertyMapperTests/NSManagedObject-HYPPropertyMapperTests-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "NSManagedObject-HYPPropertyMapperTests/NSManagedObject-HYPPropertyMapperTests-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -60,6 +267,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		BDF44C4119C600AB00E6BAD4 /* Build configuration list for PBXNativeTarget "NSManagedObject-HYPPropertyMapperTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BDF44C4219C600AB00E6BAD4 /* Debug */,
+				BDF44C4319C600AB00E6BAD4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
