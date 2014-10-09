@@ -7,12 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BD53940019C60A93006769A8 /* PropertyMapperTestModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BD5393FE19C60A93006769A8 /* PropertyMapperTestModel.xcdatamodeld */; };
 		BDF44C3719C600AB00E6BAD4 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDF44C3619C600AB00E6BAD4 /* XCTest.framework */; };
 		BDF44C3D19C600AB00E6BAD4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BDF44C3B19C600AB00E6BAD4 /* InfoPlist.strings */; };
 		BDF44C3F19C600AB00E6BAD4 /* NSManagedObject_HYPPropertyMapperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BDF44C3E19C600AB00E6BAD4 /* NSManagedObject_HYPPropertyMapperTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BD5393FF19C60A93006769A8 /* PropertyMapperTestModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PropertyMapperTestModel.xcdatamodel; sourceTree = "<group>"; };
 		BDF44C3319C600AB00E6BAD4 /* NSManagedObject-HYPPropertyMapperTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "NSManagedObject-HYPPropertyMapperTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDF44C3619C600AB00E6BAD4 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		BDF44C3A19C600AB00E6BAD4 /* NSManagedObject-HYPPropertyMapperTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "NSManagedObject-HYPPropertyMapperTests-Info.plist"; sourceTree = "<group>"; };
@@ -33,9 +35,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BD5393FD19C60A83006769A8 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				BD5393FE19C60A93006769A8 /* PropertyMapperTestModel.xcdatamodeld */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
 		BDF44C2819C5FFC300E6BAD4 = {
 			isa = PBXGroup;
 			children = (
+				BD5393FD19C60A83006769A8 /* CoreData */,
 				BDF44C3819C600AB00E6BAD4 /* NSManagedObject-HYPPropertyMapperTests */,
 				BDF44C3519C600AB00E6BAD4 /* Frameworks */,
 				BDF44C3419C600AB00E6BAD4 /* Products */,
@@ -139,6 +150,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BDF44C3F19C600AB00E6BAD4 /* NSManagedObject_HYPPropertyMapperTests.m in Sources */,
+				BD53940019C60A93006769A8 /* PropertyMapperTestModel.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,8 +287,22 @@
 				BDF44C4319C600AB00E6BAD4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		BD5393FE19C60A93006769A8 /* PropertyMapperTestModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				BD5393FF19C60A93006769A8 /* PropertyMapperTestModel.xcdatamodel */,
+			);
+			currentVersion = BD5393FF19C60A93006769A8 /* PropertyMapperTestModel.xcdatamodel */;
+			path = PropertyMapperTestModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = BDF44C2919C5FFC300E6BAD4 /* Project object */;
 }
