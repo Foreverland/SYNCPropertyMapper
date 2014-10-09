@@ -8,10 +8,12 @@
 
 #import <CoreData/CoreData.h>
 #import <XCTest/XCTest.h>
+#import "NSManagedObject+HYPPropertyMapper.h"
 
 @interface NSManagedObject_HYPPropertyMapperTests : XCTestCase
 
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, strong) NSManagedObject *testUser;
 
 @end
 
@@ -21,11 +23,7 @@
 
 + (NSManagedObjectContext *)managedObjectContextForTests
 {
-    static NSManagedObjectModel *model = nil;
-    if (!model) {
-        model = [NSManagedObjectModel mergedModelFromBundles:[NSBundle allBundles]];
-    }
-
+    NSManagedObjectModel *model = [NSManagedObjectModel mergedModelFromBundles:[NSBundle allBundles]];
     NSPersistentStoreCoordinator *psc = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:model];
     NSPersistentStore *store = [psc addPersistentStoreWithType:NSInMemoryStoreType configuration:nil URL:nil options:nil error:nil];
     NSAssert(store, @"Should have a store by now");
@@ -40,6 +38,11 @@
 {
     [super setUp];
     self.managedObjectContext = [NSManagedObject_HYPPropertyMapperTests managedObjectContextForTests];
+
+    self.testUser = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:self.managedObjectContext];
+
+    [self.testUser setValue:@"John" forKey:@"firstName"];
+    [self.testUser setValue:@"Hyperseed" forKey:@"lastName"];
 }
 
 - (void)tearDown
@@ -50,14 +53,34 @@
 
 #pragma mark - Tests
 
-- (void)testDictionaryRepresentation
+- (void)testDictionaryKeys
 {
-    NSManagedObject *user = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:self.managedObjectContext];
+    NSDictionary *dictionary = [self.testUser hyp_dictionary];
+    BOOL converstionSuccessful;
 
-    [user setValue:@"John" forKey:@"firstName"];
-    [user setValue:@"Hyperseed" forKey:@"lastName"];
+    if (dictionary[@"first_name"] && dictionary[@"last_name"]) {
+        converstionSuccessful = YES;
+    }
 
-    
+    XCTAssert(converstionSuccessful, @"Dictionary keys are present");
+}
+
+- (void)testDictonaryValues
+{
+    NSDictionary *dictionary = [self.testUser hyp_dictionary];
+
+    __block BOOL valid = YES;
+    [dictionary enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+        NSString *localString = [NSManagedObject convertToLocalString:key];
+        id value = [self.testUser valueForKey:localString];
+
+        if (![value isEqual:obj]) {
+            *stop = YES;
+            valid = NO;
+        }
+    }];
+
+    XCTAssert(valid, @"Dictionary values match object values");
 }
 
 @end

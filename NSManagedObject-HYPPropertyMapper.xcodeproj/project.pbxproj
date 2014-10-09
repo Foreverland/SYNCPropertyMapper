@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BD1FAB5519E71BB50037F2C7 /* NSManagedObject+HYPPropertyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = BD1FAB5419E71BB50037F2C7 /* NSManagedObject+HYPPropertyMapper.m */; };
 		BD53940019C60A93006769A8 /* PropertyMapperTestModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BD5393FE19C60A93006769A8 /* PropertyMapperTestModel.xcdatamodeld */; };
 		BDF44C3719C600AB00E6BAD4 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDF44C3619C600AB00E6BAD4 /* XCTest.framework */; };
 		BDF44C3D19C600AB00E6BAD4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BDF44C3B19C600AB00E6BAD4 /* InfoPlist.strings */; };
@@ -14,6 +15,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BD1FAB5319E71BB50037F2C7 /* NSManagedObject+HYPPropertyMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+HYPPropertyMapper.h"; sourceTree = "<group>"; };
+		BD1FAB5419E71BB50037F2C7 /* NSManagedObject+HYPPropertyMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+HYPPropertyMapper.m"; sourceTree = "<group>"; };
 		BD5393FF19C60A93006769A8 /* PropertyMapperTestModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PropertyMapperTestModel.xcdatamodel; sourceTree = "<group>"; };
 		BDF44C3319C600AB00E6BAD4 /* NSManagedObject-HYPPropertyMapperTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "NSManagedObject-HYPPropertyMapperTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDF44C3619C600AB00E6BAD4 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -35,6 +38,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BD1FAB5219E71B910037F2C7 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				BD1FAB5319E71BB50037F2C7 /* NSManagedObject+HYPPropertyMapper.h */,
+				BD1FAB5419E71BB50037F2C7 /* NSManagedObject+HYPPropertyMapper.m */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
 		BD5393FD19C60A83006769A8 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
@@ -46,6 +58,7 @@
 		BDF44C2819C5FFC300E6BAD4 = {
 			isa = PBXGroup;
 			children = (
+				BD1FAB5219E71B910037F2C7 /* Source */,
 				BD5393FD19C60A83006769A8 /* CoreData */,
 				BDF44C3819C600AB00E6BAD4 /* NSManagedObject-HYPPropertyMapperTests */,
 				BDF44C3519C600AB00E6BAD4 /* Frameworks */,
@@ -114,7 +127,7 @@
 		BDF44C2919C5FFC300E6BAD4 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0600;
 			};
 			buildConfigurationList = BDF44C2C19C5FFC300E6BAD4 /* Build configuration list for PBXProject "NSManagedObject-HYPPropertyMapper" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -151,6 +164,7 @@
 			files = (
 				BDF44C3F19C600AB00E6BAD4 /* NSManagedObject_HYPPropertyMapperTests.m in Sources */,
 				BD53940019C60A93006769A8 /* PropertyMapperTestModel.xcdatamodeld in Sources */,
+				BD1FAB5519E71BB50037F2C7 /* NSManagedObject+HYPPropertyMapper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -171,12 +185,17 @@
 		BDF44C2D19C5FFC300E6BAD4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
 		BDF44C2E19C5FFC300E6BAD4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};
@@ -196,6 +215,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
@@ -219,7 +239,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "NSManagedObject-HYPPropertyMapperTests/NSManagedObject-HYPPropertyMapperTests-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -243,6 +263,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -261,7 +282,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "NSManagedObject-HYPPropertyMapperTests/NSManagedObject-HYPPropertyMapperTests-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = xctest;
