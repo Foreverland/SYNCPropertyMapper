@@ -53,6 +53,22 @@
 
 #pragma mark - Tests
 
+- (void)testRemoteKeyTransformation
+{
+    NSString *localKey = @"firstName";
+    NSString *remoteKey = @"first_name";
+
+    XCTAssert([remoteKey isEqualTo:[NSManagedObject convertToRemoteString:localKey]], @"Local key was successfully transformed");
+}
+
+- (void)testLocalKeyTransformation
+{
+    NSString *localKey = @"firstName";
+    NSString *remoteKey = @"first_name";
+
+    XCTAssert([localKey isEqualTo:[NSManagedObject convertToLocalString:remoteKey]], @"Remote key was successfully transformed");
+}
+
 - (void)testDictionaryKeys
 {
     NSDictionary *dictionary = [self.testUser hyp_dictionary];
