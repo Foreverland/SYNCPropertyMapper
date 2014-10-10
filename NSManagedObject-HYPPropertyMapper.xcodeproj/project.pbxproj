@@ -22,6 +22,7 @@
 		BD1FAB7619E72AF90037F2C7 /* .travis.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .travis.yml; sourceTree = "<group>"; };
 		BD1FAB9219E72B690037F2C7 /* NSManagedObject-HYPPropertyMapper.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "NSManagedObject-HYPPropertyMapper.podspec"; sourceTree = "<group>"; };
 		BD5393FF19C60A93006769A8 /* PropertyMapperTestModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PropertyMapperTestModel.xcdatamodel; sourceTree = "<group>"; };
+		BDD440F219E7C41700ED58A3 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		BDF44C3319C600AB00E6BAD4 /* NSManagedObject-HYPPropertyMapperTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "NSManagedObject-HYPPropertyMapperTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDF44C3619C600AB00E6BAD4 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		BDF44C3A19C600AB00E6BAD4 /* NSManagedObject-HYPPropertyMapperTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "NSManagedObject-HYPPropertyMapperTests-Info.plist"; sourceTree = "<group>"; };
@@ -63,6 +64,7 @@
 			isa = PBXGroup;
 			children = (
 				BD1FAB7619E72AF90037F2C7 /* .travis.yml */,
+				BDD440F219E7C41700ED58A3 /* README.md */,
 				BD1FAB9219E72B690037F2C7 /* NSManagedObject-HYPPropertyMapper.podspec */,
 				BD1FAB5219E71B910037F2C7 /* Source */,
 				BD5393FD19C60A83006769A8 /* CoreData */,
