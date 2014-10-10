@@ -7,20 +7,29 @@ If you don't already use this, you should; and here is why:
 Getting a dictionary representation of your object is as easy as pie.
 
 ``` objc
-NSDictionary *values = [randomAwesomeObject hyp_dictionary];
+UserManagedObject *user;
+[user setValue:@"John" forKey:@"firstName"];
+[user setValue:@"Hyperseed" forKey:@"lastName"];
+
+NSDictionary *userValues = [user hyp_dictionary];
 ```
 
 That's it, that's all you have to do.
 But that's not all, the keys will be magically transformed into a lowercase/underscore convention.
 
-Example: firstName will be transformed into first_name.
+```
+userValues {
+    "first_name" = John;
+    "last_name" = Hyperseed;
+}
+```
 
 But wait, there is more.
-What if you get values from the Ruby backend and want those values on your object?
+What if you get values from your JSON providing backend and want those values on your object?
 We got you covered:
 
 ``` objc
-[randomAwesomeObject hyp_fillWithDictionary:shinyNewValuesFromBackend];
+[user hyp_fillWithDictionary:shinyNewValuesFromBackend];
 ```
 
 Boom, it's just that easy. My question to you is, why are you not using this already?
