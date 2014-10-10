@@ -1,7 +1,7 @@
 NSManagedObject-HYPPropertyMapper
 ===============
 
-Mapping your Core Data objects with your Ruby backend has never been this easy. 
+Mapping your Core Data objects with your JSON providing backend has never been this easy. 
 If you don't already use this, you should; and here is why:
 
 Getting a dictionary representation of your object is as easy as pie.
@@ -11,7 +11,7 @@ NSDictionary *values = [randomAwesomeObject hyp_dictionary];
 ```
 
 That's it, that's all you have to do.
-But that's not all, the keys will be magically transformed into a lowercase/underscore convention that conforms to the Ruby standard.
+But that's not all, the keys will be magically transformed into a lowercase/underscore convention.
 
 Example: firstName will be transformed into first_name.
 
