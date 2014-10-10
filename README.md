@@ -20,7 +20,7 @@ What if you get values from the Ruby backend and want those values on your objec
 We got you covered:
 
 ``` objc
-[randomAwesomeObject hyp_fillWithDictionary:shineyNewValuesFromBackend];
+[randomAwesomeObject hyp_fillWithDictionary:shinyNewValuesFromBackend];
 ```
 
 Boom, it's just that easy. My question to you is, why are you not using this already?
