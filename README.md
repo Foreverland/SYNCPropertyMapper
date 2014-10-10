@@ -29,7 +29,8 @@ What if you get values from your JSON providing backend and want those values on
 We got you covered:
 
 ``` objc
-[user hyp_fillWithDictionary:shinyNewValuesFromBackend];
+NSDictionary *values = [JSON valueForKey:@“user"]
+[user hyp_fillWithDictionary:values];
 ```
 
 Boom, it's just that easy. My question to you is, why are you not using this already?
