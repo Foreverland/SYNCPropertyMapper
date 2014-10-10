@@ -11,7 +11,5 @@
 
 - (void)hyp_fillWithDictionary:(NSDictionary *)dictionary;
 - (NSDictionary *)hyp_dictionary;
-+ (NSString *)convertToRemoteString:(NSString *)string;
-+ (NSString *)convertToLocalString:(NSString *)string;
 
 @end

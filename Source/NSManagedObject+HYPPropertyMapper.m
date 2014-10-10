@@ -158,6 +158,8 @@
     return [mutableDictionary copy];
 }
 
+#pragma mark - Private methods
+
 + (NSString *)convertToRemoteString:(NSString *)string
 {
     return [NSManagedObject lowerCaseFirstLetter:[NSManagedObject replacementIdentifier:@"_" inString:string]];
@@ -167,8 +169,6 @@
 {
     return [NSManagedObject lowerCaseFirstLetter:[NSManagedObject replacementIdentifier:@"" inString:string]];
 }
-
-#pragma mark - Private methods
 
 + (NSString *)upperCaseFirstLetter:(NSString *)targetString
 {

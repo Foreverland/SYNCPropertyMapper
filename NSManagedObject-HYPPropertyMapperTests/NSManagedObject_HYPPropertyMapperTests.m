@@ -10,6 +10,11 @@
 #import <XCTest/XCTest.h>
 #import "NSManagedObject+HYPPropertyMapper.h"
 
+@interface NSManagedObject (StringConverting)
++ (NSString *)convertToRemoteString:(NSString *)string;
++ (NSString *)convertToLocalString:(NSString *)string;
+@end
+
 @interface NSManagedObject_HYPPropertyMapperTests : XCTestCase
 
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
