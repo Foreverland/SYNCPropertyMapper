@@ -1,9 +1,9 @@
 Pod::Spec.new do |s|
   s.name = "NSManagedObject-HYPPropertyMapper"
   s.version = "1.0"
-  s.summary = "Map your Core Data properties with ease"
+  s.summary = "Mapping your Core Data objects with your JSON providing backend has never been this easy"
   s.description = <<-DESC
-                   * Map your Core Data properties with ease
+                   * Mapping your Core Data objects with your JSON providing backend has never been this easy
                    DESC
   s.homepage = "https://github.com/hyperoslo/NSManagedObject-HYPPropertyMapper"
   s.license = {
