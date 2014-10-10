@@ -83,4 +83,16 @@
     XCTAssert(valid, @"Dictionary values match object values");
 }
 
+- (void)testFillManagedObjectWithDictionary
+{
+    NSDictionary *values = @{
+        @"first_name" : @"Jane",
+        @"last_name"  : @"Hyperseed"
+    };
+
+    [self.testUser hyp_fillWithDictionary:values];
+
+    XCTAssert(([[self.testUser valueForKey:@"firstName"] isEqualTo:values[@"first_name"]]), @"Sex change successful");
+}
+
 @end
