@@ -18,4 +18,4 @@ and if you're using this library we probably want to hire you.
 
 ## License
 
-HYPNorwegianSSN is available under the MIT license. See the [LICENSE](https://github.com/hyperoslo/HYPNorwegianSSN/raw/develop/LICENSE.md) file for more info.
+NSManagedObject-HYPPropertyMapper is available under the MIT license. See the [LICENSE](https://raw.githubusercontent.com/hyperoslo/NSManagedObject-HYPPropertyMapper/develop/LICENSE.md) file for more info.
