@@ -29,7 +29,7 @@ What if you get values from your JSON providing backend and want those values on
 We got you covered:
 
 ``` objc
-NSDictionary *values = [JSON valueForKey:@“user"]
+NSDictionary *values = [JSON valueForKey:@"user"];
 [user hyp_fillWithDictionary:values];
 ```
 
