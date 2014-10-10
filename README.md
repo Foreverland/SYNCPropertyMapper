@@ -1,5 +1,5 @@
-NSManagedObject-HYPPropertyMapper
-===============
+# NSManagedObject-HYPPropertyMapper
+[![Build Status](https://travis-ci.org/hyperoslo/NSManagedObject-HYPPropertyMapper.svg)](https://travis-ci.org/hyperoslo/NSManagedObject-HYPPropertyMapper)
 
 Mapping your Core Data objects with your JSON providing backend has never been this easy. 
 If you don't already use this, you should; and here is why:
