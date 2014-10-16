@@ -148,7 +148,7 @@
             id value = [self valueForKey:[attributeDescription name]];
 
             if (!value || [value isKindOfClass:[NSNull class]]) {
-                value = [NSNull null];
+                continue;
             }
 
             mutableDictionary[key] = value;
