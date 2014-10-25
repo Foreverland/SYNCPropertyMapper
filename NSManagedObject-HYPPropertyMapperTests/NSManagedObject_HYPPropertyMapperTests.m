@@ -165,4 +165,21 @@
               @"Number conversion successful");
 }
 
+- (void)testBornDate
+{
+    NSDictionary *values = @{
+                             @"birth_date" : @"1989-02-14T00:00:00+00:00"
+                             };
+
+    [self.testUser hyp_fillWithDictionary:values];
+
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    dateFormat.dateFormat = @"yyyy-MM-dd";
+    dateFormat.timeZone = [NSTimeZone timeZoneWithName:@"GMT"];
+    NSDate *date = [dateFormat dateFromString:@"1989-02-14"];
+
+    XCTAssert(([[self.testUser valueForKey:@"birthDate"] isEqualToDate:date]),
+              @"Date conversion successful");
+}
+
 @end
