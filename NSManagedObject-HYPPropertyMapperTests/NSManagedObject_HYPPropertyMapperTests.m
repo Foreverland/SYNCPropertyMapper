@@ -30,7 +30,11 @@
 {
     NSManagedObjectModel *model = [NSManagedObjectModel mergedModelFromBundles:[NSBundle allBundles]];
     NSPersistentStoreCoordinator *psc = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:model];
-    NSPersistentStore *store = [psc addPersistentStoreWithType:NSInMemoryStoreType configuration:nil URL:nil options:nil error:nil];
+    NSPersistentStore *store = [psc addPersistentStoreWithType:NSInMemoryStoreType
+                                                 configuration:nil
+                                                           URL:nil
+                                                       options:nil
+                                                         error:nil];
     NSAssert(store, @"Should have a store by now");
 
     NSManagedObjectContext *moc = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
@@ -44,7 +48,8 @@
     [super setUp];
     self.managedObjectContext = [NSManagedObject_HYPPropertyMapperTests managedObjectContextForTests];
 
-    self.testUser = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:self.managedObjectContext];
+    self.testUser = [NSEntityDescription insertNewObjectForEntityForName:@"User"
+                                                  inManagedObjectContext:self.managedObjectContext];
 
     [self.testUser setValue:@"John" forKey:@"firstName"];
     [self.testUser setValue:@"Hyperseed" forKey:@"lastName"];
@@ -63,7 +68,8 @@
     NSString *localKey = @"firstName";
     NSString *remoteKey = @"first_name";
 
-    XCTAssert([remoteKey isEqualTo:[NSManagedObject convertToRemoteString:localKey]], @"Local key was successfully transformed");
+    XCTAssert([remoteKey isEqualTo:[NSManagedObject convertToRemoteString:localKey]],
+              @"Local key was successfully transformed");
 }
 
 - (void)testLocalKeyTransformation
@@ -71,7 +77,8 @@
     NSString *localKey = @"firstName";
     NSString *remoteKey = @"first_name";
 
-    XCTAssert([localKey isEqualTo:[NSManagedObject convertToLocalString:remoteKey]], @"Remote key was successfully transformed");
+    XCTAssert([localKey isEqualTo:[NSManagedObject convertToLocalString:remoteKey]],
+              @"Remote key was successfully transformed");
 }
 
 - (void)testDictionaryKeys
@@ -113,7 +120,8 @@
 
     [self.testUser hyp_fillWithDictionary:values];
 
-    XCTAssert(([[self.testUser valueForKey:@"firstName"] isEqualTo:values[@"first_name"]]), @"Sex change successful");
+    XCTAssert(([[self.testUser valueForKey:@"firstName"] isEqualTo:values[@"first_name"]]),
+              @"Sex change successful");
 }
 
 - (void)testUpdatingExistingValueWithNull
