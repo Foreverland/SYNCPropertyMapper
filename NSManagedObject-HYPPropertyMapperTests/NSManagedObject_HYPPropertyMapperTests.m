@@ -74,8 +74,8 @@
 
 - (void)testLocalKeyTransformation
 {
-    NSString *localKey = @"firstName";
     NSString *remoteKey = @"first_name";
+    NSString *localKey = @"firstName";
 
     XCTAssert([localKey isEqualTo:[NSManagedObject convertToLocalString:remoteKey]],
               @"Remote key was successfully transformed");
