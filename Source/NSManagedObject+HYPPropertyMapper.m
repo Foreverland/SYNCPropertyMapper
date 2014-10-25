@@ -85,35 +85,58 @@
 - (void)hyp_fillWithDictionary:(NSDictionary *)dictionary
 {
     for (id propertyDescription in [self.entity properties]) {
-        NSString *key = [NSManagedObject convertToRemoteString:[propertyDescription name]];
+        NSString *remoteKey = [NSManagedObject convertToRemoteString:[propertyDescription name]];
 
-        id value = dictionary[key];
+        id value = dictionary[remoteKey];
 
         if (![propertyDescription isKindOfClass:[NSAttributeDescription class]]) return;
 
         NSAttributeDescription *attributeDescription = (NSAttributeDescription *)propertyDescription;
         Class attributedClass = NSClassFromString([attributeDescription attributeValueClassName]);
 
+        NSString *localKey = [propertyDescription name];
+
         if (value && ![value isKindOfClass:[NSNull class]]) {
 
-            if ([value isKindOfClass:[NSString class]] && attributedClass == [NSNumber class]) {
-                NSNumberFormatter *formatter = [NSNumberFormatter new];
-                NSNumber *number = [formatter numberFromString:value];
-                [self setValue:number forKey:[propertyDescription name]];
+            if ([value isKindOfClass:attributedClass]) {
+                [self setValue:value forKey:localKey];
             } else {
-
-                if ([value isKindOfClass:[NSNumber class]] && attributedClass == [NSString class]) {
-                    [self setValue:[NSString stringWithFormat:@"%@", value] forKey:[propertyDescription name]];
-                } else if ([value isKindOfClass:[NSString class]] && attributedClass == [NSDate class]) {
-                    [self setValue:[NSDate __dateFromISO8601String:value] forKey:[propertyDescription name]];
-                } else {
-                    [self setValue:value forKey:[propertyDescription name]];
-                }
-
+                [self processValue:value withDifferentPropertyDescription:propertyDescription];
             }
+
         } else {
-            [self setValue:nil forKey:[propertyDescription name]];
+            [self setValue:nil forKey:localKey];
         }
+    }
+}
+
+- (void)processValue:(id)value withDifferentPropertyDescription:(id)propertyDescription
+{
+    NSAttributeDescription *attributeDescription = (NSAttributeDescription *)propertyDescription;
+    Class attributedClass = NSClassFromString([attributeDescription attributeValueClassName]);
+
+    BOOL stringValueAndNumberAttribute = ([value isKindOfClass:[NSString class]] &&
+                                          attributedClass == [NSNumber class]);
+
+    BOOL numberValueAndStringAttribute = ([value isKindOfClass:[NSNumber class]] &&
+                                          attributedClass == [NSString class]);
+
+    BOOL stringValueAndDateAttribute = ([value isKindOfClass:[NSString class]] &&
+                                        attributedClass == [NSDate class]);
+
+    id transformedValue = nil;
+
+    if (stringValueAndNumberAttribute) {
+        NSNumberFormatter *formatter = [NSNumberFormatter new];
+        transformedValue = [formatter numberFromString:value];
+    } else if (numberValueAndStringAttribute) {
+        transformedValue = [NSString stringWithFormat:@"%@", value];
+    } else if (stringValueAndDateAttribute) {
+        transformedValue = [NSDate __dateFromISO8601String:value];
+    }
+
+    if (transformedValue) {
+        [self setValue:transformedValue forKey:[propertyDescription name]];
     }
 }
 
