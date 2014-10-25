@@ -113,24 +113,7 @@
 
             }
         } else {
-
-            if (![value isKindOfClass:attributedClass]) {
-
-                if ([value isKindOfClass:[NSString class]] && attributedClass == [NSNumber class]) {
-                    NSNumberFormatter *formatter = [NSNumberFormatter new];
-                    formatter.numberStyle = NSNumberFormatterDecimalStyle;
-                    [self setValue:[formatter numberFromString:value] forKey:key];
-                }
-
-            } else {
-
-                if ([value isKindOfClass:[NSNumber class]] && attributedClass == [NSString class]) {
-                    [self setValue:[NSString stringWithFormat:@"%@", value] forKey:[propertyDescription name]];
-                } else {
-                    [self setValue:value forKey:[propertyDescription name]];
-                }
-
-            }
+            [self setValue:nil forKey:[propertyDescription name]];
         }
     }
 }

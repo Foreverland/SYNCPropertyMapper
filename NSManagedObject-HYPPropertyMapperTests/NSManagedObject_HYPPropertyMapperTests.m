@@ -116,4 +116,23 @@
     XCTAssert(([[self.testUser valueForKey:@"firstName"] isEqualTo:values[@"first_name"]]), @"Sex change successful");
 }
 
+- (void)testUpdatingExistingValueWithNull
+{
+    NSDictionary *values = @{
+                             @"first_name" : @"Jane",
+                             @"last_name"  : @"Hyperseed"
+                             };
+
+    [self.testUser hyp_fillWithDictionary:values];
+
+    NSDictionary *updatedValues = @{
+                             @"first_name" : [NSNull new],
+                             @"last_name"  : @"Hyperseed"
+                             };
+
+    [self.testUser hyp_fillWithDictionary:updatedValues];
+
+    XCTAssert(([self.testUser valueForKey:@"firstName"] == nil), @"Update successful");
+}
+
 @end
