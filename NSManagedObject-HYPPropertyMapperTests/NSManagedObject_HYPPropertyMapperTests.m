@@ -88,7 +88,7 @@
     XCTAssert((dictionary[@"first_name"] && dictionary[@"last_name"]), @"Dictionary keys are present");
 }
 
-- (void)testDictonaryValues
+- (void)testDictionaryValues
 {
     NSDictionary *dictionary = [self.testUser hyp_dictionary];
 
