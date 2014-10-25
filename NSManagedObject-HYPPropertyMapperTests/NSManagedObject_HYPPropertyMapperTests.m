@@ -138,4 +138,31 @@
     XCTAssert(([self.testUser valueForKey:@"firstName"] == nil), @"Update successful");
 }
 
+- (void)testAgeNumber
+{
+    NSDictionary *values = @{
+                             @"age" : @24
+                             };
+
+    [self.testUser hyp_fillWithDictionary:values];
+
+    XCTAssert(([[self.testUser valueForKey:@"age"] isEqualTo:values[@"age"]]),
+              @"Number conversion successful");
+}
+
+- (void)testAgeString
+{
+    NSDictionary *values = @{
+                             @"age" : @"24"
+                             };
+
+    [self.testUser hyp_fillWithDictionary:values];
+
+    NSNumberFormatter *formatter = [NSNumberFormatter new];
+    NSNumber *age = [formatter numberFromString:values[@"age"]];
+
+    XCTAssert(([[self.testUser valueForKey:@"age"] isEqualToNumber:age]),
+              @"Number conversion successful");
+}
+
 @end

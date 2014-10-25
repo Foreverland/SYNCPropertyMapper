@@ -98,7 +98,6 @@
 
             if ([value isKindOfClass:[NSString class]] && attributedClass == [NSNumber class]) {
                 NSNumberFormatter *formatter = [NSNumberFormatter new];
-                formatter.numberStyle = NSNumberFormatterDecimalStyle;
                 NSNumber *number = [formatter numberFromString:value];
                 [self setValue:number forKey:[propertyDescription name]];
             } else {
