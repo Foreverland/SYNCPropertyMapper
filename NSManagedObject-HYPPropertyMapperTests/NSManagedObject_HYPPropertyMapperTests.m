@@ -84,13 +84,8 @@
 - (void)testDictionaryKeys
 {
     NSDictionary *dictionary = [self.testUser hyp_dictionary];
-    BOOL converstionSuccessful;
 
-    if (dictionary[@"first_name"] && dictionary[@"last_name"]) {
-        converstionSuccessful = YES;
-    }
-
-    XCTAssert(converstionSuccessful, @"Dictionary keys are present");
+    XCTAssert((dictionary[@"first_name"] && dictionary[@"last_name"]), @"Dictionary keys are present");
 }
 
 - (void)testDictonaryValues
