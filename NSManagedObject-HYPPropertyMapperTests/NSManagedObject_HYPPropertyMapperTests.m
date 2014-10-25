@@ -30,7 +30,11 @@
 {
     NSManagedObjectModel *model = [NSManagedObjectModel mergedModelFromBundles:[NSBundle allBundles]];
     NSPersistentStoreCoordinator *psc = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:model];
-    NSPersistentStore *store = [psc addPersistentStoreWithType:NSInMemoryStoreType configuration:nil URL:nil options:nil error:nil];
+    NSPersistentStore *store = [psc addPersistentStoreWithType:NSInMemoryStoreType
+                                                 configuration:nil
+                                                           URL:nil
+                                                       options:nil
+                                                         error:nil];
     NSAssert(store, @"Should have a store by now");
 
     NSManagedObjectContext *moc = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
@@ -44,7 +48,8 @@
     [super setUp];
     self.managedObjectContext = [NSManagedObject_HYPPropertyMapperTests managedObjectContextForTests];
 
-    self.testUser = [NSEntityDescription insertNewObjectForEntityForName:@"User" inManagedObjectContext:self.managedObjectContext];
+    self.testUser = [NSEntityDescription insertNewObjectForEntityForName:@"User"
+                                                  inManagedObjectContext:self.managedObjectContext];
 
     [self.testUser setValue:@"John" forKey:@"firstName"];
     [self.testUser setValue:@"Hyperseed" forKey:@"lastName"];
@@ -63,30 +68,27 @@
     NSString *localKey = @"firstName";
     NSString *remoteKey = @"first_name";
 
-    XCTAssert([remoteKey isEqualTo:[NSManagedObject convertToRemoteString:localKey]], @"Local key was successfully transformed");
+    XCTAssert([remoteKey isEqualTo:[NSManagedObject convertToRemoteString:localKey]],
+              @"Local key was successfully transformed");
 }
 
 - (void)testLocalKeyTransformation
 {
-    NSString *localKey = @"firstName";
     NSString *remoteKey = @"first_name";
+    NSString *localKey = @"firstName";
 
-    XCTAssert([localKey isEqualTo:[NSManagedObject convertToLocalString:remoteKey]], @"Remote key was successfully transformed");
+    XCTAssert([localKey isEqualTo:[NSManagedObject convertToLocalString:remoteKey]],
+              @"Remote key was successfully transformed");
 }
 
 - (void)testDictionaryKeys
 {
     NSDictionary *dictionary = [self.testUser hyp_dictionary];
-    BOOL converstionSuccessful;
 
-    if (dictionary[@"first_name"] && dictionary[@"last_name"]) {
-        converstionSuccessful = YES;
-    }
-
-    XCTAssert(converstionSuccessful, @"Dictionary keys are present");
+    XCTAssert((dictionary[@"first_name"] && dictionary[@"last_name"]), @"Dictionary keys are present");
 }
 
-- (void)testDictonaryValues
+- (void)testDictionaryValues
 {
     NSDictionary *dictionary = [self.testUser hyp_dictionary];
 
@@ -113,7 +115,71 @@
 
     [self.testUser hyp_fillWithDictionary:values];
 
-    XCTAssert(([[self.testUser valueForKey:@"firstName"] isEqualTo:values[@"first_name"]]), @"Sex change successful");
+    XCTAssert(([[self.testUser valueForKey:@"firstName"] isEqualTo:values[@"first_name"]]),
+              @"Sex change successful");
+}
+
+- (void)testUpdatingExistingValueWithNull
+{
+    NSDictionary *values = @{
+                             @"first_name" : @"Jane",
+                             @"last_name"  : @"Hyperseed"
+                             };
+
+    [self.testUser hyp_fillWithDictionary:values];
+
+    NSDictionary *updatedValues = @{
+                             @"first_name" : [NSNull new],
+                             @"last_name"  : @"Hyperseed"
+                             };
+
+    [self.testUser hyp_fillWithDictionary:updatedValues];
+
+    XCTAssert(([self.testUser valueForKey:@"firstName"] == nil), @"Update successful");
+}
+
+- (void)testAgeNumber
+{
+    NSDictionary *values = @{
+                             @"age" : @24
+                             };
+
+    [self.testUser hyp_fillWithDictionary:values];
+
+    XCTAssert(([[self.testUser valueForKey:@"age"] isEqualTo:values[@"age"]]),
+              @"Number conversion successful");
+}
+
+- (void)testAgeString
+{
+    NSDictionary *values = @{
+                             @"age" : @"24"
+                             };
+
+    [self.testUser hyp_fillWithDictionary:values];
+
+    NSNumberFormatter *formatter = [NSNumberFormatter new];
+    NSNumber *age = [formatter numberFromString:values[@"age"]];
+
+    XCTAssert(([[self.testUser valueForKey:@"age"] isEqualToNumber:age]),
+              @"Number conversion successful");
+}
+
+- (void)testBornDate
+{
+    NSDictionary *values = @{
+                             @"birth_date" : @"1989-02-14T00:00:00+00:00"
+                             };
+
+    [self.testUser hyp_fillWithDictionary:values];
+
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    dateFormat.dateFormat = @"yyyy-MM-dd";
+    dateFormat.timeZone = [NSTimeZone timeZoneWithName:@"GMT"];
+    NSDate *date = [dateFormat dateFromString:@"1989-02-14"];
+
+    XCTAssert(([[self.testUser valueForKey:@"birthDate"] isEqualToDate:date]),
+              @"Date conversion successful");
 }
 
 @end
