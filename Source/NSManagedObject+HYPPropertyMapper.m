@@ -84,30 +84,45 @@
 
 - (void)hyp_fillWithDictionary:(NSDictionary *)dictionary
 {
-    for (id propertyDescription in [self.entity properties]) {
-        NSString *remoteKey = [NSManagedObject convertToRemoteString:[propertyDescription name]];
+    for (NSString *remoteKey in dictionary) {
 
-        id value = dictionary[remoteKey];
+        id value = [dictionary objectForKey:remoteKey];
+        id propertyDescription = [self propertyDescriptionForKey:remoteKey];
 
-        if (![propertyDescription isKindOfClass:[NSAttributeDescription class]]) return;
+        if (propertyDescription) {
 
-        NSAttributeDescription *attributeDescription = (NSAttributeDescription *)propertyDescription;
-        Class attributedClass = NSClassFromString([attributeDescription attributeValueClassName]);
+            NSAttributeDescription *attributeDescription = (NSAttributeDescription *)propertyDescription;
+            Class attributedClass = NSClassFromString([attributeDescription attributeValueClassName]);
 
-        NSString *localKey = [propertyDescription name];
+            NSString *localKey = [propertyDescription name];
 
-        if (value && ![value isKindOfClass:[NSNull class]]) {
+            if (value && ![value isKindOfClass:[NSNull class]]) {
 
-            if ([value isKindOfClass:attributedClass]) {
-                [self setValue:value forKey:localKey];
+                if ([value isKindOfClass:attributedClass]) {
+                    [self setValue:value forKey:localKey];
+                } else {
+                    [self processValue:value withDifferentPropertyDescription:propertyDescription];
+                }
+
             } else {
-                [self processValue:value withDifferentPropertyDescription:propertyDescription];
+                [self setValue:nil forKey:localKey];
             }
-
-        } else {
-            [self setValue:nil forKey:localKey];
         }
     }
+}
+
+- (id)propertyDescriptionForKey:(NSString *)key
+{
+    for (id propertyDescription in [self.entity properties]) {
+
+        if (![propertyDescription isKindOfClass:[NSAttributeDescription class]]) continue;
+
+        if ([[propertyDescription name] isEqualToString:[NSManagedObject convertToLocalString:key]]) {
+            return propertyDescription;
+        }
+    }
+
+    return nil;
 }
 
 - (void)processValue:(id)value withDifferentPropertyDescription:(id)propertyDescription
