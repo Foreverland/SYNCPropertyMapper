@@ -56,25 +56,63 @@
     [super tearDown];
 }
 
-#pragma mark - Tests
+#pragma mark - Inflections
 
-- (void)testRemoteKeyTransformation
+- (void)testRemoteKeyTransformationOneLetter
 {
-    NSString *localKey = @"firstName";
-    NSString *remoteKey = @"first_name";
+    NSString *localKey = @"age";
+    NSString *remoteKey = @"age";
 
     XCTAssert([remoteKey isEqualTo:[localKey remoteString]],
               @"Local key was successfully transformed");
 }
 
-- (void)testLocalKeyTransformation
+- (void)testLocalKeyTransformationOneLetter
 {
-    NSString *remoteKey = @"first_name";
-    NSString *localKey = @"firstName";
+    NSString *remoteKey = @"age";
+    NSString *localKey = @"age";
 
     XCTAssert([localKey isEqualTo:[remoteKey localString]],
               @"Remote key was successfully transformed");
 }
+
+- (void)testRemoteKeyTransformationTwoLetters
+{
+    NSString *localKey = @"driverIdentifier";
+    NSString *remoteKey = @"driver_identifier";
+
+    XCTAssert([remoteKey isEqualTo:[localKey remoteString]],
+              @"Local key was successfully transformed");
+}
+
+- (void)testLocalKeyTransformationTwoLetters
+{
+    NSString *remoteKey = @"driver_identifier";
+    NSString *localKey = @"driverIdentifier";
+
+    XCTAssert([localKey isEqualTo:[remoteKey localString]],
+              @"Remote key was successfully transformed");
+}
+
+- (void)testRemoteKeyTransformationAcronym
+{
+    NSString *localKey = @"userID";
+    NSString *remoteKey = @"user_id";
+
+    XCTAssert([remoteKey isEqualTo:[localKey remoteString]],
+              @"Local key was successfully transformed");
+}
+
+- (void)testLocalKeyTransformationAcronym
+{
+    NSString *remoteKey = @"user_id";
+    NSString *localKey = @"userID";
+
+    XCTAssert([localKey isEqualTo:[remoteKey localString]],
+              @"Remote key was successfully transformed");
+}
+
+#pragma mark - Property Mapper
 
 - (void)testDictionaryKeys
 {
