@@ -196,7 +196,29 @@
     XCTAssert(([[self.testUser valueForKey:@"firstName"] isEqualToString:updatedValues[@"first_name"]]) &&
               ([[self.testUser valueForKey:@"lastName"] isEqualToString:values[@"last_name"]]),
               @"Update successful");
+}
 
+- (void)testUpdateIgnoringEqualValues
+{
+    NSDictionary *values = @{
+                             @"first_name" : @"Jane",
+                             @"last_name"  : @"Hyperseed",
+                             @"age" : @30
+                             };
+
+    [self.testUser hyp_fillWithDictionary:values];
+
+    [self.testUser.managedObjectContext save:nil];
+
+    NSDictionary *updatedValues = @{
+                                    @"first_name" : @"Jane",
+                                    @"last_name"  : @"Hyperseed",
+                                    @"age" : @30
+                                    };
+
+    [self.testUser hyp_fillWithDictionary:updatedValues];
+
+    XCTAssert(!self.testUser.hasChanges, @"Ignored values successfully!");
 }
 
 @end
