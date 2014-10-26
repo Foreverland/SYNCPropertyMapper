@@ -68,7 +68,7 @@
     NSString *localKey = @"firstName";
     NSString *remoteKey = @"first_name";
 
-    XCTAssert([remoteKey isEqualTo:[NSManagedObject convertToRemoteString:localKey]],
+    XCTAssert([remoteKey isEqualTo:[localKey convertToRemoteString]],
               @"Local key was successfully transformed");
 }
 
@@ -77,7 +77,7 @@
     NSString *remoteKey = @"first_name";
     NSString *localKey = @"firstName";
 
-    XCTAssert([localKey isEqualTo:[NSManagedObject convertToLocalString:remoteKey]],
+    XCTAssert([localKey isEqualTo:[remoteKey convertToLocalString]],
               @"Remote key was successfully transformed");
 }
 
@@ -94,7 +94,7 @@
 
     __block BOOL valid = YES;
     [dictionary enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-        NSString *localString = [NSManagedObject convertToLocalString:key];
+        NSString *localString = [key convertToLocalString];
         id value = [self.testUser valueForKey:localString];
 
         if (![value isEqual:obj]) {

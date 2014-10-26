@@ -7,6 +7,13 @@
 
 @import CoreData;
 
+@interface NSString (PrivateInflections)
+
+- (NSString *)convertToRemoteString;
+- (NSString *)convertToLocalString;
+
+@end
+
 @interface NSManagedObject (HYPPropertyMapper)
 
 - (void)hyp_fillWithDictionary:(NSDictionary *)dictionary;
