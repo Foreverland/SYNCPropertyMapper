@@ -62,84 +62,114 @@
 {
     NSString *testString = @"first_name";
 
-    XCTAssert([[testString replacementIdentifier:@""] isEqualTo:@"FirstName"],
-              @"[[%@ replacementIdentifier:@""] isEqualTo:%@]",
+    XCTAssert([[testString replacementIdentifier:@""] isEqualToString:@"FirstName"],
+              @"[[%@ replacementIdentifier:@""] isEqualToString:%@]",
               [testString replacementIdentifier:@""], @"FirstName");
 
     testString = @"id";
 
-    XCTAssert([[testString replacementIdentifier:@""] isEqualTo:@"ID"],
-              @"[[%@ replacementIdentifier:@""] isEqualTo:%@]",
+    XCTAssert([[testString replacementIdentifier:@""] isEqualToString:@"ID"],
+              @"[[%@ replacementIdentifier:@""] isEqualToString:%@]",
               [testString replacementIdentifier:@""], @"ID");
+
+    testString = @"user_id";
+
+    XCTAssert([[testString replacementIdentifier:@""] isEqualToString:@"UserID"],
+              @"[[%@ replacementIdentifier:@""] isEqualToString:%@]",
+              [testString replacementIdentifier:@""], @"UserID");
 }
 
 - (void)testLowerCaseFirstLetter
 {
     NSString *testString = @"FirstName";
 
-    XCTAssert([[testString lowerCaseFirstLetter] isEqualTo:@"firstName"],
-              @"[[%@ lowerCaseFirstLetter] isEqualTo:%@]",
+    XCTAssert([[testString lowerCaseFirstLetter] isEqualToString:@"firstName"],
+              @"[[%@ lowerCaseFirstLetter] isEqualToString:%@]",
               [testString lowerCaseFirstLetter], @"firstName");
 }
 
-- (void)testRemoteKeyTransformationOneLetter
+- (void)testRemoteString
 {
+    // One letter
+
     NSString *localKey = @"age";
     NSString *remoteKey = @"age";
 
-    XCTAssert([remoteKey isEqualTo:[localKey remoteString]],
-              @"Local key was successfully transformed");
+    XCTAssert([remoteKey isEqualToString:[localKey remoteString]],
+              @"[%@ isEqualToString:%@",
+              localKey, [localKey remoteString]);
 
-    localKey = @"id";
-    remoteKey = @"ID";
+    localKey = @"ID";
+    remoteKey = @"id";
 
-    XCTAssert([remoteKey isEqualTo:[localKey remoteString]],
-              @"Local key was successfully transformed");
+    XCTAssert([remoteKey isEqualToString:[localKey remoteString]],
+              @"[%@ isEqualToString:%@",
+              localKey, [localKey remoteString]);
+
+    localKey = @"PDF";
+    remoteKey = @"pdf";
+
+    XCTAssert([remoteKey isEqualToString:[localKey remoteString]],
+              @"[%@ isEqualToString:%@",
+              localKey, [localKey remoteString]);
+
+    // Two letter
+
+    localKey = @"driverIdentifier";
+    remoteKey = @"driver_identifier";
+
+    XCTAssert([remoteKey isEqualToString:[localKey remoteString]],
+              @"[%@ isEqualToString:%@",
+              remoteKey, [localKey remoteString]);
+
+    localKey = @"userID";
+    remoteKey = @"user_id";
+
+    XCTAssert([remoteKey isEqualToString:[localKey remoteString]],
+              @"[%@ isEqualToString:%@",
+              remoteKey, [localKey remoteString]);
 }
 
-- (void)testLocalKeyTransformationOneLetter
+- (void)testLocalString
 {
+    // One letter
+
     NSString *remoteKey = @"age";
     NSString *localKey = @"age";
 
-    XCTAssert([localKey isEqualTo:[remoteKey localString]],
-              @"Remote key was successfully transformed");
-}
+    XCTAssert([localKey isEqualToString:[remoteKey localString]],
+              @"[%@ isEqualToString:%@",
+              localKey, [remoteKey localString]);
 
-- (void)testRemoteKeyTransformationTwoLetters
-{
-    NSString *localKey = @"driverIdentifier";
-    NSString *remoteKey = @"driver_identifier";
+    remoteKey = @"id";
+    localKey = @"ID";
 
-    XCTAssert([remoteKey isEqualTo:[localKey remoteString]],
-              @"Local key was successfully transformed");
-}
+    XCTAssert([localKey isEqualToString:[remoteKey localString]],
+              @"[%@ isEqualToString:%@",
+              localKey, [remoteKey localString]);
 
-- (void)testLocalKeyTransformationTwoLetters
-{
-    NSString *remoteKey = @"driver_identifier";
-    NSString *localKey = @"driverIdentifier";
+    remoteKey = @"pdf";
+    localKey = @"PDF";
 
-    XCTAssert([localKey isEqualTo:[remoteKey localString]],
-              @"Remote key was successfully transformed");
-}
+    XCTAssert([localKey isEqualToString:[remoteKey localString]],
+              @"[%@ isEqualToString:%@",
+              localKey, [remoteKey localString]);
 
-- (void)testRemoteKeyTransformationAcronym
-{
-    NSString *localKey = @"userID";
-    NSString *remoteKey = @"user_id";
+    // Two letters
 
-    XCTAssert([remoteKey isEqualTo:[localKey remoteString]],
-              @"Local key was successfully transformed");
-}
+    remoteKey = @"driver_identifier";
+    localKey = @"driverIdentifier";
 
-- (void)testLocalKeyTransformationAcronym
-{
-    NSString *remoteKey = @"user_id";
-    NSString *localKey = @"userID";
+    XCTAssert([localKey isEqualToString:[remoteKey localString]],
+              @"[%@ isEqualToString:%@",
+              localKey, [remoteKey localString]);
 
-    XCTAssert([localKey isEqualTo:[remoteKey localString]],
-              @"Remote key was successfully transformed");
+    remoteKey = @"user_id";
+    localKey = @"userID";
+
+    XCTAssert([localKey isEqualToString:[remoteKey localString]],
+              @"[%@ isEqualToString:%@",
+              localKey, [remoteKey localString]);
 }
 
 #pragma mark - Property Mapper
@@ -178,7 +208,7 @@
 
     [self.testUser hyp_fillWithDictionary:values];
 
-    XCTAssert(([[self.testUser valueForKey:@"firstName"] isEqualTo:values[@"first_name"]]),
+    XCTAssert(([[self.testUser valueForKey:@"firstName"] isEqualToString:values[@"first_name"]]),
               @"Sex change successful");
 }
 
@@ -209,7 +239,7 @@
 
     [self.testUser hyp_fillWithDictionary:values];
 
-    XCTAssert(([[self.testUser valueForKey:@"age"] isEqualTo:values[@"age"]]),
+    XCTAssert(([[self.testUser valueForKey:@"age"] isEqualToNumber:values[@"age"]]),
               @"Number conversion successful");
 }
 
@@ -292,7 +322,7 @@
 - (void)testAcronyms
 {
     NSDictionary *values = @{
-                             @"userID" : @100
+                             @"user_id" : @100
                              };
 
     [self.testUser hyp_fillWithDictionary:values];

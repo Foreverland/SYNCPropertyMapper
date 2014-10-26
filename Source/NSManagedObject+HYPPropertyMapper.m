@@ -18,7 +18,11 @@
 
 - (NSString *)localString
 {
-    return [[self replacementIdentifier:@""] lowerCaseFirstLetter];
+    NSString *processedString = [self replacementIdentifier:@""];
+
+    BOOL remoteStringIsAnAcronym = ([[NSString acronyms] containsObject:[processedString lowercaseString]]);
+
+    return (remoteStringIsAnAcronym) ? processedString : [processedString lowerCaseFirstLetter];
 }
 
 - (NSString *)lowerCaseFirstLetter
@@ -50,9 +54,13 @@
             continue;
         }
 
-        if ([replacementString length]) {
+        if (replacementString.length > 0) {
             if ([scanner scanCharactersFromSet:uppercaseSet intoString:&buffer]) {
-                [output appendString:replacementString];
+
+                if (output.length > 0) {
+                    [output appendString:replacementString];
+                }
+
                 [output appendString:[buffer lowercaseString]];
             }
             if ([scanner scanCharactersFromSet:lowercaseSet intoString:&buffer]) {
@@ -60,12 +68,21 @@
             }
         } else {
             if ([scanner scanCharactersFromSet:alphanumericSet intoString:&buffer]) {
-                [output appendString:[buffer capitalizedString]];
+                if ([[NSString acronyms] containsObject:buffer]) {
+                    [output appendString:[buffer uppercaseString]];
+                } else {
+                    [output appendString:[buffer capitalizedString]];
+                }
             }
         }
     }
 
     return [output copy];
+}
+
++ (NSArray *)acronyms
+{
+    return @[@"id", @"pdf", @"url", @"png", @"jpg"];
 }
 
 @end
