@@ -45,7 +45,7 @@
     NSCharacterSet *uppercaseSet    = [NSCharacterSet uppercaseLetterCharacterSet];
     NSCharacterSet *lowercaseSet    = [NSCharacterSet lowercaseLetterCharacterSet];
 
-    NSString *buffer = nil;
+    NSString *buffer;
     NSMutableString *output = [NSMutableString string];
 
     while (!scanner.isAtEnd) {
