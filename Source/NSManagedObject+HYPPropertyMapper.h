@@ -9,8 +9,8 @@
 
 @interface NSString (PrivateInflections)
 
-- (NSString *)convertToRemoteString;
-- (NSString *)convertToLocalString;
+- (NSString *)remoteString;
+- (NSString *)localString;
 
 @end
 

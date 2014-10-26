@@ -11,12 +11,12 @@
 
 #pragma mark - Private methods
 
-- (NSString *)convertToRemoteString
+- (NSString *)remoteString
 {
     return [NSString lowerCaseFirstLetter:[NSString replacementIdentifier:@"_" inString:self]];
 }
 
-- (NSString *)convertToLocalString
+- (NSString *)localString
 {
     return [NSString lowerCaseFirstLetter:[NSString replacementIdentifier:@"" inString:self]];
 }
@@ -189,7 +189,7 @@
 
         if (![propertyDescription isKindOfClass:[NSAttributeDescription class]]) continue;
 
-        if ([[propertyDescription name] isEqualToString:[key convertToLocalString]]) {
+        if ([[propertyDescription name] isEqualToString:[key localString]]) {
             return propertyDescription;
         }
     }
@@ -235,7 +235,7 @@
 
         if ([propertyDescription isKindOfClass:[NSAttributeDescription class]]) {
             NSAttributeDescription *attributeDescription = (NSAttributeDescription *)propertyDescription;
-            NSString *key = [[propertyDescription name] convertToRemoteString];
+            NSString *key = [[propertyDescription name] remoteString];
 
             id value = [self valueForKey:[attributeDescription name]];
 

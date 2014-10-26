@@ -10,11 +10,6 @@
 #import <XCTest/XCTest.h>
 #import "NSManagedObject+HYPPropertyMapper.h"
 
-@interface NSManagedObject (StringConverting)
-+ (NSString *)convertToRemoteString:(NSString *)string;
-+ (NSString *)convertToLocalString:(NSString *)string;
-@end
-
 @interface NSManagedObject_HYPPropertyMapperTests : XCTestCase
 
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
@@ -68,7 +63,7 @@
     NSString *localKey = @"firstName";
     NSString *remoteKey = @"first_name";
 
-    XCTAssert([remoteKey isEqualTo:[localKey convertToRemoteString]],
+    XCTAssert([remoteKey isEqualTo:[localKey remoteString]],
               @"Local key was successfully transformed");
 }
 
@@ -77,7 +72,7 @@
     NSString *remoteKey = @"first_name";
     NSString *localKey = @"firstName";
 
-    XCTAssert([localKey isEqualTo:[remoteKey convertToLocalString]],
+    XCTAssert([localKey isEqualTo:[remoteKey localString]],
               @"Remote key was successfully transformed");
 }
 
@@ -94,7 +89,7 @@
 
     __block BOOL valid = YES;
     [dictionary enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-        NSString *localString = [key convertToLocalString];
+        NSString *localString = [key localString];
         id value = [self.testUser valueForKey:localString];
 
         if (![value isEqual:obj]) {
