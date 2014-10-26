@@ -21,15 +21,6 @@
     return [[self replacementIdentifier:@""] lowerCaseFirstLetter];
 }
 
-+ (NSString *)upperCaseFirstLetter:(NSString *)targetString
-{
-    NSMutableString *mutableString = [[NSMutableString alloc] initWithString:targetString];
-    NSString *firstLetter = [[mutableString substringToIndex:1] uppercaseString];
-    [mutableString replaceCharactersInRange:NSMakeRange(0,1)
-                                 withString:firstLetter];
-    return [mutableString copy];
-}
-
 - (NSString *)lowerCaseFirstLetter
 {
     NSMutableString *mutableString = [[NSMutableString alloc] initWithString:self];
