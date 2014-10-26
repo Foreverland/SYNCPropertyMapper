@@ -13,12 +13,12 @@
 
 - (NSString *)remoteString
 {
-    return [NSString lowerCaseFirstLetter:[NSString replacementIdentifier:@"_" inString:self]];
+    return [[self replacementIdentifier:@"_"] lowerCaseFirstLetter];
 }
 
 - (NSString *)localString
 {
-    return [NSString lowerCaseFirstLetter:[NSString replacementIdentifier:@"" inString:self]];
+    return [[self replacementIdentifier:@""] lowerCaseFirstLetter];
 }
 
 + (NSString *)upperCaseFirstLetter:(NSString *)targetString
@@ -30,9 +30,9 @@
     return [mutableString copy];
 }
 
-+ (NSString *)lowerCaseFirstLetter:(NSString *)targetString
+- (NSString *)lowerCaseFirstLetter
 {
-    NSMutableString *mutableString = [[NSMutableString alloc] initWithString:targetString];
+    NSMutableString *mutableString = [[NSMutableString alloc] initWithString:self];
     NSString *firstLetter = [[mutableString substringToIndex:1] lowercaseString];
     [mutableString replaceCharactersInRange:NSMakeRange(0,1)
                                  withString:firstLetter];
@@ -40,9 +40,9 @@
     return [mutableString copy];
 }
 
-+ (NSString *)replacementIdentifier:(NSString *)replacementString inString:(NSString *)targetString
+- (NSString *)replacementIdentifier:(NSString *)replacementString
 {
-    NSScanner *scanner = [NSScanner scannerWithString:targetString];
+    NSScanner *scanner = [NSScanner scannerWithString:self];
     scanner.caseSensitive = YES;
 
     NSCharacterSet *identifierSet = [NSCharacterSet characterSetWithCharactersInString:@"_- "];
