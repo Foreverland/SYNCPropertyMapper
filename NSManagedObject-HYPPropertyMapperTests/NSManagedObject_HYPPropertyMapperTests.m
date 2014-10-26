@@ -221,4 +221,16 @@
     XCTAssert(!self.testUser.hasChanges, @"Ignored values successfully!");
 }
 
+- (void)testAcronyms
+{
+    NSDictionary *values = @{
+                             @"userID" : @100
+                             };
+
+    [self.testUser hyp_fillWithDictionary:values];
+
+    XCTAssert(([[self.testUser valueForKey:@"userID"] isEqualToNumber:@100]),
+              @"Update successful");
+}
+
 @end
