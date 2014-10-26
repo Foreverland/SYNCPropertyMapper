@@ -11,6 +11,8 @@
 
 - (NSString *)remoteString;
 - (NSString *)localString;
+- (NSString *)replacementIdentifier:(NSString *)replacementString;
+- (NSString *)lowerCaseFirstLetter;
 
 @end
 

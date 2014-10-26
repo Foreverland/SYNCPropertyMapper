@@ -58,6 +58,30 @@
 
 #pragma mark - Inflections
 
+- (void)testReplacementIdentifier
+{
+    NSString *testString = @"first_name";
+
+    XCTAssert([[testString replacementIdentifier:@""] isEqualTo:@"FirstName"],
+              @"[[%@ replacementIdentifier:@""] isEqualTo:%@]",
+              [testString replacementIdentifier:@""], @"FirstName");
+
+    testString = @"id";
+
+    XCTAssert([[testString replacementIdentifier:@""] isEqualTo:@"ID"],
+              @"[[%@ replacementIdentifier:@""] isEqualTo:%@]",
+              [testString replacementIdentifier:@""], @"ID");
+}
+
+- (void)testLowerCaseFirstLetter
+{
+    NSString *testString = @"FirstName";
+
+    XCTAssert([[testString lowerCaseFirstLetter] isEqualTo:@"firstName"],
+              @"[[%@ lowerCaseFirstLetter] isEqualTo:%@]",
+              [testString lowerCaseFirstLetter], @"firstName");
+}
+
 - (void)testRemoteKeyTransformationOneLetter
 {
     NSString *localKey = @"age";
