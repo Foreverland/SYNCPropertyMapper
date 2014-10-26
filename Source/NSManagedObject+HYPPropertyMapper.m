@@ -162,23 +162,22 @@
         id propertyDescription = [self propertyDescriptionForKey:remoteKey];
         if (!propertyDescription) continue;
 
-        NSAttributeDescription *attributeDescription = (NSAttributeDescription *)propertyDescription;
-        Class attributedClass = NSClassFromString([attributeDescription attributeValueClassName]);
-
         NSString *localKey = [propertyDescription name];
 
         if (value && ![value isKindOfClass:[NSNull class]]) {
 
-            if ([value isKindOfClass:attributedClass]) {
-                if (![[self valueForKey:localKey] isEqual:value]) {
-                    [self setValue:value forKey:localKey];
-                }
-            } else {
-                [self processValue:value withDifferentPropertyDescription:propertyDescription];
+            id procesedValue = [self valueForPropertyDescription:propertyDescription
+                                                usingRemoteValue:value];
+
+
+            if (![[self valueForKey:localKey] isEqual:procesedValue]) {
+                [self setValue:procesedValue forKey:localKey];
             }
 
         } else {
-            [self setValue:nil forKey:localKey];
+            if ([self valueForKey:localKey]) {
+                [self setValue:nil forKey:localKey];
+            }
         }
     }
 }
@@ -197,10 +196,14 @@
     return nil;
 }
 
-- (void)processValue:(id)value withDifferentPropertyDescription:(id)propertyDescription
+- (id)valueForPropertyDescription:(id)propertyDescription usingRemoteValue:(id)value
 {
     NSAttributeDescription *attributeDescription = (NSAttributeDescription *)propertyDescription;
     Class attributedClass = NSClassFromString([attributeDescription attributeValueClassName]);
+
+    if ([value isKindOfClass:attributedClass]) {
+        return value;
+    }
 
     BOOL stringValueAndNumberAttribute = ([value isKindOfClass:[NSString class]] &&
                                           attributedClass == [NSNumber class]);
@@ -211,20 +214,16 @@
     BOOL stringValueAndDateAttribute = ([value isKindOfClass:[NSString class]] &&
                                         attributedClass == [NSDate class]);
 
-    id transformedValue = nil;
-
     if (stringValueAndNumberAttribute) {
         NSNumberFormatter *formatter = [NSNumberFormatter new];
-        transformedValue = [formatter numberFromString:value];
+        return [formatter numberFromString:value];
     } else if (numberValueAndStringAttribute) {
-        transformedValue = [NSString stringWithFormat:@"%@", value];
+        return [NSString stringWithFormat:@"%@", value];
     } else if (stringValueAndDateAttribute) {
-        transformedValue = [NSDate __dateFromISO8601String:value];
+        return [NSDate __dateFromISO8601String:value];
     }
 
-    if (transformedValue) {
-        [self setValue:transformedValue forKey:[propertyDescription name]];
-    }
+    return nil;
 }
 
 - (NSDictionary *)hyp_dictionary
