@@ -13,26 +13,21 @@
 
 - (NSString *)remoteString
 {
-    return [NSString lowerCaseFirstLetter:[NSString replacementIdentifier:@"_" inString:self]];
+    return [[self replacementIdentifier:@"_"] lowerCaseFirstLetter];
 }
 
 - (NSString *)localString
 {
-    return [NSString lowerCaseFirstLetter:[NSString replacementIdentifier:@"" inString:self]];
+    NSString *processedString = [self replacementIdentifier:@""];
+
+    BOOL remoteStringIsAnAcronym = ([[NSString acronyms] containsObject:[processedString lowercaseString]]);
+
+    return (remoteStringIsAnAcronym) ? processedString : [processedString lowerCaseFirstLetter];
 }
 
-+ (NSString *)upperCaseFirstLetter:(NSString *)targetString
+- (NSString *)lowerCaseFirstLetter
 {
-    NSMutableString *mutableString = [[NSMutableString alloc] initWithString:targetString];
-    NSString *firstLetter = [[mutableString substringToIndex:1] uppercaseString];
-    [mutableString replaceCharactersInRange:NSMakeRange(0,1)
-                                 withString:firstLetter];
-    return [mutableString copy];
-}
-
-+ (NSString *)lowerCaseFirstLetter:(NSString *)targetString
-{
-    NSMutableString *mutableString = [[NSMutableString alloc] initWithString:targetString];
+    NSMutableString *mutableString = [[NSMutableString alloc] initWithString:self];
     NSString *firstLetter = [[mutableString substringToIndex:1] lowercaseString];
     [mutableString replaceCharactersInRange:NSMakeRange(0,1)
                                  withString:firstLetter];
@@ -40,18 +35,17 @@
     return [mutableString copy];
 }
 
-+ (NSString *)replacementIdentifier:(NSString *)replacementString inString:(NSString *)targetString
+- (NSString *)replacementIdentifier:(NSString *)replacementString
 {
-    NSScanner *scanner = [NSScanner scannerWithString:targetString];
+    NSScanner *scanner = [NSScanner scannerWithString:self];
     scanner.caseSensitive = YES;
 
-    NSCharacterSet *identifierSet = [NSCharacterSet characterSetWithCharactersInString:@"_- "];
-
+    NSCharacterSet *identifierSet   = [NSCharacterSet characterSetWithCharactersInString:@"_- "];
     NSCharacterSet *alphanumericSet = [NSCharacterSet alphanumericCharacterSet];
-    NSCharacterSet *uppercaseSet = [NSCharacterSet uppercaseLetterCharacterSet];
-    NSCharacterSet *lowercaseSet = [NSCharacterSet lowercaseLetterCharacterSet];
+    NSCharacterSet *uppercaseSet    = [NSCharacterSet uppercaseLetterCharacterSet];
+    NSCharacterSet *lowercaseSet    = [NSCharacterSet lowercaseLetterCharacterSet];
 
-    NSString *buffer = nil;
+    NSString *buffer;
     NSMutableString *output = [NSMutableString string];
 
     while (!scanner.isAtEnd) {
@@ -59,9 +53,13 @@
             continue;
         }
 
-        if ([replacementString length]) {
+        if (replacementString.length > 0) {
             if ([scanner scanCharactersFromSet:uppercaseSet intoString:&buffer]) {
-                [output appendString:replacementString];
+
+                if (output.length > 0) {
+                    [output appendString:replacementString];
+                }
+
                 [output appendString:[buffer lowercaseString]];
             }
             if ([scanner scanCharactersFromSet:lowercaseSet intoString:&buffer]) {
@@ -69,12 +67,21 @@
             }
         } else {
             if ([scanner scanCharactersFromSet:alphanumericSet intoString:&buffer]) {
-                [output appendString:[buffer capitalizedString]];
+                if ([[NSString acronyms] containsObject:buffer]) {
+                    [output appendString:[buffer uppercaseString]];
+                } else {
+                    [output appendString:[buffer capitalizedString]];
+                }
             }
         }
     }
 
     return [output copy];
+}
+
++ (NSArray *)acronyms
+{
+    return @[@"id", @"pdf", @"url", @"png", @"jpg"];
 }
 
 @end
@@ -83,61 +90,40 @@
 
 + (NSDate *)__dateFromISO8601String:(NSString *)iso8601
 {
-    // Return nil if nil is given
-    if (!iso8601 || [iso8601 isEqual:[NSNull null]]) {
-        return nil;
-    }
+    if (!iso8601 || [iso8601 isEqual:[NSNull null]]) return nil;
 
-    // Parse number
     if ([iso8601 isKindOfClass:[NSNumber class]]) {
         return [NSDate dateWithTimeIntervalSince1970:[(NSNumber *)iso8601 doubleValue]];
-    }
+    } else if ([iso8601 isKindOfClass:[NSString class]]) {
 
-    // Parse string
-    else if ([iso8601 isKindOfClass:[NSString class]]) {
-        if (!iso8601) {
-            return nil;
-        }
+        if (!iso8601) return nil;
 
         const char *str = [iso8601 cStringUsingEncoding:NSUTF8StringEncoding];
         char newStr[25];
 
         struct tm tm;
         size_t len = strlen(str);
-        if (len == 0) {
-            return nil;
-        }
 
-        // UTC
-        if (len == 20 && str[len - 1] == 'Z') {
+        if (len == 0) return nil;
+
+        if (len == 20 && str[len - 1] == 'Z') {        // UTC
             strncpy(newStr, str, len - 1);
             strncpy(newStr + len - 1, "+0000", 5);
-        }
-
-        //Milliseconds parsing
-        else if (len == 24 && str[len - 1] == 'Z') {
+        } else if (len == 24 && str[len - 1] == 'Z') { // Milliseconds parsing
             strncpy(newStr, str, len - 1);
             strncpy(newStr, str, len - 5);
             strncpy(newStr + len - 5, "+0000", 5);
-        }
-
-        // Timezone
-        else if (len == 25 && str[22] == ':') {
+        } else if (len == 25 && str[22] == ':') {      // Timezone
             strncpy(newStr, str, 22);
             strncpy(newStr + 22, str + 23, 2);
-        }
-
-        // Poorly formatted timezone
-        else {
+        } else {                                       // Poorly formatted timezone
             strncpy(newStr, str, len > 24 ? 24 : len);
         }
 
         // Add null terminator
         newStr[sizeof(newStr) - 1] = 0;
 
-        if (strptime(newStr, "%FT%T%z", &tm) == NULL) {
-            return nil;
-        }
+        if (strptime(newStr, "%FT%T%z", &tm) == NULL) return nil;
 
         time_t t;
         t = mktime(&tm);
@@ -160,6 +146,7 @@
 
         id value = [dictionary objectForKey:remoteKey];
         id propertyDescription = [self propertyDescriptionForKey:remoteKey];
+
         if (!propertyDescription) continue;
 
         NSString *localKey = [propertyDescription name];
@@ -201,9 +188,7 @@
     NSAttributeDescription *attributeDescription = (NSAttributeDescription *)propertyDescription;
     Class attributedClass = NSClassFromString([attributeDescription attributeValueClassName]);
 
-    if ([value isKindOfClass:attributedClass]) {
-        return value;
-    }
+    if ([value isKindOfClass:attributedClass]) return value;
 
     BOOL stringValueAndNumberAttribute = ([value isKindOfClass:[NSString class]] &&
                                           attributedClass == [NSNumber class]);
@@ -211,8 +196,8 @@
     BOOL numberValueAndStringAttribute = ([value isKindOfClass:[NSNumber class]] &&
                                           attributedClass == [NSString class]);
 
-    BOOL stringValueAndDateAttribute = ([value isKindOfClass:[NSString class]] &&
-                                        attributedClass == [NSDate class]);
+    BOOL stringValueAndDateAttribute   = ([value isKindOfClass:[NSString class]] &&
+                                          attributedClass == [NSDate class]);
 
     if (stringValueAndNumberAttribute) {
         NSNumberFormatter *formatter = [NSNumberFormatter new];
@@ -238,9 +223,7 @@
 
             id value = [self valueForKey:[attributeDescription name]];
 
-            if (!value || [value isKindOfClass:[NSNull class]]) {
-                continue;
-            }
+            if (!value || [value isKindOfClass:[NSNull class]]) continue;
 
             mutableDictionary[key] = value;
         }
