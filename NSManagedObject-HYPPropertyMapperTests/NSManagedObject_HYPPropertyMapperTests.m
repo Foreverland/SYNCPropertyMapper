@@ -177,4 +177,26 @@
               @"Date conversion successful");
 }
 
+- (void)testUpdate
+{
+    NSDictionary *values = @{
+                             @"first_name" : @"Jane",
+                             @"last_name"  : @"Hyperseed",
+                             @"age" : @30
+                             };
+
+    [self.testUser hyp_fillWithDictionary:values];
+
+    NSDictionary *updatedValues = @{
+                             @"first_name" : @"Jeanet"
+                             };
+
+    [self.testUser hyp_fillWithDictionary:updatedValues];
+
+    XCTAssert(([[self.testUser valueForKey:@"firstName"] isEqualToString:updatedValues[@"first_name"]]) &&
+              ([[self.testUser valueForKey:@"lastName"] isEqualToString:values[@"last_name"]]),
+              @"Update successful");
+
+}
+
 @end
