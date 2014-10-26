@@ -7,6 +7,78 @@
 
 #import "NSManagedObject+HYPPropertyMapper.h"
 
+@implementation NSString (PrivateInflections)
+
+#pragma mark - Private methods
+
+- (NSString *)convertToRemoteString
+{
+    return [NSString lowerCaseFirstLetter:[NSString replacementIdentifier:@"_" inString:self]];
+}
+
+- (NSString *)convertToLocalString
+{
+    return [NSString lowerCaseFirstLetter:[NSString replacementIdentifier:@"" inString:self]];
+}
+
++ (NSString *)upperCaseFirstLetter:(NSString *)targetString
+{
+    NSMutableString *mutableString = [[NSMutableString alloc] initWithString:targetString];
+    NSString *firstLetter = [[mutableString substringToIndex:1] uppercaseString];
+    [mutableString replaceCharactersInRange:NSMakeRange(0,1)
+                                 withString:firstLetter];
+    return [mutableString copy];
+}
+
++ (NSString *)lowerCaseFirstLetter:(NSString *)targetString
+{
+    NSMutableString *mutableString = [[NSMutableString alloc] initWithString:targetString];
+    NSString *firstLetter = [[mutableString substringToIndex:1] lowercaseString];
+    [mutableString replaceCharactersInRange:NSMakeRange(0,1)
+                                 withString:firstLetter];
+
+    return [mutableString copy];
+}
+
++ (NSString *)replacementIdentifier:(NSString *)replacementString inString:(NSString *)targetString
+{
+    NSScanner *scanner = [NSScanner scannerWithString:targetString];
+    scanner.caseSensitive = YES;
+
+    NSCharacterSet *identifierSet = [NSCharacterSet characterSetWithCharactersInString:@"_- "];
+
+    NSCharacterSet *alphanumericSet = [NSCharacterSet alphanumericCharacterSet];
+    NSCharacterSet *uppercaseSet = [NSCharacterSet uppercaseLetterCharacterSet];
+    NSCharacterSet *lowercaseSet = [NSCharacterSet lowercaseLetterCharacterSet];
+
+    NSString *buffer = nil;
+    NSMutableString *output = [NSMutableString string];
+
+    while (!scanner.isAtEnd) {
+        if ([scanner scanCharactersFromSet:identifierSet intoString:&buffer]) {
+            continue;
+        }
+
+        if ([replacementString length]) {
+            if ([scanner scanCharactersFromSet:uppercaseSet intoString:&buffer]) {
+                [output appendString:replacementString];
+                [output appendString:[buffer lowercaseString]];
+            }
+            if ([scanner scanCharactersFromSet:lowercaseSet intoString:&buffer]) {
+                [output appendString:[buffer lowercaseString]];
+            }
+        } else {
+            if ([scanner scanCharactersFromSet:alphanumericSet intoString:&buffer]) {
+                [output appendString:[buffer capitalizedString]];
+            }
+        }
+    }
+
+    return [output copy];
+}
+
+@end
+
 @implementation NSDate (ISO8601)
 
 + (NSDate *)__dateFromISO8601String:(NSString *)iso8601
@@ -117,7 +189,7 @@
 
         if (![propertyDescription isKindOfClass:[NSAttributeDescription class]]) continue;
 
-        if ([[propertyDescription name] isEqualToString:[NSManagedObject convertToLocalString:key]]) {
+        if ([[propertyDescription name] isEqualToString:[key convertToLocalString]]) {
             return propertyDescription;
         }
     }
@@ -163,7 +235,7 @@
 
         if ([propertyDescription isKindOfClass:[NSAttributeDescription class]]) {
             NSAttributeDescription *attributeDescription = (NSAttributeDescription *)propertyDescription;
-            NSString *key = [NSManagedObject convertToRemoteString:[propertyDescription name]];
+            NSString *key = [[propertyDescription name] convertToRemoteString];
 
             id value = [self valueForKey:[attributeDescription name]];
 
@@ -176,74 +248,6 @@
     }
 
     return [mutableDictionary copy];
-}
-
-#pragma mark - Private methods
-
-+ (NSString *)convertToRemoteString:(NSString *)string
-{
-    return [NSManagedObject lowerCaseFirstLetter:[NSManagedObject replacementIdentifier:@"_" inString:string]];
-}
-
-+ (NSString *)convertToLocalString:(NSString *)string
-{
-    return [NSManagedObject lowerCaseFirstLetter:[NSManagedObject replacementIdentifier:@"" inString:string]];
-}
-
-+ (NSString *)upperCaseFirstLetter:(NSString *)targetString
-{
-    NSMutableString *mutableString = [[NSMutableString alloc] initWithString:targetString];
-    NSString *firstLetter = [[mutableString substringToIndex:1] uppercaseString];
-    [mutableString replaceCharactersInRange:NSMakeRange(0,1)
-                                 withString:firstLetter];
-    return [mutableString copy];
-}
-
-+ (NSString *)lowerCaseFirstLetter:(NSString *)targetString
-{
-    NSMutableString *mutableString = [[NSMutableString alloc] initWithString:targetString];
-    NSString *firstLetter = [[mutableString substringToIndex:1] lowercaseString];
-    [mutableString replaceCharactersInRange:NSMakeRange(0,1)
-                                 withString:firstLetter];
-
-    return [mutableString copy];
-}
-
-+ (NSString *)replacementIdentifier:(NSString *)replacementString inString:(NSString *)targetString
-{
-    NSScanner *scanner = [NSScanner scannerWithString:targetString];
-    scanner.caseSensitive = YES;
-
-    NSCharacterSet *identifierSet = [NSCharacterSet characterSetWithCharactersInString:@"_- "];
-
-    NSCharacterSet *alphanumericSet = [NSCharacterSet alphanumericCharacterSet];
-    NSCharacterSet *uppercaseSet = [NSCharacterSet uppercaseLetterCharacterSet];
-    NSCharacterSet *lowercaseSet = [NSCharacterSet lowercaseLetterCharacterSet];
-
-    NSString *buffer = nil;
-    NSMutableString *output = [NSMutableString string];
-
-    while (!scanner.isAtEnd) {
-        if ([scanner scanCharactersFromSet:identifierSet intoString:&buffer]) {
-            continue;
-        }
-
-        if ([replacementString length]) {
-            if ([scanner scanCharactersFromSet:uppercaseSet intoString:&buffer]) {
-                [output appendString:replacementString];
-                [output appendString:[buffer lowercaseString]];
-            }
-            if ([scanner scanCharactersFromSet:lowercaseSet intoString:&buffer]) {
-                [output appendString:[buffer lowercaseString]];
-            }
-        } else {
-            if ([scanner scanCharactersFromSet:alphanumericSet intoString:&buffer]) {
-                [output appendString:[buffer capitalizedString]];
-            }
-        }
-    }
-
-    return [output copy];
 }
 
 @end
