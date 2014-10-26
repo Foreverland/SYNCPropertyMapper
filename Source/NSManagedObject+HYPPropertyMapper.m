@@ -160,25 +160,25 @@
 
         id value = [dictionary objectForKey:remoteKey];
         id propertyDescription = [self propertyDescriptionForKey:remoteKey];
+        if (!propertyDescription) continue;
 
-        if (propertyDescription) {
+        NSAttributeDescription *attributeDescription = (NSAttributeDescription *)propertyDescription;
+        Class attributedClass = NSClassFromString([attributeDescription attributeValueClassName]);
 
-            NSAttributeDescription *attributeDescription = (NSAttributeDescription *)propertyDescription;
-            Class attributedClass = NSClassFromString([attributeDescription attributeValueClassName]);
+        NSString *localKey = [propertyDescription name];
 
-            NSString *localKey = [propertyDescription name];
+        if (value && ![value isKindOfClass:[NSNull class]]) {
 
-            if (value && ![value isKindOfClass:[NSNull class]]) {
-
-                if ([value isKindOfClass:attributedClass]) {
+            if ([value isKindOfClass:attributedClass]) {
+                if (![[self valueForKey:localKey] isEqual:value]) {
                     [self setValue:value forKey:localKey];
-                } else {
-                    [self processValue:value withDifferentPropertyDescription:propertyDescription];
                 }
-
             } else {
-                [self setValue:nil forKey:localKey];
+                [self processValue:value withDifferentPropertyDescription:propertyDescription];
             }
+
+        } else {
+            [self setValue:nil forKey:localKey];
         }
     }
 }
