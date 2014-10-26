@@ -10,11 +10,6 @@
 #import <XCTest/XCTest.h>
 #import "NSManagedObject+HYPPropertyMapper.h"
 
-@interface NSManagedObject (StringConverting)
-+ (NSString *)convertToRemoteString:(NSString *)string;
-+ (NSString *)convertToLocalString:(NSString *)string;
-@end
-
 @interface NSManagedObject_HYPPropertyMapperTests : XCTestCase
 
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
@@ -68,7 +63,7 @@
     NSString *localKey = @"firstName";
     NSString *remoteKey = @"first_name";
 
-    XCTAssert([remoteKey isEqualTo:[NSManagedObject convertToRemoteString:localKey]],
+    XCTAssert([remoteKey isEqualTo:[localKey remoteString]],
               @"Local key was successfully transformed");
 }
 
@@ -77,7 +72,7 @@
     NSString *remoteKey = @"first_name";
     NSString *localKey = @"firstName";
 
-    XCTAssert([localKey isEqualTo:[NSManagedObject convertToLocalString:remoteKey]],
+    XCTAssert([localKey isEqualTo:[remoteKey localString]],
               @"Remote key was successfully transformed");
 }
 
@@ -94,7 +89,7 @@
 
     __block BOOL valid = YES;
     [dictionary enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-        NSString *localString = [NSManagedObject convertToLocalString:key];
+        NSString *localString = [key localString];
         id value = [self.testUser valueForKey:localString];
 
         if (![value isEqual:obj]) {
@@ -180,6 +175,28 @@
 
     XCTAssert(([[self.testUser valueForKey:@"birthDate"] isEqualToDate:date]),
               @"Date conversion successful");
+}
+
+- (void)testUpdate
+{
+    NSDictionary *values = @{
+                             @"first_name" : @"Jane",
+                             @"last_name"  : @"Hyperseed",
+                             @"age" : @30
+                             };
+
+    [self.testUser hyp_fillWithDictionary:values];
+
+    NSDictionary *updatedValues = @{
+                             @"first_name" : @"Jeanet"
+                             };
+
+    [self.testUser hyp_fillWithDictionary:updatedValues];
+
+    XCTAssert(([[self.testUser valueForKey:@"firstName"] isEqualToString:updatedValues[@"first_name"]]) &&
+              ([[self.testUser valueForKey:@"lastName"] isEqualToString:values[@"last_name"]]),
+              @"Update successful");
+
 }
 
 @end
