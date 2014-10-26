@@ -65,6 +65,12 @@
 
     XCTAssert([remoteKey isEqualTo:[localKey remoteString]],
               @"Local key was successfully transformed");
+
+    localKey = @"id";
+    remoteKey = @"ID";
+
+    XCTAssert([remoteKey isEqualTo:[localKey remoteString]],
+              @"Local key was successfully transformed");
 }
 
 - (void)testLocalKeyTransformationOneLetter
