@@ -40,11 +40,10 @@
     NSScanner *scanner = [NSScanner scannerWithString:self];
     scanner.caseSensitive = YES;
 
-    NSCharacterSet *identifierSet = [NSCharacterSet characterSetWithCharactersInString:@"_- "];
-
+    NSCharacterSet *identifierSet   = [NSCharacterSet characterSetWithCharactersInString:@"_- "];
     NSCharacterSet *alphanumericSet = [NSCharacterSet alphanumericCharacterSet];
-    NSCharacterSet *uppercaseSet = [NSCharacterSet uppercaseLetterCharacterSet];
-    NSCharacterSet *lowercaseSet = [NSCharacterSet lowercaseLetterCharacterSet];
+    NSCharacterSet *uppercaseSet    = [NSCharacterSet uppercaseLetterCharacterSet];
+    NSCharacterSet *lowercaseSet    = [NSCharacterSet lowercaseLetterCharacterSet];
 
     NSString *buffer = nil;
     NSMutableString *output = [NSMutableString string];
