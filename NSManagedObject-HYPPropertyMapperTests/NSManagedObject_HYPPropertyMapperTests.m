@@ -43,7 +43,7 @@
 {
     [super setUp];
 
-    self.managedObjectContext = [BaseTests managedObjectContextForTests];
+    self.managedObjectContext = [NSManagedObject_HYPPropertyMapperTests managedObjectContextForTests];
 
     self.testUser = [NSEntityDescription insertNewObjectForEntityForName:@"User"
                                                   inManagedObjectContext:self.managedObjectContext];
