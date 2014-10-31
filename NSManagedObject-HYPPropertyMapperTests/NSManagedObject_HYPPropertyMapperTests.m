@@ -6,8 +6,9 @@
 //
 //
 
-#import <CoreData/CoreData.h>
-#import <XCTest/XCTest.h>
+@import CoreData;
+@import XCTest;
+
 #import "NSManagedObject+HYPPropertyMapper.h"
 
 @interface NSManagedObject_HYPPropertyMapperTests : XCTestCase
@@ -41,6 +42,7 @@
 - (void)setUp
 {
     [super setUp];
+
     self.managedObjectContext = [NSManagedObject_HYPPropertyMapperTests managedObjectContextForTests];
 
     self.testUser = [NSEntityDescription insertNewObjectForEntityForName:@"User"
@@ -53,6 +55,7 @@
 - (void)tearDown
 {
     [self.managedObjectContext rollback];
+
     [super tearDown];
 }
 
@@ -62,30 +65,22 @@
 {
     NSString *testString = @"first_name";
 
-    XCTAssert([[testString replacementIdentifier:@""] isEqualToString:@"FirstName"],
-              @"[[%@ replacementIdentifier:@""] isEqualToString:%@]",
-              [testString replacementIdentifier:@""], @"FirstName");
+    XCTAssertEqualObjects([testString replacementIdentifier:@""], @"FirstName");
 
     testString = @"id";
 
-    XCTAssert([[testString replacementIdentifier:@""] isEqualToString:@"ID"],
-              @"[[%@ replacementIdentifier:@""] isEqualToString:%@]",
-              [testString replacementIdentifier:@""], @"ID");
+    XCTAssertEqualObjects([testString replacementIdentifier:@""], @"ID");
 
     testString = @"user_id";
 
-    XCTAssert([[testString replacementIdentifier:@""] isEqualToString:@"UserID"],
-              @"[[%@ replacementIdentifier:@""] isEqualToString:%@]",
-              [testString replacementIdentifier:@""], @"UserID");
+    XCTAssertEqualObjects([testString replacementIdentifier:@""], @"UserID");
 }
 
 - (void)testLowerCaseFirstLetter
 {
     NSString *testString = @"FirstName";
 
-    XCTAssert([[testString lowerCaseFirstLetter] isEqualToString:@"firstName"],
-              @"[[%@ lowerCaseFirstLetter] isEqualToString:%@]",
-              [testString lowerCaseFirstLetter], @"firstName");
+    XCTAssertEqualObjects([testString lowerCaseFirstLetter], @"firstName");
 }
 
 - (void)testRemoteString
@@ -95,39 +90,30 @@
     NSString *localKey = @"age";
     NSString *remoteKey = @"age";
 
-    XCTAssert([remoteKey isEqualToString:[localKey remoteString]],
-              @"[%@ isEqualToString:%@",
-              localKey, [localKey remoteString]);
+    XCTAssertEqualObjects(remoteKey, [localKey remoteString]);
 
     localKey = @"ID";
     remoteKey = @"id";
 
-    XCTAssert([remoteKey isEqualToString:[localKey remoteString]],
-              @"[%@ isEqualToString:%@",
-              localKey, [localKey remoteString]);
+    XCTAssertEqualObjects(remoteKey, [localKey remoteString]);
 
     localKey = @"PDF";
     remoteKey = @"pdf";
 
-    XCTAssert([remoteKey isEqualToString:[localKey remoteString]],
-              @"[%@ isEqualToString:%@",
-              localKey, [localKey remoteString]);
+    XCTAssertEqualObjects(remoteKey, [localKey remoteString]);
 
     // Two letter
 
     localKey = @"driverIdentifier";
     remoteKey = @"driver_identifier";
 
-    XCTAssert([remoteKey isEqualToString:[localKey remoteString]],
-              @"[%@ isEqualToString:%@",
-              remoteKey, [localKey remoteString]);
+    XCTAssertEqualObjects(remoteKey, [localKey remoteString]);
 
     localKey = @"userID";
     remoteKey = @"user_id";
 
-    XCTAssert([remoteKey isEqualToString:[localKey remoteString]],
-              @"[%@ isEqualToString:%@",
-              remoteKey, [localKey remoteString]);
+
+    XCTAssertEqualObjects(remoteKey, [localKey remoteString]);
 }
 
 - (void)testLocalString
@@ -137,39 +123,29 @@
     NSString *remoteKey = @"age";
     NSString *localKey = @"age";
 
-    XCTAssert([localKey isEqualToString:[remoteKey localString]],
-              @"[%@ isEqualToString:%@",
-              localKey, [remoteKey localString]);
+    XCTAssertEqualObjects(localKey, [remoteKey localString]);
 
     remoteKey = @"id";
     localKey = @"ID";
 
-    XCTAssert([localKey isEqualToString:[remoteKey localString]],
-              @"[%@ isEqualToString:%@",
-              localKey, [remoteKey localString]);
+    XCTAssertEqualObjects(localKey, [remoteKey localString]);
 
     remoteKey = @"pdf";
     localKey = @"PDF";
 
-    XCTAssert([localKey isEqualToString:[remoteKey localString]],
-              @"[%@ isEqualToString:%@",
-              localKey, [remoteKey localString]);
+    XCTAssertEqualObjects(localKey, [remoteKey localString]);
 
     // Two letters
 
     remoteKey = @"driver_identifier";
     localKey = @"driverIdentifier";
 
-    XCTAssert([localKey isEqualToString:[remoteKey localString]],
-              @"[%@ isEqualToString:%@",
-              localKey, [remoteKey localString]);
+    XCTAssertEqualObjects(localKey, [remoteKey localString]);
 
     remoteKey = @"user_id";
     localKey = @"userID";
 
-    XCTAssert([localKey isEqualToString:[remoteKey localString]],
-              @"[%@ isEqualToString:%@",
-              localKey, [remoteKey localString]);
+    XCTAssertEqualObjects(localKey, [remoteKey localString]);
 }
 
 #pragma mark - Property Mapper
@@ -178,7 +154,9 @@
 {
     NSDictionary *dictionary = [self.testUser hyp_dictionary];
 
-    XCTAssert((dictionary[@"first_name"] && dictionary[@"last_name"]), @"Dictionary keys are present");
+    XCTAssertNotNil(dictionary[@"first_name"]);
+
+    XCTAssertNotNil(dictionary[@"last_name"]);
 }
 
 - (void)testDictionaryValues
@@ -202,14 +180,13 @@
 - (void)testFillManagedObjectWithDictionary
 {
     NSDictionary *values = @{
-        @"first_name" : @"Jane",
-        @"last_name"  : @"Hyperseed"
-    };
+                             @"first_name" : @"Jane",
+                             @"last_name"  : @"Hyperseed"
+                             };
 
     [self.testUser hyp_fillWithDictionary:values];
 
-    XCTAssert(([[self.testUser valueForKey:@"firstName"] isEqualToString:values[@"first_name"]]),
-              @"Sex change successful");
+    XCTAssertEqualObjects([self.testUser valueForKey:@"firstName"], values[@"first_name"]);
 }
 
 - (void)testUpdatingExistingValueWithNull
@@ -222,13 +199,13 @@
     [self.testUser hyp_fillWithDictionary:values];
 
     NSDictionary *updatedValues = @{
-                             @"first_name" : [NSNull new],
-                             @"last_name"  : @"Hyperseed"
-                             };
+                                    @"first_name" : [NSNull new],
+                                    @"last_name"  : @"Hyperseed"
+                                    };
 
     [self.testUser hyp_fillWithDictionary:updatedValues];
 
-    XCTAssert(([self.testUser valueForKey:@"firstName"] == nil), @"Update successful");
+    XCTAssertNil([self.testUser valueForKey:@"firstName"]);
 }
 
 - (void)testAgeNumber
@@ -239,8 +216,7 @@
 
     [self.testUser hyp_fillWithDictionary:values];
 
-    XCTAssert(([[self.testUser valueForKey:@"age"] isEqualToNumber:values[@"age"]]),
-              @"Number conversion successful");
+    XCTAssertEqualObjects([self.testUser valueForKey:@"age"], values[@"age"]);
 }
 
 - (void)testAgeString
@@ -254,8 +230,7 @@
     NSNumberFormatter *formatter = [NSNumberFormatter new];
     NSNumber *age = [formatter numberFromString:values[@"age"]];
 
-    XCTAssert(([[self.testUser valueForKey:@"age"] isEqualToNumber:age]),
-              @"Number conversion successful");
+    XCTAssertEqualObjects([self.testUser valueForKey:@"age"], age);
 }
 
 - (void)testBornDate
@@ -271,8 +246,7 @@
     dateFormat.timeZone = [NSTimeZone timeZoneWithName:@"GMT"];
     NSDate *date = [dateFormat dateFromString:@"1989-02-14"];
 
-    XCTAssert(([[self.testUser valueForKey:@"birthDate"] isEqualToDate:date]),
-              @"Date conversion successful");
+    XCTAssertEqualObjects([self.testUser valueForKey:@"birthDate"], date);
 }
 
 - (void)testUpdate
@@ -286,14 +260,14 @@
     [self.testUser hyp_fillWithDictionary:values];
 
     NSDictionary *updatedValues = @{
-                             @"first_name" : @"Jeanet"
-                             };
+                                    @"first_name" : @"Jeanet"
+                                    };
 
     [self.testUser hyp_fillWithDictionary:updatedValues];
 
-    XCTAssert(([[self.testUser valueForKey:@"firstName"] isEqualToString:updatedValues[@"first_name"]]) &&
-              ([[self.testUser valueForKey:@"lastName"] isEqualToString:values[@"last_name"]]),
-              @"Update successful");
+    XCTAssertEqualObjects([self.testUser valueForKey:@"firstName"], updatedValues[@"first_name"]);
+
+    XCTAssertEqualObjects([self.testUser valueForKey:@"lastName"], values[@"last_name"]);
 }
 
 - (void)testUpdateIgnoringEqualValues
@@ -316,7 +290,7 @@
 
     [self.testUser hyp_fillWithDictionary:updatedValues];
 
-    XCTAssert(!self.testUser.hasChanges, @"Ignored values successfully!");
+    XCTAssertFalse(self.testUser.hasChanges);
 }
 
 - (void)testAcronyms
@@ -327,8 +301,7 @@
 
     [self.testUser hyp_fillWithDictionary:values];
 
-    XCTAssert(([[self.testUser valueForKey:@"userID"] isEqualToNumber:@100]),
-              @"Update successful");
+    XCTAssertEqualObjects([self.testUser valueForKey:@"userID"], @100);
 }
 
 @end
