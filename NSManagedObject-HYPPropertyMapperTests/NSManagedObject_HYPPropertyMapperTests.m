@@ -92,12 +92,12 @@
 
     XCTAssertEqualObjects(remoteKey, [localKey remoteString]);
 
-    localKey = @"ID";
+    localKey = @"id";
     remoteKey = @"id";
 
     XCTAssertEqualObjects(remoteKey, [localKey remoteString]);
 
-    localKey = @"PDF";
+    localKey = @"pdf";
     remoteKey = @"pdf";
 
     XCTAssertEqualObjects(remoteKey, [localKey remoteString]);
@@ -126,12 +126,12 @@
     XCTAssertEqualObjects(localKey, [remoteKey localString]);
 
     remoteKey = @"id";
-    localKey = @"ID";
+    localKey = @"id";
 
     XCTAssertEqualObjects(localKey, [remoteKey localString]);
 
     remoteKey = @"pdf";
-    localKey = @"PDF";
+    localKey = @"pdf";
 
     XCTAssertEqualObjects(localKey, [remoteKey localString]);
 

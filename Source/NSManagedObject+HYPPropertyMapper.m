@@ -22,7 +22,7 @@
 
     BOOL remoteStringIsAnAcronym = ([[NSString acronyms] containsObject:[processedString lowercaseString]]);
 
-    return (remoteStringIsAnAcronym) ? processedString : [processedString lowerCaseFirstLetter];
+    return (remoteStringIsAnAcronym) ? [processedString lowercaseString] : [processedString lowerCaseFirstLetter];
 }
 
 - (NSString *)lowerCaseFirstLetter
