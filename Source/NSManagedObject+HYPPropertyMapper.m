@@ -268,7 +268,7 @@
 
 + (NSArray *)reservedAttributes
 {
-    return @[@"id", @"type", @"description"];
+    return @[@"id", @"type", @"description", @"signed"];
 }
 
 @end
