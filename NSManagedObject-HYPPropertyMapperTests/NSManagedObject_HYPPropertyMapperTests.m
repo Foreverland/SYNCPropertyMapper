@@ -48,8 +48,15 @@
     self.testUser = [NSEntityDescription insertNewObjectForEntityForName:@"User"
                                                   inManagedObjectContext:self.managedObjectContext];
 
+    [self.testUser setValue:@25 forKey:@"age"];
+    [self.testUser setValue:[NSDate date] forKey:@"birthDate"];
+    [self.testUser setValue:@235 forKey:@"contractID"];
+    [self.testUser setValue:@"ABC8283" forKey:@"driverIdentifier"];
     [self.testUser setValue:@"John" forKey:@"firstName"];
     [self.testUser setValue:@"Hyperseed" forKey:@"lastName"];
+    [self.testUser setValue:@"John Description" forKey:@"userDescription"];
+    [self.testUser setValue:@111 forKey:@"userID"];
+    [self.testUser setValue:@"Manager" forKey:@"userType"];
 }
 
 - (void)tearDown
@@ -150,32 +157,55 @@
 
 #pragma mark - Property Mapper
 
-- (void)testDictionaryKeys
+#pragma mark hyp_dictionary
+
+- (void)testDictionaryKeysNotNil
 {
     NSDictionary *dictionary = [self.testUser hyp_dictionary];
+
+    XCTAssertNotNil(dictionary[@"age"]);
+
+    XCTAssertNotNil(dictionary[@"birth_date"]);
+
+    XCTAssertNotNil(dictionary[@"contract_id"]);
+
+    XCTAssertNotNil(dictionary[@"driver_identifier"]);
 
     XCTAssertNotNil(dictionary[@"first_name"]);
 
     XCTAssertNotNil(dictionary[@"last_name"]);
+
+    XCTAssertNotNil(dictionary[@"description"]);
+
+    XCTAssertNotNil(dictionary[@"id"]);
+
+    XCTAssertNotNil(dictionary[@"type"]);
 }
 
-- (void)testDictionaryValues
+- (void)testDictionaryValuesKindOfClass
 {
     NSDictionary *dictionary = [self.testUser hyp_dictionary];
 
-    __block BOOL valid = YES;
-    [dictionary enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-        NSString *localString = [key localString];
-        id value = [self.testUser valueForKey:localString];
+    XCTAssertTrue([dictionary[@"age"] isKindOfClass:[NSNumber class]]);
 
-        if (![value isEqual:obj]) {
-            *stop = YES;
-            valid = NO;
-        }
-    }];
+    XCTAssertTrue([dictionary[@"birth_date"] isKindOfClass:[NSDate class]]);
 
-    XCTAssert(valid, @"Dictionary values match object values");
+    XCTAssertTrue([dictionary[@"contract_id"] isKindOfClass:[NSNumber class]]);
+
+    XCTAssertTrue([dictionary[@"driver_identifier"] isKindOfClass:[NSString class]]);
+
+    XCTAssertTrue([dictionary[@"first_name"] isKindOfClass:[NSString class]]);
+
+    XCTAssertTrue([dictionary[@"last_name"] isKindOfClass:[NSString class]]);
+
+    XCTAssertTrue([dictionary[@"description"] isKindOfClass:[NSString class]]);
+
+    XCTAssertTrue([dictionary[@"id"] isKindOfClass:[NSNumber class]]);
+
+    XCTAssertTrue([dictionary[@"type"] isKindOfClass:[NSString class]]);
 }
+
+#pragma mark - hyp_fillWithDictionary
 
 - (void)testFillManagedObjectWithDictionary
 {
@@ -302,6 +332,24 @@
     [self.testUser hyp_fillWithDictionary:values];
 
     XCTAssertEqualObjects([self.testUser valueForKey:@"userID"], @100);
+}
+
+
+- (void)testReservedWords
+{
+    NSDictionary *values = @{
+                             @"id": @100,
+                             @"description": @"This is the description?",
+                             @"type": @"user type"
+                             };
+
+    [self.testUser hyp_fillWithDictionary:values];
+
+    XCTAssertEqualObjects([self.testUser valueForKey:@"userID"], @100);
+
+    XCTAssertEqualObjects([self.testUser valueForKey:@"userDescription"], @"This is the description?");
+
+    XCTAssertEqualObjects([self.testUser valueForKey:@"userType"], @"user type");
 }
 
 @end
