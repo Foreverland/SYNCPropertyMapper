@@ -51,6 +51,7 @@
     for (NSString *component in components) {
         if ([component isEqualToString:word]) {
             found = YES;
+            break;
         }
     }
 
