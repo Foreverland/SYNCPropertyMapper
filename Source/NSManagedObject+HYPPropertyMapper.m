@@ -13,12 +13,41 @@
 
 - (NSString *)remoteString
 {
-    return [[self replacementIdentifier:@"_"] lowerCaseFirstLetter];
+    NSString *processedString = [self replacementIdentifier:@"_"];
+
+    NSArray *components = [processedString componentsSeparatedByString:@"_"];
+    BOOL foundDate = NO;
+    for (NSString *component in components) {
+        if ([component isEqualToString:@"date"]) {
+            foundDate = YES;
+        }
+    }
+
+    if (foundDate) {
+        NSString *replacedString = [processedString stringByReplacingOccurrencesOfString:@"_date" withString:@"_at"];
+        if ([[NSString dateAttributes] containsObject:replacedString]) {
+            processedString = replacedString;
+        }
+    }
+
+    return [processedString lowerCaseFirstLetter];
 }
 
 - (NSString *)localString
 {
-    NSString *processedString = [self replacementIdentifier:@""];
+    NSArray *components = [self componentsSeparatedByString:@"_"];
+    BOOL foundDate = NO;
+    for (NSString *component in components) {
+        if ([component isEqualToString:@"at"]) {
+            foundDate = YES;
+        }
+    }
+
+    NSString *processedString = self;
+
+    if (foundDate) processedString = [self stringByReplacingOccurrencesOfString:@"_at" withString:@"_date"];
+
+    processedString = [processedString replacementIdentifier:@""];
 
     BOOL remoteStringIsAnAcronym = ([[NSString acronyms] containsObject:[processedString lowercaseString]]);
 
@@ -82,6 +111,11 @@
 + (NSArray *)acronyms
 {
     return @[@"id", @"pdf", @"url", @"png", @"jpg"];
+}
+
++ (NSArray *)dateAttributes
+{
+    return @[@"created_at", @"updated_at"];
 }
 
 @end

@@ -57,6 +57,9 @@
     [self.testUser setValue:@"John Description" forKey:@"userDescription"];
     [self.testUser setValue:@111 forKey:@"userID"];
     [self.testUser setValue:@"Manager" forKey:@"userType"];
+    [self.testUser setValue:[NSDate date] forKey:@"createdDate"];
+    [self.testUser setValue:[NSDate date] forKey:@"updatedDate"];
+    [self.testUser setValue:@30 forKey:@"numberOfAttendes"];
 }
 
 - (void)tearDown
@@ -92,8 +95,6 @@
 
 - (void)testRemoteString
 {
-    // One letter
-
     NSString *localKey = @"age";
     NSString *remoteKey = @"age";
 
@@ -109,8 +110,6 @@
 
     XCTAssertEqualObjects(remoteKey, [localKey remoteString]);
 
-    // Two letter
-
     localKey = @"driverIdentifier";
     remoteKey = @"driver_identifier";
 
@@ -119,14 +118,16 @@
     localKey = @"userID";
     remoteKey = @"user_id";
 
+    XCTAssertEqualObjects(remoteKey, [localKey remoteString]);
+
+    localKey = @"createdDate";
+    remoteKey = @"created_at";
 
     XCTAssertEqualObjects(remoteKey, [localKey remoteString]);
 }
 
 - (void)testLocalString
 {
-    // One letter
-
     NSString *remoteKey = @"age";
     NSString *localKey = @"age";
 
@@ -142,8 +143,6 @@
 
     XCTAssertEqualObjects(localKey, [remoteKey localString]);
 
-    // Two letters
-
     remoteKey = @"driver_identifier";
     localKey = @"driverIdentifier";
 
@@ -151,6 +150,11 @@
 
     remoteKey = @"user_id";
     localKey = @"userID";
+
+    XCTAssertEqualObjects(localKey, [remoteKey localString]);
+
+    remoteKey = @"updated_at";
+    localKey = @"updatedDate";
 
     XCTAssertEqualObjects(localKey, [remoteKey localString]);
 }
@@ -180,6 +184,12 @@
     XCTAssertNotNil(dictionary[@"id"]);
 
     XCTAssertNotNil(dictionary[@"type"]);
+
+    XCTAssertNotNil(dictionary[@"created_at"]);
+
+    XCTAssertNotNil(dictionary[@"updated_at"]);
+
+    XCTAssertNotNil(dictionary[@"number_of_attendes"]);
 }
 
 - (void)testDictionaryValuesKindOfClass
@@ -203,6 +213,12 @@
     XCTAssertTrue([dictionary[@"id"] isKindOfClass:[NSNumber class]]);
 
     XCTAssertTrue([dictionary[@"type"] isKindOfClass:[NSString class]]);
+
+    XCTAssertTrue([dictionary[@"created_at"] isKindOfClass:[NSDate class]]);
+
+    XCTAssertTrue([dictionary[@"updated_at"] isKindOfClass:[NSDate class]]);
+
+    XCTAssertTrue([dictionary[@"number_of_attendes"] isKindOfClass:[NSNumber class]]);
 }
 
 #pragma mark - hyp_fillWithDictionary
@@ -350,6 +366,29 @@
     XCTAssertEqualObjects([self.testUser valueForKey:@"userDescription"], @"This is the description?");
 
     XCTAssertEqualObjects([self.testUser valueForKey:@"userType"], @"user type");
+}
+
+- (void)testCreatedDate
+{
+    NSDictionary *values = @{
+                             @"created_at" : @"2014-01-01T00:00:00+00:00",
+                             @"updated_at" : @"2014-01-02T00:00:00+00:00",
+                             @"number_of_attendes": @20
+                             };
+
+    [self.testUser hyp_fillWithDictionary:values];
+
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    dateFormat.dateFormat = @"yyyy-MM-dd";
+    dateFormat.timeZone = [NSTimeZone timeZoneWithName:@"GMT"];
+    NSDate *createdDate = [dateFormat dateFromString:@"2014-01-01"];
+    NSDate *updatedDate = [dateFormat dateFromString:@"2014-01-02"];
+
+    XCTAssertEqualObjects([self.testUser valueForKey:@"createdDate"], createdDate);
+
+    XCTAssertEqualObjects([self.testUser valueForKey:@"updatedDate"], updatedDate);
+
+    XCTAssertEqualObjects([self.testUser valueForKey:@"numberOfAttendes"], @20);
 }
 
 @end
