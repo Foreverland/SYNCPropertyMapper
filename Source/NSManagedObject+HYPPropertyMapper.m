@@ -15,15 +15,7 @@
 {
     NSString *processedString = [self replacementIdentifier:@"_"];
 
-    NSArray *components = [processedString componentsSeparatedByString:@"_"];
-    BOOL foundDate = NO;
-    for (NSString *component in components) {
-        if ([component isEqualToString:@"date"]) {
-            foundDate = YES;
-        }
-    }
-
-    if (foundDate) {
+    if ([processedString containsWord:@"date"]) {
         NSString *replacedString = [processedString stringByReplacingOccurrencesOfString:@"_date" withString:@"_at"];
         if ([[NSString dateAttributes] containsObject:replacedString]) {
             processedString = replacedString;
@@ -35,23 +27,30 @@
 
 - (NSString *)localString
 {
-    NSArray *components = [self componentsSeparatedByString:@"_"];
-    BOOL foundDate = NO;
-    for (NSString *component in components) {
-        if ([component isEqualToString:@"at"]) {
-            foundDate = YES;
-        }
-    }
-
     NSString *processedString = self;
 
-    if (foundDate) processedString = [self stringByReplacingOccurrencesOfString:@"_at" withString:@"_date"];
+    if ([self containsWord:@"at"]) processedString = [self stringByReplacingOccurrencesOfString:@"_at" withString:@"_date"];
 
     processedString = [processedString replacementIdentifier:@""];
 
     BOOL remoteStringIsAnAcronym = ([[NSString acronyms] containsObject:[processedString lowercaseString]]);
 
     return (remoteStringIsAnAcronym) ? [processedString lowercaseString] : [processedString lowerCaseFirstLetter];
+}
+
+- (BOOL)containsWord:(NSString *)word
+{
+    BOOL found = NO;
+
+    NSArray *components = [self componentsSeparatedByString:@"_"];
+
+    for (NSString *component in components) {
+        if ([component isEqualToString:word]) {
+            found = YES;
+        }
+    }
+
+    return found;
 }
 
 - (NSString *)lowerCaseFirstLetter
