@@ -16,7 +16,8 @@
     NSString *processedString = [self replacementIdentifier:@"_"];
 
     if ([processedString containsWord:@"date"]) {
-        NSString *replacedString = [processedString stringByReplacingOccurrencesOfString:@"_date" withString:@"_at"];
+        NSString *replacedString = [processedString stringByReplacingOccurrencesOfString:@"_date"
+                                                                              withString:@"_at"];
         if ([[NSString dateAttributes] containsObject:replacedString]) {
             processedString = replacedString;
         }
@@ -29,7 +30,10 @@
 {
     NSString *processedString = self;
 
-    if ([self containsWord:@"at"]) processedString = [self stringByReplacingOccurrencesOfString:@"_at" withString:@"_date"];
+    if ([self containsWord:@"at"]) {
+        processedString = [self stringByReplacingOccurrencesOfString:@"_at"
+                                                          withString:@"_date"];
+    }
 
     processedString = [processedString replacementIdentifier:@""];
 
