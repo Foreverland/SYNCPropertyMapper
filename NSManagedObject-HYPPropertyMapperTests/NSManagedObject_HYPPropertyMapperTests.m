@@ -190,6 +190,8 @@
     XCTAssertNotNil(dictionary[@"updated_at"]);
 
     XCTAssertNotNil(dictionary[@"number_of_attendes"]);
+
+    XCTAssertNotNil(dictionary[@"ignored_parameter"]);
 }
 
 - (void)testDictionaryValuesKindOfClass
@@ -219,6 +221,8 @@
     XCTAssertTrue([dictionary[@"updated_at"] isKindOfClass:[NSDate class]]);
 
     XCTAssertTrue([dictionary[@"number_of_attendes"] isKindOfClass:[NSNumber class]]);
+
+    XCTAssertTrue([dictionary[@"ignored_parameter"] isKindOfClass:[NSNull class]]);
 }
 
 #pragma mark - hyp_fillWithDictionary
