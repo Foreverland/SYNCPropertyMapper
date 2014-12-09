@@ -1,48 +1,41 @@
-//
-//  NSManagedObject+HYPPropertyMapper.m
-//
-//  Created by Christoffer Winterkvist on 7/2/14.
-//  Copyright (c) 2014 Hyper. All rights reserved.
-//
-
 #import "NSManagedObject+HYPPropertyMapper.h"
 
 @implementation NSString (PrivateInflections)
 
 #pragma mark - Private methods
 
-- (NSString *)remoteString
+- (NSString *)hyp_remoteString
 {
-    NSString *processedString = [self replacementIdentifier:@"_"];
+    NSString *processedString = [self hyp_replacementIdentifier:@"_"];
 
-    if ([processedString containsWord:@"date"]) {
+    if ([processedString hyp_containsWord:@"date"]) {
         NSString *replacedString = [processedString stringByReplacingOccurrencesOfString:@"_date"
                                                                               withString:@"_at"];
-        if ([[NSString dateAttributes] containsObject:replacedString]) {
+        if ([[NSString hyp_dateAttributes] containsObject:replacedString]) {
             processedString = replacedString;
         }
     }
 
-    return [processedString lowerCaseFirstLetter];
+    return [processedString hyp_lowerCaseFirstLetter];
 }
 
-- (NSString *)localString
+- (NSString *)hyp_localString
 {
     NSString *processedString = self;
 
-    if ([self containsWord:@"at"]) {
+    if ([self hyp_containsWord:@"at"]) {
         processedString = [self stringByReplacingOccurrencesOfString:@"_at"
                                                           withString:@"_date"];
     }
 
-    processedString = [processedString replacementIdentifier:@""];
+    processedString = [processedString hyp_replacementIdentifier:@""];
 
-    BOOL remoteStringIsAnAcronym = ([[NSString acronyms] containsObject:[processedString lowercaseString]]);
+    BOOL remoteStringIsAnAcronym = ([[NSString hyp_acronyms] containsObject:[processedString lowercaseString]]);
 
-    return (remoteStringIsAnAcronym) ? [processedString lowercaseString] : [processedString lowerCaseFirstLetter];
+    return (remoteStringIsAnAcronym) ? [processedString lowercaseString] : [processedString hyp_lowerCaseFirstLetter];
 }
 
-- (BOOL)containsWord:(NSString *)word
+- (BOOL)hyp_containsWord:(NSString *)word
 {
     BOOL found = NO;
 
@@ -58,7 +51,7 @@
     return found;
 }
 
-- (NSString *)lowerCaseFirstLetter
+- (NSString *)hyp_lowerCaseFirstLetter
 {
     NSMutableString *mutableString = [[NSMutableString alloc] initWithString:self];
     NSString *firstLetter = [[mutableString substringToIndex:1] lowercaseString];
@@ -68,7 +61,7 @@
     return [mutableString copy];
 }
 
-- (NSString *)replacementIdentifier:(NSString *)replacementString
+- (NSString *)hyp_replacementIdentifier:(NSString *)replacementString
 {
     NSScanner *scanner = [NSScanner scannerWithString:self];
     scanner.caseSensitive = YES;
@@ -100,7 +93,7 @@
             }
         } else {
             if ([scanner scanCharactersFromSet:alphanumericSet intoString:&buffer]) {
-                if ([[NSString acronyms] containsObject:buffer]) {
+                if ([[NSString hyp_acronyms] containsObject:buffer]) {
                     [output appendString:[buffer uppercaseString]];
                 } else {
                     [output appendString:[buffer capitalizedString]];
@@ -112,12 +105,12 @@
     return [output copy];
 }
 
-+ (NSArray *)acronyms
++ (NSArray *)hyp_acronyms
 {
     return @[@"id", @"pdf", @"url", @"png", @"jpg"];
 }
 
-+ (NSArray *)dateAttributes
++ (NSArray *)hyp_dateAttributes
 {
     return @[@"created_at", @"updated_at"];
 }
@@ -126,7 +119,7 @@
 
 @implementation NSDate (ISO8601)
 
-+ (NSDate *)__dateFromISO8601String:(NSString *)iso8601
++ (NSDate *)hyp_dateFromISO8601String:(NSString *)iso8601
 {
     if (!iso8601 || [iso8601 isEqual:[NSNull null]]) return nil;
 
@@ -184,19 +177,19 @@
 
         id value = [dictionary objectForKey:remoteKey];
 
-        BOOL isReservedKey = ([[NSManagedObject reservedAttributes] containsObject:remoteKey]);
+        BOOL isReservedKey = ([[NSManagedObject hyp_reservedAttributes] containsObject:remoteKey]);
         if (isReservedKey) {
-            remoteKey = [self prefixedAttribute:remoteKey];
+            remoteKey = [self hyp_prefixedAttribute:remoteKey];
         }
 
-        id propertyDescription = [self propertyDescriptionForKey:remoteKey];
+        id propertyDescription = [self hyp_propertyDescriptionForKey:remoteKey];
         if (!propertyDescription) continue;
 
         NSString *localKey = [propertyDescription name];
 
         if (value && ![value isKindOfClass:[NSNull class]]) {
 
-            id procesedValue = [self valueForPropertyDescription:propertyDescription
+            id procesedValue = [self hyp_valueForPropertyDescription:propertyDescription
                                                 usingRemoteValue:value];
 
 
@@ -212,13 +205,13 @@
     }
 }
 
-- (id)propertyDescriptionForKey:(NSString *)key
+- (id)hyp_propertyDescriptionForKey:(NSString *)key
 {
     for (id propertyDescription in [self.entity properties]) {
 
         if (![propertyDescription isKindOfClass:[NSAttributeDescription class]]) continue;
 
-        if ([[propertyDescription name] isEqualToString:[key localString]]) {
+        if ([[propertyDescription name] isEqualToString:[key hyp_localString]]) {
             return propertyDescription;
         }
     }
@@ -226,7 +219,7 @@
     return nil;
 }
 
-- (id)valueForPropertyDescription:(id)propertyDescription usingRemoteValue:(id)value
+- (id)hyp_valueForPropertyDescription:(id)propertyDescription usingRemoteValue:(id)value
 {
     NSAttributeDescription *attributeDescription = (NSAttributeDescription *)propertyDescription;
     Class attributedClass = NSClassFromString([attributeDescription attributeValueClassName]);
@@ -248,7 +241,7 @@
     } else if (numberValueAndStringAttribute) {
         return [NSString stringWithFormat:@"%@", value];
     } else if (stringValueAndDateAttribute) {
-        return [NSDate __dateFromISO8601String:value];
+        return [NSDate hyp_dateFromISO8601String:value];
     }
 
     return nil;
@@ -264,16 +257,16 @@
 
             NSAttributeDescription *attributeDescription = (NSAttributeDescription *)propertyDescription;
             id value = [self valueForKey:[attributeDescription name]];
-            NSMutableString *key = [[[propertyDescription name] remoteString] mutableCopy];
+            NSMutableString *key = [[[propertyDescription name] hyp_remoteString] mutableCopy];
 
             BOOL nilOrNullValue = (!value || [value isKindOfClass:[NSNull class]]);
             if (nilOrNullValue) {
                 mutableDictionary[key] = [NSNull null];
             } else {
-                NSMutableString *key = [[[propertyDescription name] remoteString] mutableCopy];
-                BOOL isReservedKey = ([[self reservedKeys] containsObject:key]);
+                NSMutableString *key = [[[propertyDescription name] hyp_remoteString] mutableCopy];
+                BOOL isReservedKey = ([[self hyp_reservedKeys] containsObject:key]);
                 if (isReservedKey) {
-                    [key replaceOccurrencesOfString:[self remotePrefix]
+                    [key replaceOccurrencesOfString:[self hyp_remotePrefix]
                                          withString:@""
                                             options:NSCaseInsensitiveSearch
                                               range:NSMakeRange(0, key.length)];
@@ -287,29 +280,29 @@
     return [mutableDictionary copy];
 }
 
-- (NSString *)remotePrefix
+- (NSString *)hyp_remotePrefix
 {
     return [NSString stringWithFormat:@"%@_", [self.entity.name lowercaseString]];
 }
 
-- (NSString *)prefixedAttribute:(NSString *)attribute
+- (NSString *)hyp_prefixedAttribute:(NSString *)attribute
 {
-    return [NSString stringWithFormat:@"%@%@", [self remotePrefix], attribute];
+    return [NSString stringWithFormat:@"%@%@", [self hyp_remotePrefix], attribute];
 }
 
-- (NSArray *)reservedKeys
+- (NSArray *)hyp_reservedKeys
 {
     NSMutableArray *keys = [NSMutableArray array];
-    NSArray *reservedAttributes = [NSManagedObject reservedAttributes];
+    NSArray *reservedAttributes = [NSManagedObject hyp_reservedAttributes];
 
     for (NSString *attribute in reservedAttributes) {
-        [keys addObject:[self prefixedAttribute:attribute]];
+        [keys addObject:[self hyp_prefixedAttribute:attribute]];
     }
 
     return keys;
 }
 
-+ (NSArray *)reservedAttributes
++ (NSArray *)hyp_reservedAttributes
 {
     return @[@"id", @"type", @"description", @"signed"];
 }
