@@ -1,12 +1,22 @@
 #import "NSManagedObject+HYPPropertyMapper.h"
 
+@interface NSString (PrivateInflections)
+
+- (NSString *)remoteString;
+- (NSString *)localString;
+- (NSString *)replaceIdentifierWithString:(NSString *)replacementString;
+- (NSString *)lowerCaseFirstLetter;
+- (BOOL)containsWord:(NSString *)word;
+
+@end
+
 @implementation NSString (PrivateInflections)
 
 #pragma mark - Private methods
 
 - (NSString *)remoteString
 {
-    NSString *processedString = [self replacementIdentifier:@"_"];
+    NSString *processedString = [self replaceIdentifierWithString:@"_"];
 
     if ([processedString containsWord:@"date"]) {
         NSString *replacedString = [processedString stringByReplacingOccurrencesOfString:@"_date"
@@ -28,7 +38,7 @@
                                                           withString:@"_date"];
     }
 
-    processedString = [processedString replacementIdentifier:@""];
+    processedString = [processedString replaceIdentifierWithString:@""];
 
     BOOL remoteStringIsAnAcronym = ([[NSString acronyms] containsObject:[processedString lowercaseString]]);
 
@@ -61,48 +71,49 @@
     return [mutableString copy];
 }
 
-- (NSString *)replacementIdentifier:(NSString *)replacementString
+- (NSString *)replaceIdentifierWithString:(NSString *)replacementString
 {
     NSScanner *scanner = [NSScanner scannerWithString:self];
     scanner.caseSensitive = YES;
 
-    NSCharacterSet *identifierSet   = [NSCharacterSet characterSetWithCharactersInString:@"_- "];
-    NSCharacterSet *alphanumericSet = [NSCharacterSet alphanumericCharacterSet];
-    NSCharacterSet *uppercaseSet    = [NSCharacterSet uppercaseLetterCharacterSet];
-    NSCharacterSet *lowercaseSet    = [NSCharacterSet lowercaseLetterCharacterSet];
+    NSCharacterSet *identifierSet = [NSCharacterSet characterSetWithCharactersInString:@"_- "];
 
-    NSString *buffer;
+    NSCharacterSet *alphanumericSet = [NSCharacterSet alphanumericCharacterSet];
+    NSCharacterSet *uppercaseSet = [NSCharacterSet uppercaseLetterCharacterSet];
+    NSCharacterSet *lowercaseSet = [NSCharacterSet lowercaseLetterCharacterSet];
+
+    NSString *buffer = nil;
     NSMutableString *output = [NSMutableString string];
 
     while (!scanner.isAtEnd) {
-        if ([scanner scanCharactersFromSet:identifierSet intoString:&buffer]) {
-            continue;
-        }
+        BOOL isExcludedCharacter = [scanner scanCharactersFromSet:identifierSet intoString:&buffer];
+        if (isExcludedCharacter) continue;
 
-        if (replacementString.length > 0) {
-            if ([scanner scanCharactersFromSet:uppercaseSet intoString:&buffer]) {
-
-                if (output.length > 0) {
-                    [output appendString:replacementString];
-                }
-
+        if ([replacementString length] > 0) {
+            BOOL isUppercaseCharacter = [scanner scanCharactersFromSet:uppercaseSet intoString:&buffer];
+            if (isUppercaseCharacter) {
+                [output appendString:replacementString];
                 [output appendString:[buffer lowercaseString]];
             }
-            if ([scanner scanCharactersFromSet:lowercaseSet intoString:&buffer]) {
+
+            BOOL isLowercaseCharacter = [scanner scanCharactersFromSet:lowercaseSet intoString:&buffer];
+            if (isLowercaseCharacter) {
                 [output appendString:[buffer lowercaseString]];
+            }
+
+        } else if ([scanner scanCharactersFromSet:alphanumericSet intoString:&buffer]) {
+            if ([[NSString acronyms] containsObject:buffer]) {
+                [output appendString:[buffer uppercaseString]];
+            } else {
+                [output appendString:[buffer capitalizedString]];
             }
         } else {
-            if ([scanner scanCharactersFromSet:alphanumericSet intoString:&buffer]) {
-                if ([[NSString acronyms] containsObject:buffer]) {
-                    [output appendString:[buffer uppercaseString]];
-                } else {
-                    [output appendString:[buffer capitalizedString]];
-                }
-            }
+            output = nil;
+            break;
         }
     }
 
-    return [output copy];
+    return output;
 }
 
 + (NSArray *)acronyms

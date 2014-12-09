@@ -1,11 +1,3 @@
-//
-//  NSManagedObject_HYPPropertyMapperTests.m
-//  NSManagedObject-HYPPropertyMapperTests
-//
-//  Created by Christoffer Winterkvist on 14/09/14.
-//
-//
-
 @import CoreData;
 @import XCTest;
 
@@ -13,7 +5,7 @@
 
 - (NSString *)remoteString;
 - (NSString *)localString;
-- (NSString *)replacementIdentifier:(NSString *)replacementString;
+- (NSString *)replaceIdentifierWithString:(NSString *)replacementString;
 - (NSString *)lowerCaseFirstLetter;
 - (BOOL)containsWord:(NSString *)word;
 
@@ -85,15 +77,15 @@
 {
     NSString *testString = @"first_name";
 
-    XCTAssertEqualObjects([testString replacementIdentifier:@""], @"FirstName");
+    XCTAssertEqualObjects([testString replaceIdentifierWithString:@""], @"FirstName");
 
     testString = @"id";
 
-    XCTAssertEqualObjects([testString replacementIdentifier:@""], @"ID");
+    XCTAssertEqualObjects([testString replaceIdentifierWithString:@""], @"ID");
 
     testString = @"user_id";
 
-    XCTAssertEqualObjects([testString replacementIdentifier:@""], @"UserID");
+    XCTAssertEqualObjects([testString replaceIdentifierWithString:@""], @"UserID");
 }
 
 - (void)testLowerCaseFirstLetter
