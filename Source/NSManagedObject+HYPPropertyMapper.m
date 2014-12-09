@@ -2,11 +2,11 @@
 
 @interface NSString (PrivateInflections)
 
-- (NSString *)remoteString;
-- (NSString *)localString;
-- (NSString *)replaceIdentifierWithString:(NSString *)replacementString;
-- (NSString *)lowerCaseFirstLetter;
-- (BOOL)containsWord:(NSString *)word;
+- (NSString *)hyp_remoteString;
+- (NSString *)hyp_localString;
+- (BOOL)hyp_containsWord:(NSString *)word;
+- (NSString *)hyp_lowerCaseFirstLetter;
+- (NSString *)hyp_replaceIdentifierWithString:(NSString *)replacementString;
 
 @end
 
@@ -14,11 +14,11 @@
 
 #pragma mark - Private methods
 
-- (NSString *)remoteString
+- (NSString *)hyp_remoteString
 {
-    NSString *processedString = [self replaceIdentifierWithString:@"_"];
+    NSString *processedString = [self hyp_replaceIdentifierWithString:@"_"];
 
-    if ([processedString containsWord:@"date"]) {
+    if ([processedString hyp_containsWord:@"date"]) {
         NSString *replacedString = [processedString stringByReplacingOccurrencesOfString:@"_date"
                                                                               withString:@"_at"];
         if ([[NSString dateAttributes] containsObject:replacedString]) {
@@ -26,26 +26,26 @@
         }
     }
 
-    return [processedString lowerCaseFirstLetter];
+    return [processedString hyp_lowerCaseFirstLetter];
 }
 
-- (NSString *)localString
+- (NSString *)hyp_localString
 {
     NSString *processedString = self;
 
-    if ([self containsWord:@"at"]) {
+    if ([self hyp_containsWord:@"at"]) {
         processedString = [self stringByReplacingOccurrencesOfString:@"_at"
                                                           withString:@"_date"];
     }
 
-    processedString = [processedString replaceIdentifierWithString:@""];
+    processedString = [processedString hyp_replaceIdentifierWithString:@""];
 
     BOOL remoteStringIsAnAcronym = ([[NSString acronyms] containsObject:[processedString lowercaseString]]);
 
-    return (remoteStringIsAnAcronym) ? [processedString lowercaseString] : [processedString lowerCaseFirstLetter];
+    return (remoteStringIsAnAcronym) ? [processedString lowercaseString] : [processedString hyp_lowerCaseFirstLetter];
 }
 
-- (BOOL)containsWord:(NSString *)word
+- (BOOL)hyp_containsWord:(NSString *)word
 {
     BOOL found = NO;
 
@@ -61,7 +61,7 @@
     return found;
 }
 
-- (NSString *)lowerCaseFirstLetter
+- (NSString *)hyp_lowerCaseFirstLetter
 {
     NSMutableString *mutableString = [[NSMutableString alloc] initWithString:self];
     NSString *firstLetter = [[mutableString substringToIndex:1] lowercaseString];
@@ -71,7 +71,7 @@
     return [mutableString copy];
 }
 
-- (NSString *)replaceIdentifierWithString:(NSString *)replacementString
+- (NSString *)hyp_replaceIdentifierWithString:(NSString *)replacementString
 {
     NSScanner *scanner = [NSScanner scannerWithString:self];
     scanner.caseSensitive = YES;
@@ -222,7 +222,7 @@
 
         if (![propertyDescription isKindOfClass:[NSAttributeDescription class]]) continue;
 
-        if ([[propertyDescription name] isEqualToString:[key localString]]) {
+        if ([[propertyDescription name] isEqualToString:[key hyp_localString]]) {
             return propertyDescription;
         }
     }
@@ -268,13 +268,13 @@
 
             NSAttributeDescription *attributeDescription = (NSAttributeDescription *)propertyDescription;
             id value = [self valueForKey:[attributeDescription name]];
-            NSMutableString *key = [[[propertyDescription name] remoteString] mutableCopy];
+            NSMutableString *key = [[[propertyDescription name] hyp_remoteString] mutableCopy];
 
             BOOL nilOrNullValue = (!value || [value isKindOfClass:[NSNull class]]);
             if (nilOrNullValue) {
                 mutableDictionary[key] = [NSNull null];
             } else {
-                NSMutableString *key = [[[propertyDescription name] remoteString] mutableCopy];
+                NSMutableString *key = [[[propertyDescription name] hyp_remoteString] mutableCopy];
                 BOOL isReservedKey = ([[self reservedKeys] containsObject:key]);
                 if (isReservedKey) {
                     [key replaceOccurrencesOfString:[self remotePrefix]

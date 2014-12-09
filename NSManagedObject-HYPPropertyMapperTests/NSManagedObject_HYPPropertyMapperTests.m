@@ -3,11 +3,11 @@
 
 @interface NSString (PrivateInflections)
 
-- (NSString *)remoteString;
-- (NSString *)localString;
-- (NSString *)replaceIdentifierWithString:(NSString *)replacementString;
-- (NSString *)lowerCaseFirstLetter;
-- (BOOL)containsWord:(NSString *)word;
+- (NSString *)hyp_remoteString;
+- (NSString *)hyp_localString;
+- (BOOL)hyp_containsWord:(NSString *)word;
+- (NSString *)hyp_lowerCaseFirstLetter;
+- (NSString *)hyp_replaceIdentifierWithString:(NSString *)replacementString;
 
 @end
 
@@ -77,22 +77,22 @@
 {
     NSString *testString = @"first_name";
 
-    XCTAssertEqualObjects([testString replaceIdentifierWithString:@""], @"FirstName");
+    XCTAssertEqualObjects([testString hyp_replaceIdentifierWithString:@""], @"FirstName");
 
     testString = @"id";
 
-    XCTAssertEqualObjects([testString replaceIdentifierWithString:@""], @"ID");
+    XCTAssertEqualObjects([testString hyp_replaceIdentifierWithString:@""], @"ID");
 
     testString = @"user_id";
 
-    XCTAssertEqualObjects([testString replaceIdentifierWithString:@""], @"UserID");
+    XCTAssertEqualObjects([testString hyp_replaceIdentifierWithString:@""], @"UserID");
 }
 
 - (void)testLowerCaseFirstLetter
 {
     NSString *testString = @"FirstName";
 
-    XCTAssertEqualObjects([testString lowerCaseFirstLetter], @"firstName");
+    XCTAssertEqualObjects([testString hyp_lowerCaseFirstLetter], @"firstName");
 }
 
 - (void)testRemoteString
@@ -100,32 +100,32 @@
     NSString *localKey = @"age";
     NSString *remoteKey = @"age";
 
-    XCTAssertEqualObjects(remoteKey, [localKey remoteString]);
+    XCTAssertEqualObjects(remoteKey, [localKey hyp_remoteString]);
 
     localKey = @"id";
     remoteKey = @"id";
 
-    XCTAssertEqualObjects(remoteKey, [localKey remoteString]);
+    XCTAssertEqualObjects(remoteKey, [localKey hyp_remoteString]);
 
     localKey = @"pdf";
     remoteKey = @"pdf";
 
-    XCTAssertEqualObjects(remoteKey, [localKey remoteString]);
+    XCTAssertEqualObjects(remoteKey, [localKey hyp_remoteString]);
 
     localKey = @"driverIdentifier";
     remoteKey = @"driver_identifier";
 
-    XCTAssertEqualObjects(remoteKey, [localKey remoteString]);
+    XCTAssertEqualObjects(remoteKey, [localKey hyp_remoteString]);
 
     localKey = @"userID";
     remoteKey = @"user_id";
 
-    XCTAssertEqualObjects(remoteKey, [localKey remoteString]);
+    XCTAssertEqualObjects(remoteKey, [localKey hyp_remoteString]);
 
     localKey = @"createdDate";
     remoteKey = @"created_at";
 
-    XCTAssertEqualObjects(remoteKey, [localKey remoteString]);
+    XCTAssertEqualObjects(remoteKey, [localKey hyp_remoteString]);
 }
 
 - (void)testLocalString
@@ -133,32 +133,32 @@
     NSString *remoteKey = @"age";
     NSString *localKey = @"age";
 
-    XCTAssertEqualObjects(localKey, [remoteKey localString]);
+    XCTAssertEqualObjects(localKey, [remoteKey hyp_localString]);
 
     remoteKey = @"id";
     localKey = @"id";
 
-    XCTAssertEqualObjects(localKey, [remoteKey localString]);
+    XCTAssertEqualObjects(localKey, [remoteKey hyp_localString]);
 
     remoteKey = @"pdf";
     localKey = @"pdf";
 
-    XCTAssertEqualObjects(localKey, [remoteKey localString]);
+    XCTAssertEqualObjects(localKey, [remoteKey hyp_localString]);
 
     remoteKey = @"driver_identifier";
     localKey = @"driverIdentifier";
 
-    XCTAssertEqualObjects(localKey, [remoteKey localString]);
+    XCTAssertEqualObjects(localKey, [remoteKey hyp_localString]);
 
     remoteKey = @"user_id";
     localKey = @"userID";
 
-    XCTAssertEqualObjects(localKey, [remoteKey localString]);
+    XCTAssertEqualObjects(localKey, [remoteKey hyp_localString]);
 
     remoteKey = @"updated_at";
     localKey = @"updatedDate";
 
-    XCTAssertEqualObjects(localKey, [remoteKey localString]);
+    XCTAssertEqualObjects(localKey, [remoteKey hyp_localString]);
 }
 
 #pragma mark - Property Mapper
