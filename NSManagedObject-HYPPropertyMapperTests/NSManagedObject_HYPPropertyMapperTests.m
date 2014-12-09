@@ -9,6 +9,16 @@
 @import CoreData;
 @import XCTest;
 
+@interface NSString (PrivateInflections)
+
+- (NSString *)remoteString;
+- (NSString *)localString;
+- (NSString *)replacementIdentifier:(NSString *)replacementString;
+- (NSString *)lowerCaseFirstLetter;
+- (BOOL)containsWord:(NSString *)word;
+
+@end
+
 #import "NSManagedObject+HYPPropertyMapper.h"
 
 @interface NSManagedObject_HYPPropertyMapperTests : XCTestCase
