@@ -320,7 +320,12 @@
                 relationIndex++;
             }
 
-            [mutableDictionary setValue:relations forKey:[propertyDescription name]];
+            NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"id"
+                                                                           ascending:YES];
+            NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+            NSArray *sortedArray = [relations sortedArrayUsingDescriptors:sortDescriptors];
+
+            [mutableDictionary setValue:sortedArray forKey:[propertyDescription name]];
         }
     }
 
