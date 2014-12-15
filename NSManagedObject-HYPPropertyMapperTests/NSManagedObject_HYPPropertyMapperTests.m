@@ -62,6 +62,15 @@
     [self.testUser setValue:[NSDate date] forKey:@"createdDate"];
     [self.testUser setValue:[NSDate date] forKey:@"updatedDate"];
     [self.testUser setValue:@30 forKey:@"numberOfAttendes"];
+
+    NSManagedObject *eventA = [NSEntityDescription insertNewObjectForEntityForName:@"Event"
+                                                  inManagedObjectContext:self.managedObjectContext];
+    [eventA setValue:@0 forKey:@"eventID"];
+
+    NSManagedObject *eventB = [NSEntityDescription insertNewObjectForEntityForName:@"Event"
+                                                            inManagedObjectContext:self.managedObjectContext];
+    [eventB setValue:@1 forKey:@"eventID"];
+
 }
 
 - (void)tearDown
@@ -225,6 +234,12 @@
     XCTAssertTrue([dictionary[@"number_of_attendes"] isKindOfClass:[NSNumber class]]);
 
     XCTAssertTrue([dictionary[@"ignored_parameter"] isKindOfClass:[NSNull class]]);
+}
+
+- (void)testDictionaryWithRelationships
+{
+    NSDictionary *dictionary = [self.testUser hyp_dictionary];
+
 }
 
 #pragma mark - hyp_fillWithDictionary
