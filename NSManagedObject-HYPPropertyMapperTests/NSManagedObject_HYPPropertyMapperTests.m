@@ -252,6 +252,19 @@
 {
     NSDictionary *dictionary = [self.testUser hyp_dictionary];
 
+    XCTAssertNotNil([dictionary valueForKey:@"notes"]);
+    XCTAssertTrue([[dictionary valueForKey:@"notes"] isKindOfClass:[NSArray class]]);
+
+    NSArray *notes = [dictionary valueForKey:@"notes"];
+    XCTAssertTrue(notes.count == 2);
+
+    NSDictionary *noteDictionary = [notes firstObject];
+    XCTAssertEqualObjects([noteDictionary valueForKey:@"id"], @0);
+    XCTAssertEqualObjects([noteDictionary valueForKey:@"text"], @"This is the text for the note A");
+
+    noteDictionary = [notes lastObject];
+    XCTAssertEqualObjects([noteDictionary valueForKey:@"id"], @1);
+    XCTAssertEqualObjects([noteDictionary valueForKey:@"text"], @"This is the text for the note B");
 }
 
 #pragma mark - hyp_fillWithDictionary
