@@ -13,10 +13,13 @@
 
 #import "NSManagedObject+HYPPropertyMapper.h"
 
+#import "User.h"
+#import "Note.h"
+
 @interface NSManagedObject_HYPPropertyMapperTests : XCTestCase
 
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
-@property (nonatomic, strong) NSManagedObject *testUser;
+@property (nonatomic, strong) User *testUser;
 
 @end
 
@@ -41,36 +44,45 @@
     return moc;
 }
 
+- (User *)user
+{
+    User *user = [NSEntityDescription insertNewObjectForEntityForName:@"User"
+                                               inManagedObjectContext:self.managedObjectContext];
+    user.age = @25;
+    user.birthDate = [NSDate date];
+    user.contractID = @235;
+    user.driverIdentifier = @"ABC8283";
+    user.firstName = @"John";
+    user.lastName = @"Hyperseed";
+    user.userDescription = @"John Description";
+    user.userID = @111;
+    user.userType = @"Manager";
+    user.createdDate = [NSDate date];
+    user.updatedDate = [NSDate date];
+    user.numberOfAttendes = @30;
+
+    Note *noteA = [NSEntityDescription insertNewObjectForEntityForName:@"Note"
+                                                inManagedObjectContext:self.managedObjectContext];
+    noteA.noteID = @0;
+    noteA.text = @"This is the text for the note A";
+    noteA.user = user;
+
+    Note *noteB = [NSEntityDescription insertNewObjectForEntityForName:@"Note"
+                                                inManagedObjectContext:self.managedObjectContext];
+    noteB.noteID = @1;
+    noteB.text = @"This is the text for the note B";
+    noteB.user = user;
+
+    return user;
+}
+
 - (void)setUp
 {
     [super setUp];
 
     self.managedObjectContext = [NSManagedObject_HYPPropertyMapperTests managedObjectContextForTests];
 
-    self.testUser = [NSEntityDescription insertNewObjectForEntityForName:@"User"
-                                                  inManagedObjectContext:self.managedObjectContext];
-
-    [self.testUser setValue:@25 forKey:@"age"];
-    [self.testUser setValue:[NSDate date] forKey:@"birthDate"];
-    [self.testUser setValue:@235 forKey:@"contractID"];
-    [self.testUser setValue:@"ABC8283" forKey:@"driverIdentifier"];
-    [self.testUser setValue:@"John" forKey:@"firstName"];
-    [self.testUser setValue:@"Hyperseed" forKey:@"lastName"];
-    [self.testUser setValue:@"John Description" forKey:@"userDescription"];
-    [self.testUser setValue:@111 forKey:@"userID"];
-    [self.testUser setValue:@"Manager" forKey:@"userType"];
-    [self.testUser setValue:[NSDate date] forKey:@"createdDate"];
-    [self.testUser setValue:[NSDate date] forKey:@"updatedDate"];
-    [self.testUser setValue:@30 forKey:@"numberOfAttendes"];
-
-    NSManagedObject *eventA = [NSEntityDescription insertNewObjectForEntityForName:@"Event"
-                                                  inManagedObjectContext:self.managedObjectContext];
-    [eventA setValue:@0 forKey:@"eventID"];
-
-    NSManagedObject *eventB = [NSEntityDescription insertNewObjectForEntityForName:@"Event"
-                                                            inManagedObjectContext:self.managedObjectContext];
-    [eventB setValue:@1 forKey:@"eventID"];
-
+    self.testUser = [self user];
 }
 
 - (void)tearDown
