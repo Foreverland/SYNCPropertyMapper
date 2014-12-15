@@ -285,10 +285,46 @@
 
                 mutableDictionary[key] = value;
             }
+        } else if ([propertyDescription isKindOfClass:[NSRelationshipDescription class]]) {
+            NSSet *relationships = [self valueForKey:[propertyDescription name]];
+
+            NSMutableArray *relations = [NSMutableArray array];
+
+            NSUInteger relationIndex = 0;
+            for (NSManagedObject *relation in relationships) {
+                for (id propertyDescription in [relation.entity properties]) {
+                    if ([propertyDescription isKindOfClass:[NSAttributeDescription class]]) {
+                        NSAttributeDescription *attributeDescription = (NSAttributeDescription *)propertyDescription;
+                        id value = [relation valueForKey:[attributeDescription name]];
+                        NSString *attribute = [propertyDescription name];
+                        NSString *localKey = [NSString stringWithFormat:@"%@ID", [relation.entity.name lowercaseString]];
+                        BOOL attributeIsKey = ([localKey isEqualToString:attribute]);
+                        NSString *key = attributeIsKey ? @"id" : [attribute hyp_remoteString];
+
+                        NSMutableDictionary *dictionary;
+                        if (relations.count > relationIndex) {
+                            dictionary = [[relations objectAtIndex:relationIndex] mutableCopy];
+                        }
+
+                        if (dictionary) {
+                            [dictionary setValue:value forKey:key];
+                            [relations replaceObjectAtIndex:relationIndex withObject:dictionary];
+                        } else {
+                            dictionary = [NSMutableDictionary new];
+                            [dictionary setValue:value forKey:key];
+                            [relations insertObject:dictionary atIndex:relationIndex];
+                        }
+                    }
+                }
+
+                relationIndex++;
+            }
+
+            [mutableDictionary setValue:relations forKey:[propertyDescription name]];
         }
     }
 
-    return [mutableDictionary copy];
+    return mutableDictionary;
 }
 
 - (NSString *)remotePrefix
