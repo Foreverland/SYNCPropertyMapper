@@ -1,7 +1,7 @@
 @import Foundation;
 @import CoreData;
 
-@class Note;
+@class Company, Note;
 
 @interface User : NSManagedObject
 
@@ -19,6 +19,7 @@
 @property (nonatomic, retain) NSNumber * userID;
 @property (nonatomic, retain) NSString * userType;
 @property (nonatomic, retain) NSSet *notes;
+@property (nonatomic, retain) Company *company;
 @end
 
 @interface User (CoreDataGeneratedAccessors)

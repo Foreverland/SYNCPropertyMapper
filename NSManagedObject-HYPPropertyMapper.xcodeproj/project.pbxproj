@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		14DC435D1A3EFDEF000DFD1B /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 14DC435C1A3EFDEF000DFD1B /* Note.m */; };
-		14DC43601A3EFDF0000DFD1B /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 14DC435F1A3EFDF0000DFD1B /* User.m */; };
+		1410D8AC1A40E21D00F4C953 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 1410D8AB1A40E21D00F4C953 /* User.m */; };
+		1410D8AF1A40E21E00F4C953 /* Company.m in Sources */ = {isa = PBXBuildFile; fileRef = 1410D8AE1A40E21E00F4C953 /* Company.m */; };
+		1410D8B21A40E21E00F4C953 /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 1410D8B11A40E21E00F4C953 /* Note.m */; };
 		BD1FAB5519E71BB50037F2C7 /* NSManagedObject+HYPPropertyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = BD1FAB5419E71BB50037F2C7 /* NSManagedObject+HYPPropertyMapper.m */; };
 		BD1FAB8B19E72AF90037F2C7 /* .travis.yml in Resources */ = {isa = PBXBuildFile; fileRef = BD1FAB7619E72AF90037F2C7 /* .travis.yml */; };
 		BD1FAB9319E72B690037F2C7 /* NSManagedObject-HYPPropertyMapper.podspec in Resources */ = {isa = PBXBuildFile; fileRef = BD1FAB9219E72B690037F2C7 /* NSManagedObject-HYPPropertyMapper.podspec */; };
@@ -19,10 +20,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		14DC435B1A3EFDEF000DFD1B /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Note.h; sourceTree = "<group>"; };
-		14DC435C1A3EFDEF000DFD1B /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Note.m; sourceTree = "<group>"; };
-		14DC435E1A3EFDF0000DFD1B /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
-		14DC435F1A3EFDF0000DFD1B /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		1410D8AA1A40E21D00F4C953 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		1410D8AB1A40E21D00F4C953 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		1410D8AD1A40E21E00F4C953 /* Company.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Company.h; sourceTree = "<group>"; };
+		1410D8AE1A40E21E00F4C953 /* Company.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Company.m; sourceTree = "<group>"; };
+		1410D8B01A40E21E00F4C953 /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Note.h; sourceTree = "<group>"; };
+		1410D8B11A40E21E00F4C953 /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Note.m; sourceTree = "<group>"; };
 		BD1FAB5319E71BB50037F2C7 /* NSManagedObject+HYPPropertyMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+HYPPropertyMapper.h"; sourceTree = "<group>"; };
 		BD1FAB5419E71BB50037F2C7 /* NSManagedObject+HYPPropertyMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+HYPPropertyMapper.m"; sourceTree = "<group>"; };
 		BD1FAB7619E72AF90037F2C7 /* .travis.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .travis.yml; sourceTree = "<group>"; };
@@ -61,11 +64,13 @@
 		BD5393FD19C60A83006769A8 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				1410D8B01A40E21E00F4C953 /* Note.h */,
+				1410D8B11A40E21E00F4C953 /* Note.m */,
+				1410D8AD1A40E21E00F4C953 /* Company.h */,
+				1410D8AE1A40E21E00F4C953 /* Company.m */,
+				1410D8AA1A40E21D00F4C953 /* User.h */,
+				1410D8AB1A40E21D00F4C953 /* User.m */,
 				BD5393FE19C60A93006769A8 /* PropertyMapperTestModel.xcdatamodeld */,
-				14DC435E1A3EFDF0000DFD1B /* User.h */,
-				14DC435F1A3EFDF0000DFD1B /* User.m */,
-				14DC435B1A3EFDEF000DFD1B /* Note.h */,
-				14DC435C1A3EFDEF000DFD1B /* Note.m */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -182,11 +187,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				14DC43601A3EFDF0000DFD1B /* User.m in Sources */,
+				1410D8AC1A40E21D00F4C953 /* User.m in Sources */,
+				1410D8AF1A40E21E00F4C953 /* Company.m in Sources */,
 				BDF44C3F19C600AB00E6BAD4 /* NSManagedObject_HYPPropertyMapperTests.m in Sources */,
+				1410D8B21A40E21E00F4C953 /* Note.m in Sources */,
 				BD53940019C60A93006769A8 /* PropertyMapperTestModel.xcdatamodeld in Sources */,
 				BD1FAB5519E71BB50037F2C7 /* NSManagedObject+HYPPropertyMapper.m in Sources */,
-				14DC435D1A3EFDEF000DFD1B /* Note.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
