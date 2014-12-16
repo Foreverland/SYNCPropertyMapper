@@ -260,6 +260,11 @@
 
 - (NSDictionary *)hyp_dictionary
 {
+    return [self hyp_dictionaryFlatten:NO];
+}
+
+- (NSDictionary *)hyp_dictionaryFlatten:(BOOL)flatten
+{
     NSMutableDictionary *mutableDictionary = [NSMutableDictionary dictionary];
 
     for (id propertyDescription in [self.entity properties]) {
@@ -286,7 +291,14 @@
                 mutableDictionary[key] = value;
             }
         } else if ([propertyDescription isKindOfClass:[NSRelationshipDescription class]]) {
-            NSSet *relationships = [self valueForKey:[propertyDescription name]];
+            NSString *relationshipName = [propertyDescription name];
+            NSString *localKey = [NSString stringWithFormat:@"%@ID", [[[propertyDescription destinationEntity] name] lowercaseString]];
+
+            NSSet *nonSortedRelationships = [self valueForKey:relationshipName];
+
+            NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:localKey ascending:YES];
+            NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+            NSArray *relationships = [nonSortedRelationships sortedArrayUsingDescriptors:sortDescriptors];
 
             NSMutableArray *relations = [NSMutableArray array];
 
@@ -301,18 +313,23 @@
                         BOOL attributeIsKey = ([localKey isEqualToString:attribute]);
                         NSString *key = attributeIsKey ? @"id" : [attribute hyp_remoteString];
 
-                        NSMutableDictionary *dictionary;
-                        if (relations.count > relationIndex) {
-                            dictionary = [[relations objectAtIndex:relationIndex] mutableCopy];
-                        }
-
-                        if (dictionary) {
-                            [dictionary setValue:value forKey:key];
-                            [relations replaceObjectAtIndex:relationIndex withObject:dictionary];
+                        if (flatten) {
+                            NSString *flattenKey = [NSString stringWithFormat:@"%@[%lu].%@", relationshipName, (unsigned long)relationIndex, key];
+                            [mutableDictionary setValue:value forKey:flattenKey];
                         } else {
-                            dictionary = [NSMutableDictionary new];
-                            [dictionary setValue:value forKey:key];
-                            [relations insertObject:dictionary atIndex:relationIndex];
+                            NSMutableDictionary *dictionary;
+                            if (relations.count > relationIndex) {
+                                dictionary = [[relations objectAtIndex:relationIndex] mutableCopy];
+                            }
+
+                            if (dictionary) {
+                                [dictionary setValue:value forKey:key];
+                                [relations replaceObjectAtIndex:relationIndex withObject:dictionary];
+                            } else {
+                                dictionary = [NSMutableDictionary new];
+                                [dictionary setValue:value forKey:key];
+                                [relations insertObject:dictionary atIndex:relationIndex];
+                            }
                         }
                     }
                 }
@@ -320,12 +337,9 @@
                 relationIndex++;
             }
 
-            NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"id"
-                                                                           ascending:YES];
-            NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
-            NSArray *sortedArray = [relations sortedArrayUsingDescriptors:sortDescriptors];
-
-            [mutableDictionary setValue:sortedArray forKey:[propertyDescription name]];
+            if (!flatten) {
+                [mutableDictionary setValue:relations forKey:relationshipName];
+            }
         }
     }
 

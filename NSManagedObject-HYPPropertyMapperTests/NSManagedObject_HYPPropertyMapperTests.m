@@ -267,6 +267,16 @@
     XCTAssertEqualObjects([noteDictionary valueForKey:@"text"], @"This is the text for the note B");
 }
 
+- (void)testFlattenDictionaryWithRelationships
+{
+    NSDictionary *dictionary = [self.testUser hyp_dictionaryFlatten:YES];
+
+    XCTAssertEqualObjects(dictionary[@"notes[0].id"], @0);
+    XCTAssertEqualObjects(dictionary[@"notes[0].text"], @"This is the text for the note A");
+    XCTAssertEqualObjects(dictionary[@"notes[1].id"], @1);
+    XCTAssertEqualObjects(dictionary[@"notes[1].text"], @"This is the text for the note B");
+}
+
 #pragma mark - hyp_fillWithDictionary
 
 - (void)testFillManagedObjectWithDictionary
