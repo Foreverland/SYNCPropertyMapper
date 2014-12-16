@@ -58,6 +58,8 @@ dictionary[@"notes[1].id"] => 1
 dictionary[@"notes[1].text"] => This is the text for the note B
 ```
 
+<br/>
+
 But wait, there is more.
 What if you get values from your JSON providing backend and want those values on your object?
 We got you covered:
