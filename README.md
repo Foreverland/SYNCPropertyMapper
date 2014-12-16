@@ -24,6 +24,40 @@ userValues {
 }
 ```
 
+It supports relationships too, for example for a user that has many notes:
+
+##### Normal
+```json
+"first_name" = "John",
+"last_name" = "Hyperseed",
+"notes": [
+  {
+    "id": 0,
+    "text": "This is the text for the note A"
+  },
+  {
+    "id": 1,
+    "text": "This is the text for the note B"
+  }
+]
+```
+
+##### Flat
+```objc
+NSDictionary *userValues = [user hyp_flatDictionary];
+```
+
+```objc
+dictionary["first_name"] => John
+dictionary["last_name"] => Hyperseed
+
+dictionary[@"notes[0].id"] =>  0
+dictionary[@"notes[0].text"] => This is the text for the note A
+
+dictionary[@"notes[1].id"] => 1
+dictionary[@"notes[1].text"] => This is the text for the note B
+```
+
 But wait, there is more.
 What if you get values from your JSON providing backend and want those values on your object?
 We got you covered:
