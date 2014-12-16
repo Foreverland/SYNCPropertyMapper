@@ -260,12 +260,21 @@
 
 - (NSDictionary *)hyp_dictionary
 {
-    NSMutableDictionary *mutableDictionary = [NSMutableDictionary dictionary];
+    return [self hyp_dictionaryFlatten:NO];
+}
+
+- (NSDictionary *)hyp_flatDictionary
+{
+    return [self hyp_dictionaryFlatten:YES];
+}
+
+- (NSDictionary *)hyp_dictionaryFlatten:(BOOL)flatten
+{
+    NSMutableDictionary *mutableDictionary = [NSMutableDictionary new];
 
     for (id propertyDescription in [self.entity properties]) {
 
         if ([propertyDescription isKindOfClass:[NSAttributeDescription class]]) {
-
             NSAttributeDescription *attributeDescription = (NSAttributeDescription *)propertyDescription;
             id value = [self valueForKey:[attributeDescription name]];
             NSMutableString *key = [[[propertyDescription name] hyp_remoteString] mutableCopy];
@@ -282,13 +291,58 @@
                                             options:NSCaseInsensitiveSearch
                                               range:NSMakeRange(0, key.length)];
                 }
-
                 mutableDictionary[key] = value;
             }
+
+        } else if ([propertyDescription isKindOfClass:[NSRelationshipDescription class]]) {
+
+            NSString *relationshipName = [propertyDescription name];
+            NSString *localKey = [NSString stringWithFormat:@"%@ID", [[[propertyDescription destinationEntity] name] lowercaseString]];
+
+            NSSet *nonSortedRelationships = [self valueForKey:relationshipName];
+
+            NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:localKey ascending:YES];
+            NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+            NSArray *relationships = [nonSortedRelationships sortedArrayUsingDescriptors:sortDescriptors];
+
+            NSMutableArray *relations = [NSMutableArray new];
+
+            NSUInteger relationIndex = 0;
+
+            for (NSManagedObject *relation in relationships) {
+                for (id propertyDescription in [relation.entity properties]) {
+                    if ([propertyDescription isKindOfClass:[NSAttributeDescription class]]) {
+                        NSAttributeDescription *attributeDescription = (NSAttributeDescription *)propertyDescription;
+                        id value = [relation valueForKey:[attributeDescription name]];
+
+                        NSString *attribute = [propertyDescription name];
+                        NSString *localKey = [NSString stringWithFormat:@"%@ID", [relation.entity.name lowercaseString]];
+                        BOOL attributeIsKey = ([localKey isEqualToString:attribute]);
+                        NSString *key = attributeIsKey ? @"id" : [attribute hyp_remoteString];
+
+                        if (flatten) {
+                            NSString *flattenKey = [NSString stringWithFormat:@"%@[%lu].%@", relationshipName, (unsigned long)relationIndex, key];
+                            mutableDictionary[flattenKey] = value;
+                        } else {
+                            NSMutableDictionary *dictionary;
+
+                            BOOL relationIndexInBounds = (relations.count > relationIndex);
+                            if (relationIndexInBounds) dictionary = [relations[relationIndex] mutableCopy];
+
+                            if (!dictionary) dictionary = [NSMutableDictionary new];
+
+                            dictionary[key] = value;
+                            relations[relationIndex] = dictionary;
+                        }
+                    }
+                }
+                relationIndex++;
+            }
+            if (!flatten) [mutableDictionary setValue:relations forKey:relationshipName];
         }
     }
 
-    return [mutableDictionary copy];
+    return mutableDictionary;
 }
 
 - (NSString *)remotePrefix
@@ -303,7 +357,7 @@
 
 - (NSArray *)reservedKeys
 {
-    NSMutableArray *keys = [NSMutableArray array];
+    NSMutableArray *keys = [NSMutableArray new];
     NSArray *reservedAttributes = [NSManagedObject reservedAttributes];
 
     for (NSString *attribute in reservedAttributes) {

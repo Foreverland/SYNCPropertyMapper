@@ -13,10 +13,13 @@
 
 #import "NSManagedObject+HYPPropertyMapper.h"
 
+#import "User.h"
+#import "Note.h"
+
 @interface NSManagedObject_HYPPropertyMapperTests : XCTestCase
 
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
-@property (nonatomic, strong) NSManagedObject *testUser;
+@property (nonatomic, strong) User *testUser;
 
 @end
 
@@ -41,27 +44,52 @@
     return moc;
 }
 
+- (User *)user
+{
+    User *user = [NSEntityDescription insertNewObjectForEntityForName:@"User"
+                                               inManagedObjectContext:self.managedObjectContext];
+    user.age = @25;
+    user.birthDate = [NSDate date];
+    user.contractID = @235;
+    user.driverIdentifier = @"ABC8283";
+    user.firstName = @"John";
+    user.lastName = @"Hyperseed";
+    user.userDescription = @"John Description";
+    user.userID = @111;
+    user.userType = @"Manager";
+    user.createdDate = [NSDate date];
+    user.updatedDate = [NSDate date];
+    user.numberOfAttendes = @30;
+
+    Note *note = [self noteWithID:@1];
+    note.user = user;
+
+    note = [self noteWithID:@14];
+    note.user = user;
+
+    note = [self noteWithID:@7];
+    note.user = user;
+
+    return user;
+}
+
+- (Note *)noteWithID:(NSNumber *)noteID
+{
+    Note *note = [NSEntityDescription insertNewObjectForEntityForName:@"Note"
+                                                inManagedObjectContext:self.managedObjectContext];
+    note.noteID = noteID;
+    note.text = [NSString stringWithFormat:@"This is the text for the note %@", noteID];
+
+    return note;
+}
+
 - (void)setUp
 {
     [super setUp];
 
     self.managedObjectContext = [NSManagedObject_HYPPropertyMapperTests managedObjectContextForTests];
 
-    self.testUser = [NSEntityDescription insertNewObjectForEntityForName:@"User"
-                                                  inManagedObjectContext:self.managedObjectContext];
-
-    [self.testUser setValue:@25 forKey:@"age"];
-    [self.testUser setValue:[NSDate date] forKey:@"birthDate"];
-    [self.testUser setValue:@235 forKey:@"contractID"];
-    [self.testUser setValue:@"ABC8283" forKey:@"driverIdentifier"];
-    [self.testUser setValue:@"John" forKey:@"firstName"];
-    [self.testUser setValue:@"Hyperseed" forKey:@"lastName"];
-    [self.testUser setValue:@"John Description" forKey:@"userDescription"];
-    [self.testUser setValue:@111 forKey:@"userID"];
-    [self.testUser setValue:@"Manager" forKey:@"userType"];
-    [self.testUser setValue:[NSDate date] forKey:@"createdDate"];
-    [self.testUser setValue:[NSDate date] forKey:@"updatedDate"];
-    [self.testUser setValue:@30 forKey:@"numberOfAttendes"];
+    self.testUser = [self user];
 }
 
 - (void)tearDown
@@ -225,6 +253,35 @@
     XCTAssertTrue([dictionary[@"number_of_attendes"] isKindOfClass:[NSNumber class]]);
 
     XCTAssertTrue([dictionary[@"ignored_parameter"] isKindOfClass:[NSNull class]]);
+}
+
+- (void)testDictionaryWithRelationships
+{
+    NSDictionary *dictionary = [self.testUser hyp_dictionary];
+
+    XCTAssertNotNil([dictionary valueForKey:@"notes"]);
+    XCTAssertTrue([[dictionary valueForKey:@"notes"] isKindOfClass:[NSArray class]]);
+
+    NSArray *notes = [dictionary valueForKey:@"notes"];
+    XCTAssertTrue(notes.count == 3);
+
+    NSDictionary *noteDictionary = [notes firstObject];
+    XCTAssertEqualObjects([noteDictionary valueForKey:@"id"], @1);
+    XCTAssertEqualObjects([noteDictionary valueForKey:@"text"], @"This is the text for the note 1");
+
+    noteDictionary = [notes lastObject];
+    XCTAssertEqualObjects([noteDictionary valueForKey:@"id"], @14);
+    XCTAssertEqualObjects([noteDictionary valueForKey:@"text"], @"This is the text for the note 14");
+}
+
+- (void)testFlattenDictionaryWithRelationships
+{
+    NSDictionary *dictionary = [self.testUser hyp_flatDictionary];
+
+    XCTAssertEqualObjects(dictionary[@"notes[0].id"], @1);
+    XCTAssertEqualObjects(dictionary[@"notes[0].text"], @"This is the text for the note 1");
+    XCTAssertEqualObjects(dictionary[@"notes[1].id"], @7);
+    XCTAssertEqualObjects(dictionary[@"notes[1].text"], @"This is the text for the note 7");
 }
 
 #pragma mark - hyp_fillWithDictionary
