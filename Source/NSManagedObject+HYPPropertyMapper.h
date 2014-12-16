@@ -4,6 +4,6 @@
 
 - (void)hyp_fillWithDictionary:(NSDictionary *)dictionary;
 - (NSDictionary *)hyp_dictionary;
-- (NSDictionary *)hyp_dictionaryFlatten:(BOOL)flatten;
+- (NSDictionary *)hyp_flatDictionary;
 
 @end

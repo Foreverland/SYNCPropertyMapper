@@ -269,7 +269,7 @@
 
 - (void)testFlattenDictionaryWithRelationships
 {
-    NSDictionary *dictionary = [self.testUser hyp_dictionaryFlatten:YES];
+    NSDictionary *dictionary = [self.testUser hyp_flatDictionary];
 
     XCTAssertEqualObjects(dictionary[@"notes[0].id"], @0);
     XCTAssertEqualObjects(dictionary[@"notes[0].text"], @"This is the text for the note A");

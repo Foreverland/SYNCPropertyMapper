@@ -263,6 +263,11 @@
     return [self hyp_dictionaryFlatten:NO];
 }
 
+- (NSDictionary *)hyp_flatDictionary
+{
+    return [self hyp_dictionaryFlatten:YES];
+}
+
 - (NSDictionary *)hyp_dictionaryFlatten:(BOOL)flatten
 {
     NSMutableDictionary *mutableDictionary = [NSMutableDictionary dictionary];
