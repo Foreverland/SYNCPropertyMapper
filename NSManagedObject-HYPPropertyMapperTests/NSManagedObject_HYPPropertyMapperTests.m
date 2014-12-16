@@ -61,19 +61,26 @@
     user.updatedDate = [NSDate date];
     user.numberOfAttendes = @30;
 
-    Note *noteA = [NSEntityDescription insertNewObjectForEntityForName:@"Note"
-                                                inManagedObjectContext:self.managedObjectContext];
-    noteA.noteID = @0;
-    noteA.text = @"This is the text for the note A";
-    noteA.user = user;
+    Note *note = [self noteWithID:@1];
+    note.user = user;
 
-    Note *noteB = [NSEntityDescription insertNewObjectForEntityForName:@"Note"
-                                                inManagedObjectContext:self.managedObjectContext];
-    noteB.noteID = @1;
-    noteB.text = @"This is the text for the note B";
-    noteB.user = user;
+    note = [self noteWithID:@14];
+    note.user = user;
+
+    note = [self noteWithID:@7];
+    note.user = user;
 
     return user;
+}
+
+- (Note *)noteWithID:(NSNumber *)noteID
+{
+    Note *note = [NSEntityDescription insertNewObjectForEntityForName:@"Note"
+                                                inManagedObjectContext:self.managedObjectContext];
+    note.noteID = noteID;
+    note.text = [NSString stringWithFormat:@"This is the text for the note %@", noteID];
+
+    return note;
 }
 
 - (void)setUp
@@ -256,25 +263,25 @@
     XCTAssertTrue([[dictionary valueForKey:@"notes"] isKindOfClass:[NSArray class]]);
 
     NSArray *notes = [dictionary valueForKey:@"notes"];
-    XCTAssertTrue(notes.count == 2);
+    XCTAssertTrue(notes.count == 3);
 
     NSDictionary *noteDictionary = [notes firstObject];
-    XCTAssertEqualObjects([noteDictionary valueForKey:@"id"], @0);
-    XCTAssertEqualObjects([noteDictionary valueForKey:@"text"], @"This is the text for the note A");
+    XCTAssertEqualObjects([noteDictionary valueForKey:@"id"], @1);
+    XCTAssertEqualObjects([noteDictionary valueForKey:@"text"], @"This is the text for the note 1");
 
     noteDictionary = [notes lastObject];
-    XCTAssertEqualObjects([noteDictionary valueForKey:@"id"], @1);
-    XCTAssertEqualObjects([noteDictionary valueForKey:@"text"], @"This is the text for the note B");
+    XCTAssertEqualObjects([noteDictionary valueForKey:@"id"], @14);
+    XCTAssertEqualObjects([noteDictionary valueForKey:@"text"], @"This is the text for the note 14");
 }
 
 - (void)testFlattenDictionaryWithRelationships
 {
     NSDictionary *dictionary = [self.testUser hyp_flatDictionary];
 
-    XCTAssertEqualObjects(dictionary[@"notes[0].id"], @0);
-    XCTAssertEqualObjects(dictionary[@"notes[0].text"], @"This is the text for the note A");
-    XCTAssertEqualObjects(dictionary[@"notes[1].id"], @1);
-    XCTAssertEqualObjects(dictionary[@"notes[1].text"], @"This is the text for the note B");
+    XCTAssertEqualObjects(dictionary[@"notes[0].id"], @1);
+    XCTAssertEqualObjects(dictionary[@"notes[0].text"], @"This is the text for the note 1");
+    XCTAssertEqualObjects(dictionary[@"notes[1].id"], @7);
+    XCTAssertEqualObjects(dictionary[@"notes[1].text"], @"This is the text for the note 7");
 }
 
 #pragma mark - hyp_fillWithDictionary
