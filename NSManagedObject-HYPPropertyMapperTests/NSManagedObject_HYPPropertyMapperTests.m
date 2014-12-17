@@ -15,6 +15,7 @@
 
 #import "User.h"
 #import "Note.h"
+#import "Company.h"
 
 @interface NSManagedObject_HYPPropertyMapperTests : XCTestCase
 
@@ -70,6 +71,9 @@
     note = [self noteWithID:@7];
     note.user = user;
 
+    Company *company = [self companyWithID:@1 andName:@"Facebook"];
+    company.user = user;
+
     return user;
 }
 
@@ -81,6 +85,16 @@
     note.text = [NSString stringWithFormat:@"This is the text for the note %@", noteID];
 
     return note;
+}
+
+- (Company *)companyWithID:(NSNumber *)companyID andName:(NSString *)name
+{
+    Company *company = [NSEntityDescription insertNewObjectForEntityForName:@"Company"
+                                                     inManagedObjectContext:self.managedObjectContext];
+    company.companyID = companyID;
+    company.name = name;
+
+    return company;
 }
 
 - (void)setUp

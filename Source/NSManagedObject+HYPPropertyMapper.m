@@ -299,6 +299,10 @@
             NSString *relationshipName = [propertyDescription name];
             NSString *localKey = [NSString stringWithFormat:@"%@ID", [[[propertyDescription destinationEntity] name] lowercaseString]];
 
+            id relationshipValue = [self valueForKey:relationshipName];
+            BOOL isToOneRelationship = (![relationshipValue isKindOfClass:[NSSet class]]);
+            if (isToOneRelationship) continue;
+
             NSSet *nonSortedRelationships = [self valueForKey:relationshipName];
 
             NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:localKey ascending:YES];

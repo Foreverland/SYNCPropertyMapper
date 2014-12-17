@@ -1,4 +1,5 @@
 #import "User.h"
+#import "Company.h"
 #import "Note.h"
 
 @implementation User
@@ -17,5 +18,6 @@
 @dynamic userID;
 @dynamic userType;
 @dynamic notes;
+@dynamic company;
 
 @end
