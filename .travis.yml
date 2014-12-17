@@ -1,3 +1,2 @@
 language: objective-c
-xcode_project: NSManagedObject-HYPPropertyMapper.xcodeproj
-xcode_scheme: NSManagedObject-HYPPropertyMapperTests
+script: xctool -workspace NSManagedObject-HYPPropertyMapper.xcworkspace -scheme NSManagedObject-HYPPropertyMapperTests -sdk iphonesimulator build test

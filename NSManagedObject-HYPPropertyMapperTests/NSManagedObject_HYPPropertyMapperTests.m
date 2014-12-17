@@ -1,16 +1,6 @@
 @import CoreData;
 @import XCTest;
 
-@interface NSString (PrivateInflections)
-
-- (NSString *)hyp_remoteString;
-- (NSString *)hyp_localString;
-- (BOOL)hyp_containsWord:(NSString *)word;
-- (NSString *)hyp_lowerCaseFirstLetter;
-- (NSString *)hyp_replaceIdentifierWithString:(NSString *)replacementString;
-
-@end
-
 #import "NSManagedObject+HYPPropertyMapper.h"
 
 #import "User.h"
@@ -112,98 +102,6 @@
 
     [super tearDown];
 }
-
-#pragma mark - Inflections
-
-- (void)testReplacementIdentifier
-{
-    NSString *testString = @"first_name";
-
-    XCTAssertEqualObjects([testString hyp_replaceIdentifierWithString:@""], @"FirstName");
-
-    testString = @"id";
-
-    XCTAssertEqualObjects([testString hyp_replaceIdentifierWithString:@""], @"ID");
-
-    testString = @"user_id";
-
-    XCTAssertEqualObjects([testString hyp_replaceIdentifierWithString:@""], @"UserID");
-}
-
-- (void)testLowerCaseFirstLetter
-{
-    NSString *testString = @"FirstName";
-
-    XCTAssertEqualObjects([testString hyp_lowerCaseFirstLetter], @"firstName");
-}
-
-- (void)testRemoteString
-{
-    NSString *localKey = @"age";
-    NSString *remoteKey = @"age";
-
-    XCTAssertEqualObjects(remoteKey, [localKey hyp_remoteString]);
-
-    localKey = @"id";
-    remoteKey = @"id";
-
-    XCTAssertEqualObjects(remoteKey, [localKey hyp_remoteString]);
-
-    localKey = @"pdf";
-    remoteKey = @"pdf";
-
-    XCTAssertEqualObjects(remoteKey, [localKey hyp_remoteString]);
-
-    localKey = @"driverIdentifier";
-    remoteKey = @"driver_identifier";
-
-    XCTAssertEqualObjects(remoteKey, [localKey hyp_remoteString]);
-
-    localKey = @"userID";
-    remoteKey = @"user_id";
-
-    XCTAssertEqualObjects(remoteKey, [localKey hyp_remoteString]);
-
-    localKey = @"createdDate";
-    remoteKey = @"created_at";
-
-    XCTAssertEqualObjects(remoteKey, [localKey hyp_remoteString]);
-}
-
-- (void)testLocalString
-{
-    NSString *remoteKey = @"age";
-    NSString *localKey = @"age";
-
-    XCTAssertEqualObjects(localKey, [remoteKey hyp_localString]);
-
-    remoteKey = @"id";
-    localKey = @"id";
-
-    XCTAssertEqualObjects(localKey, [remoteKey hyp_localString]);
-
-    remoteKey = @"pdf";
-    localKey = @"pdf";
-
-    XCTAssertEqualObjects(localKey, [remoteKey hyp_localString]);
-
-    remoteKey = @"driver_identifier";
-    localKey = @"driverIdentifier";
-
-    XCTAssertEqualObjects(localKey, [remoteKey hyp_localString]);
-
-    remoteKey = @"user_id";
-    localKey = @"userID";
-
-    XCTAssertEqualObjects(localKey, [remoteKey hyp_localString]);
-
-    remoteKey = @"updated_at";
-    localKey = @"updatedDate";
-
-    XCTAssertEqualObjects(localKey, [remoteKey hyp_localString]);
-}
-
-#pragma mark - Property Mapper
 
 #pragma mark hyp_dictionary
 
