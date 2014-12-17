@@ -303,11 +303,17 @@
             BOOL isToOneRelationship = (![relationshipValue isKindOfClass:[NSSet class]]);
             if (isToOneRelationship) continue;
 
-            NSSet *nonSortedRelationships = [self valueForKey:relationshipName];
 
-            NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:localKey ascending:YES];
-            NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
-            NSArray *relationships = [nonSortedRelationships sortedArrayUsingDescriptors:sortDescriptors];
+            NSArray *relationships;
+            if ([self.entity propertiesByName][localKey]) {
+                NSSet *nonSortedRelationships = [self valueForKey:relationshipName];
+
+                NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:localKey ascending:YES];
+                NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+                relationships = [nonSortedRelationships sortedArrayUsingDescriptors:sortDescriptors];
+            } else {
+                relationships = [[self valueForKey:relationshipName] allObjects];
+            }
 
             NSMutableArray *relations = [NSMutableArray new];
 
