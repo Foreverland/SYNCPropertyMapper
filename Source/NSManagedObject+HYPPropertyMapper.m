@@ -331,7 +331,7 @@
                         NSString *key = attributeIsKey ? @"id" : [attribute hyp_remoteString];
 
                         if (flatten) {
-                            NSString *flattenKey = [NSString stringWithFormat:@"%@[%lu].%@", relationshipName, (unsigned long)relationIndex, key];
+                            NSString *flattenKey = [NSString stringWithFormat:@"%@[%lu].%@", [relationshipName hyp_remoteString], (unsigned long)relationIndex, key];
                             if (value) mutableDictionary[flattenKey] = value;
                         } else {
                             NSMutableDictionary *dictionary;
