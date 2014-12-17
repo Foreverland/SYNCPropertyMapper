@@ -305,7 +305,12 @@
 
 
             NSArray *relationships;
-            if ([self.entity propertiesByName][localKey]) {
+
+            NSEntityDescription *destinationEntity = [propertyDescription destinationEntity];
+            NSDictionary *properties = [destinationEntity propertiesByName];
+
+            BOOL localKeyExists = (properties[localKey] != nil);
+            if (localKeyExists) {
                 NSSet *nonSortedRelationships = [self valueForKey:relationshipName];
 
                 NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:localKey ascending:YES];
