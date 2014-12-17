@@ -312,10 +312,8 @@
             BOOL localKeyExists = (properties[localKey] != nil);
             if (localKeyExists) {
                 NSSet *nonSortedRelationships = [self valueForKey:relationshipName];
-
-                NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:localKey ascending:YES];
-                NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
-                relationships = [nonSortedRelationships sortedArrayUsingDescriptors:sortDescriptors];
+                NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:localKey ascending:YES];
+                relationships = [nonSortedRelationships sortedArrayUsingDescriptors:@[sortDescriptor]];
             } else {
                 relationships = [[self valueForKey:relationshipName] allObjects];
             }
