@@ -303,11 +303,20 @@
             BOOL isToOneRelationship = (![relationshipValue isKindOfClass:[NSSet class]]);
             if (isToOneRelationship) continue;
 
-            NSSet *nonSortedRelationships = [self valueForKey:relationshipName];
 
-            NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:localKey ascending:YES];
-            NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
-            NSArray *relationships = [nonSortedRelationships sortedArrayUsingDescriptors:sortDescriptors];
+            NSArray *relationships;
+
+            NSEntityDescription *destinationEntity = [propertyDescription destinationEntity];
+            NSDictionary *properties = [destinationEntity propertiesByName];
+
+            BOOL localKeyExists = (properties[localKey] != nil);
+            if (localKeyExists) {
+                NSSet *nonSortedRelationships = [self valueForKey:relationshipName];
+                NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:localKey ascending:YES];
+                relationships = [nonSortedRelationships sortedArrayUsingDescriptors:@[sortDescriptor]];
+            } else {
+                relationships = [[self valueForKey:relationshipName] allObjects];
+            }
 
             NSMutableArray *relations = [NSMutableArray new];
 
@@ -325,8 +334,8 @@
                         NSString *key = attributeIsKey ? @"id" : [attribute hyp_remoteString];
 
                         if (flatten) {
-                            NSString *flattenKey = [NSString stringWithFormat:@"%@[%lu].%@", relationshipName, (unsigned long)relationIndex, key];
-                            mutableDictionary[flattenKey] = value;
+                            NSString *flattenKey = [NSString stringWithFormat:@"%@[%lu].%@", [relationshipName hyp_remoteString], (unsigned long)relationIndex, key];
+                            if (value) mutableDictionary[flattenKey] = value;
                         } else {
                             NSMutableDictionary *dictionary;
 
@@ -335,7 +344,8 @@
 
                             if (!dictionary) dictionary = [NSMutableDictionary new];
 
-                            dictionary[key] = value;
+                            if (value) dictionary[key] = value;
+
                             relations[relationIndex] = dictionary;
                         }
                     }
