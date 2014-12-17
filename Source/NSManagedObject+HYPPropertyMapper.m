@@ -332,7 +332,7 @@
 
                         if (flatten) {
                             NSString *flattenKey = [NSString stringWithFormat:@"%@[%lu].%@", relationshipName, (unsigned long)relationIndex, key];
-                            mutableDictionary[flattenKey] = value;
+                            if (value) mutableDictionary[flattenKey] = value;
                         } else {
                             NSMutableDictionary *dictionary;
 
@@ -341,7 +341,8 @@
 
                             if (!dictionary) dictionary = [NSMutableDictionary new];
 
-                            dictionary[key] = value;
+                            if (value) dictionary[key] = value;
+
                             relations[relationIndex] = dictionary;
                         }
                     }
