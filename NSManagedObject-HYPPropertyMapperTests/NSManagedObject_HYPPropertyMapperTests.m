@@ -172,20 +172,18 @@
     NSDictionary *dictionary = [self.testUser hyp_dictionary];
 
     XCTAssertNotNil([dictionary valueForKey:@"notes"]);
-    XCTAssertTrue([[dictionary valueForKey:@"notes"] isKindOfClass:[NSArray class]]);
+    XCTAssertTrue([[dictionary valueForKey:@"notes"] isKindOfClass:[NSDictionary class]]);
 
-    NSArray *notes = [dictionary valueForKey:@"notes"];
+    NSDictionary *notes = [dictionary valueForKey:@"notes"];
     XCTAssertTrue(notes.count == 3);
 
-    NSDictionary *noteContainerDictionary = [notes firstObject];
-    NSDictionary *noteDictionary = [noteContainerDictionary valueForKey:@"0"];
+    NSDictionary *noteDictionary = [notes valueForKey:@"0"];
     XCTAssertNotNil(noteDictionary);
 
     XCTAssertEqualObjects([noteDictionary valueForKey:@"id"], @1);
     XCTAssertEqualObjects([noteDictionary valueForKey:@"text"], @"This is the text for the note 1");
 
-    noteContainerDictionary = [notes lastObject];
-    noteDictionary = [noteContainerDictionary valueForKey:@"2"];
+    noteDictionary = [notes valueForKey:@"2"];
     XCTAssertEqualObjects([noteDictionary valueForKey:@"id"], @14);
     XCTAssertEqualObjects([noteDictionary valueForKey:@"text"], @"This is the text for the note 14");
 }
