@@ -184,8 +184,8 @@
     XCTAssertEqualObjects([noteDictionary valueForKey:@"id"], @1);
     XCTAssertEqualObjects([noteDictionary valueForKey:@"text"], @"This is the text for the note 1");
 
-    noteContainerDictionary = [notes firstObject];
-    noteDictionary = [noteContainerDictionary valueForKey:@"1"];
+    noteContainerDictionary = [notes lastObject];
+    noteDictionary = [noteContainerDictionary valueForKey:@"2"];
     XCTAssertEqualObjects([noteDictionary valueForKey:@"id"], @14);
     XCTAssertEqualObjects([noteDictionary valueForKey:@"text"], @"This is the text for the note 14");
 }
