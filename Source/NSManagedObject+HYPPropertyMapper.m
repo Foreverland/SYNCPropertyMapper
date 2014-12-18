@@ -200,16 +200,27 @@
                             NSString *flattenKey = [NSString stringWithFormat:@"%@[%lu].%@", [relationshipName hyp_remoteString], (unsigned long)relationIndex, key];
                             if (value) mutableDictionary[flattenKey] = value;
                         } else {
-                            NSMutableDictionary *dictionary;
+                            NSMutableDictionary *containerDictionary;
 
                             BOOL relationIndexInBounds = (relations.count > relationIndex);
-                            if (relationIndexInBounds) dictionary = [relations[relationIndex] mutableCopy];
+                            if (relationIndexInBounds) containerDictionary = [relations[relationIndex] mutableCopy];
 
-                            if (!dictionary) dictionary = [NSMutableDictionary new];
+                            NSString *relationIndexString = [NSString stringWithFormat:@"%lu", (unsigned long)relationIndex];
+
+                            NSMutableDictionary *dictionary;
+
+                            if (containerDictionary) {
+                                dictionary = containerDictionary[relationIndexString];
+                            } else {
+                                containerDictionary = [NSMutableDictionary new];
+                                dictionary = [NSMutableDictionary new];
+                            }
 
                             if (value) dictionary[key] = value;
 
-                            relations[relationIndex] = dictionary;
+                            containerDictionary[relationIndexString] = dictionary;
+
+                            relations[relationIndex] = containerDictionary;
                         }
                     }
                 }

@@ -177,11 +177,15 @@
     NSArray *notes = [dictionary valueForKey:@"notes"];
     XCTAssertTrue(notes.count == 3);
 
-    NSDictionary *noteDictionary = [notes firstObject];
+    NSDictionary *noteContainerDictionary = [notes firstObject];
+    NSDictionary *noteDictionary = [noteContainerDictionary valueForKey:@"0"];
+    XCTAssertNotNil(noteDictionary);
+
     XCTAssertEqualObjects([noteDictionary valueForKey:@"id"], @1);
     XCTAssertEqualObjects([noteDictionary valueForKey:@"text"], @"This is the text for the note 1");
 
-    noteDictionary = [notes lastObject];
+    noteContainerDictionary = [notes lastObject];
+    noteDictionary = [noteContainerDictionary valueForKey:@"2"];
     XCTAssertEqualObjects([noteDictionary valueForKey:@"id"], @14);
     XCTAssertEqualObjects([noteDictionary valueForKey:@"text"], @"This is the text for the note 14");
 }
