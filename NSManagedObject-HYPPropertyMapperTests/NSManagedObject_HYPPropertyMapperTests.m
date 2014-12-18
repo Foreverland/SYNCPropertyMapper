@@ -61,6 +61,10 @@
     note = [self noteWithID:@7];
     note.user = user;
 
+    note = [NSEntityDescription insertNewObjectForEntityForName:@"Note"
+                                         inManagedObjectContext:self.managedObjectContext];
+    note.user = user;
+
     Company *company = [self companyWithID:@1 andName:@"Facebook"];
     company.user = user;
 
