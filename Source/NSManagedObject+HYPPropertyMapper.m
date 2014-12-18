@@ -181,7 +181,7 @@
             NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:localKey ascending:YES];
             NSArray *relationships = [nonSortedRelationships sortedArrayUsingDescriptors:@[sortDescriptor]];
 
-            NSMutableArray *relations = [NSMutableArray new];
+            NSMutableDictionary *relations = [NSMutableDictionary new];
 
             NSUInteger relationIndex = 0;
 
@@ -200,27 +200,13 @@
                             NSString *flattenKey = [NSString stringWithFormat:@"%@[%lu].%@", [relationshipName hyp_remoteString], (unsigned long)relationIndex, key];
                             if (value) mutableDictionary[flattenKey] = value;
                         } else {
-                            NSMutableDictionary *containerDictionary;
-
-                            BOOL relationIndexInBounds = (relations.count > relationIndex);
-                            if (relationIndexInBounds) containerDictionary = [relations[relationIndex] mutableCopy];
-
                             NSString *relationIndexString = [NSString stringWithFormat:@"%lu", (unsigned long)relationIndex];
 
-                            NSMutableDictionary *dictionary;
-
-                            if (containerDictionary) {
-                                dictionary = containerDictionary[relationIndexString];
-                            } else {
-                                containerDictionary = [NSMutableDictionary new];
-                                dictionary = [NSMutableDictionary new];
-                            }
+                            NSMutableDictionary *dictionary = [relations[relationIndexString] mutableCopy] ?: [NSMutableDictionary new];
 
                             if (value) dictionary[key] = value;
 
-                            containerDictionary[relationIndexString] = dictionary;
-
-                            relations[relationIndex] = containerDictionary;
+                            relations[relationIndexString] = dictionary;
                         }
                     }
                 }
