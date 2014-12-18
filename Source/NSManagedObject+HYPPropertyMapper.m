@@ -212,7 +212,10 @@
                 }
                 relationIndex++;
             }
-            if (!flatten) [mutableDictionary setValue:relations forKey:[relationshipName hyp_remoteString]];
+            if (!flatten) {
+                NSString *nestedAttributesPrefix = [NSString stringWithFormat:@"%@_attributes", [relationshipName hyp_remoteString]];
+                [mutableDictionary setValue:relations forKey:nestedAttributesPrefix];
+            }
         }
     }
 

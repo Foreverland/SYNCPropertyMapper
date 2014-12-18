@@ -171,10 +171,10 @@
 {
     NSDictionary *dictionary = [self.testUser hyp_dictionary];
 
-    XCTAssertNotNil([dictionary valueForKey:@"notes"]);
-    XCTAssertTrue([[dictionary valueForKey:@"notes"] isKindOfClass:[NSDictionary class]]);
+    XCTAssertNotNil([dictionary valueForKey:@"notes_attributes"]);
+    XCTAssertTrue([[dictionary valueForKey:@"notes_attributes"] isKindOfClass:[NSDictionary class]]);
 
-    NSDictionary *notes = [dictionary valueForKey:@"notes"];
+    NSDictionary *notes = [dictionary valueForKey:@"notes_attributes"];
     XCTAssertTrue(notes.count == 3);
 
     NSDictionary *noteDictionary = [notes valueForKey:@"0"];
