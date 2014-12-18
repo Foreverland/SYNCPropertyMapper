@@ -226,7 +226,7 @@
                 }
                 relationIndex++;
             }
-            if (!flatten) [mutableDictionary setValue:relations forKey:relationshipName];
+            if (!flatten) [mutableDictionary setValue:relations forKey:[relationshipName hyp_remoteString]];
         }
     }
 
