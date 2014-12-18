@@ -177,20 +177,9 @@
             BOOL isToOneRelationship = (![relationshipValue isKindOfClass:[NSSet class]]);
             if (isToOneRelationship) continue;
 
-
-            NSArray *relationships;
-
-            NSEntityDescription *destinationEntity = [propertyDescription destinationEntity];
-            NSDictionary *properties = [destinationEntity propertiesByName];
-
-            BOOL localKeyExists = (properties[localKey] != nil);
-            if (localKeyExists) {
-                NSSet *nonSortedRelationships = [self valueForKey:relationshipName];
-                NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:localKey ascending:YES];
-                relationships = [nonSortedRelationships sortedArrayUsingDescriptors:@[sortDescriptor]];
-            } else {
-                relationships = [[self valueForKey:relationshipName] allObjects];
-            }
+            NSSet *nonSortedRelationships = [self valueForKey:relationshipName];
+            NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:localKey ascending:YES];
+            NSArray *relationships = [nonSortedRelationships sortedArrayUsingDescriptors:@[sortDescriptor]];
 
             NSMutableArray *relations = [NSMutableArray new];
 
