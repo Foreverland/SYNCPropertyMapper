@@ -24,13 +24,13 @@ userValues {
 }
 ```
 
-It supports relationships too, for example for a user that has many notes:
+It supports relationships too, and we complain to the Rails rule `accepts_nested_attributes_for`, for example for a user that has many notes:
 
 ##### Normal
 ```json
 "first_name": "John",
 "last_name": "Hyperseed",
-"notes": [
+"notes_attributes": [
   {
     "0": {
       "id": 0,
