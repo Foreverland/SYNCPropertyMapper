@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
   }
   s.author = { "Hyper Interaktiv" => "teknologi@hyper.no" }
   s.social_media_url = "https://twitter.com/hyperoslo"
-  s.platform = :ios, '6.0'
+  s.platform = :ios, '7.0'
   s.source = {
     :git => 'https://github.com/hyperoslo/NSManagedObject-HYPPropertyMapper.git',
     :tag => s.version.to_s
