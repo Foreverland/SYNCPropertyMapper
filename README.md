@@ -32,12 +32,14 @@ It supports relationships too, for example for a user that has many notes:
 "last_name": "Hyperseed",
 "notes": [
   {
-    "id": 0,
-    "text": "This is the text for the note A"
-  },
-  {
-    "id": 1,
-    "text": "This is the text for the note B"
+    "0": {
+      "id": 0,
+      "text": "This is the text for the note A"
+    },
+    "1": {
+      "id": 1,
+      "text": "This is the text for the note B"
+    }
   }
 ]
 ```
@@ -52,10 +54,10 @@ dictionary["first_name"] => John
 dictionary["last_name"] => Hyperseed
 
 dictionary[@"notes[0].id"] =>  0
-dictionary[@"notes[0].text"] => This is the text for the note A
+dictionary[@"notes[0].text"] => "This is the text for the note A"
 
 dictionary[@"notes[1].id"] => 1
-dictionary[@"notes[1].text"] => This is the text for the note B
+dictionary[@"notes[1].text"] => "This is the text for the note B"
 ```
 
 <br/>
