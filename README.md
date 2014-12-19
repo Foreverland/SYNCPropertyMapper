@@ -43,7 +43,7 @@ It supports relationships too, and we complain to the Rails rule `accepts_nested
 ]
 ```
 
-<br/>
+----------------
 
 But wait, there is more. What if you get values from your JSON providing backend and want those values on your object?
 
