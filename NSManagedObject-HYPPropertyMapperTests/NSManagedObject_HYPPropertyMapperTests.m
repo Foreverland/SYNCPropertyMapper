@@ -175,27 +175,21 @@
     XCTAssertTrue([[dictionary valueForKey:@"notes_attributes"] isKindOfClass:[NSDictionary class]]);
 
     NSDictionary *notes = [dictionary valueForKey:@"notes_attributes"];
-    XCTAssertTrue(notes.count == 3);
 
-    NSDictionary *noteDictionary = [notes valueForKey:@"0"];
+    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"id" ascending:YES];
+    NSArray *sortedNotes = [[notes allValues] sortedArrayUsingDescriptors:@[sortDescriptor]];
+
+    XCTAssertTrue(sortedNotes.count == 3);
+
+    NSDictionary *noteDictionary = [sortedNotes firstObject];
     XCTAssertNotNil(noteDictionary);
 
     XCTAssertEqualObjects([noteDictionary valueForKey:@"id"], @1);
     XCTAssertEqualObjects([noteDictionary valueForKey:@"text"], @"This is the text for the note 1");
 
-    noteDictionary = [notes valueForKey:@"2"];
+    noteDictionary = [sortedNotes lastObject];
     XCTAssertEqualObjects([noteDictionary valueForKey:@"id"], @14);
     XCTAssertEqualObjects([noteDictionary valueForKey:@"text"], @"This is the text for the note 14");
-}
-
-- (void)testFlattenDictionaryWithRelationships
-{
-    NSDictionary *dictionary = [self.testUser hyp_flatDictionary];
-
-    XCTAssertEqualObjects(dictionary[@"notes[0].id"], @1);
-    XCTAssertEqualObjects(dictionary[@"notes[0].text"], @"This is the text for the note 1");
-    XCTAssertEqualObjects(dictionary[@"notes[1].id"], @7);
-    XCTAssertEqualObjects(dictionary[@"notes[1].text"], @"This is the text for the note 7");
 }
 
 #pragma mark - hyp_fillWithDictionary
