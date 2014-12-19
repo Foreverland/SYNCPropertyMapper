@@ -75,7 +75,7 @@
         if (value && ![value isKindOfClass:[NSNull class]]) {
 
             id processedValue = [self valueForPropertyDescription:propertyDescription
-                                                usingRemoteValue:value];
+                                                 usingRemoteValue:value];
 
             BOOL valueHasChanged = (![[self valueForKey:localKey] isEqual:processedValue]);
             if (valueHasChanged) [self setValue:processedValue forKey:localKey];
@@ -162,26 +162,34 @@
             NSUInteger relationIndex = 0;
 
             for (NSManagedObject *relation in relationships) {
-                for (id propertyDescription in [relation.entity properties]) {
+                BOOL hasValues = NO;
+
+                for (NSAttributeDescription *propertyDescription in [relation.entity properties]) {
                     if ([propertyDescription isKindOfClass:[NSAttributeDescription class]]) {
                         NSAttributeDescription *attributeDescription = (NSAttributeDescription *)propertyDescription;
                         id value = [relation valueForKey:[attributeDescription name]];
+                        if (value) {
+                            hasValues = YES;
+                        } else {
+                            continue;
+                        }
 
                         NSString *attribute = [propertyDescription name];
                         NSString *localKey = [NSString stringWithFormat:@"%@ID", [relation.entity.name lowercaseString]];
                         BOOL attributeIsKey = ([localKey isEqualToString:attribute]);
                         NSString *key = attributeIsKey ? @"id" : [attribute hyp_remoteString];
 
-                        NSString *relationIndexString = [NSString stringWithFormat:@"%lu", (unsigned long)relationIndex];
+                        if (value) {
+                            NSString *relationIndexString = [NSString stringWithFormat:@"%lu", (unsigned long)relationIndex];
+                            NSMutableDictionary *dictionary = [relations[relationIndexString] mutableCopy] ?: [NSMutableDictionary new];
 
-                        NSMutableDictionary *dictionary = [relations[relationIndexString] mutableCopy] ?: [NSMutableDictionary new];
-
-                        if (value) dictionary[key] = value;
-
-                        relations[relationIndexString] = dictionary;
+                            dictionary[key] = value;
+                            relations[relationIndexString] = dictionary;
+                        }
                     }
                 }
-                relationIndex++;
+
+                if (hasValues) relationIndex++;
             }
 
             NSString *nestedAttributesPrefix = [NSString stringWithFormat:@"%@_attributes", [relationshipName hyp_remoteString]];

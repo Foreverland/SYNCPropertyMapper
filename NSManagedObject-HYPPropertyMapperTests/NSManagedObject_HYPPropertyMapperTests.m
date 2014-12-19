@@ -61,6 +61,14 @@
     note = [self noteWithID:@7];
     note.user = user;
 
+    note = [NSEntityDescription insertNewObjectForEntityForName:@"Note"
+                                               inManagedObjectContext:self.managedObjectContext];
+    note.user = user;
+
+    note = [NSEntityDescription insertNewObjectForEntityForName:@"Note"
+                                         inManagedObjectContext:self.managedObjectContext];
+    note.user = user;
+
     Company *company = [self companyWithID:@1 andName:@"Facebook"];
     company.user = user;
 
@@ -179,7 +187,7 @@
     NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"id" ascending:YES];
     NSArray *sortedNotes = [[notes allValues] sortedArrayUsingDescriptors:@[sortDescriptor]];
 
-    XCTAssertTrue(sortedNotes.count == 3);
+    XCTAssertEqual(sortedNotes.count, 3);
 
     NSDictionary *noteDictionary = [sortedNotes firstObject];
     XCTAssertNotNil(noteDictionary);
