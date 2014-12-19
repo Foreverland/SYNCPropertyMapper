@@ -153,11 +153,9 @@
         } else if ([propertyDescription isKindOfClass:[NSRelationshipDescription class]]) {
             NSString *relationshipName = [propertyDescription name];
 
-            id relationshipValue = [self valueForKey:relationshipName];
-            BOOL isToOneRelationship = (![relationshipValue isKindOfClass:[NSSet class]]);
+            id relationships = [self valueForKey:relationshipName];
+            BOOL isToOneRelationship = (![relationships isKindOfClass:[NSSet class]]);
             if (isToOneRelationship) continue;
-
-            NSSet *relationships = [self valueForKey:relationshipName];
 
             NSMutableDictionary *relations = [NSMutableDictionary new];
 
