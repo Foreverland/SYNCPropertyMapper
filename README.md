@@ -19,8 +19,8 @@ But that's not all, the keys will be magically transformed into a lowercase/unde
 
 ```json
 {
-  "first_name": John,
-  "last_name": Hyperseed
+  "first_name": "John",
+  "last_name": "Hyperseed"
 }
 ```
 
