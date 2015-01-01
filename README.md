@@ -17,10 +17,10 @@ NSDictionary *userValues = [user hyp_dictionary];
 That's it, that's all you have to do.
 But that's not all, the keys will be magically transformed into a lowercase/underscore convention.
 
-```
-userValues {
-    "first_name" = John;
-    "last_name" = Hyperseed;
+```json
+{
+  "first_name": John,
+  "last_name": Hyperseed
 }
 ```
 
