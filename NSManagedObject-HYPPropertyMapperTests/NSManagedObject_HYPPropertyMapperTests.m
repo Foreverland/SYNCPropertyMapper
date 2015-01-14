@@ -57,6 +57,7 @@
 
     note = [self noteWithID:@14];
     note.user = user;
+    note.destroy = @YES;
 
     note = [self noteWithID:@7];
     note.user = user;
@@ -198,6 +199,7 @@
     noteDictionary = [sortedNotes lastObject];
     XCTAssertEqualObjects([noteDictionary valueForKey:@"id"], @14);
     XCTAssertEqualObjects([noteDictionary valueForKey:@"text"], @"This is the text for the note 14");
+    XCTAssertEqualObjects([noteDictionary valueForKey:@"_destroy"], @YES);
 }
 
 #pragma mark - hyp_fillWithDictionary
