@@ -5,6 +5,7 @@
 
 @dynamic noteID;
 @dynamic text;
+@dynamic destroy;
 @dynamic user;
 
 @end

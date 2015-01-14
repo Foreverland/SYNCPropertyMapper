@@ -7,6 +7,7 @@
 
 @property (nonatomic, retain) NSNumber * noteID;
 @property (nonatomic, retain) NSString * text;
+@property (nonatomic, retain) NSNumber * destroy;
 @property (nonatomic, retain) User *user;
 
 @end
