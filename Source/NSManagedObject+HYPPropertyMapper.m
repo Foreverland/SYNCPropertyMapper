@@ -177,7 +177,15 @@
                         NSString *attribute = [propertyDescription name];
                         NSString *localKey = [NSString stringWithFormat:@"%@ID", [relation.entity.name lowercaseString]];
                         BOOL attributeIsKey = ([localKey isEqualToString:attribute]);
-                        NSString *key = attributeIsKey ? @"id" : [attribute hyp_remoteString];
+
+                        NSString *key;
+                        if (attributeIsKey) {
+                            key = @"id";
+                        } else if ([attribute isEqualToString:@"destroy"]) {
+                            key = @"_destroy";
+                        } else {
+                            key = [attribute hyp_remoteString];
+                        }
 
                         if (value) {
                             NSString *relationIndexString = [NSString stringWithFormat:@"%lu", (unsigned long)relationIndex];
