@@ -115,6 +115,7 @@
 
     if (stringValueAndNumberAttribute) {
         NSNumberFormatter *formatter = [NSNumberFormatter new];
+        formatter.locale = [NSLocale localeWithLocaleIdentifier:@"en_US"];
         return [formatter numberFromString:value];
     } else if (numberValueAndStringAttribute) {
         return [NSString stringWithFormat:@"%@", value];
