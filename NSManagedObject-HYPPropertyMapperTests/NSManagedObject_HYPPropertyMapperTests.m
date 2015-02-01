@@ -63,7 +63,7 @@
     note.user = user;
 
     note = [NSEntityDescription insertNewObjectForEntityForName:@"Note"
-                                               inManagedObjectContext:self.managedObjectContext];
+                                         inManagedObjectContext:self.managedObjectContext];
     note.user = user;
 
     note = [NSEntityDescription insertNewObjectForEntityForName:@"Note"
@@ -79,7 +79,7 @@
 - (Note *)noteWithID:(NSNumber *)remoteID
 {
     Note *note = [NSEntityDescription insertNewObjectForEntityForName:@"Note"
-                                                inManagedObjectContext:self.managedObjectContext];
+                                               inManagedObjectContext:self.managedObjectContext];
     note.remoteID = remoteID;
     note.text = [NSString stringWithFormat:@"This is the text for the note %@", remoteID];
 
