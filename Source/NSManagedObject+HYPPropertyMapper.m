@@ -64,7 +64,11 @@
 
         BOOL isReservedKey = ([[NSManagedObject reservedAttributes] containsObject:remoteKey]);
         if (isReservedKey) {
-            remoteKey = [self prefixedAttribute:remoteKey];
+            if ([remoteKey isEqualToString:@"id"]) {
+                remoteKey = @"remote_id";
+            } else {
+                remoteKey = [self prefixedAttribute:remoteKey];
+            }
         }
 
         id propertyDescription = [self propertyDescriptionForKey:remoteKey];
@@ -140,13 +144,16 @@
             if (nilOrNullValue) {
                 mutableDictionary[key] = [NSNull null];
             } else {
-                NSMutableString *key = [[[propertyDescription name] hyp_remoteString] mutableCopy];
                 BOOL isReservedKey = ([[self reservedKeys] containsObject:key]);
                 if (isReservedKey) {
-                    [key replaceOccurrencesOfString:[self remotePrefix]
-                                         withString:@""
-                                            options:NSCaseInsensitiveSearch
-                                              range:NSMakeRange(0, key.length)];
+                    if ([key isEqualToString:@"remote_id"]) {
+                        key = [@"id" mutableCopy];
+                    } else {
+                        [key replaceOccurrencesOfString:[self remotePrefix]
+                                             withString:@""
+                                                options:NSCaseInsensitiveSearch
+                                                  range:NSMakeRange(0, key.length)];
+                    }
                 }
                 mutableDictionary[key] = value;
             }
@@ -176,7 +183,7 @@
                         }
 
                         NSString *attribute = [propertyDescription name];
-                        NSString *localKey = [NSString stringWithFormat:@"%@ID", [relation.entity.name lowercaseString]];
+                        NSString *localKey = @"remoteID";
                         BOOL attributeIsKey = ([localKey isEqualToString:attribute]);
 
                         NSString *key;
@@ -227,6 +234,8 @@
     for (NSString *attribute in reservedAttributes) {
         [keys addObject:[self prefixedAttribute:attribute]];
     }
+
+    [keys addObject:@"remote_id"];
 
     return keys;
 }

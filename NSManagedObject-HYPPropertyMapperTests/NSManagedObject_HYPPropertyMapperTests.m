@@ -323,14 +323,13 @@
 - (void)testAcronyms
 {
     NSDictionary *values = @{
-                             @"user_id" : @100
+                             @"contract_id" : @100
                              };
 
     [self.testUser hyp_fillWithDictionary:values];
 
-    XCTAssertEqualObjects([self.testUser valueForKey:@"remoteID"], @100);
+    XCTAssertEqualObjects([self.testUser valueForKey:@"contractID"], @100);
 }
-
 
 - (void)testReservedWords
 {
