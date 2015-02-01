@@ -15,7 +15,7 @@
 @dynamic numberOfAttendes;
 @dynamic updatedDate;
 @dynamic userDescription;
-@dynamic userID;
+@dynamic remoteID;
 @dynamic userType;
 @dynamic notes;
 @dynamic company;

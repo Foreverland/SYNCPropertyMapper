@@ -16,7 +16,7 @@
 @property (nonatomic, retain) NSNumber * numberOfAttendes;
 @property (nonatomic, retain) NSDate * updatedDate;
 @property (nonatomic, retain) NSString * userDescription;
-@property (nonatomic, retain) NSNumber * userID;
+@property (nonatomic, retain) NSNumber * remoteID;
 @property (nonatomic, retain) NSString * userType;
 @property (nonatomic, retain) NSSet *notes;
 @property (nonatomic, retain) Company *company;

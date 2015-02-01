@@ -3,7 +3,7 @@
 
 @implementation Company
 
-@dynamic companyID;
+@dynamic remoteID;
 @dynamic name;
 @dynamic user;
 
