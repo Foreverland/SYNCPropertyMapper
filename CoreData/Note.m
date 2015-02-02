@@ -3,7 +3,7 @@
 
 @implementation Note
 
-@dynamic noteID;
+@dynamic remoteID;
 @dynamic text;
 @dynamic destroy;
 @dynamic user;

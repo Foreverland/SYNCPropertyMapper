@@ -46,7 +46,7 @@
     user.firstName = @"John";
     user.lastName = @"Hyperseed";
     user.userDescription = @"John Description";
-    user.userID = @111;
+    user.remoteID = @111;
     user.userType = @"Manager";
     user.createdDate = [NSDate date];
     user.updatedDate = [NSDate date];
@@ -63,7 +63,7 @@
     note.user = user;
 
     note = [NSEntityDescription insertNewObjectForEntityForName:@"Note"
-                                               inManagedObjectContext:self.managedObjectContext];
+                                         inManagedObjectContext:self.managedObjectContext];
     note.user = user;
 
     note = [NSEntityDescription insertNewObjectForEntityForName:@"Note"
@@ -76,21 +76,21 @@
     return user;
 }
 
-- (Note *)noteWithID:(NSNumber *)noteID
+- (Note *)noteWithID:(NSNumber *)remoteID
 {
     Note *note = [NSEntityDescription insertNewObjectForEntityForName:@"Note"
-                                                inManagedObjectContext:self.managedObjectContext];
-    note.noteID = noteID;
-    note.text = [NSString stringWithFormat:@"This is the text for the note %@", noteID];
+                                               inManagedObjectContext:self.managedObjectContext];
+    note.remoteID = remoteID;
+    note.text = [NSString stringWithFormat:@"This is the text for the note %@", remoteID];
 
     return note;
 }
 
-- (Company *)companyWithID:(NSNumber *)companyID andName:(NSString *)name
+- (Company *)companyWithID:(NSNumber *)remoteID andName:(NSString *)name
 {
     Company *company = [NSEntityDescription insertNewObjectForEntityForName:@"Company"
                                                      inManagedObjectContext:self.managedObjectContext];
-    company.companyID = companyID;
+    company.remoteID = remoteID;
     company.name = name;
 
     return company;
@@ -323,14 +323,13 @@
 - (void)testAcronyms
 {
     NSDictionary *values = @{
-                             @"user_id" : @100
+                             @"contract_id" : @100
                              };
 
     [self.testUser hyp_fillWithDictionary:values];
 
-    XCTAssertEqualObjects([self.testUser valueForKey:@"userID"], @100);
+    XCTAssertEqualObjects([self.testUser valueForKey:@"contractID"], @100);
 }
-
 
 - (void)testReservedWords
 {
@@ -342,7 +341,7 @@
 
     [self.testUser hyp_fillWithDictionary:values];
 
-    XCTAssertEqualObjects([self.testUser valueForKey:@"userID"], @100);
+    XCTAssertEqualObjects([self.testUser valueForKey:@"remoteID"], @100);
 
     XCTAssertEqualObjects([self.testUser valueForKey:@"userDescription"], @"This is the description?");
 

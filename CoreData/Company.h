@@ -5,7 +5,7 @@
 
 @interface Company : NSManagedObject
 
-@property (nonatomic, retain) NSNumber * companyID;
+@property (nonatomic, retain) NSNumber * remoteID;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) User *user;
 
