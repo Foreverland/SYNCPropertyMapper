@@ -2,6 +2,8 @@
 
 #import "NSString+HYPNetworking.h"
 
+static NSString * const HYPPropertyMapperRemoteKey = @"mapper.remote.key";
+
 @implementation NSDate (ISO8601)
 
 + (NSDate *)__dateFromISO8601String:(NSString *)iso8601
@@ -129,7 +131,7 @@
 
     for (id propertyDescription in [self.entity properties]) {
         if ([propertyDescription isKindOfClass:[NSAttributeDescription class]]) {
-            if ([[propertyDescription userInfo] objectForKey:@"mapper.remote.key"] && ![[[propertyDescription userInfo] objectForKey:@"mapper.remote.key"] isEqualToString:@"value"]) {
+            if ([[propertyDescription userInfo] objectForKey:HYPPropertyMapperRemoteKey] && ![[[propertyDescription userInfo] objectForKey:HYPPropertyMapperRemoteKey] isEqualToString:@"value"]) {
                 NSAttributeDescription *attributeDescription = (NSAttributeDescription *)propertyDescription;
                 id value = [self valueForKey:[attributeDescription name]];
                 NSMutableString *key = [[[[propertyDescription userInfo] objectForKey:@"mapper.remote.key"] hyp_remoteString] mutableCopy];
