@@ -129,28 +129,51 @@
 
     for (id propertyDescription in [self.entity properties]) {
         if ([propertyDescription isKindOfClass:[NSAttributeDescription class]]) {
-            NSAttributeDescription *attributeDescription = (NSAttributeDescription *)propertyDescription;
-            id value = [self valueForKey:[attributeDescription name]];
-            NSMutableString *key = [[[propertyDescription name] hyp_remoteString] mutableCopy];
+            if ([[propertyDescription userInfo] objectForKey:@"mapper.remote.key"] && ![[[propertyDescription userInfo] objectForKey:@"mapper.remote.key"] isEqualToString:@"value"]) {
+                NSAttributeDescription *attributeDescription = (NSAttributeDescription *)propertyDescription;
+                id value = [self valueForKey:[attributeDescription name]];
+                NSMutableString *key = [[[[propertyDescription userInfo] objectForKey:@"mapper.remote.key"] hyp_remoteString] mutableCopy];
 
-            BOOL nilOrNullValue = (!value || [value isKindOfClass:[NSNull class]]);
-            if (nilOrNullValue) {
-                mutableDictionary[key] = [NSNull null];
-            } else {
-                BOOL isReservedKey = ([[self reservedKeys] containsObject:key]);
-                if (isReservedKey) {
-                    if ([key isEqualToString:@"remote_id"]) {
-                        key = [@"id" mutableCopy];
-                    } else {
-                        [key replaceOccurrencesOfString:[self remotePrefix]
-                                             withString:@""
-                                                options:NSCaseInsensitiveSearch
-                                                  range:NSMakeRange(0, key.length)];
+                BOOL nilOrNullValue = (!value || [value isKindOfClass:[NSNull class]]);
+                if (nilOrNullValue) {
+                    mutableDictionary[key] = [NSNull null];
+                } else {
+                    BOOL isReservedKey = ([[self reservedKeys] containsObject:key]);
+                    if (isReservedKey) {
+                        if ([key isEqualToString:@"remote_id"]) {
+                            key = [@"id" mutableCopy];
+                        } else {
+                            [key replaceOccurrencesOfString:[self remotePrefix]
+                                                 withString:@""
+                                                    options:NSCaseInsensitiveSearch
+                                                      range:NSMakeRange(0, key.length)];
+                        }
                     }
+                    mutableDictionary[key] = value;
                 }
-                mutableDictionary[key] = value;
-            }
+            } else {
+                NSAttributeDescription *attributeDescription = (NSAttributeDescription *)propertyDescription;
+                id value = [self valueForKey:[attributeDescription name]];
+                NSMutableString *key = [[[propertyDescription name] hyp_remoteString] mutableCopy];
 
+                BOOL nilOrNullValue = (!value || [value isKindOfClass:[NSNull class]]);
+                if (nilOrNullValue) {
+                    mutableDictionary[key] = [NSNull null];
+                } else {
+                    BOOL isReservedKey = ([[self reservedKeys] containsObject:key]);
+                    if (isReservedKey) {
+                        if ([key isEqualToString:@"remote_id"]) {
+                            key = [@"id" mutableCopy];
+                        } else {
+                            [key replaceOccurrencesOfString:[self remotePrefix]
+                                                 withString:@""
+                                                    options:NSCaseInsensitiveSearch
+                                                      range:NSMakeRange(0, key.length)];
+                        }
+                    }
+                    mutableDictionary[key] = value;
+                }
+            }
         } else if ([propertyDescription isKindOfClass:[NSRelationshipDescription class]]) {
             NSString *relationshipName = [propertyDescription name];
 
@@ -205,7 +228,7 @@
             [mutableDictionary setValue:relations forKey:nestedAttributesPrefix];
         }
     }
-
+    
     return mutableDictionary;
 }
 
