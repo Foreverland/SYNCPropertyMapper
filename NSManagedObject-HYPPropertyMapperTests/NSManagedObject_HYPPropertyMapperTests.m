@@ -112,45 +112,8 @@
     [super tearDown];
 }
 
-#pragma mark hyp_dictionary
-
-- (void)testDictionaryKeysNotNil
+- (NSArray *)sortArrayOfKeysFromDictionary:(NSDictionary *)dictionary
 {
-    NSDictionary *dictionary = [self.testUser hyp_dictionary];
-
-    NSArray *arrayWithAllKeys = dictionary.allKeys;
-
-    XCTAssertNotNil(dictionary[arrayWithAllKeys[0]]);
-
-    XCTAssertNotNil(dictionary[arrayWithAllKeys[1]]);
-
-    XCTAssertNotNil(dictionary[arrayWithAllKeys[2]]);
-
-    XCTAssertNotNil(dictionary[arrayWithAllKeys[3]]);
-
-    XCTAssertNotNil(dictionary[arrayWithAllKeys[4]]);
-
-    XCTAssertNotNil(dictionary[arrayWithAllKeys[5]]);
-
-    XCTAssertNotNil(dictionary[arrayWithAllKeys[6]]);
-
-    XCTAssertNotNil(dictionary[arrayWithAllKeys[7]]);
-
-    XCTAssertNotNil(dictionary[arrayWithAllKeys[8]]);
-
-    XCTAssertNotNil(dictionary[arrayWithAllKeys[9]]);
-
-    XCTAssertNotNil(dictionary[arrayWithAllKeys[10]]);
-
-    XCTAssertNotNil(dictionary[arrayWithAllKeys[11]]);
-
-    XCTAssertNotNil(dictionary[arrayWithAllKeys[12]]);
-}
-
-- (void)testDictionaryValuesKindOfClass
-{
-    NSDictionary *dictionary = [self.testUser hyp_dictionary];
-
     NSMutableArray *arraySortedKeys = [NSMutableArray arrayWithArray:dictionary.allKeys];
 
     // Checking and sorting the values of the dictionary to be able to check in the correct order.
@@ -192,6 +155,50 @@
             }
         }
     }
+
+    return arraySortedKeys;
+}
+
+#pragma mark hyp_dictionary
+
+- (void)testDictionaryKeysNotNil
+{
+    NSDictionary *dictionary = [self.testUser hyp_dictionary];
+
+    NSArray *arrayWithAllKeys = dictionary.allKeys;
+
+    XCTAssertNotNil(dictionary[arrayWithAllKeys[0]]);
+
+    XCTAssertNotNil(dictionary[arrayWithAllKeys[1]]);
+
+    XCTAssertNotNil(dictionary[arrayWithAllKeys[2]]);
+
+    XCTAssertNotNil(dictionary[arrayWithAllKeys[3]]);
+
+    XCTAssertNotNil(dictionary[arrayWithAllKeys[4]]);
+
+    XCTAssertNotNil(dictionary[arrayWithAllKeys[5]]);
+
+    XCTAssertNotNil(dictionary[arrayWithAllKeys[6]]);
+
+    XCTAssertNotNil(dictionary[arrayWithAllKeys[7]]);
+
+    XCTAssertNotNil(dictionary[arrayWithAllKeys[8]]);
+
+    XCTAssertNotNil(dictionary[arrayWithAllKeys[9]]);
+
+    XCTAssertNotNil(dictionary[arrayWithAllKeys[10]]);
+
+    XCTAssertNotNil(dictionary[arrayWithAllKeys[11]]);
+
+    XCTAssertNotNil(dictionary[arrayWithAllKeys[12]]);
+}
+
+- (void)testDictionaryValuesKindOfClass
+{
+    NSDictionary *dictionary = [self.testUser hyp_dictionary];
+
+    NSArray *arraySortedKeys = [self sortArrayOfKeysFromDictionary:dictionary];
 
     XCTAssertTrue([dictionary[arraySortedKeys[0]] isKindOfClass:[NSNumber class]]);
 
