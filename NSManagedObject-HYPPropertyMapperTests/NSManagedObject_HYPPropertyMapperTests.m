@@ -153,6 +153,8 @@
 
     NSMutableArray *arraySortedKeys = [NSMutableArray arrayWithArray:dictionary.allKeys];
 
+    // Checking and sorting the values of the dictionary to be able to check in the correct order.
+
     for (NSString *key in dictionary.allKeys) {
         if ([dictionary[key] isKindOfClass:[NSString class]]) {
             if ([dictionary[key] isEqualToString:self.testUser.driverIdentifier]) {
