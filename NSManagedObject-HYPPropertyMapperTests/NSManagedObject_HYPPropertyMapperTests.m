@@ -11,6 +11,7 @@
 
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, strong) User *testUser;
+@property (nonatomic, strong) NSArray *arraySortedKeys;
 
 @end
 
@@ -103,6 +104,10 @@
     self.managedObjectContext = [NSManagedObject_HYPPropertyMapperTests managedObjectContextForTests];
 
     self.testUser = [self user];
+
+    NSDictionary *dictionary = [self.testUser hyp_dictionary];
+    
+    self.arraySortedKeys = [self sortArrayOfKeysFromDictionary:dictionary];
 }
 
 - (void)tearDown
@@ -198,33 +203,31 @@
 {
     NSDictionary *dictionary = [self.testUser hyp_dictionary];
 
-    NSArray *arraySortedKeys = [self sortArrayOfKeysFromDictionary:dictionary];
+    XCTAssertTrue([dictionary[self.arraySortedKeys[0]] isKindOfClass:[NSNumber class]]);
 
-    XCTAssertTrue([dictionary[arraySortedKeys[0]] isKindOfClass:[NSNumber class]]);
+    XCTAssertTrue([dictionary[self.arraySortedKeys[1]] isKindOfClass:[NSDate class]]);
 
-    XCTAssertTrue([dictionary[arraySortedKeys[1]] isKindOfClass:[NSDate class]]);
+    XCTAssertTrue([dictionary[self.arraySortedKeys[2]] isKindOfClass:[NSNumber class]]);
 
-    XCTAssertTrue([dictionary[arraySortedKeys[2]] isKindOfClass:[NSNumber class]]);
+    XCTAssertTrue([dictionary[self.arraySortedKeys[3]] isKindOfClass:[NSString class]]);
 
-    XCTAssertTrue([dictionary[arraySortedKeys[3]] isKindOfClass:[NSString class]]);
+    XCTAssertTrue([dictionary[self.arraySortedKeys[4]] isKindOfClass:[NSString class]]);
 
-    XCTAssertTrue([dictionary[arraySortedKeys[4]] isKindOfClass:[NSString class]]);
+    XCTAssertTrue([dictionary[self.arraySortedKeys[5]] isKindOfClass:[NSString class]]);
 
-    XCTAssertTrue([dictionary[arraySortedKeys[5]] isKindOfClass:[NSString class]]);
+    XCTAssertTrue([dictionary[self.arraySortedKeys[6]] isKindOfClass:[NSString class]]);
 
-    XCTAssertTrue([dictionary[arraySortedKeys[6]] isKindOfClass:[NSString class]]);
+    XCTAssertTrue([dictionary[self.arraySortedKeys[7]] isKindOfClass:[NSNumber class]]);
 
-    XCTAssertTrue([dictionary[arraySortedKeys[7]] isKindOfClass:[NSNumber class]]);
+    XCTAssertTrue([dictionary[self.arraySortedKeys[8]] isKindOfClass:[NSString class]]);
 
-    XCTAssertTrue([dictionary[arraySortedKeys[8]] isKindOfClass:[NSString class]]);
+    XCTAssertTrue([dictionary[self.arraySortedKeys[9]] isKindOfClass:[NSDate class]]);
 
-    XCTAssertTrue([dictionary[arraySortedKeys[9]] isKindOfClass:[NSDate class]]);
+    XCTAssertTrue([dictionary[self.arraySortedKeys[10]] isKindOfClass:[NSDate class]]);
 
-    XCTAssertTrue([dictionary[arraySortedKeys[10]] isKindOfClass:[NSDate class]]);
+    XCTAssertTrue([dictionary[self.arraySortedKeys[11]] isKindOfClass:[NSNumber class]]);
 
-    XCTAssertTrue([dictionary[arraySortedKeys[11]] isKindOfClass:[NSNumber class]]);
-
-    XCTAssertTrue([dictionary[arraySortedKeys[12]] isKindOfClass:[NSNull class]]);
+    XCTAssertTrue([dictionary[self.arraySortedKeys[12]] isKindOfClass:[NSNull class]]);
 }
 
 - (void)testDictionaryWithRelationships

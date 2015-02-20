@@ -134,7 +134,7 @@ static NSString * const HYPPropertyMapperRemoteKey = @"mapper.remote.key";
             if ([[propertyDescription userInfo] objectForKey:HYPPropertyMapperRemoteKey] && ![[[propertyDescription userInfo] objectForKey:HYPPropertyMapperRemoteKey] isEqualToString:@"value"]) {
                 NSAttributeDescription *attributeDescription = (NSAttributeDescription *)propertyDescription;
                 id value = [self valueForKey:[attributeDescription name]];
-                NSMutableString *key = [[[[propertyDescription userInfo] objectForKey:@"mapper.remote.key"] hyp_remoteString] mutableCopy];
+                NSMutableString *key = [[[[propertyDescription userInfo] objectForKey:HYPPropertyMapperRemoteKey] hyp_remoteString] mutableCopy];
 
                 BOOL nilOrNullValue = (!value || [value isKindOfClass:[NSNull class]]);
                 if (nilOrNullValue) {
