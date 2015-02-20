@@ -118,7 +118,7 @@
 {
     NSDictionary *dictionary = [self.testUser hyp_dictionary];
 
-    XCTAssertNotNil(dictionary[@"age"]);
+    XCTAssertNotNil(dictionary[@"age_of_person"]);
 
     XCTAssertNotNil(dictionary[@"birth_date"]);
 
@@ -149,7 +149,7 @@
 {
     NSDictionary *dictionary = [self.testUser hyp_dictionary];
 
-    XCTAssertTrue([dictionary[@"age"] isKindOfClass:[NSNumber class]]);
+    XCTAssertTrue([dictionary[@"age_of_person"] isKindOfClass:[NSNumber class]]);
 
     XCTAssertTrue([dictionary[@"birth_date"] isKindOfClass:[NSDate class]]);
 
@@ -363,12 +363,23 @@
     dateFormat.timeZone = [NSTimeZone timeZoneWithName:@"GMT"];
     NSDate *createdDate = [dateFormat dateFromString:@"2014-01-01"];
     NSDate *updatedDate = [dateFormat dateFromString:@"2014-01-02"];
-
+    
     XCTAssertEqualObjects([self.testUser valueForKey:@"createdDate"], createdDate);
-
+    
     XCTAssertEqualObjects([self.testUser valueForKey:@"updatedDate"], updatedDate);
-
+    
     XCTAssertEqualObjects([self.testUser valueForKey:@"numberOfAttendes"], @20);
+}
+
+- (void)testCustomRemoteKeys
+{
+    NSDictionary *values = @{
+                             @"age_of_person" : @20
+                             };
+
+    [self.testUser hyp_fillWithDictionary:values];
+
+    XCTAssertEqualObjects([self.testUser valueForKey:@"age"], @20);
 }
 
 @end
