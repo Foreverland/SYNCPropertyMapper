@@ -11,6 +11,7 @@
 
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, strong) User *testUser;
+@property (nonatomic, strong) NSArray *arraySortedKeys;
 
 @end
 
@@ -103,6 +104,10 @@
     self.managedObjectContext = [NSManagedObject_HYPPropertyMapperTests managedObjectContextForTests];
 
     self.testUser = [self user];
+
+    NSDictionary *dictionary = [self.testUser hyp_dictionary];
+    
+    self.arraySortedKeys = [self sortArrayOfKeysFromDictionary:dictionary];
 }
 
 - (void)tearDown
@@ -112,68 +117,117 @@
     [super tearDown];
 }
 
+- (NSArray *)sortArrayOfKeysFromDictionary:(NSDictionary *)dictionary
+{
+    NSMutableArray *arraySortedKeys = [NSMutableArray arrayWithArray:dictionary.allKeys];
+
+    // Checking and sorting the values of the dictionary to be able to check in the correct order.
+
+    for (NSString *key in dictionary.allKeys) {
+        if ([dictionary[key] isKindOfClass:[NSString class]]) {
+            if ([dictionary[key] isEqualToString:self.testUser.driverIdentifier]) {
+                arraySortedKeys[3] = key;
+            } else if ([dictionary[key] isEqualToString:self.testUser.firstName]) {
+                arraySortedKeys[4] = key;
+            } else if ([dictionary[key] isEqualToString:self.testUser.lastName]) {
+                arraySortedKeys[5] = key;
+            } else if ([dictionary[key] isEqualToString:self.testUser.userDescription]) {
+                arraySortedKeys[6] = key;
+            } else if ([dictionary[key] isEqualToString:self.testUser.userType]) {
+                arraySortedKeys[8] = key;
+            }
+        } else if ([dictionary[key] isKindOfClass:[NSDate class]]) {
+            if ([dictionary[key] isEqualToDate:self.testUser.createdDate]) {
+                arraySortedKeys[9] = key;
+            } else if ([dictionary[key] isEqualToDate:self.testUser.updatedDate]) {
+                arraySortedKeys[10] = key;
+            } else if ([dictionary[key] isEqualToDate:self.testUser.birthDate]) {
+                arraySortedKeys[1] = key;
+            }
+        } else if ([dictionary[key] isKindOfClass:[NSNumber class]]) {
+            if (dictionary[key] == self.testUser.age) {
+                arraySortedKeys[0] = key;
+            } else if (dictionary[key] == self.testUser.contractID) {
+                arraySortedKeys[2] = key;
+            } else if (dictionary[key] == self.testUser.remoteID) {
+                arraySortedKeys[7] = key;
+            } else if (dictionary[key] == self.testUser.numberOfAttendes) {
+                arraySortedKeys[11] = key;
+            }
+        } else {
+            if (dictionary[key]) {
+                arraySortedKeys[12] = key;
+            }
+        }
+    }
+
+    return arraySortedKeys;
+}
+
 #pragma mark hyp_dictionary
 
 - (void)testDictionaryKeysNotNil
 {
     NSDictionary *dictionary = [self.testUser hyp_dictionary];
 
-    XCTAssertNotNil(dictionary[@"age"]);
+    NSArray *arrayWithAllKeys = dictionary.allKeys;
 
-    XCTAssertNotNil(dictionary[@"birth_date"]);
+    XCTAssertNotNil(dictionary[arrayWithAllKeys[0]]);
 
-    XCTAssertNotNil(dictionary[@"contract_id"]);
+    XCTAssertNotNil(dictionary[arrayWithAllKeys[1]]);
 
-    XCTAssertNotNil(dictionary[@"driver_identifier"]);
+    XCTAssertNotNil(dictionary[arrayWithAllKeys[2]]);
 
-    XCTAssertNotNil(dictionary[@"first_name"]);
+    XCTAssertNotNil(dictionary[arrayWithAllKeys[3]]);
 
-    XCTAssertNotNil(dictionary[@"last_name"]);
+    XCTAssertNotNil(dictionary[arrayWithAllKeys[4]]);
 
-    XCTAssertNotNil(dictionary[@"description"]);
+    XCTAssertNotNil(dictionary[arrayWithAllKeys[5]]);
 
-    XCTAssertNotNil(dictionary[@"id"]);
+    XCTAssertNotNil(dictionary[arrayWithAllKeys[6]]);
 
-    XCTAssertNotNil(dictionary[@"type"]);
+    XCTAssertNotNil(dictionary[arrayWithAllKeys[7]]);
 
-    XCTAssertNotNil(dictionary[@"created_at"]);
+    XCTAssertNotNil(dictionary[arrayWithAllKeys[8]]);
 
-    XCTAssertNotNil(dictionary[@"updated_at"]);
+    XCTAssertNotNil(dictionary[arrayWithAllKeys[9]]);
 
-    XCTAssertNotNil(dictionary[@"number_of_attendes"]);
+    XCTAssertNotNil(dictionary[arrayWithAllKeys[10]]);
 
-    XCTAssertNotNil(dictionary[@"ignored_parameter"]);
+    XCTAssertNotNil(dictionary[arrayWithAllKeys[11]]);
+
+    XCTAssertNotNil(dictionary[arrayWithAllKeys[12]]);
 }
 
 - (void)testDictionaryValuesKindOfClass
 {
     NSDictionary *dictionary = [self.testUser hyp_dictionary];
 
-    XCTAssertTrue([dictionary[@"age"] isKindOfClass:[NSNumber class]]);
+    XCTAssertTrue([dictionary[self.arraySortedKeys[0]] isKindOfClass:[NSNumber class]]);
 
-    XCTAssertTrue([dictionary[@"birth_date"] isKindOfClass:[NSDate class]]);
+    XCTAssertTrue([dictionary[self.arraySortedKeys[1]] isKindOfClass:[NSDate class]]);
 
-    XCTAssertTrue([dictionary[@"contract_id"] isKindOfClass:[NSNumber class]]);
+    XCTAssertTrue([dictionary[self.arraySortedKeys[2]] isKindOfClass:[NSNumber class]]);
 
-    XCTAssertTrue([dictionary[@"driver_identifier"] isKindOfClass:[NSString class]]);
+    XCTAssertTrue([dictionary[self.arraySortedKeys[3]] isKindOfClass:[NSString class]]);
 
-    XCTAssertTrue([dictionary[@"first_name"] isKindOfClass:[NSString class]]);
+    XCTAssertTrue([dictionary[self.arraySortedKeys[4]] isKindOfClass:[NSString class]]);
 
-    XCTAssertTrue([dictionary[@"last_name"] isKindOfClass:[NSString class]]);
+    XCTAssertTrue([dictionary[self.arraySortedKeys[5]] isKindOfClass:[NSString class]]);
 
-    XCTAssertTrue([dictionary[@"description"] isKindOfClass:[NSString class]]);
+    XCTAssertTrue([dictionary[self.arraySortedKeys[6]] isKindOfClass:[NSString class]]);
 
-    XCTAssertTrue([dictionary[@"id"] isKindOfClass:[NSNumber class]]);
+    XCTAssertTrue([dictionary[self.arraySortedKeys[7]] isKindOfClass:[NSNumber class]]);
 
-    XCTAssertTrue([dictionary[@"type"] isKindOfClass:[NSString class]]);
+    XCTAssertTrue([dictionary[self.arraySortedKeys[8]] isKindOfClass:[NSString class]]);
 
-    XCTAssertTrue([dictionary[@"created_at"] isKindOfClass:[NSDate class]]);
+    XCTAssertTrue([dictionary[self.arraySortedKeys[9]] isKindOfClass:[NSDate class]]);
 
-    XCTAssertTrue([dictionary[@"updated_at"] isKindOfClass:[NSDate class]]);
+    XCTAssertTrue([dictionary[self.arraySortedKeys[10]] isKindOfClass:[NSDate class]]);
 
-    XCTAssertTrue([dictionary[@"number_of_attendes"] isKindOfClass:[NSNumber class]]);
+    XCTAssertTrue([dictionary[self.arraySortedKeys[11]] isKindOfClass:[NSNumber class]]);
 
-    XCTAssertTrue([dictionary[@"ignored_parameter"] isKindOfClass:[NSNull class]]);
+    XCTAssertTrue([dictionary[self.arraySortedKeys[12]] isKindOfClass:[NSNull class]]);
 }
 
 - (void)testDictionaryWithRelationships
