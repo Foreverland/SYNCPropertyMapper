@@ -118,7 +118,7 @@
 {
     NSDictionary *dictionary = [self.testUser hyp_dictionary];
 
-    XCTAssertNotNil(dictionary[@"age"]); // ageofperson
+    XCTAssertNotNil(dictionary[@"age_of_person"]);
 
     XCTAssertNotNil(dictionary[@"birth_date"]);
 
@@ -149,7 +149,7 @@
 {
     NSDictionary *dictionary = [self.testUser hyp_dictionary];
 
-    XCTAssertTrue([dictionary[@"age"] isKindOfClass:[NSNumber class]]); // ageofperson
+    XCTAssertTrue([dictionary[@"age_of_person"] isKindOfClass:[NSNumber class]]);
 
     XCTAssertTrue([dictionary[@"birth_date"] isKindOfClass:[NSDate class]]);
 
