@@ -380,9 +380,8 @@
 
     [self.testUser hyp_fillWithDictionary:values];
 
-    XCTAssertEqualObjects([self.testUser valueForKey:@"age"], @20);
-    XCTAssertEqualObjects([self.testUser valueForKey:@"driverIdentifier"], @"123");
-
+    XCTAssertEqualObjects(self.testUser.age, @20);
+    XCTAssertEqualObjects(self.testUser.driverIdentifier, @"123");
 }
 
 @end
