@@ -124,7 +124,7 @@
 
     XCTAssertNotNil(dictionary[@"contract_id"]);
 
-    XCTAssertNotNil(dictionary[@"driver_identifier"]);
+    XCTAssertNotNil(dictionary[@"driver_identifier_str"]);
 
     XCTAssertNotNil(dictionary[@"first_name"]);
 
@@ -155,7 +155,7 @@
 
     XCTAssertTrue([dictionary[@"contract_id"] isKindOfClass:[NSNumber class]]);
 
-    XCTAssertTrue([dictionary[@"driver_identifier"] isKindOfClass:[NSString class]]);
+    XCTAssertTrue([dictionary[@"driver_identifier_str"] isKindOfClass:[NSString class]]);
 
     XCTAssertTrue([dictionary[@"first_name"] isKindOfClass:[NSString class]]);
 
@@ -363,23 +363,25 @@
     dateFormat.timeZone = [NSTimeZone timeZoneWithName:@"GMT"];
     NSDate *createdDate = [dateFormat dateFromString:@"2014-01-01"];
     NSDate *updatedDate = [dateFormat dateFromString:@"2014-01-02"];
-    
+
     XCTAssertEqualObjects([self.testUser valueForKey:@"createdDate"], createdDate);
-    
+
     XCTAssertEqualObjects([self.testUser valueForKey:@"updatedDate"], updatedDate);
-    
+
     XCTAssertEqualObjects([self.testUser valueForKey:@"numberOfAttendes"], @20);
 }
 
 - (void)testCustomRemoteKeys
 {
     NSDictionary *values = @{
-                             @"age_of_person" : @20
+                             @"age_of_person" : @20,
+                             @"driver_identifier_str" : @"123"
                              };
 
     [self.testUser hyp_fillWithDictionary:values];
 
-    XCTAssertEqualObjects([self.testUser valueForKey:@"age"], @20);
+    XCTAssertEqualObjects(self.testUser.age, @20);
+    XCTAssertEqualObjects(self.testUser.driverIdentifier, @"123");
 }
 
 @end
