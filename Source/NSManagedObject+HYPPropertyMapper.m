@@ -73,9 +73,10 @@ static NSString * const HYPPropertyMapperRemoteKey = @"mapper.remote.key";
 
         for (NSString *dictionaryKey in self.entity.propertiesByName) {
             NSString *remoteKeyValue = [[self.entity.propertiesByName[dictionaryKey] userInfo]objectForKey:HYPPropertyMapperRemoteKey];
-            if (remoteKeyValue &&
-                ![remoteKeyValue isEqualToString:@"value"] &&
-                [remoteKeyValue isEqualToString:key]) {
+            BOOL hasCustomKeyMapper = (remoteKeyValue &&
+                                       ![remoteKeyValue isEqualToString:@"value"] &&
+                                       [remoteKeyValue isEqualToString:key]);
+            if(hasCustomKeyMapper) {
                 propertyDescription = self.entity.propertiesByName[dictionaryKey];
                 break;
             }
