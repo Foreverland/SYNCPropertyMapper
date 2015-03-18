@@ -363,23 +363,26 @@
     dateFormat.timeZone = [NSTimeZone timeZoneWithName:@"GMT"];
     NSDate *createdDate = [dateFormat dateFromString:@"2014-01-01"];
     NSDate *updatedDate = [dateFormat dateFromString:@"2014-01-02"];
-    
+
     XCTAssertEqualObjects([self.testUser valueForKey:@"createdDate"], createdDate);
-    
+
     XCTAssertEqualObjects([self.testUser valueForKey:@"updatedDate"], updatedDate);
-    
+
     XCTAssertEqualObjects([self.testUser valueForKey:@"numberOfAttendes"], @20);
 }
 
 - (void)testCustomRemoteKeys
 {
     NSDictionary *values = @{
-                             @"age_of_person" : @20
+                             @"age_of_person" : @20,
+                             @"driver_identifier_str" : @"123"
                              };
 
     [self.testUser hyp_fillWithDictionary:values];
 
     XCTAssertEqualObjects([self.testUser valueForKey:@"age"], @20);
+    XCTAssertEqualObjects([self.testUser valueForKey:@"driverIdentifier"], @"123");
+
 }
 
 @end
