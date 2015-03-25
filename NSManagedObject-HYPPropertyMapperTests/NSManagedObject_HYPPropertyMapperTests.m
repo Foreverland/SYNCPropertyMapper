@@ -55,6 +55,8 @@
                                                                  @"Soccer",
                                                                  @"Code",
                                                                  @"More code"]];
+    user.expenses = [NSKeyedArchiver archivedDataWithRootObject:@{@"cake" : @12.50,
+                                                                  @"juice" : @0.50}];
 
     Note *note = [self noteWithID:@1];
     note.user = user;
@@ -149,6 +151,8 @@
     XCTAssertNotNil(dictionary[@"ignored_parameter"]);
 
     XCTAssertNotNil(dictionary[@"hobbies"]);
+
+    XCTAssertNotNil(dictionary[@"expenses"]);
 }
 
 - (void)testDictionaryValuesKindOfClass
@@ -182,6 +186,8 @@
     XCTAssertTrue([dictionary[@"ignored_parameter"] isKindOfClass:[NSNull class]]);
 
     XCTAssertTrue([dictionary[@"hobbies"] isKindOfClass:[NSData class]]);
+
+    XCTAssertTrue([dictionary[@"expenses"] isKindOfClass:[NSData class]]);
 }
 
 - (void)testDictionaryWithRelationships
@@ -330,6 +336,18 @@
     XCTAssertEqualObjects([NSKeyedUnarchiver unarchiveObjectWithData:self.testUser.hobbies][1], @"soccer");
 
     XCTAssertEqualObjects([NSKeyedUnarchiver unarchiveObjectWithData:self.testUser.hobbies][2], @"code");
+}
+
+- (void)testDictionaryStorage
+{
+    NSDictionary *values = @{@"expenses" : @{@"cake" : @12.50,
+                                             @"juice" : @0.50}};
+
+    [self.testUser hyp_fillWithDictionary:values];
+
+    XCTAssertEqualObjects([NSKeyedUnarchiver unarchiveObjectWithData:self.testUser.expenses][@"cake"], @12.50);
+
+    XCTAssertEqualObjects([NSKeyedUnarchiver unarchiveObjectWithData:self.testUser.expenses][@"juice"], @0.50);
 }
 
 - (void)testReservedWords
