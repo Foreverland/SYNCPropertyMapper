@@ -76,13 +76,15 @@ static NSString * const HYPPropertyMapperRemoteKey = @"mapper.remote.key";
             BOOL hasCustomKeyMapper = (remoteKeyValue &&
                                        ![remoteKeyValue isEqualToString:@"value"] &&
                                        [remoteKeyValue isEqualToString:key]);
-            if(hasCustomKeyMapper) {
+            if (hasCustomKeyMapper) {
                 propertyDescription = self.entity.propertiesByName[dictionaryKey];
                 break;
             }
         }
 
-        if (!propertyDescription) continue;
+        if (!propertyDescription) {
+            continue;
+        }
 
         NSString *localKey = [propertyDescription name];
 
@@ -92,7 +94,9 @@ static NSString * const HYPPropertyMapperRemoteKey = @"mapper.remote.key";
                                                  usingRemoteValue:value];
 
             BOOL valueHasChanged = (![[self valueForKey:localKey] isEqual:processedValue]);
-            if (valueHasChanged) [self setValue:processedValue forKey:localKey];
+            if (valueHasChanged) {
+                [self setValue:processedValue forKey:localKey];
+            }
         } else if ([self valueForKey:localKey]) {
             [self setValue:nil forKey:localKey];
         }
@@ -102,9 +106,13 @@ static NSString * const HYPPropertyMapperRemoteKey = @"mapper.remote.key";
 - (id)propertyDescriptionForKey:(NSString *)key
 {
     for (id propertyDescription in [self.entity properties]) {
-        if (![propertyDescription isKindOfClass:[NSAttributeDescription class]]) continue;
+        if (![propertyDescription isKindOfClass:[NSAttributeDescription class]]) {
+            continue;
+        }
 
-        if ([[propertyDescription name] isEqualToString:[key hyp_localString]]) return propertyDescription;
+        if ([[propertyDescription name] isEqualToString:[key hyp_localString]]) {
+            return propertyDescription;
+        }
     }
 
     return nil;
@@ -115,7 +123,9 @@ static NSString * const HYPPropertyMapperRemoteKey = @"mapper.remote.key";
     NSAttributeDescription *attributeDescription = (NSAttributeDescription *)propertyDescription;
     Class attributedClass = NSClassFromString([attributeDescription attributeValueClassName]);
 
-    if ([value isKindOfClass:attributedClass]) return value;
+    if ([value isKindOfClass:attributedClass]) {
+        return value;
+    }
 
     BOOL stringValueAndNumberAttribute = ([value isKindOfClass:[NSString class]] &&
                                           attributedClass == [NSNumber class]);
@@ -201,7 +211,9 @@ static NSString * const HYPPropertyMapperRemoteKey = @"mapper.remote.key";
 
             id relationships = [self valueForKey:relationshipName];
             BOOL isToOneRelationship = (![relationships isKindOfClass:[NSSet class]]);
-            if (isToOneRelationship) continue;
+            if (isToOneRelationship) {
+                continue;
+            }
 
             NSMutableDictionary *relations = [NSMutableDictionary new];
 
@@ -243,7 +255,9 @@ static NSString * const HYPPropertyMapperRemoteKey = @"mapper.remote.key";
                     }
                 }
 
-                if (hasValues) relationIndex++;
+                if (hasValues) {
+                    relationIndex++;
+                }
             }
 
             NSString *nestedAttributesPrefix = [NSString stringWithFormat:@"%@_attributes", [relationshipName hyp_remoteString]];
