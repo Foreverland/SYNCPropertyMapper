@@ -48,8 +48,8 @@
     user.userDescription = @"John Description";
     user.remoteID = @111;
     user.userType = @"Manager";
-    user.createdDate = [NSDate date];
-    user.updatedDate = [NSDate date];
+    user.createdAt = [NSDate date];
+    user.updatedAt = [NSDate date];
     user.numberOfAttendes = @30;
     user.hobbies = [NSKeyedArchiver archivedDataWithRootObject:@[@"Football",
                                                                  @"Soccer",
@@ -347,7 +347,7 @@
     XCTAssertEqualObjects([self.testUser valueForKey:@"userType"], @"user type");
 }
 
-- (void)testCreatedDate
+- (void)testcreatedAt
 {
     NSDictionary *values = @{@"created_at" : @"2014-01-01T00:00:00+00:00",
                              @"updated_at" : @"2014-01-02T00:00:00+00:00",
@@ -358,12 +358,12 @@
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     dateFormat.dateFormat = @"yyyy-MM-dd";
     dateFormat.timeZone = [NSTimeZone timeZoneWithName:@"GMT"];
-    NSDate *createdDate = [dateFormat dateFromString:@"2014-01-01"];
-    NSDate *updatedDate = [dateFormat dateFromString:@"2014-01-02"];
+    NSDate *createdAt = [dateFormat dateFromString:@"2014-01-01"];
+    NSDate *updatedAt = [dateFormat dateFromString:@"2014-01-02"];
 
-    XCTAssertEqualObjects([self.testUser valueForKey:@"createdDate"], createdDate);
+    XCTAssertEqualObjects([self.testUser valueForKey:@"createdAt"], createdAt);
 
-    XCTAssertEqualObjects([self.testUser valueForKey:@"updatedDate"], updatedDate);
+    XCTAssertEqualObjects([self.testUser valueForKey:@"updatedAt"], updatedAt);
 
     XCTAssertEqualObjects([self.testUser valueForKey:@"numberOfAttendes"], @20);
 }
