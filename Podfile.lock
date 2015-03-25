@@ -1,10 +1,10 @@
 PODS:
-  - NSString-HYPNetworking (0.1)
+  - NSString-HYPNetworking (0.2)
 
 DEPENDENCIES:
   - NSString-HYPNetworking
 
 SPEC CHECKSUMS:
-  NSString-HYPNetworking: 941953383edbba2abd72014e4bfdd55fa4af8dff
+  NSString-HYPNetworking: d0f69219a05bcdb0d6f523c4356223a4e024b635
 
-COCOAPODS: 0.35.0
+COCOAPODS: 0.36.0
