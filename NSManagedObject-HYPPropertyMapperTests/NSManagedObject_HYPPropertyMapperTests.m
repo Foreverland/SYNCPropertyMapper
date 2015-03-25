@@ -51,7 +51,10 @@
     user.createdDate = [NSDate date];
     user.updatedDate = [NSDate date];
     user.numberOfAttendes = @30;
-    user.hobbies = [NSKeyedArchiver archivedDataWithRootObject:@[@"Football", @"Soccer", @"Code", @"More code"]];
+    user.hobbies = [NSKeyedArchiver archivedDataWithRootObject:@[@"Football",
+                                                                 @"Soccer",
+                                                                 @"Code",
+                                                                 @"More code"]];
 
     Note *note = [self noteWithID:@1];
     note.user = user;
@@ -339,7 +342,9 @@
 - (void)testArrayStorage
 {
     NSDictionary *values = @{
-                             @"hobbies" : @[@"football", @"soccer", @"code"]
+                             @"hobbies" : @[@"football",
+                                            @"soccer",
+                                            @"code"]
                              };
 
     [self.testUser hyp_fillWithDictionary:values];
