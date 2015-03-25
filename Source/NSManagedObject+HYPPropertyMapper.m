@@ -112,53 +112,57 @@ static NSString * const HYPPropertyMapperRemoteKey = @"id";
 
 - (id)propertyDescriptionForKey:(NSString *)key
 {
+    id foundPropertyDescription;
+
     for (id propertyDescription in [self.entity properties]) {
         if (![propertyDescription isKindOfClass:[NSAttributeDescription class]]) {
             continue;
         }
 
         if ([[propertyDescription name] isEqualToString:[key hyp_localString]]) {
-            return propertyDescription;
+            foundPropertyDescription = propertyDescription;
         }
     }
 
-    return nil;
+    return foundPropertyDescription;
 }
 
-- (id)valueForPropertyDescription:(id)propertyDescription usingRemoteValue:(id)value
+- (id)valueForPropertyDescription:(id)propertyDescription usingRemoteValue:(id)removeValue
 {
+    id value;
+
     NSAttributeDescription *attributeDescription = (NSAttributeDescription *)propertyDescription;
     Class attributedClass = NSClassFromString([attributeDescription attributeValueClassName]);
 
-    if ([value isKindOfClass:attributedClass]) {
-        return value;
+    if ([removeValue isKindOfClass:attributedClass]) {
+        value = removeValue;
     }
 
-    BOOL stringValueAndNumberAttribute = ([value isKindOfClass:[NSString class]] &&
+    BOOL stringValueAndNumberAttribute = ([removeValue isKindOfClass:[NSString class]] &&
                                           attributedClass == [NSNumber class]);
 
-    BOOL numberValueAndStringAttribute = ([value isKindOfClass:[NSNumber class]] &&
+    BOOL numberValueAndStringAttribute = ([removeValue isKindOfClass:[NSNumber class]] &&
                                           attributedClass == [NSString class]);
 
-    BOOL stringValueAndDateAttribute   = ([value isKindOfClass:[NSString class]] &&
+    BOOL stringValueAndDateAttribute   = ([removeValue isKindOfClass:[NSString class]] &&
                                           attributedClass == [NSDate class]);
 
-    BOOL arrayValueAndDataAttribute   = ([value isKindOfClass:[NSArray class]] &&
-                                          attributedClass == [NSData class]);
+    BOOL arrayValueAndDataAttribute   = ([removeValue isKindOfClass:[NSArray class]] &&
+                                         attributedClass == [NSData class]);
 
     if (stringValueAndNumberAttribute) {
         NSNumberFormatter *formatter = [NSNumberFormatter new];
         formatter.locale = [NSLocale localeWithLocaleIdentifier:@"en_US"];
-        return [formatter numberFromString:value];
+        value = [formatter numberFromString:removeValue];
     } else if (numberValueAndStringAttribute) {
-        return [NSString stringWithFormat:@"%@", value];
+        value = [NSString stringWithFormat:@"%@", removeValue];
     } else if (stringValueAndDateAttribute) {
-        return [NSDate __dateFromISO8601String:value];
+        value = [NSDate __dateFromISO8601String:removeValue];
     } else if (arrayValueAndDataAttribute) {
-        return [NSKeyedArchiver archivedDataWithRootObject:value];
+        value = [NSKeyedArchiver archivedDataWithRootObject:removeValue];
     }
 
-    return nil;
+    return value;
 }
 
 - (NSDictionary *)hyp_dictionary
