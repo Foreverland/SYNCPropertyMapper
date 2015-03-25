@@ -2,6 +2,7 @@
 #import "Company.h"
 #import "Note.h"
 
+
 @implementation User
 
 @dynamic age;
@@ -13,11 +14,12 @@
 @dynamic ignoredParameter;
 @dynamic lastName;
 @dynamic numberOfAttendes;
+@dynamic remoteID;
 @dynamic updatedDate;
 @dynamic userDescription;
-@dynamic remoteID;
 @dynamic userType;
-@dynamic notes;
+@dynamic hobbies;
 @dynamic company;
+@dynamic notes;
 
 @end
