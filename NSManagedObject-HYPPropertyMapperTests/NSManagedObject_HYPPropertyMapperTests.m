@@ -51,6 +51,7 @@
     user.createdDate = [NSDate date];
     user.updatedDate = [NSDate date];
     user.numberOfAttendes = @30;
+    user.hobbies = [NSKeyedArchiver archivedDataWithRootObject:@[@"Football", @"Soccer", @"Code", @"More code"]];
 
     Note *note = [self noteWithID:@1];
     note.user = user;
@@ -143,6 +144,8 @@
     XCTAssertNotNil(dictionary[@"number_of_attendes"]);
 
     XCTAssertNotNil(dictionary[@"ignored_parameter"]);
+
+    XCTAssertNotNil(dictionary[@"hobbies"]);
 }
 
 - (void)testDictionaryValuesKindOfClass
@@ -174,6 +177,8 @@
     XCTAssertTrue([dictionary[@"number_of_attendes"] isKindOfClass:[NSNumber class]]);
 
     XCTAssertTrue([dictionary[@"ignored_parameter"] isKindOfClass:[NSNull class]]);
+
+    XCTAssertTrue([dictionary[@"hobbies"] isKindOfClass:[NSData class]]);
 }
 
 - (void)testDictionaryWithRelationships
@@ -329,6 +334,21 @@
     [self.testUser hyp_fillWithDictionary:values];
 
     XCTAssertEqualObjects([self.testUser valueForKey:@"contractID"], @100);
+}
+
+- (void)testArrayStorage
+{
+    NSDictionary *values = @{
+                             @"hobbies" : @[@"football", @"soccer", @"code"]
+                             };
+
+    [self.testUser hyp_fillWithDictionary:values];
+
+    XCTAssertEqualObjects([NSKeyedUnarchiver unarchiveObjectWithData:self.testUser.hobbies][0], @"football");
+
+    XCTAssertEqualObjects([NSKeyedUnarchiver unarchiveObjectWithData:self.testUser.hobbies][1], @"soccer");
+
+    XCTAssertEqualObjects([NSKeyedUnarchiver unarchiveObjectWithData:self.testUser.hobbies][2], @"code");
 }
 
 - (void)testReservedWords

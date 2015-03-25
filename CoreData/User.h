@@ -1,5 +1,5 @@
-@import Foundation;
-@import CoreData;
+#import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
 
 @class Company, Note;
 
@@ -14,12 +14,13 @@
 @property (nonatomic, retain) NSString * ignoredParameter;
 @property (nonatomic, retain) NSString * lastName;
 @property (nonatomic, retain) NSNumber * numberOfAttendes;
+@property (nonatomic, retain) NSNumber * remoteID;
 @property (nonatomic, retain) NSDate * updatedDate;
 @property (nonatomic, retain) NSString * userDescription;
-@property (nonatomic, retain) NSNumber * remoteID;
 @property (nonatomic, retain) NSString * userType;
-@property (nonatomic, retain) NSSet *notes;
+@property (nonatomic, retain) NSData * hobbies;
 @property (nonatomic, retain) Company *company;
+@property (nonatomic, retain) NSSet *notes;
 @end
 
 @interface User (CoreDataGeneratedAccessors)
