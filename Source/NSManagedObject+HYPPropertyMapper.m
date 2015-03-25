@@ -171,11 +171,14 @@ static NSString * const HYPPropertyMapperRemoteKey = @"id";
 
     for (id propertyDescription in [self.entity properties]) {
         if ([propertyDescription isKindOfClass:[NSAttributeDescription class]]) {
-            if ([[propertyDescription userInfo] objectForKey:HYPPropertyMapperCustomRemoteKey] &&
-                ![[[propertyDescription userInfo] objectForKey:HYPPropertyMapperCustomRemoteKey] isEqualToString:HYPPropertyMapperKeyValue]) {
+            NSDictionary *userInfo = [propertyDescription userInfo];
+
+            BOOL hasCustomMapping = ([userInfo objectForKey:HYPPropertyMapperCustomRemoteKey] &&
+                                     ![[userInfo objectForKey:HYPPropertyMapperCustomRemoteKey] isEqualToString:HYPPropertyMapperKeyValue]);
+            if (hasCustomMapping) {
                 NSAttributeDescription *attributeDescription = (NSAttributeDescription *)propertyDescription;
                 id value = [self valueForKey:[attributeDescription name]];
-                NSMutableString *key = [[[propertyDescription userInfo] objectForKey:HYPPropertyMapperCustomRemoteKey] mutableCopy];
+                NSMutableString *key = [[userInfo objectForKey:HYPPropertyMapperCustomRemoteKey] mutableCopy];
 
                 BOOL nilOrNullValue = (!value || [value isKindOfClass:[NSNull class]]);
                 if (nilOrNullValue) {
@@ -259,7 +262,6 @@ static NSString * const HYPPropertyMapperRemoteKey = @"id";
                         if (value) {
                             NSString *relationIndexString = [NSString stringWithFormat:@"%lu", (unsigned long)relationIndex];
                             NSMutableDictionary *dictionary = [relations[relationIndexString] mutableCopy] ?: [NSMutableDictionary new];
-
                             dictionary[key] = value;
                             relations[relationIndexString] = dictionary;
                         }
