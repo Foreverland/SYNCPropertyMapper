@@ -1,26 +1,26 @@
-#import <Foundation/Foundation.h>
-#import <CoreData/CoreData.h>
+@import Foundation;
+@import CoreData;
 
 @class Company, Note;
 
 @interface User : NSManagedObject
 
-@property (nonatomic, retain) NSNumber * age;
-@property (nonatomic, retain) NSDate * birthDate;
-@property (nonatomic, retain) NSNumber * contractID;
-@property (nonatomic, retain) NSDate * createdDate;
-@property (nonatomic, retain) NSString * driverIdentifier;
-@property (nonatomic, retain) NSString * firstName;
-@property (nonatomic, retain) NSString * ignoredParameter;
-@property (nonatomic, retain) NSString * lastName;
-@property (nonatomic, retain) NSNumber * numberOfAttendes;
-@property (nonatomic, retain) NSNumber * remoteID;
-@property (nonatomic, retain) NSDate * updatedDate;
-@property (nonatomic, retain) NSString * userDescription;
-@property (nonatomic, retain) NSString * userType;
-@property (nonatomic, retain) NSData * hobbies;
-@property (nonatomic, retain) Company *company;
-@property (nonatomic, retain) NSSet *notes;
+@property (nonatomic) NSNumber *age;
+@property (nonatomic) NSDate *birthDate;
+@property (nonatomic) NSNumber *contractID;
+@property (nonatomic) NSDate *createdAt;
+@property (nonatomic) NSString *driverIdentifier;
+@property (nonatomic) NSString *firstName;
+@property (nonatomic) NSString *ignoredParameter;
+@property (nonatomic) NSString *lastName;
+@property (nonatomic) NSNumber *numberOfAttendes;
+@property (nonatomic) NSNumber *remoteID;
+@property (nonatomic) NSDate *updatedAt;
+@property (nonatomic) NSString *userDescription;
+@property (nonatomic) NSString *userType;
+@property (nonatomic) NSData *hobbies;
+@property (nonatomic) Company *company;
+@property (nonatomic) NSSet *notes;
 @end
 
 @interface User (CoreDataGeneratedAccessors)
