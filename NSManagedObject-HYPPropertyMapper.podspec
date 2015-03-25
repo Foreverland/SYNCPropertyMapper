@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = "NSManagedObject-HYPPropertyMapper"
-  s.version = "2.11"
+  s.version = "2.12"
   s.summary = "Mapping your Core Data objects with your JSON providing backend has never been this easy"
   s.description = <<-DESC
                    * Mapping your Core Data objects with your JSON providing backend has never been this easy
@@ -20,5 +20,5 @@ Pod::Spec.new do |s|
   s.source_files = 'Source/'
   s.frameworks = 'Foundation'
   s.requires_arc = true
-  s.dependency 'NSString-HYPNetworking', '~> 0.1'
+  s.dependency 'NSString-HYPNetworking', '~> 0.2'
 end
