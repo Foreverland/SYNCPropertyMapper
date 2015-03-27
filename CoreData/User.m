@@ -18,6 +18,7 @@
 @dynamic userDescription;
 @dynamic userType;
 @dynamic hobbies;
+@dynamic expenses;
 @dynamic company;
 @dynamic notes;
 

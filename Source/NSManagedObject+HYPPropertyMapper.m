@@ -147,8 +147,9 @@ static NSString * const HYPPropertyMapperRemoteKey = @"id";
     BOOL stringValueAndDateAttribute   = ([removeValue isKindOfClass:[NSString class]] &&
                                           attributedClass == [NSDate class]);
 
-    BOOL arrayValueAndDataAttribute   = ([removeValue isKindOfClass:[NSArray class]] &&
-                                         attributedClass == [NSData class]);
+    BOOL arrayOrDictionaryValueAndDataAttribute   = (([removeValue isKindOfClass:[NSArray class]] ||
+                                                      [removeValue isKindOfClass:[NSDictionary class]]) &&
+                                                     attributedClass == [NSData class]);
 
     if (stringValueAndNumberAttribute) {
         NSNumberFormatter *formatter = [NSNumberFormatter new];
@@ -158,7 +159,7 @@ static NSString * const HYPPropertyMapperRemoteKey = @"id";
         value = [NSString stringWithFormat:@"%@", removeValue];
     } else if (stringValueAndDateAttribute) {
         value = [NSDate __dateFromISO8601String:removeValue];
-    } else if (arrayValueAndDataAttribute) {
+    } else if (arrayOrDictionaryValueAndDataAttribute) {
         value = [NSKeyedArchiver archivedDataWithRootObject:removeValue];
     }
 

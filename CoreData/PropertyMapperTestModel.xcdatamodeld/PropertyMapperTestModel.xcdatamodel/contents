@@ -25,6 +25,7 @@
                 <entry key="mapper.remote.key" value="driver_identifier_str"/>
             </userInfo>
         </attribute>
+        <attribute name="expenses" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="hobbies" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="ignoredParameter" optional="YES" attributeType="String" syncable="YES"/>
@@ -40,6 +41,6 @@
     <elements>
         <element name="Company" positionX="25" positionY="279" width="128" height="90"/>
         <element name="Note" positionX="-504" positionY="351" width="128" height="103"/>
-        <element name="User" positionX="-290" positionY="116" width="128" height="285"/>
+        <element name="User" positionX="-290" positionY="116" width="128" height="300"/>
     </elements>
 </model>

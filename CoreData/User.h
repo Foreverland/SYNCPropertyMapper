@@ -19,6 +19,7 @@
 @property (nonatomic) NSString *userDescription;
 @property (nonatomic) NSString *userType;
 @property (nonatomic) NSData *hobbies;
+@property (nonatomic) NSData *expenses;
 @property (nonatomic) Company *company;
 @property (nonatomic) NSSet *notes;
 @end
