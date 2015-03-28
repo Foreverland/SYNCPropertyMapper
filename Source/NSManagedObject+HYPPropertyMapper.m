@@ -13,6 +13,12 @@ static NSString * const HYPPropertyMapperKeyValue = @"value";
 static NSString * const HYPPropertyMapperNestedAttributesKey = @"attributes";
 static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
 
+@interface NSDate (HYPISO8601)
+
++ (NSDate *)hyp_dateFromISO8601String:(NSString *)iso8601;
+
+@end
+
 @implementation NSManagedObject (HYPPropertyMapper)
 
 #pragma mark - Public methods
@@ -214,7 +220,7 @@ static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
     } else if (numberValueAndStringAttribute) {
         value = [NSString stringWithFormat:@"%@", removeValue];
     } else if (stringValueAndDateAttribute) {
-        value = [NSDate __dateFromISO8601String:removeValue];
+        value = [NSDate hyp_dateFromISO8601String:removeValue];
     } else if (arrayOrDictionaryValueAndDataAttribute) {
         value = [NSKeyedArchiver archivedDataWithRootObject:removeValue];
     }
@@ -261,9 +267,9 @@ static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
 
 @end
 
-@implementation NSDate (ISO8601)
+@implementation NSDate (HYPISO8601)
 
-+ (NSDate *)__dateFromISO8601String:(NSString *)iso8601
++ (NSDate *)hyp_dateFromISO8601String:(NSString *)iso8601
 {
     if (!iso8601 || [iso8601 isEqual:[NSNull null]]) return nil;
 
