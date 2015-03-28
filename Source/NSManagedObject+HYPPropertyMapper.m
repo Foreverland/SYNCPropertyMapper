@@ -2,10 +2,6 @@
 
 #import "NSString+HYPNetworking.h"
 
-static NSString * const HYPPropertyMapperCustomRemoteKey = @"mapper.remote.key";
-static NSString * const HYPPropertyMapperCustomRemoteIsPrimaryKey = @"mapper.remote.is_primary_key";
-static NSString * const HYPPropertyMapperCustomLocalIsPrimaryKey = @"mapper.local.is_primary_key";
-
 static NSString * const HYPPropertyMapperDefaultRemoteValue = @"id";
 static NSString * const HYPPropertyMapperDefaultLocalValue = @"remote_id";
 
