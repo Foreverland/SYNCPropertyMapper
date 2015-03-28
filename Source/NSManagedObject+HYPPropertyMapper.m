@@ -13,58 +13,6 @@ static NSString * const HYPPropertyMapperKeyValue = @"value";
 static NSString * const HYPPropertyMapperNestedAttributesKey = @"attributes";
 static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
 
-@implementation NSDate (ISO8601)
-
-+ (NSDate *)__dateFromISO8601String:(NSString *)iso8601
-{
-    if (!iso8601 || [iso8601 isEqual:[NSNull null]]) return nil;
-
-    if ([iso8601 isKindOfClass:[NSNumber class]]) {
-        return [NSDate dateWithTimeIntervalSince1970:[(NSNumber *)iso8601 doubleValue]];
-    } else if ([iso8601 isKindOfClass:[NSString class]]) {
-
-        if (!iso8601) return nil;
-
-        const char *str = [iso8601 cStringUsingEncoding:NSUTF8StringEncoding];
-        char newStr[25];
-
-        struct tm tm;
-        size_t len = strlen(str);
-
-        if (len == 0) return nil;
-
-        if (len == 20 && str[len - 1] == 'Z') {        // UTC
-            strncpy(newStr, str, len - 1);
-            strncpy(newStr + len - 1, "+0000", 5);
-        } else if (len == 24 && str[len - 1] == 'Z') { // Milliseconds parsing
-            strncpy(newStr, str, len - 1);
-            strncpy(newStr, str, len - 5);
-            strncpy(newStr + len - 5, "+0000", 5);
-        } else if (len == 25 && str[22] == ':') {      // Timezone
-            strncpy(newStr, str, 22);
-            strncpy(newStr + 22, str + 23, 2);
-        } else {                                       // Poorly formatted timezone
-            strncpy(newStr, str, len > 24 ? 24 : len);
-        }
-
-        // Add null terminator
-        newStr[sizeof(newStr) - 1] = 0;
-
-        if (strptime(newStr, "%FT%T%z", &tm) == NULL) return nil;
-
-        time_t t;
-        t = mktime(&tm);
-
-        NSDate *returnedDate = [NSDate dateWithTimeIntervalSince1970:t];
-        return returnedDate;
-    }
-
-    NSAssert1(NO, @"Failed to parse date: %@", iso8601);
-    return nil;
-}
-
-@end
-
 @implementation NSManagedObject (HYPPropertyMapper)
 
 #pragma mark - Public methods
@@ -166,10 +114,8 @@ static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
                 continue;
             }
 
-            NSMutableDictionary *relations = [NSMutableDictionary new];
-
             NSUInteger relationIndex = 0;
-
+            NSMutableDictionary *relations = [NSMutableDictionary new];
             for (NSManagedObject *relation in relationships) {
                 BOOL hasValues = NO;
 
@@ -311,6 +257,58 @@ static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
 + (NSArray *)reservedAttributes
 {
     return @[@"id", @"type", @"description", @"signed"];
+}
+
+@end
+
+@implementation NSDate (ISO8601)
+
++ (NSDate *)__dateFromISO8601String:(NSString *)iso8601
+{
+    if (!iso8601 || [iso8601 isEqual:[NSNull null]]) return nil;
+
+    if ([iso8601 isKindOfClass:[NSNumber class]]) {
+        return [NSDate dateWithTimeIntervalSince1970:[(NSNumber *)iso8601 doubleValue]];
+    } else if ([iso8601 isKindOfClass:[NSString class]]) {
+
+        if (!iso8601) return nil;
+
+        const char *str = [iso8601 cStringUsingEncoding:NSUTF8StringEncoding];
+        char newStr[25];
+
+        struct tm tm;
+        size_t len = strlen(str);
+
+        if (len == 0) return nil;
+
+        if (len == 20 && str[len - 1] == 'Z') {        // UTC
+            strncpy(newStr, str, len - 1);
+            strncpy(newStr + len - 1, "+0000", 5);
+        } else if (len == 24 && str[len - 1] == 'Z') { // Milliseconds parsing
+            strncpy(newStr, str, len - 1);
+            strncpy(newStr, str, len - 5);
+            strncpy(newStr + len - 5, "+0000", 5);
+        } else if (len == 25 && str[22] == ':') {      // Timezone
+            strncpy(newStr, str, 22);
+            strncpy(newStr + 22, str + 23, 2);
+        } else {                                       // Poorly formatted timezone
+            strncpy(newStr, str, len > 24 ? 24 : len);
+        }
+
+        // Add null terminator
+        newStr[sizeof(newStr) - 1] = 0;
+
+        if (strptime(newStr, "%FT%T%z", &tm) == NULL) return nil;
+
+        time_t t;
+        t = mktime(&tm);
+
+        NSDate *returnedDate = [NSDate dateWithTimeIntervalSince1970:t];
+        return returnedDate;
+    }
+
+    NSAssert1(NO, @"Failed to parse date: %@", iso8601);
+    return nil;
 }
 
 @end
