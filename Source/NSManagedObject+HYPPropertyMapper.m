@@ -131,25 +131,27 @@ static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
             }
 
             NSDictionary *userInfo = [propertyDescription userInfo];
-            NSMutableString *key;
+            NSString *key;
 
             BOOL hasCustomMapping = (userInfo[HYPPropertyMapperCustomRemoteKey] &&
                                      ![userInfo[HYPPropertyMapperCustomRemoteKey] isEqualToString:HYPPropertyMapperKeyValue]);
             if (hasCustomMapping) {
-                key = [userInfo[HYPPropertyMapperCustomRemoteKey] mutableCopy];
+                key = userInfo[HYPPropertyMapperCustomRemoteKey];
             } else {
-                key = [[[propertyDescription name] hyp_remoteString] mutableCopy];
+                key = [[propertyDescription name] hyp_remoteString];
             }
 
             BOOL isReservedKey = ([[self reservedKeys] containsObject:key]);
             if (isReservedKey) {
                 if ([key isEqualToString:HYPPropertyMapperDefaultLocalKey]) {
-                    key = [HYPPropertyMapperDefaultRemoteKey mutableCopy];
+                    key = HYPPropertyMapperDefaultRemoteKey;
                 } else {
-                    [key replaceOccurrencesOfString:[self remotePrefix]
-                                         withString:@""
-                                            options:NSCaseInsensitiveSearch
-                                              range:NSMakeRange(0, key.length)];
+                    NSMutableString *prefixedKey = [key mutableCopy];
+                    [prefixedKey replaceOccurrencesOfString:[self remotePrefix]
+                                                 withString:@""
+                                                    options:NSCaseInsensitiveSearch
+                                                      range:NSMakeRange(0, prefixedKey.length)];
+                    key = [prefixedKey copy];
                 }
             }
 
