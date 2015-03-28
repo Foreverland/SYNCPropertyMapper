@@ -190,9 +190,15 @@
     XCTAssertTrue([dictionary[@"expenses"] isKindOfClass:[NSData class]]);
 }
 
-- (void)testDictionaryWithRelationships
+- (void)testDictionaryValues
 {
     NSDictionary *dictionary = [self.testUser hyp_dictionary];
+
+    XCTAssertEqualObjects([dictionary valueForKey:@"age_of_person"], @25);
+    XCTAssertEqualObjects([dictionary valueForKey:@"contract_id"], @235);
+    XCTAssertEqualObjects([dictionary valueForKey:@"driver_identifier_str"], @"ABC8283");
+    XCTAssertEqualObjects([dictionary valueForKey:@"first_name"], @"John");
+    XCTAssertEqualObjects([dictionary valueForKey:@"description"], @"John Description");
 
     XCTAssertNotNil([dictionary valueForKey:@"notes_attributes"]);
     XCTAssertTrue([[dictionary valueForKey:@"notes_attributes"] isKindOfClass:[NSDictionary class]]);
@@ -365,7 +371,7 @@
     XCTAssertEqualObjects([self.testUser valueForKey:@"userType"], @"user type");
 }
 
-- (void)testcreatedAt
+- (void)testCreatedAt
 {
     NSDictionary *values = @{@"created_at" : @"2014-01-01T00:00:00+00:00",
                              @"updated_at" : @"2014-01-02T00:00:00+00:00",
