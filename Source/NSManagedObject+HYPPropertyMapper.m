@@ -6,12 +6,12 @@ static NSString * const HYPPropertyMapperCustomRemoteKey = @"mapper.remote.key";
 static NSString * const HYPPropertyMapperCustomRemoteIsPrimaryKey = @"mapper.remote.is_primary_key";
 static NSString * const HYPPropertyMapperCustomLocalIsPrimaryKey = @"mapper.local.is_primary_key";
 
+static NSString * const HYPPropertyMapperDefaultRemoteKey = @"id";
+static NSString * const HYPPropertyMapperDefaultLocalKey = @"remote_id";
+
 static NSString * const HYPPropertyMapperKeyValue = @"value";
 static NSString * const HYPPropertyMapperNestedAttributesKey = @"attributes";
 static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
-
-static NSString * const HYPPropertyMapperLocalKey = @"remote_id";
-static NSString * const HYPPropertyMapperRemoteKey = @"id";
 
 @implementation NSDate (ISO8601)
 
@@ -190,8 +190,8 @@ static NSString * const HYPPropertyMapperRemoteKey = @"id";
                 } else {
                     BOOL isReservedKey = ([[self reservedKeys] containsObject:key]);
                     if (isReservedKey) {
-                        if ([key isEqualToString:HYPPropertyMapperLocalKey]) {
-                            key = [HYPPropertyMapperRemoteKey mutableCopy];
+                        if ([key isEqualToString:HYPPropertyMapperDefaultLocalKey]) {
+                            key = [HYPPropertyMapperDefaultRemoteKey mutableCopy];
                         } else {
                             [key replaceOccurrencesOfString:[self remotePrefix]
                                                  withString:@""
@@ -212,8 +212,8 @@ static NSString * const HYPPropertyMapperRemoteKey = @"id";
                 } else {
                     BOOL isReservedKey = ([[self reservedKeys] containsObject:key]);
                     if (isReservedKey) {
-                        if ([key isEqualToString:HYPPropertyMapperLocalKey]) {
-                            key = [HYPPropertyMapperRemoteKey mutableCopy];
+                        if ([key isEqualToString:HYPPropertyMapperDefaultLocalKey]) {
+                            key = [HYPPropertyMapperDefaultRemoteKey mutableCopy];
                         } else {
                             [key replaceOccurrencesOfString:[self remotePrefix]
                                                  withString:@""
@@ -251,12 +251,12 @@ static NSString * const HYPPropertyMapperRemoteKey = @"id";
                         }
 
                         NSString *attribute = [propertyDescription name];
-                        NSString *localKey = [HYPPropertyMapperLocalKey hyp_localString];
+                        NSString *localKey = [HYPPropertyMapperDefaultLocalKey hyp_localString];
                         BOOL attributeIsKey = ([localKey isEqualToString:attribute]);
 
                         NSString *key;
                         if (attributeIsKey) {
-                            key = HYPPropertyMapperRemoteKey;
+                            key = HYPPropertyMapperDefaultRemoteKey;
                         } else if ([attribute isEqualToString:HYPPropertyMapperDestroyKey]) {
                             key = [NSString stringWithFormat:@"_%@", HYPPropertyMapperDestroyKey];
                         } else {
@@ -294,8 +294,8 @@ static NSString * const HYPPropertyMapperRemoteKey = @"id";
 {
     NSString *prefixedAttribute;
 
-    if ([attribute isEqualToString:HYPPropertyMapperRemoteKey]) {
-        prefixedAttribute = HYPPropertyMapperLocalKey;
+    if ([attribute isEqualToString:HYPPropertyMapperDefaultRemoteKey]) {
+        prefixedAttribute = HYPPropertyMapperDefaultLocalKey;
     } else {
         prefixedAttribute = [NSString stringWithFormat:@"%@%@", [self remotePrefix], attribute];
     }
@@ -312,7 +312,7 @@ static NSString * const HYPPropertyMapperRemoteKey = @"id";
         [keys addObject:[self prefixedAttribute:attribute]];
     }
 
-    [keys addObject:HYPPropertyMapperLocalKey];
+    [keys addObject:HYPPropertyMapperDefaultLocalKey];
 
     return keys;
 }
