@@ -287,21 +287,23 @@ static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
 
         if (len == 0) return nil;
 
-        if (len == 20 && str[len - 1] == 'Z') {        // UTC
+        BOOL UTC = (len == 20 && str[len - 1] == 'Z');
+        BOOL miliseconds = (len == 24 && str[len - 1] == 'Z');
+        BOOL timezone = (len == 25 && str[22] == ':');
+        if (UTC) {
             strncpy(newStr, str, len - 1);
             strncpy(newStr + len - 1, "+0000", 5);
-        } else if (len == 24 && str[len - 1] == 'Z') { // Milliseconds parsing
+        } else if (miliseconds) {
             strncpy(newStr, str, len - 1);
             strncpy(newStr, str, len - 5);
             strncpy(newStr + len - 5, "+0000", 5);
-        } else if (len == 25 && str[22] == ':') {      // Timezone
+        } else if (timezone) {
             strncpy(newStr, str, 22);
             strncpy(newStr + 22, str + 23, 2);
-        } else {                                       // Poorly formatted timezone
+        } else {
             strncpy(newStr, str, len > 24 ? 24 : len);
         }
 
-        // Add null terminator
         newStr[sizeof(newStr) - 1] = 0;
 
         if (strptime(newStr, "%FT%T%z", &tm) == NULL) return nil;
