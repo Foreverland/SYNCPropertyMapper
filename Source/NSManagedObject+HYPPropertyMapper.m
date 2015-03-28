@@ -117,7 +117,7 @@ static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
 
 - (NSDictionary *)hyp_dictionary
 {
-    NSMutableDictionary *mutableDictionary = [NSMutableDictionary new];
+    NSMutableDictionary *managedObjectAttributes = [NSMutableDictionary new];
 
     for (id propertyDescription in [self.entity properties]) {
         if ([propertyDescription isKindOfClass:[NSAttributeDescription class]]) {
@@ -139,7 +139,7 @@ static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
 
             BOOL nilOrNullValue = (!value || [value isKindOfClass:[NSNull class]]);
             if (nilOrNullValue) {
-                mutableDictionary[key] = [NSNull null];
+                managedObjectAttributes[key] = [NSNull null];
             } else {
                 BOOL isReservedKey = ([[self reservedKeys] containsObject:key]);
                 if (isReservedKey) {
@@ -152,7 +152,7 @@ static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
                                                   range:NSMakeRange(0, key.length)];
                     }
                 }
-                mutableDictionary[key] = value;
+                managedObjectAttributes[key] = value;
             }
 
         } else if ([propertyDescription isKindOfClass:[NSRelationshipDescription class]]) {
@@ -209,11 +209,11 @@ static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
             }
 
             NSString *nestedAttributesPrefix = [NSString stringWithFormat:@"%@_%@", [relationshipName hyp_remoteString], HYPPropertyMapperNestedAttributesKey];
-            [mutableDictionary setValue:relations forKey:nestedAttributesPrefix];
+            [managedObjectAttributes setValue:relations forKey:nestedAttributesPrefix];
         }
     }
 
-    return mutableDictionary;
+    return [managedObjectAttributes copy];
 }
 
 #pragma mark - Private methods
