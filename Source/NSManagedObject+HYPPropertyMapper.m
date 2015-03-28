@@ -121,39 +121,39 @@ static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
 
     for (id propertyDescription in [self.entity properties]) {
         if ([propertyDescription isKindOfClass:[NSAttributeDescription class]]) {
+            NSAttributeDescription *attributeDescription = (NSAttributeDescription *)propertyDescription;
+
+            id value = [self valueForKey:[attributeDescription name]];
+            BOOL nilOrNullValue = (!value ||
+                                   [value isKindOfClass:[NSNull class]]);
+            if (nilOrNullValue) {
+                value = [NSNull null];
+            }
+
             NSDictionary *userInfo = [propertyDescription userInfo];
             NSMutableString *key;
-            id value;
 
-            BOOL hasCustomMapping = ([userInfo objectForKey:HYPPropertyMapperCustomRemoteKey] &&
-                                     ![[userInfo objectForKey:HYPPropertyMapperCustomRemoteKey] isEqualToString:HYPPropertyMapperKeyValue]);
+            BOOL hasCustomMapping = (userInfo[HYPPropertyMapperCustomRemoteKey] &&
+                                     ![userInfo[HYPPropertyMapperCustomRemoteKey] isEqualToString:HYPPropertyMapperKeyValue]);
             if (hasCustomMapping) {
-                NSAttributeDescription *attributeDescription = (NSAttributeDescription *)propertyDescription;
-                value = [self valueForKey:[attributeDescription name]];
-                key = [[userInfo objectForKey:HYPPropertyMapperCustomRemoteKey] mutableCopy];
+                key = [userInfo[HYPPropertyMapperCustomRemoteKey] mutableCopy];
             } else {
-                NSAttributeDescription *attributeDescription = (NSAttributeDescription *)propertyDescription;
-                value = [self valueForKey:[attributeDescription name]];
                 key = [[[propertyDescription name] hyp_remoteString] mutableCopy];
             }
 
-            BOOL nilOrNullValue = (!value || [value isKindOfClass:[NSNull class]]);
-            if (nilOrNullValue) {
-                managedObjectAttributes[key] = [NSNull null];
-            } else {
-                BOOL isReservedKey = ([[self reservedKeys] containsObject:key]);
-                if (isReservedKey) {
-                    if ([key isEqualToString:HYPPropertyMapperDefaultLocalKey]) {
-                        key = [HYPPropertyMapperDefaultRemoteKey mutableCopy];
-                    } else {
-                        [key replaceOccurrencesOfString:[self remotePrefix]
-                                             withString:@""
-                                                options:NSCaseInsensitiveSearch
-                                                  range:NSMakeRange(0, key.length)];
-                    }
+            BOOL isReservedKey = ([[self reservedKeys] containsObject:key]);
+            if (isReservedKey) {
+                if ([key isEqualToString:HYPPropertyMapperDefaultLocalKey]) {
+                    key = [HYPPropertyMapperDefaultRemoteKey mutableCopy];
+                } else {
+                    [key replaceOccurrencesOfString:[self remotePrefix]
+                                         withString:@""
+                                            options:NSCaseInsensitiveSearch
+                                              range:NSMakeRange(0, key.length)];
                 }
-                managedObjectAttributes[key] = value;
             }
+
+            managedObjectAttributes[key] = value;
 
         } else if ([propertyDescription isKindOfClass:[NSRelationshipDescription class]]) {
             NSString *relationshipName = [propertyDescription name];
