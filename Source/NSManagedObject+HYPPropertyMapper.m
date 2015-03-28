@@ -6,8 +6,8 @@ static NSString * const HYPPropertyMapperCustomRemoteKey = @"mapper.remote.key";
 static NSString * const HYPPropertyMapperCustomRemoteIsPrimaryKey = @"mapper.remote.is_primary_key";
 static NSString * const HYPPropertyMapperCustomLocalIsPrimaryKey = @"mapper.local.is_primary_key";
 
-static NSString * const HYPPropertyMapperDefaultRemoteKey = @"id";
-static NSString * const HYPPropertyMapperDefaultLocalKey = @"remote_id";
+static NSString * const HYPPropertyMapperDefaultRemoteValue = @"id";
+static NSString * const HYPPropertyMapperDefaultLocalValue = @"remote_id";
 
 static NSString * const HYPPropertyMapperKeyValue = @"value";
 static NSString * const HYPPropertyMapperNestedAttributesKey = @"attributes";
@@ -33,10 +33,10 @@ static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
         for (NSString *dictionaryKey in self.entity.propertiesByName) {
             NSDictionary *userInfo = [self.entity.propertiesByName[dictionaryKey] userInfo];
             NSString *remoteKeyValue = userInfo[HYPPropertyMapperCustomRemoteKey];
-            BOOL hasCustomKeyMapper = (remoteKeyValue &&
+            BOOL hasCustomRemoteKey = (remoteKeyValue &&
                                        ![remoteKeyValue isEqualToString:HYPPropertyMapperKeyValue] &&
                                        [remoteKeyValue isEqualToString:key]);
-            if (hasCustomKeyMapper) {
+            if (hasCustomRemoteKey) {
                 propertyDescription = self.entity.propertiesByName[dictionaryKey];
                 break;
             }
@@ -91,8 +91,8 @@ static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
 
             BOOL isReservedKey = ([[self reservedKeys] containsObject:key]);
             if (isReservedKey) {
-                if ([key isEqualToString:HYPPropertyMapperDefaultLocalKey]) {
-                    key = HYPPropertyMapperDefaultRemoteKey;
+                if ([key isEqualToString:HYPPropertyMapperDefaultLocalValue]) {
+                    key = HYPPropertyMapperDefaultRemoteValue;
                 } else {
                     NSMutableString *prefixedKey = [key mutableCopy];
                     [prefixedKey replaceOccurrencesOfString:[self remotePrefix]
@@ -130,12 +130,12 @@ static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
                         }
 
                         NSString *attribute = [propertyDescription name];
-                        NSString *localKey = [HYPPropertyMapperDefaultLocalKey hyp_localString];
+                        NSString *localKey = [HYPPropertyMapperDefaultLocalValue hyp_localString];
                         BOOL attributeIsKey = ([localKey isEqualToString:attribute]);
 
                         NSString *key;
                         if (attributeIsKey) {
-                            key = HYPPropertyMapperDefaultRemoteKey;
+                            key = HYPPropertyMapperDefaultRemoteValue;
                         } else if ([attribute isEqualToString:HYPPropertyMapperDestroyKey]) {
                             key = [NSString stringWithFormat:@"_%@", HYPPropertyMapperDestroyKey];
                         } else {
@@ -231,8 +231,8 @@ static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
 {
     NSString *prefixedAttribute;
 
-    if ([attribute isEqualToString:HYPPropertyMapperDefaultRemoteKey]) {
-        prefixedAttribute = HYPPropertyMapperDefaultLocalKey;
+    if ([attribute isEqualToString:HYPPropertyMapperDefaultRemoteValue]) {
+        prefixedAttribute = HYPPropertyMapperDefaultLocalValue;
     } else {
         prefixedAttribute = [NSString stringWithFormat:@"%@%@", [self remotePrefix], attribute];
     }
@@ -249,7 +249,7 @@ static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
         [keys addObject:[self prefixedAttribute:attribute]];
     }
 
-    [keys addObject:HYPPropertyMapperDefaultLocalKey];
+    [keys addObject:HYPPropertyMapperDefaultLocalValue];
 
     return keys;
 }
