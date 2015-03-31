@@ -139,11 +139,11 @@ static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
                         NSDictionary *userInfo = [propertyDescription userInfo];
                         NSString *key;
 
-                        BOOL hasCustomRelationshipMapping = (userInfo[HYPPropertyMapperCustomRelationshipKey] &&
-                                                             ![userInfo[HYPPropertyMapperCustomRelationshipKey] isEqualToString:HYPPropertyMapperKeyValue]);
+                        BOOL hasCustomRelationshipMapping = (userInfo[HYPPropertyMapperCustomRemoteKey] &&
+                                                             ![userInfo[HYPPropertyMapperCustomRemoteKey] isEqualToString:HYPPropertyMapperKeyValue]);
 
                         if (hasCustomRelationshipMapping) {
-                            key = userInfo[HYPPropertyMapperCustomRelationshipKey];
+                            key = userInfo[HYPPropertyMapperCustomRemoteKey];
                         } else if (attributeIsKey) {
                             key = HYPPropertyMapperDefaultRemoteValue;
                         } else if ([attribute isEqualToString:HYPPropertyMapperDestroyKey]) {
