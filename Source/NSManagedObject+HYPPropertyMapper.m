@@ -151,7 +151,7 @@ static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
                         } else {
                             key = [attribute hyp_remoteString];
                         }
-                        NSLog(@"%@", key);
+
                         if (value) {
                             NSString *relationIndexString = [NSString stringWithFormat:@"%lu", (unsigned long)relationIndex];
                             NSMutableDictionary *dictionary = [relations[relationIndexString] mutableCopy] ?: [NSMutableDictionary new];

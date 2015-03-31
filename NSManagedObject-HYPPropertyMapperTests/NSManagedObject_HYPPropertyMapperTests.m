@@ -126,14 +126,21 @@
     [super tearDown];
 }
 
+- (NSArray *)sortDictionary:(NSDictionary *)dictionary withKey:(NSString *)string
+{
+    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:string ascending:YES];
+    NSArray *sortedArray = [dictionary.allValues sortedArrayUsingDescriptors:@[sortDescriptor]];
+
+    return sortedArray;
+}
+
 #pragma mark hyp_dictionary
 
 - (void)testDictionaryKeysNotNil
 {
     NSDictionary *dictionary = [self.testUser hyp_dictionary];
 
-    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"id" ascending:YES];
-    NSArray *sortedNotes = [[dictionary[@"notes_attributes"] allValues] sortedArrayUsingDescriptors:@[sortDescriptor]];
+    NSArray *sortedNotes = [self sortDictionary:dictionary[@"notes_attributes"] withKey:@"id"];
 
     XCTAssertNotNil(dictionary[@"age_of_person"]);
 
@@ -216,10 +223,7 @@
     XCTAssertNotNil([dictionary valueForKey:@"notes_attributes"]);
     XCTAssertTrue([[dictionary valueForKey:@"notes_attributes"] isKindOfClass:[NSDictionary class]]);
 
-    NSDictionary *notes = [dictionary valueForKey:@"notes_attributes"];
-
-    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"id" ascending:YES];
-    NSArray *sortedNotes = [[notes allValues] sortedArrayUsingDescriptors:@[sortDescriptor]];
+    NSArray *sortedNotes = [self sortDictionary:dictionary[@"notes_attributes"] withKey:@"id"];
 
     XCTAssertEqual(sortedNotes.count, 4);
 
