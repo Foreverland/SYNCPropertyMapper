@@ -202,10 +202,10 @@ static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
     BOOL numberValueAndStringAttribute = ([removeValue isKindOfClass:[NSNumber class]] &&
                                           attributedClass == [NSString class]);
 
-    BOOL stringValueAndDateAttribute   = ([removeValue isKindOfClass:[NSString class]] &&
+    BOOL stringValueAndDateAttribute = ([removeValue isKindOfClass:[NSString class]] &&
                                           attributedClass == [NSDate class]);
 
-    BOOL arrayOrDictionaryValueAndDataAttribute   = (([removeValue isKindOfClass:[NSArray class]] ||
+    BOOL arrayOrDictionaryValueAndDataAttribute = (([removeValue isKindOfClass:[NSArray class]] ||
                                                       [removeValue isKindOfClass:[NSDictionary class]]) &&
                                                      attributedClass == [NSData class]);
 
