@@ -424,4 +424,13 @@
     XCTAssertEqualObjects(self.testUser.driverIdentifier, @"123");
 }
 
+- (void)testIgnoredTransformables
+{
+    NSDictionary *values = @{@"ignoreTransformable" : @"I'm going to be ignored"};
+
+    [self.testUser hyp_fillWithDictionary:values];
+
+    XCTAssertNil(self.testUser.ignoreTransformable);
+}
+
 @end

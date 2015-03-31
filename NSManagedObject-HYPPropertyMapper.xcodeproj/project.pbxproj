@@ -239,7 +239,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BDF44C3F19C600AB00E6BAD4 /* NSManagedObject_HYPPropertyMapperTests.m in Sources */,
-				F6F228F61AC33416008052A8 /* User.m in Sources */,
+				F6304F131ACB15B60059FE10 /* User.m in Sources */,
 				BD53940019C60A93006769A8 /* PropertyMapperTestModel.xcdatamodeld in Sources */,
 				F6304F101ACB09790059FE10 /* Note.m in Sources */,
 				BD1FAB5519E71BB50037F2C7 /* NSManagedObject+HYPPropertyMapper.m in Sources */,
