@@ -2,6 +2,7 @@
 #import "Company.h"
 #import "Note.h"
 
+
 @implementation User
 
 @dynamic age;
@@ -9,7 +10,9 @@
 @dynamic contractID;
 @dynamic createdAt;
 @dynamic driverIdentifier;
+@dynamic expenses;
 @dynamic firstName;
+@dynamic hobbies;
 @dynamic ignoredParameter;
 @dynamic lastName;
 @dynamic numberOfAttendes;
@@ -17,8 +20,7 @@
 @dynamic updatedAt;
 @dynamic userDescription;
 @dynamic userType;
-@dynamic hobbies;
-@dynamic expenses;
+@dynamic ignoreTransformable;
 @dynamic company;
 @dynamic notes;
 

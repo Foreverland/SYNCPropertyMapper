@@ -5,6 +5,6 @@ DEPENDENCIES:
   - NSString-HYPNetworking
 
 SPEC CHECKSUMS:
-  NSString-HYPNetworking: d0f69219a05bcdb0d6f523c4356223a4e024b635
+  NSString-HYPNetworking: db2792b0333bc385fd999acaf59737a2b56bcedc
 
 COCOAPODS: 0.36.0

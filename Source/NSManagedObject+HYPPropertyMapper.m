@@ -69,7 +69,7 @@ static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
 {
     NSMutableDictionary *managedObjectAttributes = [NSMutableDictionary new];
 
-    for (id propertyDescription in [self.entity properties]) {
+    for (id propertyDescription in self.entity.properties) {
         if ([propertyDescription isKindOfClass:[NSAttributeDescription class]]) {
             NSAttributeDescription *attributeDescription = (NSAttributeDescription *)propertyDescription;
 
@@ -172,12 +172,14 @@ static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
 {
     id foundPropertyDescription;
 
-    for (id propertyDescription in [self.entity properties]) {
+    for (id propertyDescription in self.entity.properties) {
         if (![propertyDescription isKindOfClass:[NSAttributeDescription class]]) {
             continue;
         }
 
-        if ([[propertyDescription name] isEqualToString:[key hyp_localString]]) {
+        if (![propertyDescription attributeValueClassName]) {
+            continue;
+        } else if ([[propertyDescription name] isEqualToString:[key hyp_localString]]) {
             foundPropertyDescription = propertyDescription;
         }
     }
