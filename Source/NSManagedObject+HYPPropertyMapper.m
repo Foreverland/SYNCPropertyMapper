@@ -173,15 +173,13 @@ static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
     id foundPropertyDescription;
 
     for (id propertyDescription in [self.entity properties]) {
-        if (![propertyDescription attributeValueClassName]) {
-            return nil;
-        }
-        
         if (![propertyDescription isKindOfClass:[NSAttributeDescription class]]) {
             continue;
         }
 
-        if ([[propertyDescription name] isEqualToString:[key hyp_localString]]) {
+        if (![propertyDescription attributeValueClassName]) {
+            continue;
+        } else if ([[propertyDescription name] isEqualToString:[key hyp_localString]]) {
             foundPropertyDescription = propertyDescription;
         }
     }
