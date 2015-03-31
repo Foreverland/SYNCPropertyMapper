@@ -70,7 +70,6 @@ static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
     NSMutableDictionary *managedObjectAttributes = [NSMutableDictionary new];
 
     for (id propertyDescription in [self.entity properties]) {
-        NSLog(@"%@", propertyDescription);
         if ([propertyDescription isKindOfClass:[NSAttributeDescription class]]) {
             NSAttributeDescription *attributeDescription = (NSAttributeDescription *)propertyDescription;
 
@@ -84,17 +83,8 @@ static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
             NSDictionary *userInfo = [propertyDescription userInfo];
             NSString *key;
 
-            BOOL hasCustomRelationshipMapping = (userInfo[HYPPropertyMapperCustomRelationshipKey] &&
-                                                 ![userInfo[HYPPropertyMapperCustomRelationshipKey] isEqualToString:HYPPropertyMapperKeyValue]);
-
             BOOL hasCustomMapping = (userInfo[HYPPropertyMapperCustomRemoteKey] &&
                                      ![userInfo[HYPPropertyMapperCustomRemoteKey] isEqualToString:HYPPropertyMapperKeyValue]);
-
-            if (hasCustomRelationshipMapping) {
-                key = userInfo[HYPPropertyMapperCustomRelationshipKey];
-            } else {
-                key = [[propertyDescription name] hyp_remoteString];
-            }
 
             if (hasCustomMapping) {
                 key = userInfo[HYPPropertyMapperCustomRemoteKey];
@@ -146,15 +136,22 @@ static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
                         NSString *localKey = [HYPPropertyMapperDefaultLocalValue hyp_localString];
                         BOOL attributeIsKey = ([localKey isEqualToString:attribute]);
 
+                        NSDictionary *userInfo = [propertyDescription userInfo];
                         NSString *key;
-                        if (attributeIsKey) {
+
+                        BOOL hasCustomRelationshipMapping = (userInfo[HYPPropertyMapperCustomRelationshipKey] &&
+                                                             ![userInfo[HYPPropertyMapperCustomRelationshipKey] isEqualToString:HYPPropertyMapperKeyValue]);
+
+                        if (hasCustomRelationshipMapping) {
+                            key = userInfo[HYPPropertyMapperCustomRelationshipKey];
+                        } else if (attributeIsKey) {
                             key = HYPPropertyMapperDefaultRemoteValue;
                         } else if ([attribute isEqualToString:HYPPropertyMapperDestroyKey]) {
                             key = [NSString stringWithFormat:@"_%@", HYPPropertyMapperDestroyKey];
                         } else {
                             key = [attribute hyp_remoteString];
                         }
-
+                        NSLog(@"%@", key);
                         if (value) {
                             NSString *relationIndexString = [NSString stringWithFormat:@"%lu", (unsigned long)relationIndex];
                             NSMutableDictionary *dictionary = [relations[relationIndexString] mutableCopy] ?: [NSMutableDictionary new];

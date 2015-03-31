@@ -76,6 +76,14 @@
                                          inManagedObjectContext:self.managedObjectContext];
     note.user = user;
 
+    note = [self noteWithID:@20];
+    note.text = @"This has been so important for me...";
+    note.love = @YES;
+    note.user = user;
+
+    note = [NSEntityDescription insertNewObjectForEntityForName:@"Note"
+                                         inManagedObjectContext:self.managedObjectContext];
+
     Company *company = [self companyWithID:@1 andName:@"Facebook"];
     company.user = user;
 
@@ -124,6 +132,9 @@
 {
     NSDictionary *dictionary = [self.testUser hyp_dictionary];
 
+    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"id" ascending:YES];
+    NSArray *sortedNotes = [[dictionary[@"notes_attributes"] allValues] sortedArrayUsingDescriptors:@[sortDescriptor]];
+
     XCTAssertNotNil(dictionary[@"age_of_person"]);
 
     XCTAssertNotNil(dictionary[@"birth_date"]);
@@ -153,6 +164,8 @@
     XCTAssertNotNil(dictionary[@"hobbies"]);
 
     XCTAssertNotNil(dictionary[@"expenses"]);
+
+    XCTAssertNotNil([sortedNotes.lastObject objectForKey:@"love-note"]);
 }
 
 - (void)testDictionaryValuesKindOfClass
@@ -208,7 +221,7 @@
     NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"id" ascending:YES];
     NSArray *sortedNotes = [[notes allValues] sortedArrayUsingDescriptors:@[sortDescriptor]];
 
-    XCTAssertEqual(sortedNotes.count, 3);
+    XCTAssertEqual(sortedNotes.count, 4);
 
     NSDictionary *noteDictionary = [sortedNotes firstObject];
     XCTAssertNotNil(noteDictionary);
@@ -216,10 +229,14 @@
     XCTAssertEqualObjects([noteDictionary valueForKey:@"id"], @1);
     XCTAssertEqualObjects([noteDictionary valueForKey:@"text"], @"This is the text for the note 1");
 
-    noteDictionary = [sortedNotes lastObject];
+    noteDictionary = sortedNotes[2];
     XCTAssertEqualObjects([noteDictionary valueForKey:@"id"], @14);
     XCTAssertEqualObjects([noteDictionary valueForKey:@"text"], @"This is the text for the note 14");
     XCTAssertEqualObjects([noteDictionary valueForKey:@"_destroy"], @YES);
+
+    noteDictionary = sortedNotes.lastObject;
+    XCTAssertEqualObjects([noteDictionary valueForKey:@"id"], @20);
+    XCTAssertEqualObjects([noteDictionary valueForKey:@"love-note"], @YES);
 }
 
 #pragma mark - hyp_fillWithDictionary

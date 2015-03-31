@@ -1,13 +1,14 @@
-@import Foundation;
-@import CoreData;
+#import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
 
 @class User;
 
 @interface Note : NSManagedObject
 
-@property (nonatomic) NSNumber * remoteID;
-@property (nonatomic) NSString * text;
-@property (nonatomic) NSNumber * destroy;
-@property (nonatomic) User *user;
+@property (nonatomic, retain) NSNumber * destroy;
+@property (nonatomic, retain) NSNumber * remoteID;
+@property (nonatomic, retain) NSString * text;
+@property (nonatomic, retain) NSNumber * love;
+@property (nonatomic, retain) User *user;
 
 @end
