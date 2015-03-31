@@ -7,6 +7,11 @@
     </entity>
     <entity name="Note" representedClassName="Note" syncable="YES">
         <attribute name="destroy" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="love" optional="YES" attributeType="Boolean" syncable="YES">
+            <userInfo>
+                <entry key="mapper.remote.key" value="love-note"/>
+            </userInfo>
+        </attribute>
         <attribute name="remoteID" optional="YES" attributeType="Integer 32" syncable="YES"/>
         <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="notes" inverseEntity="User" syncable="YES"/>
@@ -41,7 +46,7 @@
     </entity>
     <elements>
         <element name="Company" positionX="25" positionY="279" width="128" height="90"/>
-        <element name="Note" positionX="-504" positionY="351" width="128" height="103"/>
-        <element name="User" positionX="-290" positionY="116" width="128" height="315"/>
+        <element name="Note" positionX="-504" positionY="351" width="128" height="120"/>
+        <element name="User" positionX="-290" positionY="116" width="128" height="300"/>
     </elements>
 </model>

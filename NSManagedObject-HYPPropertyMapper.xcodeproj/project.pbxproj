@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		44BFB2CB1A66733400B0A980 /* Company.m in Sources */ = {isa = PBXBuildFile; fileRef = 44BFB2CA1A66733400B0A980 /* Company.m */; };
-		44BFB2CE1A66733500B0A980 /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 44BFB2CD1A66733500B0A980 /* Note.m */; };
 		6360253F308139C5E6E5DAFF /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 81E09E7A48BB0D133292C158 /* libPods.a */; };
 		BD1FAB5519E71BB50037F2C7 /* NSManagedObject+HYPPropertyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = BD1FAB5419E71BB50037F2C7 /* NSManagedObject+HYPPropertyMapper.m */; };
 		BD1FAB8B19E72AF90037F2C7 /* .travis.yml in Resources */ = {isa = PBXBuildFile; fileRef = BD1FAB7619E72AF90037F2C7 /* .travis.yml */; };
@@ -17,14 +16,13 @@
 		BDF44C3719C600AB00E6BAD4 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDF44C3619C600AB00E6BAD4 /* XCTest.framework */; };
 		BDF44C3D19C600AB00E6BAD4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BDF44C3B19C600AB00E6BAD4 /* InfoPlist.strings */; };
 		BDF44C3F19C600AB00E6BAD4 /* NSManagedObject_HYPPropertyMapperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BDF44C3E19C600AB00E6BAD4 /* NSManagedObject_HYPPropertyMapperTests.m */; };
-		F6304F131ACB15B60059FE10 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = F6304F121ACB15B60059FE10 /* User.m */; };
+		F6304F101ACB09790059FE10 /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = F6304F0F1ACB09790059FE10 /* Note.m */; };
+		F6F228F61AC33416008052A8 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F228F51AC33416008052A8 /* User.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		44BFB2C91A66733400B0A980 /* Company.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Company.h; sourceTree = "<group>"; };
 		44BFB2CA1A66733400B0A980 /* Company.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Company.m; sourceTree = "<group>"; };
-		44BFB2CC1A66733500B0A980 /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Note.h; sourceTree = "<group>"; };
-		44BFB2CD1A66733500B0A980 /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Note.m; sourceTree = "<group>"; };
 		81E09E7A48BB0D133292C158 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		829149DAC7790979CA023284 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		BD1FAB5319E71BB50037F2C7 /* NSManagedObject+HYPPropertyMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+HYPPropertyMapper.h"; sourceTree = "<group>"; };
@@ -40,8 +38,10 @@
 		BDF44C3E19C600AB00E6BAD4 /* NSManagedObject_HYPPropertyMapperTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSManagedObject_HYPPropertyMapperTests.m; sourceTree = "<group>"; };
 		BDF44C4019C600AB00E6BAD4 /* NSManagedObject-HYPPropertyMapperTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject-HYPPropertyMapperTests-Prefix.pch"; sourceTree = "<group>"; };
 		E370A2C7931271917C7B2CAE /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		F6304F111ACB15B60059FE10 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
-		F6304F121ACB15B60059FE10 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		F6304F0E1ACB09790059FE10 /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Note.h; sourceTree = "<group>"; };
+		F6304F0F1ACB09790059FE10 /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Note.m; sourceTree = "<group>"; };
+		F6F228F41AC33416008052A8 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		F6F228F51AC33416008052A8 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,10 +78,10 @@
 		BD5393FD19C60A83006769A8 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				F6304F111ACB15B60059FE10 /* User.h */,
-				F6304F121ACB15B60059FE10 /* User.m */,
-				44BFB2CC1A66733500B0A980 /* Note.h */,
-				44BFB2CD1A66733500B0A980 /* Note.m */,
+				F6F228F41AC33416008052A8 /* User.h */,
+				F6F228F51AC33416008052A8 /* User.m */,
+				F6304F0E1ACB09790059FE10 /* Note.h */,
+				F6304F0F1ACB09790059FE10 /* Note.m */,
 				44BFB2C91A66733400B0A980 /* Company.h */,
 				44BFB2CA1A66733400B0A980 /* Company.m */,
 				BD5393FE19C60A93006769A8 /* PropertyMapperTestModel.xcdatamodeld */,
@@ -238,10 +238,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				44BFB2CE1A66733500B0A980 /* Note.m in Sources */,
 				BDF44C3F19C600AB00E6BAD4 /* NSManagedObject_HYPPropertyMapperTests.m in Sources */,
 				F6304F131ACB15B60059FE10 /* User.m in Sources */,
 				BD53940019C60A93006769A8 /* PropertyMapperTestModel.xcdatamodeld in Sources */,
+				F6304F101ACB09790059FE10 /* Note.m in Sources */,
 				BD1FAB5519E71BB50037F2C7 /* NSManagedObject+HYPPropertyMapper.m in Sources */,
 				44BFB2CB1A66733400B0A980 /* Company.m in Sources */,
 			);

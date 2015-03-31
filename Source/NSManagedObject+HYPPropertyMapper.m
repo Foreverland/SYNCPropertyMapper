@@ -85,6 +85,7 @@ static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
 
             BOOL hasCustomMapping = (userInfo[HYPPropertyMapperCustomRemoteKey] &&
                                      ![userInfo[HYPPropertyMapperCustomRemoteKey] isEqualToString:HYPPropertyMapperKeyValue]);
+
             if (hasCustomMapping) {
                 key = userInfo[HYPPropertyMapperCustomRemoteKey];
             } else {
@@ -135,8 +136,15 @@ static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
                         NSString *localKey = [HYPPropertyMapperDefaultLocalValue hyp_localString];
                         BOOL attributeIsKey = ([localKey isEqualToString:attribute]);
 
+                        NSDictionary *userInfo = [propertyDescription userInfo];
                         NSString *key;
-                        if (attributeIsKey) {
+
+                        BOOL hasCustomRelationshipMapping = (userInfo[HYPPropertyMapperCustomRemoteKey] &&
+                                                             ![userInfo[HYPPropertyMapperCustomRemoteKey] isEqualToString:HYPPropertyMapperKeyValue]);
+
+                        if (hasCustomRelationshipMapping) {
+                            key = userInfo[HYPPropertyMapperCustomRemoteKey];
+                        } else if (attributeIsKey) {
                             key = HYPPropertyMapperDefaultRemoteValue;
                         } else if ([attribute isEqualToString:HYPPropertyMapperDestroyKey]) {
                             key = [NSString stringWithFormat:@"_%@", HYPPropertyMapperDestroyKey];
@@ -204,10 +212,10 @@ static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
     BOOL numberValueAndStringAttribute = ([removeValue isKindOfClass:[NSNumber class]] &&
                                           attributedClass == [NSString class]);
 
-    BOOL stringValueAndDateAttribute   = ([removeValue isKindOfClass:[NSString class]] &&
+    BOOL stringValueAndDateAttribute = ([removeValue isKindOfClass:[NSString class]] &&
                                           attributedClass == [NSDate class]);
 
-    BOOL arrayOrDictionaryValueAndDataAttribute   = (([removeValue isKindOfClass:[NSArray class]] ||
+    BOOL arrayOrDictionaryValueAndDataAttribute = (([removeValue isKindOfClass:[NSArray class]] ||
                                                       [removeValue isKindOfClass:[NSDictionary class]]) &&
                                                      attributedClass == [NSData class]);
 
