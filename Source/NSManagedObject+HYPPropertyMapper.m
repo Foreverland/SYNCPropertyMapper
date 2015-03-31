@@ -70,6 +70,7 @@ static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
     NSMutableDictionary *managedObjectAttributes = [NSMutableDictionary new];
 
     for (id propertyDescription in [self.entity properties]) {
+        NSLog(@"%@", propertyDescription);
         if ([propertyDescription isKindOfClass:[NSAttributeDescription class]]) {
             NSAttributeDescription *attributeDescription = (NSAttributeDescription *)propertyDescription;
 
@@ -83,8 +84,18 @@ static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
             NSDictionary *userInfo = [propertyDescription userInfo];
             NSString *key;
 
+            BOOL hasCustomRelationshipMapping = (userInfo[HYPPropertyMapperCustomRelationshipKey] &&
+                                                 ![userInfo[HYPPropertyMapperCustomRelationshipKey] isEqualToString:HYPPropertyMapperKeyValue]);
+
             BOOL hasCustomMapping = (userInfo[HYPPropertyMapperCustomRemoteKey] &&
                                      ![userInfo[HYPPropertyMapperCustomRemoteKey] isEqualToString:HYPPropertyMapperKeyValue]);
+
+            if (hasCustomRelationshipMapping) {
+                key = userInfo[HYPPropertyMapperCustomRelationshipKey];
+            } else {
+                key = [[propertyDescription name] hyp_remoteString];
+            }
+
             if (hasCustomMapping) {
                 key = userInfo[HYPPropertyMapperCustomRemoteKey];
             } else {
