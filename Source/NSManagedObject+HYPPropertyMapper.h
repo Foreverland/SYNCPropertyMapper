@@ -1,6 +1,6 @@
 @import CoreData;
 
-static NSString * const HYPPropertyMapperCustomRemoteKey = @"mapper.remote.key";
+static NSString * const HYPPropertyMapperCustomRemoteKey = @"hyper.remoteKey";
 
 @interface NSManagedObject (HYPPropertyMapper)
 
