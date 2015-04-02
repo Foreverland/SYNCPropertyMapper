@@ -54,7 +54,19 @@ NSDictionary *values = [JSON valueForKey:@"user"];
 [user hyp_fillWithDictionary:values];
 ```
 
-Boom, it's just that easy. My question to you is, why are you not using this already?
+Boom, it's just that easy.
+
+----------------
+
+And there's more!
+
+What about if you want to map a key that it's in the JSON into your core data, but your attribute has a different name? It's as easy as typing: `hyper.remoteKey` in the user attributes with the value you want to map.
+
+![Remote mapping documentation](https://github.com/hyperoslo/NSManagedObject-HYPPropertyMapper/blob/improve/documentation-custom-remote-keys/Resources/userInfo_documentation.png)
+
+And then what? Nothing, job done!
+
+Now I have a question... Why are you not using this already?
 
 ## Contributing
 
