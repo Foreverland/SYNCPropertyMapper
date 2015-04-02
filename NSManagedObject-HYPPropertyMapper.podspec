@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = "NSManagedObject-HYPPropertyMapper"
-  s.version = "2.12"
+  s.version = "3.0.0"
   s.summary = "Mapping your Core Data objects with your JSON providing backend has never been this easy"
   s.description = <<-DESC
                    * Mapping your Core Data objects with your JSON providing backend has never been this easy
