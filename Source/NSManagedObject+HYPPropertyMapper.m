@@ -50,7 +50,9 @@ static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
 
         NSString *localKey = [propertyDescription name];
 
-        BOOL valueExists = (value && ![value isKindOfClass:[NSNull class]]);
+        BOOL valueExists = (value &&
+                            ![value isKindOfClass:[NSNull class]] &&
+                            [propertyDescription isKindOfClass:[NSAttributeDescription class]]);
         if (valueExists) {
             id processedValue = [self valueForPropertyDescription:propertyDescription
                                                  usingRemoteValue:value];
