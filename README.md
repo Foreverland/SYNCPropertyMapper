@@ -63,18 +63,22 @@ It supports relationships too, and we complain to the Rails rule `accepts_nested
 ]
 ```
 
+### Installation
+
+**NSManagedObject-HYPPropertyMapper** is available through [CocoaPods](http://cocoapods.org). To install it, simply add the following line to your Podfile:
+
+```ruby
+pod 'NSManagedObject-HYPPropertyMapper'
+```
+
 ## Contributing
 
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+Please check our [playbook](https://github.com/hyperoslo/playbook/blob/master/GIT_AND_GITHUB.md) for guidelines on contributing.
 
 ## Credits
 
 [Hyper](http://hyper.no) made this. We're a digital communications agency with a passion for good code,
-and if you're using this library we probably want to hire you.
+and if you're using this library we probably want to [hire you](http://www.hyper.no/jobs/ios-developer).
 
 ## License
 
