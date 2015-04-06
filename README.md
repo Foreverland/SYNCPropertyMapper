@@ -1,8 +1,34 @@
 # NSManagedObject-HYPPropertyMapper
 [![Build Status](https://img.shields.io/travis/hyperoslo/NSManagedObject-HYPPropertyMapper.svg?style=flat)](https://travis-ci.org/hyperoslo/NSManagedObject-HYPPropertyMapper)
 
+## Fill Core Data object with JSON
+
 Mapping your Core Data objects with your JSON providing backend has never been this easy. 
-If you don't already use this, you should; and here is why:
+
+```json
+{
+  "first_name": "John",
+  "last_name": "Hyperseed"
+}
+```
+
+``` objc
+NSDictionary *values = [JSON valueForKey:@"user"];
+[user hyp_fillWithDictionary:values];
+```
+
+Your Core Data entities should match your backend models but in `camelCase`. Your attributes should match their JSON counterparts. For example `first_name` maps to `firstName`, `address` to `address`.
+
+There are two exceptions to this rule:
+
+* `id`s should match `remoteID`
+* Reserved attributes should be prefixed with the `entityName` (`type` becomes `userType`, `description` becomes `userDescription` and so on). In the JSON they don't need to change, you can keep `type` and `description` for example. A full list of reserved attributes can be found [here](https://github.com/hyperoslo/NSManagedObject-HYPPropertyMapper/blob/master/Source/NSManagedObject%2BHYPPropertyMapper.m#L265)
+
+If you want to map your Core Data attribute with a JSON attribute that has different naming, you can do by adding `hyper.remoteKey` in the user info box with the value you want to map.
+
+![Remote mapping documentation](https://raw.githubusercontent.com/hyperoslo/NSManagedObject-HYPPropertyMapper/master/Resources/userInfo_documentation.png)
+
+## JSON representation from Core Data object
 
 Getting a dictionary representation of your object is as easy as pie.
 
@@ -14,8 +40,7 @@ UserManagedObject *user;
 NSDictionary *userValues = [user hyp_dictionary];
 ```
 
-That's it, that's all you have to do.
-But that's not all, the keys will be magically transformed into a lowercase/underscore convention.
+That's it, that's all you have to do, the keys will be magically transformed into a `snake_case` convention.
 
 ```json
 {
@@ -42,31 +67,6 @@ It supports relationships too, and we complain to the Rails rule `accepts_nested
   }
 ]
 ```
-
-----------------
-
-But wait, there is more. What if you get values from your JSON providing backend and want those values on your object?
-
-We got you covered:
-
-``` objc
-NSDictionary *values = [JSON valueForKey:@"user"];
-[user hyp_fillWithDictionary:values];
-```
-
-Boom, it's just that easy.
-
-----------------
-
-And there's more!
-
-What about if you want to map a key that it's in the JSON into your core data, but your attribute has a different name? It's as easy as typing: `hyper.remoteKey` in the user attributes with the value you want to map.
-
-![Remote mapping documentation](https://raw.githubusercontent.com/hyperoslo/NSManagedObject-HYPPropertyMapper/master/Resources/userInfo_documentation.png)
-
-And then what? Nothing, job done!
-
-Now I have a question... Why are you not using this already?
 
 ## Contributing
 
