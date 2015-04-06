@@ -1,6 +1,3 @@
-# NSManagedObject-HYPPropertyMapper
-[![Build Status](https://img.shields.io/travis/hyperoslo/NSManagedObject-HYPPropertyMapper.svg?style=flat)](https://travis-ci.org/hyperoslo/NSManagedObject-HYPPropertyMapper)
-
 ## Fill Core Data object with JSON
 
 Mapping your Core Data objects with your JSON providing backend has never been this easy. 
