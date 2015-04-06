@@ -1,4 +1,4 @@
-## Fill Core Data object with JSON
+## Filling a Core Data object with JSON
 
 Mapping your Core Data objects with your JSON providing backend has never been this easy. 
 
@@ -25,9 +25,7 @@ If you want to map your Core Data attribute with a JSON attribute that has diffe
 
 ![Remote mapping documentation](https://raw.githubusercontent.com/hyperoslo/NSManagedObject-HYPPropertyMapper/master/Resources/userInfo_documentation.png)
 
-## JSON representation from Core Data object
-
-Getting a dictionary representation of your object is as easy as pie.
+## JSON representation from a Core Data object
 
 ``` objc
 UserManagedObject *user;
