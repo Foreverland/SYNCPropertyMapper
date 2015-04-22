@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1465C2D11AE8270800FCB9ED /* Market.m in Sources */ = {isa = PBXBuildFile; fileRef = 1465C2D01AE8270800FCB9ED /* Market.m */; };
 		146D72B31AB782920058798C /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 146D72B21AB782920058798C /* Tests.m */; };
+		14824F891AE835C900C1BF3D /* PrivateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14824F881AE835C900C1BF3D /* PrivateTests.m */; };
 		44F04AB51AE79F5700545DCB /* NSManagedObject+HYPPropertyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 44F04AB41AE79F5700545DCB /* NSManagedObject+HYPPropertyMapper.m */; };
 		44F04ABC1AE79F8900545DCB /* Company.m in Sources */ = {isa = PBXBuildFile; fileRef = 44F04AB71AE79F8900545DCB /* Company.m */; };
 		44F04ABD1AE79F8900545DCB /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 44F04AB91AE79F8900545DCB /* Note.m */; };
@@ -24,6 +25,7 @@
 		146D72AC1AB782920058798C /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		146D72B11AB782920058798C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		146D72B21AB782920058798C /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
+		14824F881AE835C900C1BF3D /* PrivateTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivateTests.m; sourceTree = "<group>"; };
 		14C136511AB784B200B7B07A /* .travis.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = .travis.yml; path = ../.travis.yml; sourceTree = "<group>"; };
 		14C136521AB784B200B7B07A /* CONTRIBUTING.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = CONTRIBUTING.md; path = ../CONTRIBUTING.md; sourceTree = "<group>"; };
 		14C136541AB784B200B7B07A /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = LICENSE.md; path = ../LICENSE.md; sourceTree = "<group>"; };
@@ -76,16 +78,10 @@
 		146D72AF1AB782920058798C /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				44F04ABF1AE79F9E00545DCB /* Model.xcdatamodeld */,
-				44F04AB61AE79F8900545DCB /* Company.h */,
-				44F04AB71AE79F8900545DCB /* Company.m */,
-				1465C2CF1AE8270800FCB9ED /* Market.h */,
-				1465C2D01AE8270800FCB9ED /* Market.m */,
-				44F04AB81AE79F8900545DCB /* Note.h */,
-				44F04AB91AE79F8900545DCB /* Note.m */,
-				44F04ABA1AE79F8900545DCB /* User.h */,
-				44F04ABB1AE79F8900545DCB /* User.m */,
+				14824F8A1AE835D900C1BF3D /* Models */,
+				14824F881AE835C900C1BF3D /* PrivateTests.m */,
 				146D72B21AB782920058798C /* Tests.m */,
+				44F04ABF1AE79F9E00545DCB /* Model.xcdatamodeld */,
 				146D72B01AB782920058798C /* Supporting Files */,
 			);
 			path = Tests;
@@ -97,6 +93,21 @@
 				146D72B11AB782920058798C /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		14824F8A1AE835D900C1BF3D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				44F04AB61AE79F8900545DCB /* Company.h */,
+				1465C2CF1AE8270800FCB9ED /* Market.h */,
+				44F04AB81AE79F8900545DCB /* Note.h */,
+				44F04ABA1AE79F8900545DCB /* User.h */,
+				44F04AB71AE79F8900545DCB /* Company.m */,
+				1465C2D01AE8270800FCB9ED /* Market.m */,
+				44F04AB91AE79F8900545DCB /* Note.m */,
+				44F04ABB1AE79F8900545DCB /* User.m */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 		14C136501AB7849300B7B07A /* Metadata */ = {
@@ -246,6 +257,7 @@
 				1465C2D11AE8270800FCB9ED /* Market.m in Sources */,
 				44F04ABD1AE79F8900545DCB /* Note.m in Sources */,
 				44F04AC11AE79F9E00545DCB /* Model.xcdatamodeld in Sources */,
+				14824F891AE835C900C1BF3D /* PrivateTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
