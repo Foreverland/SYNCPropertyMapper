@@ -6,6 +6,7 @@
 #import "User.h"
 #import "Note.h"
 #import "Company.h"
+#import "Market.h"
 
 @interface Tests : XCTestCase
 
@@ -390,8 +391,16 @@
 }
 
 - (void)testSomething {
-    NSManagedObject *market = [NSEntityDescription insertNewObjectForEntityForName:@"Market"
+    NSDictionary *values = @{@"id": @"1",
+                             @"other_attribute": @"Market 1"};
+
+    Market *market = [NSEntityDescription insertNewObjectForEntityForName:@"Market"
                                                             inManagedObjectContext:self.managedObjectContext];
+
+    [market hyp_fillWithDictionary:values];
+
+    XCTAssertEqualObjects(market.uniqueId, @"1");
+    XCTAssertEqualObjects(market.otherAttribute, @"Market 1");
 }
 
 @end
