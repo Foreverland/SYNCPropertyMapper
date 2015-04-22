@@ -5,7 +5,7 @@
         <attribute name="remoteID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="company" inverseEntity="User" syncable="YES"/>
     </entity>
-    <entity name="Market" representedClassName="PRODUCT_MODULE_NAME.Market" syncable="YES">
+    <entity name="Market" representedClassName="Market" syncable="YES">
         <attribute name="otherAttribute" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="uniqueId" optional="YES" attributeType="String" syncable="YES">
             <userInfo>
@@ -50,8 +50,8 @@
     </entity>
     <elements>
         <element name="Company" positionX="25" positionY="279" width="128" height="90"/>
+        <element name="Market" positionX="-297" positionY="270" width="128" height="75"/>
         <element name="Note" positionX="-504" positionY="351" width="128" height="103"/>
         <element name="User" positionX="-290" positionY="116" width="128" height="315"/>
-        <element name="Market" positionX="-297" positionY="270" width="128" height="75"/>
     </elements>
 </model>
