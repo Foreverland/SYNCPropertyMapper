@@ -5,7 +5,6 @@
 static NSString *const HYPPropertyMapperDefaultRemoteValue = @"id";
 static NSString *const HYPPropertyMapperDefaultLocalValue = @"remote_id";
 
-static NSString *const HYPPropertyMapperKeyValue = @"value";
 static NSString *const HYPPropertyMapperNestedAttributesKey = @"attributes";
 static NSString *const HYPPropertyMapperDestroyKey = @"destroy";
 
@@ -35,7 +34,6 @@ static NSString *const HYPPropertyMapperDestroyKey = @"destroy";
             NSDictionary *userInfo = [self.entity.propertiesByName[dictionaryKey] userInfo];
             NSString *remoteKeyValue = userInfo[HYPPropertyMapperCustomRemoteKey];
             BOOL hasCustomRemoteKey = (remoteKeyValue &&
-                                       ![remoteKeyValue isEqualToString:HYPPropertyMapperKeyValue] &&
                                        [remoteKeyValue isEqualToString:key]);
             if (hasCustomRemoteKey) {
                 propertyDescription = self.entity.propertiesByName[dictionaryKey];
@@ -83,8 +81,7 @@ static NSString *const HYPPropertyMapperDestroyKey = @"destroy";
             NSDictionary *userInfo = [propertyDescription userInfo];
             NSString *key;
 
-            BOOL hasCustomMapping = (userInfo[HYPPropertyMapperCustomRemoteKey] &&
-                                     ![userInfo[HYPPropertyMapperCustomRemoteKey] isEqualToString:HYPPropertyMapperKeyValue]);
+            BOOL hasCustomMapping = (userInfo[HYPPropertyMapperCustomRemoteKey]);
             if (hasCustomMapping) {
                 key = userInfo[HYPPropertyMapperCustomRemoteKey];
             } else {
