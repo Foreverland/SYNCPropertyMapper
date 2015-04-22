@@ -19,6 +19,11 @@
 
 #pragma mark - Set up
 
+- (id)entityNamed:(NSString *)entityName {
+    return [NSEntityDescription insertNewObjectForEntityForName:entityName
+                                         inManagedObjectContext:self.managedObjectContext];
+}
+
 - (NSManagedObjectContext *)managedObjectContext {
     DATAStack *dataStack = [[DATAStack alloc] initWithModelName:@"Model"
                                                          bundle:[NSBundle bundleForClass:[self class]]
@@ -27,8 +32,7 @@
 }
 
 - (User *)user {
-    User *user = [NSEntityDescription insertNewObjectForEntityForName:@"User"
-                                               inManagedObjectContext:self.managedObjectContext];
+    User *user = [self entityNamed:@"User"];
     user.age = @25;
     user.birthDate = [NSDate date];
     user.contractID = @235;
@@ -58,12 +62,10 @@
     note = [self noteWithID:@7];
     note.user = user;
 
-    note = [NSEntityDescription insertNewObjectForEntityForName:@"Note"
-                                         inManagedObjectContext:self.managedObjectContext];
+    note = [self entityNamed:@"Note"];
     note.user = user;
 
-    note = [NSEntityDescription insertNewObjectForEntityForName:@"Note"
-                                         inManagedObjectContext:self.managedObjectContext];
+    note = [self entityNamed:@"Note"];
     note.user = user;
 
     Company *company = [self companyWithID:@1 andName:@"Facebook"];
@@ -73,8 +75,7 @@
 }
 
 - (Note *)noteWithID:(NSNumber *)remoteID {
-    Note *note = [NSEntityDescription insertNewObjectForEntityForName:@"Note"
-                                               inManagedObjectContext:self.managedObjectContext];
+    Note *note = [self entityNamed:@"Note"];
     note.remoteID = remoteID;
     note.text = [NSString stringWithFormat:@"This is the text for the note %@", remoteID];
 
@@ -82,8 +83,7 @@
 }
 
 - (Company *)companyWithID:(NSNumber *)remoteID andName:(NSString *)name {
-    Company *company = [NSEntityDescription insertNewObjectForEntityForName:@"Company"
-                                                     inManagedObjectContext:self.managedObjectContext];
+    Company *company = [self entityNamed:@"Company"];
     company.remoteID = remoteID;
     company.name = name;
 
@@ -377,8 +377,7 @@
     NSDictionary *values = @{@"id": @"1",
                              @"other_attribute": @"Market 1"};
 
-    Market *market = [NSEntityDescription insertNewObjectForEntityForName:@"Market"
-                                                            inManagedObjectContext:self.managedObjectContext];
+    Market *market = [self entityNamed:@"Market"];
 
     [market hyp_fillWithDictionary:values];
 
