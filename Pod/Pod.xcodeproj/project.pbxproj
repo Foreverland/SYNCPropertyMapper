@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1465C2D11AE8270800FCB9ED /* Market.m in Sources */ = {isa = PBXBuildFile; fileRef = 1465C2D01AE8270800FCB9ED /* Market.m */; };
 		146D72B31AB782920058798C /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 146D72B21AB782920058798C /* Tests.m */; };
 		44F04AB51AE79F5700545DCB /* NSManagedObject+HYPPropertyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 44F04AB41AE79F5700545DCB /* NSManagedObject+HYPPropertyMapper.m */; };
 		44F04ABC1AE79F8900545DCB /* Company.m in Sources */ = {isa = PBXBuildFile; fileRef = 44F04AB71AE79F8900545DCB /* Company.m */; };
@@ -18,6 +19,8 @@
 
 /* Begin PBXFileReference section */
 		0B49D0A3494C1FFC159FCD6C /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		1465C2CF1AE8270800FCB9ED /* Market.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Market.h; sourceTree = "<group>"; };
+		1465C2D01AE8270800FCB9ED /* Market.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Market.m; sourceTree = "<group>"; };
 		146D72AC1AB782920058798C /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		146D72B11AB782920058798C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		146D72B21AB782920058798C /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
@@ -76,6 +79,8 @@
 				44F04ABF1AE79F9E00545DCB /* Model.xcdatamodeld */,
 				44F04AB61AE79F8900545DCB /* Company.h */,
 				44F04AB71AE79F8900545DCB /* Company.m */,
+				1465C2CF1AE8270800FCB9ED /* Market.h */,
+				1465C2D01AE8270800FCB9ED /* Market.m */,
 				44F04AB81AE79F8900545DCB /* Note.h */,
 				44F04AB91AE79F8900545DCB /* Note.m */,
 				44F04ABA1AE79F8900545DCB /* User.h */,
@@ -238,6 +243,7 @@
 				146D72B31AB782920058798C /* Tests.m in Sources */,
 				44F04ABC1AE79F8900545DCB /* Company.m in Sources */,
 				44F04AB51AE79F5700545DCB /* NSManagedObject+HYPPropertyMapper.m in Sources */,
+				1465C2D11AE8270800FCB9ED /* Market.m in Sources */,
 				44F04ABD1AE79F8900545DCB /* Note.m in Sources */,
 				44F04AC11AE79F9E00545DCB /* Model.xcdatamodeld in Sources */,
 			);

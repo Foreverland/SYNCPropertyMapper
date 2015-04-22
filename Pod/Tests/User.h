@@ -5,21 +5,21 @@
 
 @interface User : NSManagedObject
 
-@property (nonatomic, retain) NSNumber * age;
-@property (nonatomic, retain) NSDate * birthDate;
-@property (nonatomic, retain) NSNumber * contractID;
-@property (nonatomic, retain) NSDate * createdAt;
-@property (nonatomic, retain) NSString * driverIdentifier;
-@property (nonatomic, retain) NSData * expenses;
-@property (nonatomic, retain) NSString * firstName;
-@property (nonatomic, retain) NSData * hobbies;
-@property (nonatomic, retain) NSString * ignoredParameter;
-@property (nonatomic, retain) NSString * lastName;
-@property (nonatomic, retain) NSNumber * numberOfAttendes;
-@property (nonatomic, retain) NSNumber * remoteID;
-@property (nonatomic, retain) NSDate * updatedAt;
-@property (nonatomic, retain) NSString * userDescription;
-@property (nonatomic, retain) NSString * userType;
+@property (nonatomic, retain) NSNumber *age;
+@property (nonatomic, retain) NSDate *birthDate;
+@property (nonatomic, retain) NSNumber *contractID;
+@property (nonatomic, retain) NSDate *createdAt;
+@property (nonatomic, retain) NSString *driverIdentifier;
+@property (nonatomic, retain) NSData *expenses;
+@property (nonatomic, retain) NSString *firstName;
+@property (nonatomic, retain) NSData *hobbies;
+@property (nonatomic, retain) NSString *ignoredParameter;
+@property (nonatomic, retain) NSString *lastName;
+@property (nonatomic, retain) NSNumber *numberOfAttendes;
+@property (nonatomic, retain) NSNumber *remoteID;
+@property (nonatomic, retain) NSDate *updatedAt;
+@property (nonatomic, retain) NSString *userDescription;
+@property (nonatomic, retain) NSString *userType;
 @property (nonatomic, retain) id ignoreTransformable;
 @property (nonatomic, retain) Company *company;
 @property (nonatomic, retain) NSSet *notes;

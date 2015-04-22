@@ -1,9 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6751" systemVersion="14D127a" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7549" systemVersion="14E7f" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Company" representedClassName="Company" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="remoteID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="company" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="Market" representedClassName="PRODUCT_MODULE_NAME.Market" syncable="YES">
+        <attribute name="otherAttribute" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="uniqueId" optional="YES" attributeType="String" syncable="YES">
+            <userInfo>
+                <entry key="hyper.isPrimaryKey" value="YES"/>
+                <entry key="hyper.remoteKey" value="id"/>
+            </userInfo>
+        </attribute>
     </entity>
     <entity name="Note" representedClassName="Note" syncable="YES">
         <attribute name="destroy" optional="YES" attributeType="Boolean" syncable="YES"/>
@@ -43,5 +52,6 @@
         <element name="Company" positionX="25" positionY="279" width="128" height="90"/>
         <element name="Note" positionX="-504" positionY="351" width="128" height="103"/>
         <element name="User" positionX="-290" positionY="116" width="128" height="315"/>
+        <element name="Market" positionX="-297" positionY="270" width="128" height="75"/>
     </elements>
 </model>
