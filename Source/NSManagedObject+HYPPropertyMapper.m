@@ -19,8 +19,7 @@ static NSString *const HYPPropertyMapperDestroyKey = @"destroy";
 
 #pragma mark - Public methods
 
-- (void)hyp_fillWithDictionary:(NSDictionary *)dictionary
-{
+- (void)hyp_fillWithDictionary:(NSDictionary *)dictionary {
     for (__strong NSString *key in dictionary) {
 
         id value = [dictionary objectForKey:key];
@@ -67,8 +66,7 @@ static NSString *const HYPPropertyMapperDestroyKey = @"destroy";
     }
 }
 
-- (NSDictionary *)hyp_dictionary
-{
+- (NSDictionary *)hyp_dictionary {
     NSMutableDictionary *managedObjectAttributes = [NSMutableDictionary new];
 
     for (id propertyDescription in self.entity.properties) {
@@ -170,8 +168,7 @@ static NSString *const HYPPropertyMapperDestroyKey = @"destroy";
 
 #pragma mark - Private methods
 
-- (id)propertyDescriptionForKey:(NSString *)key
-{
+- (id)propertyDescriptionForKey:(NSString *)key {
     id foundPropertyDescription;
 
     for (id propertyDescription in self.entity.properties) {
@@ -189,8 +186,7 @@ static NSString *const HYPPropertyMapperDestroyKey = @"destroy";
     return foundPropertyDescription;
 }
 
-- (id)valueForPropertyDescription:(id)propertyDescription usingRemoteValue:(id)removeValue
-{
+- (id)valueForPropertyDescription:(id)propertyDescription usingRemoteValue:(id)removeValue {
     id value;
 
     NSAttributeDescription *attributeDescription = (NSAttributeDescription *)propertyDescription;
@@ -228,13 +224,11 @@ static NSString *const HYPPropertyMapperDestroyKey = @"destroy";
     return value;
 }
 
-- (NSString *)remotePrefix
-{
+- (NSString *)remotePrefix {
     return [NSString stringWithFormat:@"%@_", [self.entity.name lowercaseString]];
 }
 
-- (NSString *)prefixedAttribute:(NSString *)attribute
-{
+- (NSString *)prefixedAttribute:(NSString *)attribute {
     NSString *prefixedAttribute;
 
     if ([attribute isEqualToString:HYPPropertyMapperDefaultRemoteValue]) {
@@ -246,8 +240,7 @@ static NSString *const HYPPropertyMapperDestroyKey = @"destroy";
     return prefixedAttribute;
 }
 
-- (NSArray *)reservedKeys
-{
+- (NSArray *)reservedKeys {
     NSMutableArray *keys = [NSMutableArray new];
     NSArray *reservedAttributes = [NSManagedObject reservedAttributes];
 
@@ -260,8 +253,7 @@ static NSString *const HYPPropertyMapperDestroyKey = @"destroy";
     return keys;
 }
 
-+ (NSArray *)reservedAttributes
-{
++ (NSArray *)reservedAttributes {
     return @[@"id", @"type", @"description", @"signed"];
 }
 
@@ -269,8 +261,7 @@ static NSString *const HYPPropertyMapperDestroyKey = @"destroy";
 
 @implementation NSDate (HYPISO8601)
 
-+ (NSDate *)hyp_dateFromISO8601String:(NSString *)iso8601
-{
++ (NSDate *)hyp_dateFromISO8601String:(NSString *)iso8601 {
     if (!iso8601 || [iso8601 isEqual:[NSNull null]]) return nil;
 
     if ([iso8601 isKindOfClass:[NSNumber class]]) {
