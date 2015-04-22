@@ -7,11 +7,11 @@
 #import "Note.h"
 #import "Company.h"
 #import "Market.h"
+#import "DATAStack.h"
 
 @interface Tests : XCTestCase
 
-@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
-@property (nonatomic, strong) User *testUser;
+@property (nonatomic) User *testUser;
 
 @end
 
@@ -19,20 +19,11 @@
 
 #pragma mark - Set up
 
-+ (NSManagedObjectContext *)managedObjectContextForTests {
-    NSManagedObjectModel *model = [NSManagedObjectModel mergedModelFromBundles:[NSBundle allBundles]];
-    NSPersistentStoreCoordinator *psc = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:model];
-    NSPersistentStore *store = [psc addPersistentStoreWithType:NSInMemoryStoreType
-                                                 configuration:nil
-                                                           URL:nil
-                                                       options:nil
-                                                         error:nil];
-    NSAssert(store, @"Should have a store by now");
-
-    NSManagedObjectContext *moc = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
-    moc.persistentStoreCoordinator = psc;
-
-    return moc;
+- (NSManagedObjectContext *)managedObjectContext {
+    DATAStack *dataStack = [[DATAStack alloc] initWithModelName:@"Model"
+                                                         bundle:[NSBundle bundleForClass:[self class]]
+                                                      storeType:DATAStackInMemoryStoreType];
+    return dataStack.mainContext;
 }
 
 - (User *)user {
@@ -102,15 +93,7 @@
 - (void)setUp {
     [super setUp];
 
-    self.managedObjectContext = [Tests managedObjectContextForTests];
-
     self.testUser = [self user];
-}
-
-- (void)tearDown {
-    [self.managedObjectContext rollback];
-
-    [super tearDown];
 }
 
 #pragma mark hyp_dictionary
