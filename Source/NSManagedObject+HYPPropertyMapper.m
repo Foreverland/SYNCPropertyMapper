@@ -28,31 +28,14 @@ static NSString *const HYPPropertyMapperDestroyKey = @"destroy";
             key = [self prefixedAttribute:key];
         }
 
-        id propertyDescription = [self propertyDescriptionForKey:key];
-
-        for (NSString *dictionaryKey in self.entity.propertiesByName) {
-            NSDictionary *userInfo = [self.entity.propertiesByName[dictionaryKey] userInfo];
-            NSString *remoteKeyValue = userInfo[HYPPropertyMapperCustomRemoteKey];
-            BOOL hasCustomRemoteKey = (remoteKeyValue &&
-                                       [remoteKeyValue isEqualToString:key]);
-            if (hasCustomRemoteKey) {
-                propertyDescription = self.entity.propertiesByName[dictionaryKey];
-                break;
-            }
-        }
-
-        if (!propertyDescription) {
-            continue;
-        }
-
-        NSString *localKey = [propertyDescription name];
+        NSAttributeDescription *attributeDescription = [self attributeDescriptionForKey:key];
+        NSString *localKey = attributeDescription.name;
 
         BOOL valueExists = (value &&
-                            ![value isKindOfClass:[NSNull class]] &&
-                            [propertyDescription isKindOfClass:[NSAttributeDescription class]]);
+                            ![value isKindOfClass:[NSNull class]]);
         if (valueExists) {
-            id processedValue = [self valueForPropertyDescription:propertyDescription
-                                                 usingRemoteValue:value];
+            id processedValue = [self valueForAttributeDescription:attributeDescription
+                                                  usingRemoteValue:value];
 
             BOOL valueHasChanged = (![[self valueForKey:localKey] isEqual:processedValue]);
             if (valueHasChanged) {
@@ -165,28 +148,34 @@ static NSString *const HYPPropertyMapperDestroyKey = @"destroy";
 
 #pragma mark - Private methods
 
-- (id)propertyDescriptionForKey:(NSString *)key {
-    id foundPropertyDescription;
+- (NSAttributeDescription *)attributeDescriptionForKey:(NSString *)key {
+    __block NSAttributeDescription *foundAttributeDescription;
 
-    for (id propertyDescription in self.entity.properties) {
-        if (![propertyDescription isKindOfClass:[NSAttributeDescription class]]) {
-            continue;
+    [self.entity.properties enumerateObjectsUsingBlock:^(id propertyDescription, NSUInteger idx, BOOL *stop) {
+        if ([propertyDescription isKindOfClass:[NSAttributeDescription class]]) {
+            NSAttributeDescription *attributeDescription = (NSAttributeDescription *)propertyDescription;
+
+            NSDictionary *userInfo = [self.entity.propertiesByName[attributeDescription.name] userInfo];
+            NSString *customRemoteKey = userInfo[HYPPropertyMapperCustomRemoteKey];
+            if (customRemoteKey.length > 0) {
+                foundAttributeDescription = self.entity.propertiesByName[attributeDescription.name];
+            } else if ([attributeDescription.name isEqualToString:[key hyp_localString]]) {
+                foundAttributeDescription = attributeDescription;
+            }
+
+            if (foundAttributeDescription) {
+                *stop = YES;
+            }
         }
+    }];
 
-        if (![propertyDescription attributeValueClassName]) {
-            continue;
-        } else if ([[propertyDescription name] isEqualToString:[key hyp_localString]]) {
-            foundPropertyDescription = propertyDescription;
-        }
-    }
-
-    return foundPropertyDescription;
+    return foundAttributeDescription;
 }
 
-- (id)valueForPropertyDescription:(id)propertyDescription usingRemoteValue:(id)removeValue {
+- (id)valueForAttributeDescription:(NSAttributeDescription *)attributeDescription
+                  usingRemoteValue:(id)removeValue {
     id value;
 
-    NSAttributeDescription *attributeDescription = (NSAttributeDescription *)propertyDescription;
     Class attributedClass = NSClassFromString([attributeDescription attributeValueClassName]);
 
     if ([removeValue isKindOfClass:attributedClass]) {
@@ -226,15 +215,7 @@ static NSString *const HYPPropertyMapperDestroyKey = @"destroy";
 }
 
 - (NSString *)prefixedAttribute:(NSString *)attribute {
-    NSString *prefixedAttribute;
-
-    if ([attribute isEqualToString:HYPPropertyMapperDefaultRemoteValue]) {
-        prefixedAttribute = HYPPropertyMapperDefaultLocalValue;
-    } else {
-        prefixedAttribute = [NSString stringWithFormat:@"%@%@", [self remotePrefix], attribute];
-    }
-
-    return prefixedAttribute;
+    return [NSString stringWithFormat:@"%@%@", [self remotePrefix], attribute];
 }
 
 - (NSArray *)reservedKeys {
@@ -245,13 +226,11 @@ static NSString *const HYPPropertyMapperDestroyKey = @"destroy";
         [keys addObject:[self prefixedAttribute:attribute]];
     }
 
-    [keys addObject:HYPPropertyMapperDefaultLocalValue];
-
     return keys;
 }
 
 + (NSArray *)reservedAttributes {
-    return @[@"id", @"type", @"description", @"signed"];
+    return @[@"type", @"description", @"signed"];
 }
 
 @end
