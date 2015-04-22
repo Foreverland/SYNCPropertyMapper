@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0600"
+   LastUpgradeVersion = "0620"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BDF44C3219C600AB00E6BAD4"
-               BuildableName = "NSManagedObject-HYPPropertyMapperTests.xctest"
-               BlueprintName = "NSManagedObject-HYPPropertyMapperTests"
-               ReferencedContainer = "container:NSManagedObject-HYPPropertyMapper.xcodeproj">
+               BlueprintIdentifier = "146D72AB1AB782920058798C"
+               BuildableName = "Tests.xctest"
+               BlueprintName = "Tests"
+               ReferencedContainer = "container:Pod.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,13 +32,22 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BDF44C3219C600AB00E6BAD4"
-               BuildableName = "NSManagedObject-HYPPropertyMapperTests.xctest"
-               BlueprintName = "NSManagedObject-HYPPropertyMapperTests"
-               ReferencedContainer = "container:NSManagedObject-HYPPropertyMapper.xcodeproj">
+               BlueprintIdentifier = "146D72AB1AB782920058798C"
+               BuildableName = "Tests.xctest"
+               BlueprintName = "Tests"
+               ReferencedContainer = "container:Pod.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "146D72AB1AB782920058798C"
+            BuildableName = "Tests.xctest"
+            BlueprintName = "Tests"
+            ReferencedContainer = "container:Pod.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </TestAction>
    <LaunchAction
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
@@ -52,10 +61,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "BDF44C3219C600AB00E6BAD4"
-            BuildableName = "NSManagedObject-HYPPropertyMapperTests.xctest"
-            BlueprintName = "NSManagedObject-HYPPropertyMapperTests"
-            ReferencedContainer = "container:NSManagedObject-HYPPropertyMapper.xcodeproj">
+            BlueprintIdentifier = "146D72AB1AB782920058798C"
+            BuildableName = "Tests.xctest"
+            BlueprintName = "Tests"
+            ReferencedContainer = "container:Pod.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -70,10 +79,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "BDF44C3219C600AB00E6BAD4"
-            BuildableName = "NSManagedObject-HYPPropertyMapperTests.xctest"
-            BlueprintName = "NSManagedObject-HYPPropertyMapperTests"
-            ReferencedContainer = "container:NSManagedObject-HYPPropertyMapper.xcodeproj">
+            BlueprintIdentifier = "146D72AB1AB782920058798C"
+            BuildableName = "Tests.xctest"
+            BlueprintName = "Tests"
+            ReferencedContainer = "container:Pod.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

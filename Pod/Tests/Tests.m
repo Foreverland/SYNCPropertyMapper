@@ -7,14 +7,14 @@
 #import "Note.h"
 #import "Company.h"
 
-@interface NSManagedObject_HYPPropertyMapperTests : XCTestCase
+@interface Tests : XCTestCase
 
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, strong) User *testUser;
 
 @end
 
-@implementation NSManagedObject_HYPPropertyMapperTests
+@implementation Tests
 
 #pragma mark - Set up
 
@@ -106,7 +106,7 @@
 {
     [super setUp];
 
-    self.managedObjectContext = [NSManagedObject_HYPPropertyMapperTests managedObjectContextForTests];
+    self.managedObjectContext = [Tests managedObjectContextForTests];
 
     self.testUser = [self user];
 }
