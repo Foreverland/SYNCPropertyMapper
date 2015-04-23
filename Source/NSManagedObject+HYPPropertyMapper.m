@@ -8,6 +8,9 @@ static NSString *const HYPPropertyMapperDefaultLocalValue = @"remote_id";
 static NSString *const HYPPropertyMapperNestedAttributesKey = @"attributes";
 static NSString *const HYPPropertyMapperDestroyKey = @"destroy";
 
+static NSString * const HYPPropertyMapperDateNoTimestampFormat = @"YYYY-MM-DD";
+static NSString * const HYPPropertyMapperTimestamp = @"T00:00:00+00:00";
+
 @interface NSDate (HYPISO8601)
 
 + (NSDate *)hyp_dateFromISO8601String:(NSString *)iso8601;
@@ -178,33 +181,39 @@ static NSString *const HYPPropertyMapperDestroyKey = @"destroy";
 
     Class attributedClass = NSClassFromString([attributeDescription attributeValueClassName]);
 
-    if ([removeValue isKindOfClass:attributedClass]) {
-        value = removeValue;
+    if ([remoteValue isKindOfClass:attributedClass]) {
+        value = remoteValue;
     }
 
-    BOOL stringValueAndNumberAttribute = ([removeValue isKindOfClass:[NSString class]] &&
+    BOOL stringValueAndNumberAttribute = ([remoteValue isKindOfClass:[NSString class]] &&
                                           attributedClass == [NSNumber class]);
 
-    BOOL numberValueAndStringAttribute = ([removeValue isKindOfClass:[NSNumber class]] &&
+    BOOL numberValueAndStringAttribute = ([remoteValue isKindOfClass:[NSNumber class]] &&
                                           attributedClass == [NSString class]);
 
-    BOOL stringValueAndDateAttribute   = ([removeValue isKindOfClass:[NSString class]] &&
+    BOOL stringValueAndDateAttribute   = ([remoteValue isKindOfClass:[NSString class]] &&
                                           attributedClass == [NSDate class]);
 
-    BOOL arrayOrDictionaryValueAndDataAttribute   = (([removeValue isKindOfClass:[NSArray class]] ||
-                                                      [removeValue isKindOfClass:[NSDictionary class]]) &&
+    BOOL arrayOrDictionaryValueAndDataAttribute   = (([remoteValue isKindOfClass:[NSArray class]] ||
+                                                      [remoteValue isKindOfClass:[NSDictionary class]]) &&
                                                      attributedClass == [NSData class]);
 
     if (stringValueAndNumberAttribute) {
         NSNumberFormatter *formatter = [NSNumberFormatter new];
         formatter.locale = [NSLocale localeWithLocaleIdentifier:@"en_US"];
-        value = [formatter numberFromString:removeValue];
+        value = [formatter numberFromString:remoteValue];
     } else if (numberValueAndStringAttribute) {
-        value = [NSString stringWithFormat:@"%@", removeValue];
+        value = [NSString stringWithFormat:@"%@", remoteValue];
     } else if (stringValueAndDateAttribute) {
-        value = [NSDate hyp_dateFromISO8601String:removeValue];
+        if ([remoteValue length] == [HYPPropertyMapperDateNoTimestampFormat length]) {
+            NSMutableString *mutableRemoteValue = [remoteValue mutableCopy];
+            [mutableRemoteValue appendString:HYPPropertyMapperTimestamp];
+            remoteValue = [mutableRemoteValue copy];
+        }
+
+        value = [NSDate hyp_dateFromISO8601String:remoteValue];
     } else if (arrayOrDictionaryValueAndDataAttribute) {
-        value = [NSKeyedArchiver archivedDataWithRootObject:removeValue];
+        value = [NSKeyedArchiver archivedDataWithRootObject:remoteValue];
     }
 
     return value;

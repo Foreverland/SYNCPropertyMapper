@@ -337,7 +337,7 @@
 
 - (void)testCreatedAt {
     NSDictionary *values = @{@"created_at" : @"2014-01-01T00:00:00+00:00",
-                             @"updated_at" : @"2014-01-02T00:00:00+00:00",
+                             @"updated_at" : @"2014-01-02",
                              @"number_of_attendes": @20};
 
     [self.testUser hyp_fillWithDictionary:values];
