@@ -9,6 +9,8 @@ static NSString * const HYPPropertyMapperKeyValue = @"value";
 static NSString * const HYPPropertyMapperNestedAttributesKey = @"attributes";
 static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
 
+static NSString * const HYPPropertyMapperDateNoTimeStampFormat = @"YYYY-MM-DD";
+
 @interface NSDate (HYPISO8601)
 
 + (NSDate *)hyp_dateFromISO8601String:(NSString *)iso8601;
@@ -220,7 +222,7 @@ static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
     } else if (numberValueAndStringAttribute) {
         value = [NSString stringWithFormat:@"%@", removeValue];
     } else if (stringValueAndDateAttribute) {
-        if ([removeValue length] == [@"2014-01-02" length]) {
+        if ([removeValue length] == [HYPPropertyMapperDateNoTimeStampFormat length]) {
             removeValue = [NSString stringWithFormat:@"%@%@", removeValue, @"T00:00:00+00:00"];
         }
         value = [NSDate hyp_dateFromISO8601String:removeValue];
