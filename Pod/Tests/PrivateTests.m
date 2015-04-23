@@ -16,6 +16,8 @@
 - (id)valueForAttributeDescription:(id)attributeDescription
                   usingRemoteValue:(id)removeValue;
 
+- (NSString *)remoteKeyForAttributeDescription:(NSAttributeDescription *)attributeDescription;
+
 @end
 
 @interface PrivateTests : XCTestCase
@@ -72,8 +74,39 @@
     XCTAssertNil(attributeDescription);
 }
 
-- (void)testValueForAttributeDescription {
+- (void)testRemoteKeyForAttributeDescriptionA {
+    Company *company = [self entityNamed:@"Company"];
+    NSAttributeDescription *attributeDescription;
 
+    attributeDescription = company.entity.propertiesByName[@"name"];
+    XCTAssertEqualObjects([company remoteKeyForAttributeDescription:attributeDescription], @"name");
+
+    attributeDescription = company.entity.propertiesByName[@"remoteID"];
+    XCTAssertEqualObjects([company remoteKeyForAttributeDescription:attributeDescription], @"id");
+}
+
+- (void)testRemoteKeyForAttributeDescriptionB {
+    Market *market = [self entityNamed:@"Market"];
+    NSAttributeDescription *attributeDescription;
+
+    attributeDescription = market.entity.propertiesByName[@"uniqueId"];
+    XCTAssertEqualObjects([market remoteKeyForAttributeDescription:attributeDescription], @"id");
+
+    attributeDescription = market.entity.propertiesByName[@"otherAttribute"];
+    XCTAssertEqualObjects([market remoteKeyForAttributeDescription:attributeDescription], @"other_attribute");
+}
+
+- (void)testRemoteKeyForAttributeDescriptionC {
+    User *user = [self entityNamed:@"User"];
+    NSAttributeDescription *attributeDescription;
+
+    attributeDescription = user.entity.propertiesByName[@"age"];    ;
+    XCTAssertEqualObjects([user remoteKeyForAttributeDescription:attributeDescription], @"age_of_person");
+
+    attributeDescription = user.entity.propertiesByName[@"driverIdentifier"];
+    XCTAssertEqualObjects([user remoteKeyForAttributeDescription:attributeDescription], @"driver_identifier_str");
+
+    XCTAssertNil([user remoteKeyForAttributeDescription:nil]);
 }
 
 @end

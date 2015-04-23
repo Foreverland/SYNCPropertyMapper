@@ -66,30 +66,7 @@ static NSString * const HYPPropertyMapperTimestamp = @"T00:00:00+00:00";
                 value = [NSNull null];
             }
 
-            NSDictionary *userInfo = attributeDescription.userInfo;
-            NSString *key;
-
-            BOOL hasCustomMapping = (userInfo[HYPPropertyMapperCustomRemoteKey]);
-            if (hasCustomMapping) {
-                key = userInfo[HYPPropertyMapperCustomRemoteKey];
-            } else {
-                key = [attributeDescription.name hyp_remoteString];
-            }
-
-            BOOL isReservedKey = ([[self reservedKeys] containsObject:key]);
-            if (isReservedKey) {
-                if ([key isEqualToString:HYPPropertyMapperDefaultLocalValue]) {
-                    key = HYPPropertyMapperDefaultRemoteValue;
-                } else {
-                    NSMutableString *prefixedKey = [key mutableCopy];
-                    [prefixedKey replaceOccurrencesOfString:[self remotePrefix]
-                                                 withString:@""
-                                                    options:NSCaseInsensitiveSearch
-                                                      range:NSMakeRange(0, prefixedKey.length)];
-                    key = [prefixedKey copy];
-                }
-            }
-
+            NSString *key = [self remoteKeyForAttributeDescription:attributeDescription];
             managedObjectAttributes[key] = value;
 
         } else if ([propertyDescription isKindOfClass:[NSRelationshipDescription class]]) {
@@ -192,6 +169,34 @@ static NSString * const HYPPropertyMapperTimestamp = @"T00:00:00+00:00";
     }
 
     return foundAttributeDescription;
+}
+
+- (NSString *)remoteKeyForAttributeDescription:(NSAttributeDescription *)attributeDescription {
+    NSDictionary *userInfo = attributeDescription.userInfo;
+    NSString *key;
+
+    BOOL hasCustomMapping = (userInfo[HYPPropertyMapperCustomRemoteKey]);
+    if (hasCustomMapping) {
+        key = userInfo[HYPPropertyMapperCustomRemoteKey];
+    } else {
+        key = [attributeDescription.name hyp_remoteString];
+    }
+
+    BOOL isReservedKey = ([[self reservedKeys] containsObject:key]);
+    if (isReservedKey) {
+        if ([key isEqualToString:HYPPropertyMapperDefaultLocalValue]) {
+            key = HYPPropertyMapperDefaultRemoteValue;
+        } else {
+            NSMutableString *prefixedKey = [key mutableCopy];
+            [prefixedKey replaceOccurrencesOfString:[self remotePrefix]
+                                         withString:@""
+                                            options:NSCaseInsensitiveSearch
+                                              range:NSMakeRange(0, prefixedKey.length)];
+            key = [prefixedKey copy];
+        }
+    }
+
+    return key;
 }
 
 - (id)valueForAttributeDescription:(NSAttributeDescription *)attributeDescription
