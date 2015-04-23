@@ -19,20 +19,19 @@
 
 #pragma mark - Set up
 
-- (id)entityNamed:(NSString *)entityName {
-    return [NSEntityDescription insertNewObjectForEntityForName:entityName
-                                         inManagedObjectContext:self.managedObjectContext];
+- (DATAStack *)dataStack {
+    return [[DATAStack alloc] initWithModelName:@"Model"
+                                         bundle:[NSBundle bundleForClass:[self class]]
+                                      storeType:DATAStackInMemoryStoreType];
 }
-
-- (NSManagedObjectContext *)managedObjectContext {
-    DATAStack *dataStack = [[DATAStack alloc] initWithModelName:@"Model"
-                                                         bundle:[NSBundle bundleForClass:[self class]]
-                                                      storeType:DATAStackInMemoryStoreType];
-    return dataStack.mainContext;
+- (id)entityNamed:(NSString *)entityName inContext:(NSManagedObjectContext *)context {
+    return [NSEntityDescription insertNewObjectForEntityForName:entityName
+                                         inManagedObjectContext:context];
 }
 
 - (User *)user {
-    User *user = [self entityNamed:@"User"];
+    DATAStack *dataStack = [self dataStack];
+    User *user = [self entityNamed:@"User" inContext:dataStack.mainContext];
     user.age = @25;
     user.birthDate = [NSDate date];
     user.contractID = @235;
@@ -52,38 +51,38 @@
     user.expenses = [NSKeyedArchiver archivedDataWithRootObject:@{@"cake" : @12.50,
                                                                   @"juice" : @0.50}];
 
-    Note *note = [self noteWithID:@1];
+    Note *note = [self noteWithID:@1 inContext:dataStack.mainContext];
     note.user = user;
 
-    note = [self noteWithID:@14];
+    note = [self noteWithID:@14 inContext:dataStack.mainContext];
     note.user = user;
     note.destroy = @YES;
 
-    note = [self noteWithID:@7];
+    note = [self noteWithID:@7 inContext:dataStack.mainContext];
     note.user = user;
 
-    note = [self entityNamed:@"Note"];
+    note = [self entityNamed:@"Note" inContext:dataStack.mainContext];
     note.user = user;
 
-    note = [self entityNamed:@"Note"];
+    note = [self entityNamed:@"Note" inContext:dataStack.mainContext];
     note.user = user;
 
-    Company *company = [self companyWithID:@1 andName:@"Facebook"];
+    Company *company = [self companyWithID:@1 andName:@"Facebook" inContext:dataStack.mainContext];
     company.user = user;
 
     return user;
 }
 
-- (Note *)noteWithID:(NSNumber *)remoteID {
-    Note *note = [self entityNamed:@"Note"];
+- (Note *)noteWithID:(NSNumber *)remoteID inContext:(NSManagedObjectContext *)context {
+    Note *note = [self entityNamed:@"Note" inContext:context];
     note.remoteID = remoteID;
     note.text = [NSString stringWithFormat:@"This is the text for the note %@", remoteID];
 
     return note;
 }
 
-- (Company *)companyWithID:(NSNumber *)remoteID andName:(NSString *)name {
-    Company *company = [self entityNamed:@"Company"];
+- (Company *)companyWithID:(NSNumber *)remoteID andName:(NSString *)name inContext:(NSManagedObjectContext *)context {
+    Company *company = [self entityNamed:@"Company" inContext:context];
     company.remoteID = remoteID;
     company.name = name;
 
@@ -373,11 +372,13 @@
     XCTAssertNil(self.testUser.ignoreTransformable);
 }
 
-- (void)testSomething {
+- (void)testCustomKey {
+    DATAStack *dataStack = [self dataStack];
+
     NSDictionary *values = @{@"id": @"1",
                              @"other_attribute": @"Market 1"};
 
-    Market *market = [self entityNamed:@"Market"];
+    Market *market = [self entityNamed:@"Market" inContext:dataStack.mainContext];
 
     [market hyp_fillWithDictionary:values];
 
