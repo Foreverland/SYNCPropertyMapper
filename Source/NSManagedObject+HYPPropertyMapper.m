@@ -3,7 +3,7 @@
 #import "NSString+HYPNetworking.h"
 
 static NSString *const HYPPropertyMapperDefaultRemoteValue = @"id";
-static NSString *const HYPPropertyMapperDefaultLocalValue = @"remote_id";
+static NSString *const HYPPropertyMapperDefaultLocalValue = @"remoteID";
 
 static NSString *const HYPPropertyMapperNestedAttributesKey = @"attributes";
 static NSString *const HYPPropertyMapperDestroyKey = @"destroy";
@@ -160,7 +160,7 @@ static NSString * const HYPPropertyMapperTimestamp = @"T00:00:00+00:00";
 
             NSDictionary *userInfo = [self.entity.propertiesByName[attributeDescription.name] userInfo];
             NSString *customRemoteKey = userInfo[HYPPropertyMapperCustomRemoteKey];
-            if (customRemoteKey.length > 0) {
+            if (customRemoteKey.length > 0 && [customRemoteKey isEqualToString:remoteKey]) {
                 foundAttributeDescription = self.entity.propertiesByName[attributeDescription.name];
             } else if ([attributeDescription.name isEqualToString:[remoteKey hyp_localString]]) {
                 foundAttributeDescription = attributeDescription;
@@ -171,6 +171,23 @@ static NSString * const HYPPropertyMapperTimestamp = @"T00:00:00+00:00";
             }
         }
     }];
+
+    if (!foundAttributeDescription) {
+        [self.entity.properties enumerateObjectsUsingBlock:^(id propertyDescription, NSUInteger idx, BOOL *stop) {
+            if ([propertyDescription isKindOfClass:[NSAttributeDescription class]]) {
+                NSAttributeDescription *attributeDescription = (NSAttributeDescription *)propertyDescription;
+
+                if ([remoteKey isEqualToString:HYPPropertyMapperDefaultRemoteValue] &&
+                    [attributeDescription.name isEqualToString:HYPPropertyMapperDefaultLocalValue]) {
+                    foundAttributeDescription = self.entity.propertiesByName[attributeDescription.name];
+                }
+
+                if (foundAttributeDescription) {
+                    *stop = YES;
+                }
+            }
+        }];
+    }
 
     return foundAttributeDescription;
 }
