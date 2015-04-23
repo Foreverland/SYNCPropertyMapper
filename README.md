@@ -1,4 +1,4 @@
-## Filling a NSManagedObject with JSON
+# Filling a NSManagedObject with JSON
 
 Mapping your Core Data objects with your JSON providing backend has never been this easy. 
 
@@ -25,7 +25,36 @@ If you want to map your Core Data attribute with a JSON attribute that has diffe
 
 ![Remote mapping documentation](https://raw.githubusercontent.com/hyperoslo/NSManagedObject-HYPPropertyMapper/master/Resources/userInfo_documentation.png)
 
-## JSON representation from a NSManagedObject
+## Attribute Types
+
+For mapping for arrays and dictionaries just set attributes as `Binary Data` on the Core Data modeler
+
+![screen shot 2015-04-02 at 11 10 11 pm](https://cloud.githubusercontent.com/assets/1088217/6973785/7d3767dc-d98d-11e4-8add-9c9421b5ed47.png)
+
+### Array
+```objc
+NSDictionary *values = @{@"hobbies" : @[@"football",
+                                        @"soccer",
+                                        @"code"]};
+
+[managedObject hyp_fillWithDictionary:values];
+
+NSArray * hobbies = [NSKeyedUnarchiver unarchiveObjectWithData:managedObject.hobbies];
+// ==> "football", "soccer", "code" 
+```
+
+### Dictionary
+```objc
+NSDictionary *values = @{@"expenses" : @{@"cake" : @12.50,
+                                         @"juice" : @0.50}};
+
+[managedObject hyp_fillWithDictionary:values];
+
+NSDictionary *expenses = [NSKeyedUnarchiver unarchiveObjectWithData:managedObject.expenses];
+// ==> "cake" : 12.50, "juice" : 0.50
+```
+
+# JSON representation from a NSManagedObject
 
 ``` objc
 UserManagedObject *user;
