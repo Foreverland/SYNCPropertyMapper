@@ -37,9 +37,34 @@
 }
 
 - (void)testAttributeDescriptionForKey {
+    NSAttributeDescription *attributeDescription;
+
+    Company *company = [self entityNamed:@"Company"];
+
+    attributeDescription = [company attributeDescriptionForRemoteKey:@"name"];
+    XCTAssertEqualObjects(attributeDescription.name, @"name");
+
+    attributeDescription = [company attributeDescriptionForRemoteKey:@"id"];
+    XCTAssertEqualObjects(attributeDescription.name, @"remoteID");
+
     Market *market = [self entityNamed:@"Market"];
-    [market attributeDescriptionForRemoteKey:@"uniqueId"];
-    [market attributeDescriptionForRemoteKey:@"otherAttribute"];
+
+    attributeDescription = [market attributeDescriptionForRemoteKey:@"id"];
+    XCTAssertEqualObjects(attributeDescription.name, @"uniqueId");
+
+    attributeDescription = [market attributeDescriptionForRemoteKey:@"other_attribute"];
+    XCTAssertEqualObjects(attributeDescription.name, @"otherAttribute");
+
+    User *user = [self entityNamed:@"User"];
+
+    attributeDescription = [user attributeDescriptionForRemoteKey:@"age_of_person"];
+    XCTAssertEqualObjects(attributeDescription.name, @"age");
+
+    attributeDescription = [user attributeDescriptionForRemoteKey:@"driver_identifier_str"];
+    XCTAssertEqualObjects(attributeDescription.name, @"driverIdentifier");
+
+    attributeDescription = [user attributeDescriptionForRemoteKey:@"not_found_key"];
+    XCTAssertNil(attributeDescription);
 }
 
 - (void)testValueForAttributeDescription {
