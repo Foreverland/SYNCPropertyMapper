@@ -191,43 +191,43 @@ static NSString * const HYPPropertyMapperDateNoTimeStampFormat = @"YYYY-MM-DD";
     return foundPropertyDescription;
 }
 
-- (id)valueForPropertyDescription:(id)propertyDescription usingRemoteValue:(id)removeValue
+- (id)valueForPropertyDescription:(id)propertyDescription usingRemoteValue:(id)remoteValue
 {
     id value;
 
     NSAttributeDescription *attributeDescription = (NSAttributeDescription *)propertyDescription;
     Class attributedClass = NSClassFromString([attributeDescription attributeValueClassName]);
 
-    if ([removeValue isKindOfClass:attributedClass]) {
-        value = removeValue;
+    if ([remoteValue isKindOfClass:attributedClass]) {
+        value = remoteValue;
     }
 
-    BOOL stringValueAndNumberAttribute = ([removeValue isKindOfClass:[NSString class]] &&
+    BOOL stringValueAndNumberAttribute = ([remoteValue isKindOfClass:[NSString class]] &&
                                           attributedClass == [NSNumber class]);
 
-    BOOL numberValueAndStringAttribute = ([removeValue isKindOfClass:[NSNumber class]] &&
+    BOOL numberValueAndStringAttribute = ([remoteValue isKindOfClass:[NSNumber class]] &&
                                           attributedClass == [NSString class]);
 
-    BOOL stringValueAndDateAttribute   = ([removeValue isKindOfClass:[NSString class]] &&
+    BOOL stringValueAndDateAttribute   = ([remoteValue isKindOfClass:[NSString class]] &&
                                           attributedClass == [NSDate class]);
 
-    BOOL arrayOrDictionaryValueAndDataAttribute   = (([removeValue isKindOfClass:[NSArray class]] ||
-                                                      [removeValue isKindOfClass:[NSDictionary class]]) &&
+    BOOL arrayOrDictionaryValueAndDataAttribute   = (([remoteValue isKindOfClass:[NSArray class]] ||
+                                                      [remoteValue isKindOfClass:[NSDictionary class]]) &&
                                                      attributedClass == [NSData class]);
 
     if (stringValueAndNumberAttribute) {
         NSNumberFormatter *formatter = [NSNumberFormatter new];
         formatter.locale = [NSLocale localeWithLocaleIdentifier:@"en_US"];
-        value = [formatter numberFromString:removeValue];
+        value = [formatter numberFromString:remoteValue];
     } else if (numberValueAndStringAttribute) {
-        value = [NSString stringWithFormat:@"%@", removeValue];
+        value = [NSString stringWithFormat:@"%@", remoteValue];
     } else if (stringValueAndDateAttribute) {
-        if ([removeValue length] == [HYPPropertyMapperDateNoTimeStampFormat length]) {
-            removeValue = [NSString stringWithFormat:@"%@%@", removeValue, @"T00:00:00+00:00"];
+        if ([remoteValue length] == [HYPPropertyMapperDateNoTimeStampFormat length]) {
+            remoteValue = [NSString stringWithFormat:@"%@%@", remoteValue, @"T00:00:00+00:00"];
         }
-        value = [NSDate hyp_dateFromISO8601String:removeValue];
+        value = [NSDate hyp_dateFromISO8601String:remoteValue];
     } else if (arrayOrDictionaryValueAndDataAttribute) {
-        value = [NSKeyedArchiver archivedDataWithRootObject:removeValue];
+        value = [NSKeyedArchiver archivedDataWithRootObject:remoteValue];
     }
 
     return value;
