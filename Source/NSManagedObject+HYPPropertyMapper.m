@@ -31,7 +31,7 @@ static NSString * const HYPPropertyMapperTimestamp = @"T00:00:00+00:00";
             key = [self prefixedAttribute:key];
         }
 
-        NSAttributeDescription *attributeDescription = [self attributeDescriptionForRemoteKeykey];
+        NSAttributeDescription *attributeDescription = [self attributeDescriptionForRemoteKey:key];
         NSString *localKey = attributeDescription.name;
 
         BOOL valueExists = (value &&
@@ -151,7 +151,7 @@ static NSString * const HYPPropertyMapperTimestamp = @"T00:00:00+00:00";
 
 #pragma mark - Private methods
 
-- (NSAttributeDescription *)attributeDescriptionForRemoteKey(NSString *)remoteKey {
+- (NSAttributeDescription *)attributeDescriptionForRemoteKey:(NSString *)remoteKey {
     __block NSAttributeDescription *foundAttributeDescription;
 
     [self.entity.properties enumerateObjectsUsingBlock:^(id propertyDescription, NSUInteger idx, BOOL *stop) {
