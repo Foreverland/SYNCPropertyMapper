@@ -173,30 +173,29 @@ static NSString * const HYPPropertyMapperTimestamp = @"T00:00:00+00:00";
 
 - (NSString *)remoteKeyForAttributeDescription:(NSAttributeDescription *)attributeDescription {
     NSDictionary *userInfo = attributeDescription.userInfo;
-    NSString *key;
+    NSString *localKey = attributeDescription.name;
+    NSString *remoteKey;
 
     BOOL hasCustomMapping = (userInfo[HYPPropertyMapperCustomRemoteKey]);
     if (hasCustomMapping) {
-        key = userInfo[HYPPropertyMapperCustomRemoteKey];
+        remoteKey = userInfo[HYPPropertyMapperCustomRemoteKey];
+    } else if ([localKey isEqualToString:HYPPropertyMapperDefaultLocalValue]) {
+        remoteKey = HYPPropertyMapperDefaultRemoteValue;
     } else {
-        key = [attributeDescription.name hyp_remoteString];
+        remoteKey = [localKey hyp_remoteString];
     }
 
-    BOOL isReservedKey = ([[self reservedKeys] containsObject:key]);
+    BOOL isReservedKey = ([[self reservedKeys] containsObject:remoteKey]);
     if (isReservedKey) {
-        if ([key isEqualToString:HYPPropertyMapperDefaultLocalValue]) {
-            key = HYPPropertyMapperDefaultRemoteValue;
-        } else {
-            NSMutableString *prefixedKey = [key mutableCopy];
-            [prefixedKey replaceOccurrencesOfString:[self remotePrefix]
-                                         withString:@""
-                                            options:NSCaseInsensitiveSearch
-                                              range:NSMakeRange(0, prefixedKey.length)];
-            key = [prefixedKey copy];
-        }
+        NSMutableString *prefixedKey = [remoteKey mutableCopy];
+        [prefixedKey replaceOccurrencesOfString:[self remotePrefix]
+                                     withString:@""
+                                        options:NSCaseInsensitiveSearch
+                                          range:NSMakeRange(0, prefixedKey.length)];
+        remoteKey = [prefixedKey copy];
     }
 
-    return key;
+    return remoteKey;
 }
 
 - (id)valueForAttributeDescription:(NSAttributeDescription *)attributeDescription
