@@ -57,21 +57,21 @@ static NSString * const HYPPropertyMapperTimestamp = @"T00:00:00+00:00";
         if ([propertyDescription isKindOfClass:[NSAttributeDescription class]]) {
             NSAttributeDescription *attributeDescription = (NSAttributeDescription *)propertyDescription;
 
-            id value = [self valueForKey:[attributeDescription name]];
+            id value = [self valueForKey:attributeDescription.name];
             BOOL nilOrNullValue = (!value ||
                                    [value isKindOfClass:[NSNull class]]);
             if (nilOrNullValue) {
                 value = [NSNull null];
             }
 
-            NSDictionary *userInfo = [propertyDescription userInfo];
+            NSDictionary *userInfo = attributeDescription.userInfo;
             NSString *key;
 
             BOOL hasCustomMapping = (userInfo[HYPPropertyMapperCustomRemoteKey]);
             if (hasCustomMapping) {
                 key = userInfo[HYPPropertyMapperCustomRemoteKey];
             } else {
-                key = [[propertyDescription name] hyp_remoteString];
+                key = [attributeDescription.name hyp_remoteString];
             }
 
             BOOL isReservedKey = ([[self reservedKeys] containsObject:key]);
