@@ -11,7 +11,7 @@
 
 @interface NSManagedObject (PrivateMethods)
 
-- (NSAttributeDescription *)attributeDescriptionForKey:(NSString *)key;
+- (NSAttributeDescription *)attributeDescriptionForRemoteKey(NSString *)key;
 
 - (id)valueForAttributeDescription:(id)attributeDescription
                   usingRemoteValue:(id)removeValue;
@@ -38,8 +38,8 @@
 
 - (void)testAttributeDescriptionForKey {
     Market *market = [self entityNamed:@"Market"];
-    [market attributeDescriptionForKey:@"uniqueId"];
-    [market attributeDescriptionForKey:@"otherAttribute"];
+    [market attributeDescriptionForRemoteKey@"uniqueId"];
+    [market attributeDescriptionForRemoteKey@"otherAttribute"];
 }
 
 - (void)testValueForAttributeDescription {
