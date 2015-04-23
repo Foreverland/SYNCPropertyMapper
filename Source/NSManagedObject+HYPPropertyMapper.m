@@ -9,7 +9,8 @@ static NSString * const HYPPropertyMapperKeyValue = @"value";
 static NSString * const HYPPropertyMapperNestedAttributesKey = @"attributes";
 static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
 
-static NSString * const HYPPropertyMapperDateNoTimeStampFormat = @"YYYY-MM-DD";
+static NSString * const HYPPropertyMapperDateNoTimestampFormat = @"YYYY-MM-DD";
+static NSString * const HYPPropertyMapperTimestamp = @"T00:00:00+00:00";
 
 @interface NSDate (HYPISO8601)
 
@@ -222,9 +223,12 @@ static NSString * const HYPPropertyMapperDateNoTimeStampFormat = @"YYYY-MM-DD";
     } else if (numberValueAndStringAttribute) {
         value = [NSString stringWithFormat:@"%@", remoteValue];
     } else if (stringValueAndDateAttribute) {
-        if ([remoteValue length] == [HYPPropertyMapperDateNoTimeStampFormat length]) {
-            remoteValue = [NSString stringWithFormat:@"%@%@", remoteValue, @"T00:00:00+00:00"];
+        if ([remoteValue length] == [HYPPropertyMapperDateNoTimestampFormat length]) {
+            NSMutableString *mutableRemoteValue = [remoteValue mutableCopy];
+            [mutableRemoteValue appendString:HYPPropertyMapperTimestamp];
+            remoteValue = [mutableRemoteValue copy];
         }
+
         value = [NSDate hyp_dateFromISO8601String:remoteValue];
     } else if (arrayOrDictionaryValueAndDataAttribute) {
         value = [NSKeyedArchiver archivedDataWithRootObject:remoteValue];
