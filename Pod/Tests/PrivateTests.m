@@ -36,26 +36,31 @@
     return dataStack.mainContext;
 }
 
-- (void)testAttributeDescriptionForKey {
-    NSAttributeDescription *attributeDescription;
-
+- (void)testAttributeDescriptionForKeyA {
     Company *company = [self entityNamed:@"Company"];
+    NSAttributeDescription *attributeDescription;
 
     attributeDescription = [company attributeDescriptionForRemoteKey:@"name"];
     XCTAssertEqualObjects(attributeDescription.name, @"name");
 
     attributeDescription = [company attributeDescriptionForRemoteKey:@"id"];
     XCTAssertEqualObjects(attributeDescription.name, @"remoteID");
+}
 
+- (void)testAttributeDescriptionForKeyB {
     Market *market = [self entityNamed:@"Market"];
+    NSAttributeDescription *attributeDescription;
 
     attributeDescription = [market attributeDescriptionForRemoteKey:@"id"];
     XCTAssertEqualObjects(attributeDescription.name, @"uniqueId");
 
     attributeDescription = [market attributeDescriptionForRemoteKey:@"other_attribute"];
     XCTAssertEqualObjects(attributeDescription.name, @"otherAttribute");
+}
 
+- (void)testAttributeDescriptionForKeyC {
     User *user = [self entityNamed:@"User"];
+    NSAttributeDescription *attributeDescription;
 
     attributeDescription = [user attributeDescriptionForRemoteKey:@"age_of_person"];
     XCTAssertEqualObjects(attributeDescription.name, @"age");
