@@ -11,8 +11,6 @@
 
 @interface Tests : XCTestCase
 
-@property (nonatomic) User *testUser;
-
 @end
 
 @implementation Tests
@@ -29,8 +27,7 @@
                                          inManagedObjectContext:context];
 }
 
-- (User *)user {
-    DATAStack *dataStack = [self dataStack];
+- (User *)userUsingDataStack:(DATAStack *)dataStack {
     User *user = [self entityNamed:@"User" inContext:dataStack.mainContext];
     user.age = @25;
     user.birthDate = [NSDate date];
@@ -92,16 +89,12 @@
     return company;
 }
 
-- (void)setUp {
-    [super setUp];
-
-    self.testUser = [self user];
-}
-
 #pragma mark hyp_dictionary
 
 - (void)testDictionaryKeysNotNil {
-    NSDictionary *dictionary = [self.testUser hyp_dictionary];
+    DATAStack *dataStack = [self dataStack];
+    User *user = [self userUsingDataStack:dataStack];
+    NSDictionary *dictionary = [user hyp_dictionary];
 
     XCTAssertNotNil(dictionary[@"age_of_person"]);
 
@@ -135,7 +128,9 @@
 }
 
 - (void)testDictionaryValuesKindOfClass {
-    NSDictionary *dictionary = [self.testUser hyp_dictionary];
+    DATAStack *dataStack = [self dataStack];
+    User *user = [self userUsingDataStack:dataStack];
+    NSDictionary *dictionary = [user hyp_dictionary];
 
     XCTAssertTrue([dictionary[@"age_of_person"] isKindOfClass:[NSNumber class]]);
 
@@ -169,7 +164,9 @@
 }
 
 - (void)testDictionaryValues {
-    NSDictionary *dictionary = [self.testUser hyp_dictionary];
+    DATAStack *dataStack = [self dataStack];
+    User *user = [self userUsingDataStack:dataStack];
+    NSDictionary *dictionary = [user hyp_dictionary];
 
     XCTAssertEqualObjects([dictionary valueForKey:@"age_of_person"], @25);
     XCTAssertEqualObjects([dictionary valueForKey:@"contract_id"], @235);
@@ -205,55 +202,65 @@
     NSDictionary *values = @{@"first_name" : @"Jane",
                              @"last_name"  : @"Hyperseed"};
 
-    [self.testUser hyp_fillWithDictionary:values];
+    DATAStack *dataStack = [self dataStack];
+    User *user = [self userUsingDataStack:dataStack];
+    [user hyp_fillWithDictionary:values];
 
-    XCTAssertEqualObjects([self.testUser valueForKey:@"firstName"], values[@"first_name"]);
+    XCTAssertEqualObjects([user valueForKey:@"firstName"], values[@"first_name"]);
 }
 
 - (void)testUpdatingExistingValueWithNull {
     NSDictionary *values = @{@"first_name" : @"Jane",
                              @"last_name"  : @"Hyperseed"};
 
-    [self.testUser hyp_fillWithDictionary:values];
+    DATAStack *dataStack = [self dataStack];
+    User *user = [self userUsingDataStack:dataStack];
+    [user hyp_fillWithDictionary:values];
 
     NSDictionary *updatedValues = @{@"first_name" : [NSNull new],
                                     @"last_name"  : @"Hyperseed"};
 
-    [self.testUser hyp_fillWithDictionary:updatedValues];
+    [user hyp_fillWithDictionary:updatedValues];
 
-    XCTAssertNil([self.testUser valueForKey:@"firstName"]);
+    XCTAssertNil([user valueForKey:@"firstName"]);
 }
 
 - (void)testAgeNumber {
     NSDictionary *values = @{@"age" : @24};
 
-    [self.testUser hyp_fillWithDictionary:values];
+    DATAStack *dataStack = [self dataStack];
+    User *user = [self userUsingDataStack:dataStack];
+    [user hyp_fillWithDictionary:values];
 
-    XCTAssertEqualObjects([self.testUser valueForKey:@"age"], values[@"age"]);
+    XCTAssertEqualObjects([user valueForKey:@"age"], values[@"age"]);
 }
 
 - (void)testAgeString {
     NSDictionary *values = @{@"age" : @"24"};
 
-    [self.testUser hyp_fillWithDictionary:values];
+    DATAStack *dataStack = [self dataStack];
+    User *user = [self userUsingDataStack:dataStack];
+    [user hyp_fillWithDictionary:values];
 
     NSNumberFormatter *formatter = [NSNumberFormatter new];
     NSNumber *age = [formatter numberFromString:values[@"age"]];
 
-    XCTAssertEqualObjects([self.testUser valueForKey:@"age"], age);
+    XCTAssertEqualObjects([user valueForKey:@"age"], age);
 }
 
 - (void)testBornDate {
     NSDictionary *values = @{@"birth_date" : @"1989-02-14T00:00:00+00:00"};
 
-    [self.testUser hyp_fillWithDictionary:values];
+    DATAStack *dataStack = [self dataStack];
+    User *user = [self userUsingDataStack:dataStack];
+    [user hyp_fillWithDictionary:values];
 
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     dateFormat.dateFormat = @"yyyy-MM-dd";
     dateFormat.timeZone = [NSTimeZone timeZoneWithName:@"GMT"];
     NSDate *date = [dateFormat dateFromString:@"1989-02-14"];
 
-    XCTAssertEqualObjects([self.testUser valueForKey:@"birthDate"], date);
+    XCTAssertEqualObjects([user valueForKey:@"birthDate"], date);
 }
 
 - (void)testUpdate {
@@ -261,15 +268,17 @@
                              @"last_name"  : @"Hyperseed",
                              @"age" : @30};
 
-    [self.testUser hyp_fillWithDictionary:values];
+    DATAStack *dataStack = [self dataStack];
+    User *user = [self userUsingDataStack:dataStack];
+    [user hyp_fillWithDictionary:values];
 
     NSDictionary *updatedValues = @{@"first_name" : @"Jeanet"};
 
-    [self.testUser hyp_fillWithDictionary:updatedValues];
+    [user hyp_fillWithDictionary:updatedValues];
 
-    XCTAssertEqualObjects([self.testUser valueForKey:@"firstName"], updatedValues[@"first_name"]);
+    XCTAssertEqualObjects([user valueForKey:@"firstName"], updatedValues[@"first_name"]);
 
-    XCTAssertEqualObjects([self.testUser valueForKey:@"lastName"], values[@"last_name"]);
+    XCTAssertEqualObjects([user valueForKey:@"lastName"], values[@"last_name"]);
 }
 
 - (void)testUpdateIgnoringEqualValues {
@@ -277,25 +286,29 @@
                              @"last_name"  : @"Hyperseed",
                              @"age" : @30};
 
-    [self.testUser hyp_fillWithDictionary:values];
+    DATAStack *dataStack = [self dataStack];
+    User *user = [self userUsingDataStack:dataStack];
+    [user hyp_fillWithDictionary:values];
 
-    [self.testUser.managedObjectContext save:nil];
+    [user.managedObjectContext save:nil];
 
     NSDictionary *updatedValues = @{@"first_name" : @"Jane",
                                     @"last_name"  : @"Hyperseed",
                                     @"age" : @30};
 
-    [self.testUser hyp_fillWithDictionary:updatedValues];
+    [user hyp_fillWithDictionary:updatedValues];
 
-    XCTAssertFalse(self.testUser.hasChanges);
+    XCTAssertFalse(user.hasChanges);
 }
 
 - (void)testAcronyms {
     NSDictionary *values = @{@"contract_id" : @100};
 
-    [self.testUser hyp_fillWithDictionary:values];
+    DATAStack *dataStack = [self dataStack];
+    User *user = [self userUsingDataStack:dataStack];
+    [user hyp_fillWithDictionary:values];
 
-    XCTAssertEqualObjects([self.testUser valueForKey:@"contractID"], @100);
+    XCTAssertEqualObjects([user valueForKey:@"contractID"], @100);
 }
 
 - (void)testArrayStorage {
@@ -303,24 +316,28 @@
                                             @"soccer",
                                             @"code"]};
 
-    [self.testUser hyp_fillWithDictionary:values];
+    DATAStack *dataStack = [self dataStack];
+    User *user = [self userUsingDataStack:dataStack];
+    [user hyp_fillWithDictionary:values];
 
-    XCTAssertEqualObjects([NSKeyedUnarchiver unarchiveObjectWithData:self.testUser.hobbies][0], @"football");
+    XCTAssertEqualObjects([NSKeyedUnarchiver unarchiveObjectWithData:user.hobbies][0], @"football");
 
-    XCTAssertEqualObjects([NSKeyedUnarchiver unarchiveObjectWithData:self.testUser.hobbies][1], @"soccer");
+    XCTAssertEqualObjects([NSKeyedUnarchiver unarchiveObjectWithData:user.hobbies][1], @"soccer");
 
-    XCTAssertEqualObjects([NSKeyedUnarchiver unarchiveObjectWithData:self.testUser.hobbies][2], @"code");
+    XCTAssertEqualObjects([NSKeyedUnarchiver unarchiveObjectWithData:user.hobbies][2], @"code");
 }
 
 - (void)testDictionaryStorage {
     NSDictionary *values = @{@"expenses" : @{@"cake" : @12.50,
                                              @"juice" : @0.50}};
 
-    [self.testUser hyp_fillWithDictionary:values];
+    DATAStack *dataStack = [self dataStack];
+    User *user = [self userUsingDataStack:dataStack];
+    [user hyp_fillWithDictionary:values];
 
-    XCTAssertEqualObjects([NSKeyedUnarchiver unarchiveObjectWithData:self.testUser.expenses][@"cake"], @12.50);
+    XCTAssertEqualObjects([NSKeyedUnarchiver unarchiveObjectWithData:user.expenses][@"cake"], @12.50);
 
-    XCTAssertEqualObjects([NSKeyedUnarchiver unarchiveObjectWithData:self.testUser.expenses][@"juice"], @0.50);
+    XCTAssertEqualObjects([NSKeyedUnarchiver unarchiveObjectWithData:user.expenses][@"juice"], @0.50);
 }
 
 - (void)testReservedWords {
@@ -328,13 +345,15 @@
                              @"description": @"This is the description?",
                              @"type": @"user type"};
 
-    [self.testUser hyp_fillWithDictionary:values];
+    DATAStack *dataStack = [self dataStack];
+    User *user = [self userUsingDataStack:dataStack];
+    [user hyp_fillWithDictionary:values];
 
-    XCTAssertEqualObjects([self.testUser valueForKey:@"remoteID"], @100);
+    XCTAssertEqualObjects([user valueForKey:@"remoteID"], @100);
 
-    XCTAssertEqualObjects([self.testUser valueForKey:@"userDescription"], @"This is the description?");
+    XCTAssertEqualObjects([user valueForKey:@"userDescription"], @"This is the description?");
 
-    XCTAssertEqualObjects([self.testUser valueForKey:@"userType"], @"user type");
+    XCTAssertEqualObjects([user valueForKey:@"userType"], @"user type");
 }
 
 - (void)testCreatedAt {
@@ -342,7 +361,9 @@
                              @"updated_at" : @"2014-01-02",
                              @"number_of_attendes": @20};
 
-    [self.testUser hyp_fillWithDictionary:values];
+    DATAStack *dataStack = [self dataStack];
+    User *user = [self userUsingDataStack:dataStack];
+    [user hyp_fillWithDictionary:values];
 
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     dateFormat.dateFormat = @"yyyy-MM-dd";
@@ -350,29 +371,33 @@
     NSDate *createdAt = [dateFormat dateFromString:@"2014-01-01"];
     NSDate *updatedAt = [dateFormat dateFromString:@"2014-01-02"];
 
-    XCTAssertEqualObjects([self.testUser valueForKey:@"createdAt"], createdAt);
+    XCTAssertEqualObjects([user valueForKey:@"createdAt"], createdAt);
 
-    XCTAssertEqualObjects([self.testUser valueForKey:@"updatedAt"], updatedAt);
+    XCTAssertEqualObjects([user valueForKey:@"updatedAt"], updatedAt);
 
-    XCTAssertEqualObjects([self.testUser valueForKey:@"numberOfAttendes"], @20);
+    XCTAssertEqualObjects([user valueForKey:@"numberOfAttendes"], @20);
 }
 
 - (void)testCustomRemoteKeys {
     NSDictionary *values = @{@"age_of_person" : @20,
                              @"driver_identifier_str" : @"123"};
 
-    [self.testUser hyp_fillWithDictionary:values];
+    DATAStack *dataStack = [self dataStack];
+    User *user = [self userUsingDataStack:dataStack];
+    [user hyp_fillWithDictionary:values];
 
-    XCTAssertEqualObjects(self.testUser.age, @20);
-    XCTAssertEqualObjects(self.testUser.driverIdentifier, @"123");
+    XCTAssertEqualObjects(user.age, @20);
+    XCTAssertEqualObjects(user.driverIdentifier, @"123");
 }
 
 - (void)testIgnoredTransformables {
     NSDictionary *values = @{@"ignoreTransformable" : @"I'm going to be ignored"};
 
-    [self.testUser hyp_fillWithDictionary:values];
+    DATAStack *dataStack = [self dataStack];
+    User *user = [self userUsingDataStack:dataStack];
+    [user hyp_fillWithDictionary:values];
 
-    XCTAssertNil(self.testUser.ignoreTransformable);
+    XCTAssertNil(user.ignoreTransformable);
 }
 
 - (void)testCustomKey {
