@@ -73,7 +73,8 @@
     return user;
 }
 
-- (Note *)noteWithID:(NSNumber *)remoteID inContext:(NSManagedObjectContext *)context {
+- (Note *)noteWithID:(NSNumber *)remoteID
+           inContext:(NSManagedObjectContext *)context {
     Note *note = [self entityNamed:@"Note" inContext:context];
     note.remoteID = remoteID;
     note.text = [NSString stringWithFormat:@"This is the text for the note %@", remoteID];
@@ -81,7 +82,9 @@
     return note;
 }
 
-- (Company *)companyWithID:(NSNumber *)remoteID andName:(NSString *)name inContext:(NSManagedObjectContext *)context {
+- (Company *)companyWithID:(NSNumber *)remoteID
+                   andName:(NSString *)name
+                 inContext:(NSManagedObjectContext *)context {
     Company *company = [self entityNamed:@"Company" inContext:context];
     company.remoteID = remoteID;
     company.name = name;
