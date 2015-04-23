@@ -176,7 +176,7 @@ static NSString * const HYPPropertyMapperTimestamp = @"T00:00:00+00:00";
 }
 
 - (id)valueForAttributeDescription:(NSAttributeDescription *)attributeDescription
-                  usingRemoteValue:(id)removeValue {
+                  usingRemoteValue:(id)remoteValue {
     id value;
 
     Class attributedClass = NSClassFromString([attributeDescription attributeValueClassName]);
