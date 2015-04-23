@@ -32,20 +32,22 @@ static NSString * const HYPPropertyMapperTimestamp = @"T00:00:00+00:00";
         }
 
         NSAttributeDescription *attributeDescription = [self attributeDescriptionForRemoteKey:key];
-        NSString *localKey = attributeDescription.name;
+        if (attributeDescription) {
+            NSString *localKey = attributeDescription.name;
 
-        BOOL valueExists = (value &&
-                            ![value isKindOfClass:[NSNull class]]);
-        if (valueExists) {
-            id processedValue = [self valueForAttributeDescription:attributeDescription
-                                                  usingRemoteValue:value];
+            BOOL valueExists = (value &&
+                                ![value isKindOfClass:[NSNull class]]);
+            if (valueExists) {
+                id processedValue = [self valueForAttributeDescription:attributeDescription
+                                                      usingRemoteValue:value];
 
-            BOOL valueHasChanged = (![[self valueForKey:localKey] isEqual:processedValue]);
-            if (valueHasChanged) {
-                [self setValue:processedValue forKey:localKey];
+                BOOL valueHasChanged = (![[self valueForKey:localKey] isEqual:processedValue]);
+                if (valueHasChanged) {
+                    [self setValue:processedValue forKey:localKey];
+                }
+            } else if ([self valueForKey:localKey]) {
+                [self setValue:nil forKey:localKey];
             }
-        } else if ([self valueForKey:localKey]) {
-            [self setValue:nil forKey:localKey];
         }
     }
 }
