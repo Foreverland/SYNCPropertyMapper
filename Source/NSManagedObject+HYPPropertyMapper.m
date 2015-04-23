@@ -220,6 +220,9 @@ static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
     } else if (numberValueAndStringAttribute) {
         value = [NSString stringWithFormat:@"%@", removeValue];
     } else if (stringValueAndDateAttribute) {
+        if ([removeValue length] == [@"2014-01-02" length]) {
+            removeValue = [NSString stringWithFormat:@"%@%@", removeValue, @"T00:00:00+00:00"];
+        }
         value = [NSDate hyp_dateFromISO8601String:removeValue];
     } else if (arrayOrDictionaryValueAndDataAttribute) {
         value = [NSKeyedArchiver archivedDataWithRootObject:removeValue];
