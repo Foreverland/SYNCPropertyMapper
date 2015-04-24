@@ -176,9 +176,9 @@ static NSString * const HYPPropertyMapperTimestamp = @"T00:00:00+00:00";
     NSString *localKey = attributeDescription.name;
     NSString *remoteKey;
 
-    BOOL hasCustomMapping = (userInfo[HYPPropertyMapperCustomRemoteKey]);
-    if (hasCustomMapping) {
-        remoteKey = userInfo[HYPPropertyMapperCustomRemoteKey];
+    NSString *customRemoteKey = userInfo[HYPPropertyMapperCustomRemoteKey];
+    if (customRemoteKey) {
+        remoteKey = customRemoteKey;
     } else if ([localKey isEqualToString:HYPPropertyMapperDefaultLocalValue]) {
         remoteKey = HYPPropertyMapperDefaultRemoteValue;
     } else {
