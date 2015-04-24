@@ -2,11 +2,11 @@
 
 #import "NSString+HYPNetworking.h"
 
-static NSString *const HYPPropertyMapperDefaultRemoteValue = @"id";
-static NSString *const HYPPropertyMapperDefaultLocalValue = @"remoteID";
+static NSString * const HYPPropertyMapperDefaultRemoteValue = @"id";
+static NSString * const HYPPropertyMapperDefaultLocalValue = @"remoteID";
 
-static NSString *const HYPPropertyMapperNestedAttributesKey = @"attributes";
-static NSString *const HYPPropertyMapperDestroyKey = @"destroy";
+static NSString * const HYPPropertyMapperNestedAttributesKey = @"attributes";
+static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
 
 static NSString * const HYPPropertyMapperDateNoTimestampFormat = @"YYYY-MM-DD";
 static NSString * const HYPPropertyMapperTimestamp = @"T00:00:00+00:00";
