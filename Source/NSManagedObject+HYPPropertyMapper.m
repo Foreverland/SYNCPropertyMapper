@@ -66,8 +66,8 @@ static NSString * const HYPPropertyMapperTimestamp = @"T00:00:00+00:00";
                 value = [NSNull null];
             }
 
-            NSString *key = [self remoteKeyForAttributeDescription:attributeDescription];
-            managedObjectAttributes[key] = value;
+            NSString *remoteKey = [self remoteKeyForAttributeDescription:attributeDescription];
+            managedObjectAttributes[remoteKey] = value;
 
         } else if ([propertyDescription isKindOfClass:[NSRelationshipDescription class]]) {
             NSString *relationshipName = [propertyDescription name];
@@ -94,7 +94,7 @@ static NSString * const HYPPropertyMapperTimestamp = @"T00:00:00+00:00";
                         }
 
                         NSString *attribute = [propertyDescription name];
-                        NSString *localKey = [HYPPropertyMapperDefaultLocalValue hyp_localString];
+                        NSString *localKey = HYPPropertyMapperDefaultLocalValue;
                         BOOL attributeIsKey = ([localKey isEqualToString:attribute]);
 
                         NSString *key;
