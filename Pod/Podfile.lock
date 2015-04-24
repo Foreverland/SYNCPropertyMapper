@@ -1,10 +1,16 @@
 PODS:
+  - DATAStack (3.0.4):
+    - NSObject-HYPTesting (~> 1.2)
+  - NSObject-HYPTesting (1.2)
   - NSString-HYPNetworking (0.3.2)
 
 DEPENDENCIES:
+  - DATAStack
   - NSString-HYPNetworking
 
 SPEC CHECKSUMS:
+  DATAStack: de58e278b0487ff5a508d158cc74dd8b5e302389
+  NSObject-HYPTesting: fadde70c75061b731b313c390e20777aed0a914d
   NSString-HYPNetworking: f95766d4dc5693b45a0331ab8cf3a0b998f38cd7
 
 COCOAPODS: 0.36.4

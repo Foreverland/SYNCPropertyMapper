@@ -6,11 +6,10 @@
 #import "User.h"
 #import "Note.h"
 #import "Company.h"
+#import "Market.h"
+#import "DATAStack.h"
 
 @interface Tests : XCTestCase
-
-@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
-@property (nonatomic, strong) User *testUser;
 
 @end
 
@@ -18,27 +17,18 @@
 
 #pragma mark - Set up
 
-+ (NSManagedObjectContext *)managedObjectContextForTests
-{
-    NSManagedObjectModel *model = [NSManagedObjectModel mergedModelFromBundles:[NSBundle allBundles]];
-    NSPersistentStoreCoordinator *psc = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:model];
-    NSPersistentStore *store = [psc addPersistentStoreWithType:NSInMemoryStoreType
-                                                 configuration:nil
-                                                           URL:nil
-                                                       options:nil
-                                                         error:nil];
-    NSAssert(store, @"Should have a store by now");
-
-    NSManagedObjectContext *moc = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
-    moc.persistentStoreCoordinator = psc;
-
-    return moc;
+- (DATAStack *)dataStack {
+    return [[DATAStack alloc] initWithModelName:@"Model"
+                                         bundle:[NSBundle bundleForClass:[self class]]
+                                      storeType:DATAStackInMemoryStoreType];
+}
+- (id)entityNamed:(NSString *)entityName inContext:(NSManagedObjectContext *)context {
+    return [NSEntityDescription insertNewObjectForEntityForName:entityName
+                                         inManagedObjectContext:context];
 }
 
-- (User *)user
-{
-    User *user = [NSEntityDescription insertNewObjectForEntityForName:@"User"
-                                               inManagedObjectContext:self.managedObjectContext];
+- (User *)userUsingDataStack:(DATAStack *)dataStack {
+    User *user = [self entityNamed:@"User" inContext:dataStack.mainContext];
     user.age = @25;
     user.birthDate = [NSDate date];
     user.contractID = @235;
@@ -58,71 +48,53 @@
     user.expenses = [NSKeyedArchiver archivedDataWithRootObject:@{@"cake" : @12.50,
                                                                   @"juice" : @0.50}];
 
-    Note *note = [self noteWithID:@1];
+    Note *note = [self noteWithID:@1 inContext:dataStack.mainContext];
     note.user = user;
 
-    note = [self noteWithID:@14];
+    note = [self noteWithID:@14 inContext:dataStack.mainContext];
     note.user = user;
     note.destroy = @YES;
 
-    note = [self noteWithID:@7];
+    note = [self noteWithID:@7 inContext:dataStack.mainContext];
     note.user = user;
 
-    note = [NSEntityDescription insertNewObjectForEntityForName:@"Note"
-                                         inManagedObjectContext:self.managedObjectContext];
+    note = [self entityNamed:@"Note" inContext:dataStack.mainContext];
     note.user = user;
 
-    note = [NSEntityDescription insertNewObjectForEntityForName:@"Note"
-                                         inManagedObjectContext:self.managedObjectContext];
+    note = [self entityNamed:@"Note" inContext:dataStack.mainContext];
     note.user = user;
 
-    Company *company = [self companyWithID:@1 andName:@"Facebook"];
+    Company *company = [self companyWithID:@1 andName:@"Facebook" inContext:dataStack.mainContext];
     company.user = user;
 
     return user;
 }
 
 - (Note *)noteWithID:(NSNumber *)remoteID
-{
-    Note *note = [NSEntityDescription insertNewObjectForEntityForName:@"Note"
-                                               inManagedObjectContext:self.managedObjectContext];
+           inContext:(NSManagedObjectContext *)context {
+    Note *note = [self entityNamed:@"Note" inContext:context];
     note.remoteID = remoteID;
     note.text = [NSString stringWithFormat:@"This is the text for the note %@", remoteID];
 
     return note;
 }
 
-- (Company *)companyWithID:(NSNumber *)remoteID andName:(NSString *)name
-{
-    Company *company = [NSEntityDescription insertNewObjectForEntityForName:@"Company"
-                                                     inManagedObjectContext:self.managedObjectContext];
+- (Company *)companyWithID:(NSNumber *)remoteID
+                   andName:(NSString *)name
+                 inContext:(NSManagedObjectContext *)context {
+    Company *company = [self entityNamed:@"Company" inContext:context];
     company.remoteID = remoteID;
     company.name = name;
 
     return company;
 }
 
-- (void)setUp
-{
-    [super setUp];
-
-    self.managedObjectContext = [Tests managedObjectContextForTests];
-
-    self.testUser = [self user];
-}
-
-- (void)tearDown
-{
-    [self.managedObjectContext rollback];
-
-    [super tearDown];
-}
-
 #pragma mark hyp_dictionary
 
-- (void)testDictionaryKeysNotNil
-{
-    NSDictionary *dictionary = [self.testUser hyp_dictionary];
+- (void)testDictionaryKeysNotNil {
+    DATAStack *dataStack = [self dataStack];
+    User *user = [self userUsingDataStack:dataStack];
+    NSDictionary *dictionary = [user hyp_dictionary];
 
     XCTAssertNotNil(dictionary[@"age_of_person"]);
 
@@ -155,9 +127,10 @@
     XCTAssertNotNil(dictionary[@"expenses"]);
 }
 
-- (void)testDictionaryValuesKindOfClass
-{
-    NSDictionary *dictionary = [self.testUser hyp_dictionary];
+- (void)testDictionaryValuesKindOfClass {
+    DATAStack *dataStack = [self dataStack];
+    User *user = [self userUsingDataStack:dataStack];
+    NSDictionary *dictionary = [user hyp_dictionary];
 
     XCTAssertTrue([dictionary[@"age_of_person"] isKindOfClass:[NSNumber class]]);
 
@@ -190,9 +163,10 @@
     XCTAssertTrue([dictionary[@"expenses"] isKindOfClass:[NSData class]]);
 }
 
-- (void)testDictionaryValues
-{
-    NSDictionary *dictionary = [self.testUser hyp_dictionary];
+- (void)testDictionaryValues {
+    DATAStack *dataStack = [self dataStack];
+    User *user = [self userUsingDataStack:dataStack];
+    NSDictionary *dictionary = [user hyp_dictionary];
 
     XCTAssertEqualObjects([dictionary valueForKey:@"age_of_person"], @25);
     XCTAssertEqualObjects([dictionary valueForKey:@"contract_id"], @235);
@@ -224,160 +198,172 @@
 
 #pragma mark - hyp_fillWithDictionary
 
-- (void)testFillManagedObjectWithDictionary
-{
+- (void)testFillManagedObjectWithDictionary {
     NSDictionary *values = @{@"first_name" : @"Jane",
                              @"last_name"  : @"Hyperseed"};
 
-    [self.testUser hyp_fillWithDictionary:values];
+    DATAStack *dataStack = [self dataStack];
+    User *user = [self userUsingDataStack:dataStack];
+    [user hyp_fillWithDictionary:values];
 
-    XCTAssertEqualObjects([self.testUser valueForKey:@"firstName"], values[@"first_name"]);
+    XCTAssertEqualObjects([user valueForKey:@"firstName"], values[@"first_name"]);
 }
 
-- (void)testUpdatingExistingValueWithNull
-{
+- (void)testUpdatingExistingValueWithNull {
     NSDictionary *values = @{@"first_name" : @"Jane",
                              @"last_name"  : @"Hyperseed"};
 
-    [self.testUser hyp_fillWithDictionary:values];
+    DATAStack *dataStack = [self dataStack];
+    User *user = [self userUsingDataStack:dataStack];
+    [user hyp_fillWithDictionary:values];
 
     NSDictionary *updatedValues = @{@"first_name" : [NSNull new],
                                     @"last_name"  : @"Hyperseed"};
 
-    [self.testUser hyp_fillWithDictionary:updatedValues];
+    [user hyp_fillWithDictionary:updatedValues];
 
-    XCTAssertNil([self.testUser valueForKey:@"firstName"]);
+    XCTAssertNil([user valueForKey:@"firstName"]);
 }
 
-- (void)testAgeNumber
-{
+- (void)testAgeNumber {
     NSDictionary *values = @{@"age" : @24};
 
-    [self.testUser hyp_fillWithDictionary:values];
+    DATAStack *dataStack = [self dataStack];
+    User *user = [self userUsingDataStack:dataStack];
+    [user hyp_fillWithDictionary:values];
 
-    XCTAssertEqualObjects([self.testUser valueForKey:@"age"], values[@"age"]);
+    XCTAssertEqualObjects([user valueForKey:@"age"], values[@"age"]);
 }
 
-- (void)testAgeString
-{
+- (void)testAgeString {
     NSDictionary *values = @{@"age" : @"24"};
 
-    [self.testUser hyp_fillWithDictionary:values];
+    DATAStack *dataStack = [self dataStack];
+    User *user = [self userUsingDataStack:dataStack];
+    [user hyp_fillWithDictionary:values];
 
     NSNumberFormatter *formatter = [NSNumberFormatter new];
     NSNumber *age = [formatter numberFromString:values[@"age"]];
 
-    XCTAssertEqualObjects([self.testUser valueForKey:@"age"], age);
+    XCTAssertEqualObjects([user valueForKey:@"age"], age);
 }
 
-- (void)testBornDate
-{
+- (void)testBornDate {
     NSDictionary *values = @{@"birth_date" : @"1989-02-14T00:00:00+00:00"};
 
-    [self.testUser hyp_fillWithDictionary:values];
+    DATAStack *dataStack = [self dataStack];
+    User *user = [self userUsingDataStack:dataStack];
+    [user hyp_fillWithDictionary:values];
 
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     dateFormat.dateFormat = @"yyyy-MM-dd";
     dateFormat.timeZone = [NSTimeZone timeZoneWithName:@"GMT"];
     NSDate *date = [dateFormat dateFromString:@"1989-02-14"];
 
-    XCTAssertEqualObjects([self.testUser valueForKey:@"birthDate"], date);
+    XCTAssertEqualObjects([user valueForKey:@"birthDate"], date);
 }
 
-- (void)testUpdate
-{
+- (void)testUpdate {
     NSDictionary *values = @{@"first_name" : @"Jane",
                              @"last_name"  : @"Hyperseed",
                              @"age" : @30};
 
-    [self.testUser hyp_fillWithDictionary:values];
+    DATAStack *dataStack = [self dataStack];
+    User *user = [self userUsingDataStack:dataStack];
+    [user hyp_fillWithDictionary:values];
 
     NSDictionary *updatedValues = @{@"first_name" : @"Jeanet"};
 
-    [self.testUser hyp_fillWithDictionary:updatedValues];
+    [user hyp_fillWithDictionary:updatedValues];
 
-    XCTAssertEqualObjects([self.testUser valueForKey:@"firstName"], updatedValues[@"first_name"]);
+    XCTAssertEqualObjects([user valueForKey:@"firstName"], updatedValues[@"first_name"]);
 
-    XCTAssertEqualObjects([self.testUser valueForKey:@"lastName"], values[@"last_name"]);
+    XCTAssertEqualObjects([user valueForKey:@"lastName"], values[@"last_name"]);
 }
 
-- (void)testUpdateIgnoringEqualValues
-{
+- (void)testUpdateIgnoringEqualValues {
     NSDictionary *values = @{@"first_name" : @"Jane",
                              @"last_name"  : @"Hyperseed",
                              @"age" : @30};
 
-    [self.testUser hyp_fillWithDictionary:values];
+    DATAStack *dataStack = [self dataStack];
+    User *user = [self userUsingDataStack:dataStack];
+    [user hyp_fillWithDictionary:values];
 
-    [self.testUser.managedObjectContext save:nil];
+    [user.managedObjectContext save:nil];
 
     NSDictionary *updatedValues = @{@"first_name" : @"Jane",
                                     @"last_name"  : @"Hyperseed",
                                     @"age" : @30};
 
-    [self.testUser hyp_fillWithDictionary:updatedValues];
+    [user hyp_fillWithDictionary:updatedValues];
 
-    XCTAssertFalse(self.testUser.hasChanges);
+    XCTAssertFalse(user.hasChanges);
 }
 
-- (void)testAcronyms
-{
+- (void)testAcronyms {
     NSDictionary *values = @{@"contract_id" : @100};
 
-    [self.testUser hyp_fillWithDictionary:values];
+    DATAStack *dataStack = [self dataStack];
+    User *user = [self userUsingDataStack:dataStack];
+    [user hyp_fillWithDictionary:values];
 
-    XCTAssertEqualObjects([self.testUser valueForKey:@"contractID"], @100);
+    XCTAssertEqualObjects([user valueForKey:@"contractID"], @100);
 }
 
-- (void)testArrayStorage
-{
+- (void)testArrayStorage {
     NSDictionary *values = @{@"hobbies" : @[@"football",
                                             @"soccer",
                                             @"code"]};
 
-    [self.testUser hyp_fillWithDictionary:values];
+    DATAStack *dataStack = [self dataStack];
+    User *user = [self userUsingDataStack:dataStack];
+    [user hyp_fillWithDictionary:values];
 
-    XCTAssertEqualObjects([NSKeyedUnarchiver unarchiveObjectWithData:self.testUser.hobbies][0], @"football");
+    XCTAssertEqualObjects([NSKeyedUnarchiver unarchiveObjectWithData:user.hobbies][0], @"football");
 
-    XCTAssertEqualObjects([NSKeyedUnarchiver unarchiveObjectWithData:self.testUser.hobbies][1], @"soccer");
+    XCTAssertEqualObjects([NSKeyedUnarchiver unarchiveObjectWithData:user.hobbies][1], @"soccer");
 
-    XCTAssertEqualObjects([NSKeyedUnarchiver unarchiveObjectWithData:self.testUser.hobbies][2], @"code");
+    XCTAssertEqualObjects([NSKeyedUnarchiver unarchiveObjectWithData:user.hobbies][2], @"code");
 }
 
-- (void)testDictionaryStorage
-{
+- (void)testDictionaryStorage {
     NSDictionary *values = @{@"expenses" : @{@"cake" : @12.50,
                                              @"juice" : @0.50}};
 
-    [self.testUser hyp_fillWithDictionary:values];
+    DATAStack *dataStack = [self dataStack];
+    User *user = [self userUsingDataStack:dataStack];
+    [user hyp_fillWithDictionary:values];
 
-    XCTAssertEqualObjects([NSKeyedUnarchiver unarchiveObjectWithData:self.testUser.expenses][@"cake"], @12.50);
+    XCTAssertEqualObjects([NSKeyedUnarchiver unarchiveObjectWithData:user.expenses][@"cake"], @12.50);
 
-    XCTAssertEqualObjects([NSKeyedUnarchiver unarchiveObjectWithData:self.testUser.expenses][@"juice"], @0.50);
+    XCTAssertEqualObjects([NSKeyedUnarchiver unarchiveObjectWithData:user.expenses][@"juice"], @0.50);
 }
 
-- (void)testReservedWords
-{
+- (void)testReservedWords {
     NSDictionary *values = @{@"id": @100,
                              @"description": @"This is the description?",
                              @"type": @"user type"};
 
-    [self.testUser hyp_fillWithDictionary:values];
+    DATAStack *dataStack = [self dataStack];
+    User *user = [self userUsingDataStack:dataStack];
+    [user hyp_fillWithDictionary:values];
 
-    XCTAssertEqualObjects([self.testUser valueForKey:@"remoteID"], @100);
+    XCTAssertEqualObjects([user valueForKey:@"remoteID"], @100);
 
-    XCTAssertEqualObjects([self.testUser valueForKey:@"userDescription"], @"This is the description?");
+    XCTAssertEqualObjects([user valueForKey:@"userDescription"], @"This is the description?");
 
-    XCTAssertEqualObjects([self.testUser valueForKey:@"userType"], @"user type");
+    XCTAssertEqualObjects([user valueForKey:@"userType"], @"user type");
 }
 
-- (void)testCreatedAt
-{
+- (void)testCreatedAt {
     NSDictionary *values = @{@"created_at" : @"2014-01-01T00:00:00+00:00",
                              @"updated_at" : @"2014-01-02",
                              @"number_of_attendes": @20};
 
-    [self.testUser hyp_fillWithDictionary:values];
+    DATAStack *dataStack = [self dataStack];
+    User *user = [self userUsingDataStack:dataStack];
+    [user hyp_fillWithDictionary:values];
 
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     dateFormat.dateFormat = @"yyyy-MM-dd";
@@ -385,31 +371,47 @@
     NSDate *createdAt = [dateFormat dateFromString:@"2014-01-01"];
     NSDate *updatedAt = [dateFormat dateFromString:@"2014-01-02"];
 
-    XCTAssertEqualObjects([self.testUser valueForKey:@"createdAt"], createdAt);
+    XCTAssertEqualObjects([user valueForKey:@"createdAt"], createdAt);
 
-    XCTAssertEqualObjects([self.testUser valueForKey:@"updatedAt"], updatedAt);
+    XCTAssertEqualObjects([user valueForKey:@"updatedAt"], updatedAt);
 
-    XCTAssertEqualObjects([self.testUser valueForKey:@"numberOfAttendes"], @20);
+    XCTAssertEqualObjects([user valueForKey:@"numberOfAttendes"], @20);
 }
 
-- (void)testCustomRemoteKeys
-{
+- (void)testCustomRemoteKeys {
     NSDictionary *values = @{@"age_of_person" : @20,
                              @"driver_identifier_str" : @"123"};
 
-    [self.testUser hyp_fillWithDictionary:values];
+    DATAStack *dataStack = [self dataStack];
+    User *user = [self userUsingDataStack:dataStack];
+    [user hyp_fillWithDictionary:values];
 
-    XCTAssertEqualObjects(self.testUser.age, @20);
-    XCTAssertEqualObjects(self.testUser.driverIdentifier, @"123");
+    XCTAssertEqualObjects(user.age, @20);
+    XCTAssertEqualObjects(user.driverIdentifier, @"123");
 }
 
-- (void)testIgnoredTransformables
-{
+- (void)testIgnoredTransformables {
     NSDictionary *values = @{@"ignoreTransformable" : @"I'm going to be ignored"};
 
-    [self.testUser hyp_fillWithDictionary:values];
+    DATAStack *dataStack = [self dataStack];
+    User *user = [self userUsingDataStack:dataStack];
+    [user hyp_fillWithDictionary:values];
 
-    XCTAssertNil(self.testUser.ignoreTransformable);
+    XCTAssertNil(user.ignoreTransformable);
+}
+
+- (void)testCustomKey {
+    DATAStack *dataStack = [self dataStack];
+
+    NSDictionary *values = @{@"id": @"1",
+                             @"other_attribute": @"Market 1"};
+
+    Market *market = [self entityNamed:@"Market" inContext:dataStack.mainContext];
+
+    [market hyp_fillWithDictionary:values];
+
+    XCTAssertEqualObjects(market.uniqueId, @"1");
+    XCTAssertEqualObjects(market.otherAttribute, @"Market 1");
 }
 
 @end

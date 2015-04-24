@@ -3,9 +3,8 @@
 #import "NSString+HYPNetworking.h"
 
 static NSString * const HYPPropertyMapperDefaultRemoteValue = @"id";
-static NSString * const HYPPropertyMapperDefaultLocalValue = @"remote_id";
+static NSString * const HYPPropertyMapperDefaultLocalValue = @"remoteID";
 
-static NSString * const HYPPropertyMapperKeyValue = @"value";
 static NSString * const HYPPropertyMapperNestedAttributesKey = @"attributes";
 static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
 
@@ -22,8 +21,7 @@ static NSString * const HYPPropertyMapperTimestamp = @"T00:00:00+00:00";
 
 #pragma mark - Public methods
 
-- (void)hyp_fillWithDictionary:(NSDictionary *)dictionary
-{
+- (void)hyp_fillWithDictionary:(NSDictionary *)dictionary {
     for (__strong NSString *key in dictionary) {
 
         id value = [dictionary objectForKey:key];
@@ -33,84 +31,43 @@ static NSString * const HYPPropertyMapperTimestamp = @"T00:00:00+00:00";
             key = [self prefixedAttribute:key];
         }
 
-        id propertyDescription = [self propertyDescriptionForKey:key];
+        NSAttributeDescription *attributeDescription = [self attributeDescriptionForRemoteKey:key];
+        if (attributeDescription) {
+            NSString *localKey = attributeDescription.name;
 
-        for (NSString *dictionaryKey in self.entity.propertiesByName) {
-            NSDictionary *userInfo = [self.entity.propertiesByName[dictionaryKey] userInfo];
-            NSString *remoteKeyValue = userInfo[HYPPropertyMapperCustomRemoteKey];
-            BOOL hasCustomRemoteKey = (remoteKeyValue &&
-                                       ![remoteKeyValue isEqualToString:HYPPropertyMapperKeyValue] &&
-                                       [remoteKeyValue isEqualToString:key]);
-            if (hasCustomRemoteKey) {
-                propertyDescription = self.entity.propertiesByName[dictionaryKey];
-                break;
+            BOOL valueExists = (value &&
+                                ![value isKindOfClass:[NSNull class]]);
+            if (valueExists) {
+                id processedValue = [self valueForAttributeDescription:attributeDescription
+                                                      usingRemoteValue:value];
+
+                BOOL valueHasChanged = (![[self valueForKey:localKey] isEqual:processedValue]);
+                if (valueHasChanged) {
+                    [self setValue:processedValue forKey:localKey];
+                }
+            } else if ([self valueForKey:localKey]) {
+                [self setValue:nil forKey:localKey];
             }
-        }
-
-        if (!propertyDescription) {
-            continue;
-        }
-
-        NSString *localKey = [propertyDescription name];
-
-        BOOL valueExists = (value &&
-                            ![value isKindOfClass:[NSNull class]] &&
-                            [propertyDescription isKindOfClass:[NSAttributeDescription class]]);
-        if (valueExists) {
-            id processedValue = [self valueForPropertyDescription:propertyDescription
-                                                 usingRemoteValue:value];
-
-            BOOL valueHasChanged = (![[self valueForKey:localKey] isEqual:processedValue]);
-            if (valueHasChanged) {
-                [self setValue:processedValue forKey:localKey];
-            }
-        } else if ([self valueForKey:localKey]) {
-            [self setValue:nil forKey:localKey];
         }
     }
 }
 
-- (NSDictionary *)hyp_dictionary
-{
+- (NSDictionary *)hyp_dictionary {
     NSMutableDictionary *managedObjectAttributes = [NSMutableDictionary new];
 
     for (id propertyDescription in self.entity.properties) {
         if ([propertyDescription isKindOfClass:[NSAttributeDescription class]]) {
             NSAttributeDescription *attributeDescription = (NSAttributeDescription *)propertyDescription;
 
-            id value = [self valueForKey:[attributeDescription name]];
+            id value = [self valueForKey:attributeDescription.name];
             BOOL nilOrNullValue = (!value ||
                                    [value isKindOfClass:[NSNull class]]);
             if (nilOrNullValue) {
                 value = [NSNull null];
             }
 
-            NSDictionary *userInfo = [propertyDescription userInfo];
-            NSString *key;
-
-            BOOL hasCustomMapping = (userInfo[HYPPropertyMapperCustomRemoteKey] &&
-                                     ![userInfo[HYPPropertyMapperCustomRemoteKey] isEqualToString:HYPPropertyMapperKeyValue]);
-            if (hasCustomMapping) {
-                key = userInfo[HYPPropertyMapperCustomRemoteKey];
-            } else {
-                key = [[propertyDescription name] hyp_remoteString];
-            }
-
-            BOOL isReservedKey = ([[self reservedKeys] containsObject:key]);
-            if (isReservedKey) {
-                if ([key isEqualToString:HYPPropertyMapperDefaultLocalValue]) {
-                    key = HYPPropertyMapperDefaultRemoteValue;
-                } else {
-                    NSMutableString *prefixedKey = [key mutableCopy];
-                    [prefixedKey replaceOccurrencesOfString:[self remotePrefix]
-                                                 withString:@""
-                                                    options:NSCaseInsensitiveSearch
-                                                      range:NSMakeRange(0, prefixedKey.length)];
-                    key = [prefixedKey copy];
-                }
-            }
-
-            managedObjectAttributes[key] = value;
+            NSString *remoteKey = [self remoteKeyForAttributeDescription:attributeDescription];
+            managedObjectAttributes[remoteKey] = value;
 
         } else if ([propertyDescription isKindOfClass:[NSRelationshipDescription class]]) {
             NSString *relationshipName = [propertyDescription name];
@@ -137,7 +94,7 @@ static NSString * const HYPPropertyMapperTimestamp = @"T00:00:00+00:00";
                         }
 
                         NSString *attribute = [propertyDescription name];
-                        NSString *localKey = [HYPPropertyMapperDefaultLocalValue hyp_localString];
+                        NSString *localKey = HYPPropertyMapperDefaultLocalValue;
                         BOOL attributeIsKey = ([localKey isEqualToString:attribute]);
 
                         NSString *key;
@@ -173,30 +130,78 @@ static NSString * const HYPPropertyMapperTimestamp = @"T00:00:00+00:00";
 
 #pragma mark - Private methods
 
-- (id)propertyDescriptionForKey:(NSString *)key
-{
-    id foundPropertyDescription;
+- (NSAttributeDescription *)attributeDescriptionForRemoteKey:(NSString *)remoteKey {
+    __block NSAttributeDescription *foundAttributeDescription;
 
-    for (id propertyDescription in self.entity.properties) {
-        if (![propertyDescription isKindOfClass:[NSAttributeDescription class]]) {
-            continue;
-        }
+    [self.entity.properties enumerateObjectsUsingBlock:^(id propertyDescription, NSUInteger idx, BOOL *stop) {
+        if ([propertyDescription isKindOfClass:[NSAttributeDescription class]]) {
+            NSAttributeDescription *attributeDescription = (NSAttributeDescription *)propertyDescription;
 
-        if (![propertyDescription attributeValueClassName]) {
-            continue;
-        } else if ([[propertyDescription name] isEqualToString:[key hyp_localString]]) {
-            foundPropertyDescription = propertyDescription;
+            NSDictionary *userInfo = [self.entity.propertiesByName[attributeDescription.name] userInfo];
+            NSString *customRemoteKey = userInfo[HYPPropertyMapperCustomRemoteKey];
+            if (customRemoteKey.length > 0 && [customRemoteKey isEqualToString:remoteKey]) {
+                foundAttributeDescription = self.entity.propertiesByName[attributeDescription.name];
+            } else if ([attributeDescription.name isEqualToString:[remoteKey hyp_localString]]) {
+                foundAttributeDescription = attributeDescription;
+            }
+
+            if (foundAttributeDescription) {
+                *stop = YES;
+            }
         }
+    }];
+
+    if (!foundAttributeDescription) {
+        [self.entity.properties enumerateObjectsUsingBlock:^(id propertyDescription, NSUInteger idx, BOOL *stop) {
+            if ([propertyDescription isKindOfClass:[NSAttributeDescription class]]) {
+                NSAttributeDescription *attributeDescription = (NSAttributeDescription *)propertyDescription;
+
+                if ([remoteKey isEqualToString:HYPPropertyMapperDefaultRemoteValue] &&
+                    [attributeDescription.name isEqualToString:HYPPropertyMapperDefaultLocalValue]) {
+                    foundAttributeDescription = self.entity.propertiesByName[attributeDescription.name];
+                }
+
+                if (foundAttributeDescription) {
+                    *stop = YES;
+                }
+            }
+        }];
     }
 
-    return foundPropertyDescription;
+    return foundAttributeDescription;
 }
 
-- (id)valueForPropertyDescription:(id)propertyDescription usingRemoteValue:(id)remoteValue
-{
+- (NSString *)remoteKeyForAttributeDescription:(NSAttributeDescription *)attributeDescription {
+    NSDictionary *userInfo = attributeDescription.userInfo;
+    NSString *localKey = attributeDescription.name;
+    NSString *remoteKey;
+
+    BOOL hasCustomMapping = (userInfo[HYPPropertyMapperCustomRemoteKey]);
+    if (hasCustomMapping) {
+        remoteKey = userInfo[HYPPropertyMapperCustomRemoteKey];
+    } else if ([localKey isEqualToString:HYPPropertyMapperDefaultLocalValue]) {
+        remoteKey = HYPPropertyMapperDefaultRemoteValue;
+    } else {
+        remoteKey = [localKey hyp_remoteString];
+    }
+
+    BOOL isReservedKey = ([[self reservedKeys] containsObject:remoteKey]);
+    if (isReservedKey) {
+        NSMutableString *prefixedKey = [remoteKey mutableCopy];
+        [prefixedKey replaceOccurrencesOfString:[self remotePrefix]
+                                     withString:@""
+                                        options:NSCaseInsensitiveSearch
+                                          range:NSMakeRange(0, prefixedKey.length)];
+        remoteKey = [prefixedKey copy];
+    }
+
+    return remoteKey;
+}
+
+- (id)valueForAttributeDescription:(NSAttributeDescription *)attributeDescription
+                  usingRemoteValue:(id)remoteValue {
     id value;
 
-    NSAttributeDescription *attributeDescription = (NSAttributeDescription *)propertyDescription;
     Class attributedClass = NSClassFromString([attributeDescription attributeValueClassName]);
 
     if ([remoteValue isKindOfClass:attributedClass]) {
@@ -237,26 +242,15 @@ static NSString * const HYPPropertyMapperTimestamp = @"T00:00:00+00:00";
     return value;
 }
 
-- (NSString *)remotePrefix
-{
+- (NSString *)remotePrefix {
     return [NSString stringWithFormat:@"%@_", [self.entity.name lowercaseString]];
 }
 
-- (NSString *)prefixedAttribute:(NSString *)attribute
-{
-    NSString *prefixedAttribute;
-
-    if ([attribute isEqualToString:HYPPropertyMapperDefaultRemoteValue]) {
-        prefixedAttribute = HYPPropertyMapperDefaultLocalValue;
-    } else {
-        prefixedAttribute = [NSString stringWithFormat:@"%@%@", [self remotePrefix], attribute];
-    }
-
-    return prefixedAttribute;
+- (NSString *)prefixedAttribute:(NSString *)attribute {
+    return [NSString stringWithFormat:@"%@%@", [self remotePrefix], attribute];
 }
 
-- (NSArray *)reservedKeys
-{
+- (NSArray *)reservedKeys {
     NSMutableArray *keys = [NSMutableArray new];
     NSArray *reservedAttributes = [NSManagedObject reservedAttributes];
 
@@ -264,22 +258,18 @@ static NSString * const HYPPropertyMapperTimestamp = @"T00:00:00+00:00";
         [keys addObject:[self prefixedAttribute:attribute]];
     }
 
-    [keys addObject:HYPPropertyMapperDefaultLocalValue];
-
     return keys;
 }
 
-+ (NSArray *)reservedAttributes
-{
-    return @[@"id", @"type", @"description", @"signed"];
++ (NSArray *)reservedAttributes {
+    return @[@"type", @"description", @"signed"];
 }
 
 @end
 
 @implementation NSDate (HYPISO8601)
 
-+ (NSDate *)hyp_dateFromISO8601String:(NSString *)iso8601
-{
++ (NSDate *)hyp_dateFromISO8601String:(NSString *)iso8601 {
     if (!iso8601 || [iso8601 isEqual:[NSNull null]]) return nil;
 
     if ([iso8601 isKindOfClass:[NSNumber class]]) {
