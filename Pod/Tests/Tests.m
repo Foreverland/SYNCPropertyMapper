@@ -414,4 +414,24 @@
     XCTAssertEqualObjects(market.otherAttribute, @"Market 1");
 }
 
+- (void)testBornDateWithMilliseconds {
+    //2015-06-23T12:40:08.594+02:00
+    //2015-08-23T09:29:30.007450+00:00
+
+    NSDictionary *values = @{@"birth_date" : @"2015-06-23T12:40:08.000+02:00"};
+
+    DATAStack *dataStack = [self dataStack];
+    User *user = [self userUsingDataStack:dataStack];
+
+    [user hyp_fillWithDictionary:values];
+
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    dateFormat.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
+    dateFormat.timeZone = [NSTimeZone timeZoneForSecondsFromGMT:2*60*60];
+    NSDate *date = [dateFormat dateFromString:@"2015-06-23T12:40:08.000"];
+
+    XCTAssertNotNil([user valueForKey:@"birthDate"]);
+    XCTAssertEqualWithAccuracy([[user valueForKey:@"birthDate"] timeIntervalSinceReferenceDate], date.timeIntervalSinceReferenceDate, 1.);
+}
+
 @end
