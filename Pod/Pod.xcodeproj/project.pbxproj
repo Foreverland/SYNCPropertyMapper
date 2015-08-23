@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		143FCA551B89D2CA0071CB3F /* NSManagedObject+HYPPropertyMapperHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 143FCA541B89D2CA0071CB3F /* NSManagedObject+HYPPropertyMapperHelpers.m */; };
+		143FCA571B89D3E50071CB3F /* DateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 143FCA561B89D3E50071CB3F /* DateTests.m */; };
 		1465C2D11AE8270800FCB9ED /* Market.m in Sources */ = {isa = PBXBuildFile; fileRef = 1465C2D01AE8270800FCB9ED /* Market.m */; };
 		146D72B31AB782920058798C /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 146D72B21AB782920058798C /* Tests.m */; };
-		14824F891AE835C900C1BF3D /* PrivateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14824F881AE835C900C1BF3D /* PrivateTests.m */; };
+		14824F891AE835C900C1BF3D /* HelperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14824F881AE835C900C1BF3D /* HelperTests.m */; };
 		1485CE431B89CE01000C0C83 /* NSDate+HYPPropertyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1485CE421B89CE01000C0C83 /* NSDate+HYPPropertyMapper.m */; };
 		44F04AB51AE79F5700545DCB /* NSManagedObject+HYPPropertyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 44F04AB41AE79F5700545DCB /* NSManagedObject+HYPPropertyMapper.m */; };
 		44F04ABC1AE79F8900545DCB /* Company.m in Sources */ = {isa = PBXBuildFile; fileRef = 44F04AB71AE79F8900545DCB /* Company.m */; };
@@ -21,12 +23,15 @@
 
 /* Begin PBXFileReference section */
 		0B49D0A3494C1FFC159FCD6C /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		143FCA531B89D2CA0071CB3F /* NSManagedObject+HYPPropertyMapperHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+HYPPropertyMapperHelpers.h"; sourceTree = "<group>"; };
+		143FCA541B89D2CA0071CB3F /* NSManagedObject+HYPPropertyMapperHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+HYPPropertyMapperHelpers.m"; sourceTree = "<group>"; };
+		143FCA561B89D3E50071CB3F /* DateTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateTests.m; sourceTree = "<group>"; };
 		1465C2CF1AE8270800FCB9ED /* Market.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Market.h; sourceTree = "<group>"; };
 		1465C2D01AE8270800FCB9ED /* Market.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Market.m; sourceTree = "<group>"; };
 		146D72AC1AB782920058798C /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		146D72B11AB782920058798C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		146D72B21AB782920058798C /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
-		14824F881AE835C900C1BF3D /* PrivateTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivateTests.m; sourceTree = "<group>"; };
+		14824F881AE835C900C1BF3D /* HelperTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelperTests.m; sourceTree = "<group>"; };
 		1485CE411B89CE01000C0C83 /* NSDate+HYPPropertyMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+HYPPropertyMapper.h"; sourceTree = "<group>"; };
 		1485CE421B89CE01000C0C83 /* NSDate+HYPPropertyMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+HYPPropertyMapper.m"; sourceTree = "<group>"; };
 		14C136511AB784B200B7B07A /* .travis.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = .travis.yml; path = ../.travis.yml; sourceTree = "<group>"; };
@@ -82,8 +87,9 @@
 			isa = PBXGroup;
 			children = (
 				14824F8A1AE835D900C1BF3D /* Models */,
-				14824F881AE835C900C1BF3D /* PrivateTests.m */,
+				14824F881AE835C900C1BF3D /* HelperTests.m */,
 				146D72B21AB782920058798C /* Tests.m */,
+				143FCA561B89D3E50071CB3F /* DateTests.m */,
 				44F04ABF1AE79F9E00545DCB /* Model.xcdatamodeld */,
 				146D72B01AB782920058798C /* Supporting Files */,
 			);
@@ -129,6 +135,8 @@
 			children = (
 				44F04AB31AE79F5700545DCB /* NSManagedObject+HYPPropertyMapper.h */,
 				44F04AB41AE79F5700545DCB /* NSManagedObject+HYPPropertyMapper.m */,
+				143FCA531B89D2CA0071CB3F /* NSManagedObject+HYPPropertyMapperHelpers.h */,
+				143FCA541B89D2CA0071CB3F /* NSManagedObject+HYPPropertyMapperHelpers.m */,
 				1485CE411B89CE01000C0C83 /* NSDate+HYPPropertyMapper.h */,
 				1485CE421B89CE01000C0C83 /* NSDate+HYPPropertyMapper.m */,
 			);
@@ -256,14 +264,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				44F04ABE1AE79F8900545DCB /* User.m in Sources */,
+				143FCA571B89D3E50071CB3F /* DateTests.m in Sources */,
 				146D72B31AB782920058798C /* Tests.m in Sources */,
 				44F04ABC1AE79F8900545DCB /* Company.m in Sources */,
 				44F04AB51AE79F5700545DCB /* NSManagedObject+HYPPropertyMapper.m in Sources */,
 				1465C2D11AE8270800FCB9ED /* Market.m in Sources */,
+				143FCA551B89D2CA0071CB3F /* NSManagedObject+HYPPropertyMapperHelpers.m in Sources */,
 				44F04ABD1AE79F8900545DCB /* Note.m in Sources */,
 				44F04AC11AE79F9E00545DCB /* Model.xcdatamodeld in Sources */,
 				1485CE431B89CE01000C0C83 /* NSDate+HYPPropertyMapper.m in Sources */,
-				14824F891AE835C900C1BF3D /* PrivateTests.m in Sources */,
+				14824F891AE835C900C1BF3D /* HelperTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
