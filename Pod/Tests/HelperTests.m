@@ -2,23 +2,13 @@
 @import XCTest;
 
 #import "NSManagedObject+HYPPropertyMapper.h"
+#import "NSManagedObject+HYPPropertyMapperHelpers.h"
 
 #import "User.h"
 #import "Note.h"
 #import "Company.h"
 #import "Market.h"
 #import "DATAStack.h"
-
-@interface NSManagedObject (PrivateMethods)
-
-- (NSAttributeDescription *)attributeDescriptionForRemoteKey:(NSString *)key;
-
-- (id)valueForAttributeDescription:(id)attributeDescription
-                  usingRemoteValue:(id)removeValue;
-
-- (NSString *)remoteKeyForAttributeDescription:(NSAttributeDescription *)attributeDescription;
-
-@end
 
 @interface PrivateTests : XCTestCase
 
