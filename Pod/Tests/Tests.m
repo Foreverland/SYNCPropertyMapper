@@ -427,7 +427,7 @@
 
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     dateFormat.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
-    dateFormat.timeZone = [NSTimeZone timeZoneForSecondsFromGMT:2*60*60];
+    dateFormat.timeZone = [NSTimeZone timeZoneForSecondsFromGMT:2 * 60 * 60];
     NSDate *date = [dateFormat dateFromString:@"2015-06-23T12:40:08.000"];
 
     XCTAssertNotNil([user valueForKey:@"birthDate"]);
