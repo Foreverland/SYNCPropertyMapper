@@ -13,24 +13,24 @@ static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
 
 - (void)hyp_fillWithDictionary:(NSDictionary *)dictionary {
     for (__strong NSString *key in dictionary) {
-
+        
         id value = [dictionary objectForKey:key];
-
+        
         BOOL isReservedKey = ([[NSManagedObject reservedAttributes] containsObject:key]);
         if (isReservedKey) {
             key = [self prefixedAttribute:key];
         }
-
+        
         NSAttributeDescription *attributeDescription = [self attributeDescriptionForRemoteKey:key];
         if (attributeDescription) {
             NSString *localKey = attributeDescription.name;
-
+            
             BOOL valueExists = (value &&
                                 ![value isKindOfClass:[NSNull class]]);
             if (valueExists) {
                 id processedValue = [self valueForAttributeDescription:attributeDescription
                                                       usingRemoteValue:value];
-
+                
                 BOOL valueHasChanged = (![[self valueForKey:localKey] isEqual:processedValue]);
                 if (valueHasChanged) {
                     [self setValue:processedValue forKey:localKey];
@@ -43,36 +43,45 @@ static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
 }
 
 - (NSDictionary *)hyp_dictionary {
-    NSMutableDictionary *managedObjectAttributes = [NSMutableDictionary new];
+    
+    return [self hyp_dictionaryWithDateFormatter:[self defaultDateFormatter]];
+}
 
+
+- (NSDictionary *)hyp_dictionaryWithDateFormatter:(NSDateFormatter *)formatter {
+    
+    NSMutableDictionary *managedObjectAttributes = [NSMutableDictionary new];
+    
     for (id propertyDescription in self.entity.properties) {
         if ([propertyDescription isKindOfClass:[NSAttributeDescription class]]) {
             NSAttributeDescription *attributeDescription = (NSAttributeDescription *)propertyDescription;
-
+            
             id value = [self valueForKey:attributeDescription.name];
             BOOL nilOrNullValue = (!value ||
                                    [value isKindOfClass:[NSNull class]]);
             if (nilOrNullValue) {
                 value = [NSNull null];
+            } else if ([value isKindOfClass:[NSDate class]]) {
+                value = [formatter stringFromDate:value];
             }
-
+            
             NSString *remoteKey = [self remoteKeyForAttributeDescription:attributeDescription];
             managedObjectAttributes[remoteKey] = value;
-
+            
         } else if ([propertyDescription isKindOfClass:[NSRelationshipDescription class]]) {
             NSString *relationshipName = [propertyDescription name];
-
+            
             id relationships = [self valueForKey:relationshipName];
             BOOL isToOneRelationship = (![relationships isKindOfClass:[NSSet class]]);
             if (isToOneRelationship) {
                 continue;
             }
-
+            
             NSUInteger relationIndex = 0;
             NSMutableDictionary *relations = [NSMutableDictionary new];
             for (NSManagedObject *relation in relationships) {
                 BOOL hasValues = NO;
-
+                
                 for (NSAttributeDescription *propertyDescription in [relation.entity properties]) {
                     if ([propertyDescription isKindOfClass:[NSAttributeDescription class]]) {
                         NSAttributeDescription *attributeDescription = (NSAttributeDescription *)propertyDescription;
@@ -82,11 +91,11 @@ static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
                         } else {
                             continue;
                         }
-
+                        
                         NSString *attribute = [propertyDescription name];
                         NSString *localKey = HYPPropertyMapperDefaultLocalValue;
                         BOOL attributeIsKey = ([localKey isEqualToString:attribute]);
-
+                        
                         NSString *key;
                         if (attributeIsKey) {
                             key = HYPPropertyMapperDefaultRemoteValue;
@@ -95,7 +104,7 @@ static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
                         } else {
                             key = [attribute hyp_remoteString];
                         }
-
+                        
                         if (value) {
                             NSString *relationIndexString = [NSString stringWithFormat:@"%lu", (unsigned long)relationIndex];
                             NSMutableDictionary *dictionary = [relations[relationIndexString] mutableCopy] ?: [NSMutableDictionary new];
@@ -104,18 +113,34 @@ static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
                         }
                     }
                 }
-
+                
                 if (hasValues) {
                     relationIndex++;
                 }
             }
-
+            
             NSString *nestedAttributesPrefix = [NSString stringWithFormat:@"%@_%@", [relationshipName hyp_remoteString], HYPPropertyMapperNestedAttributesKey];
             [managedObjectAttributes setValue:relations forKey:nestedAttributesPrefix];
         }
     }
-
+    
     return [managedObjectAttributes copy];
 }
+
+
+#pragma mark - Private
+
+- (NSDateFormatter *)defaultDateFormatter {
+    
+    //ISO 8601 standard
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    NSLocale *enUSPOSIXLocale = [NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"];
+    [dateFormatter setLocale:enUSPOSIXLocale];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZZZZZ"];
+    
+    return dateFormatter;
+}
+
 
 @end
