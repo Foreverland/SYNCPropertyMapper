@@ -43,6 +43,10 @@ static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
 }
 
 - (NSDictionary *)hyp_dictionary {
+    return [self hyp_dictionaryWithDateFormatter:[self defaultDateFormatter]];
+}
+
+- (NSDictionary *)hyp_dictionaryWithDateFormatter:(NSDateFormatter *)formatter {
     NSMutableDictionary *managedObjectAttributes = [NSMutableDictionary new];
 
     for (id propertyDescription in self.entity.properties) {
@@ -54,6 +58,8 @@ static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
                                    [value isKindOfClass:[NSNull class]]);
             if (nilOrNullValue) {
                 value = [NSNull null];
+            } else if ([value isKindOfClass:[NSDate class]]) {
+                value = [formatter stringFromDate:value];
             }
 
             NSString *remoteKey = [self remoteKeyForAttributeDescription:attributeDescription];
@@ -116,6 +122,22 @@ static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
     }
 
     return [managedObjectAttributes copy];
+}
+
+
+#pragma mark - Private
+
+- (NSDateFormatter *)defaultDateFormatter {
+    static NSDateFormatter *_dateFormatter = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _dateFormatter = [[NSDateFormatter alloc] init];
+        NSLocale *enUSPOSIXLocale = [NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"];
+        [_dateFormatter setLocale:enUSPOSIXLocale];
+        [_dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZZZZZ"];
+    });
+
+    return _dateFormatter;
 }
 
 @end
