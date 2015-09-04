@@ -134,7 +134,7 @@
 
     XCTAssertTrue([dictionary[@"age_of_person"] isKindOfClass:[NSNumber class]]);
 
-    XCTAssertTrue([dictionary[@"birth_date"] isKindOfClass:[NSDate class]]);
+    XCTAssertTrue([dictionary[@"birth_date"] isKindOfClass:[NSString class]]);
 
     XCTAssertTrue([dictionary[@"contract_id"] isKindOfClass:[NSNumber class]]);
 
@@ -150,9 +150,9 @@
 
     XCTAssertTrue([dictionary[@"type"] isKindOfClass:[NSString class]]);
 
-    XCTAssertTrue([dictionary[@"created_at"] isKindOfClass:[NSDate class]]);
+    XCTAssertTrue([dictionary[@"created_at"] isKindOfClass:[NSString class]]);
 
-    XCTAssertTrue([dictionary[@"updated_at"] isKindOfClass:[NSDate class]]);
+    XCTAssertTrue([dictionary[@"updated_at"] isKindOfClass:[NSString class]]);
 
     XCTAssertTrue([dictionary[@"number_of_attendes"] isKindOfClass:[NSNumber class]]);
 
