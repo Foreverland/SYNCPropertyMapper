@@ -48,11 +48,11 @@ static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
 
 - (NSDictionary *)hyp_dictionaryWithDateFormatter:(NSDateFormatter *)formatter {
     NSMutableDictionary *managedObjectAttributes = [NSMutableDictionary new];
-    
+
     for (id propertyDescription in self.entity.properties) {
         if ([propertyDescription isKindOfClass:[NSAttributeDescription class]]) {
             NSAttributeDescription *attributeDescription = (NSAttributeDescription *)propertyDescription;
-            
+
             id value = [self valueForKey:attributeDescription.name];
             BOOL nilOrNullValue = (!value ||
                                    [value isKindOfClass:[NSNull class]]);
@@ -61,10 +61,10 @@ static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
             } else if ([value isKindOfClass:[NSDate class]]) {
                 value = [formatter stringFromDate:value];
             }
-            
+
             NSString *remoteKey = [self remoteKeyForAttributeDescription:attributeDescription];
             managedObjectAttributes[remoteKey] = value;
-            
+
         } else if ([propertyDescription isKindOfClass:[NSRelationshipDescription class]]) {
             NSString *relationshipName = [propertyDescription name];
             
@@ -73,12 +73,12 @@ static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
             if (isToOneRelationship) {
                 continue;
             }
-            
+
             NSUInteger relationIndex = 0;
             NSMutableDictionary *relations = [NSMutableDictionary new];
             for (NSManagedObject *relation in relationships) {
                 BOOL hasValues = NO;
-                
+
                 for (NSAttributeDescription *propertyDescription in [relation.entity properties]) {
                     if ([propertyDescription isKindOfClass:[NSAttributeDescription class]]) {
                         NSAttributeDescription *attributeDescription = (NSAttributeDescription *)propertyDescription;
@@ -88,11 +88,11 @@ static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
                         } else {
                             continue;
                         }
-                        
+
                         NSString *attribute = [propertyDescription name];
                         NSString *localKey = HYPPropertyMapperDefaultLocalValue;
                         BOOL attributeIsKey = ([localKey isEqualToString:attribute]);
-                        
+
                         NSString *key;
                         if (attributeIsKey) {
                             key = HYPPropertyMapperDefaultRemoteValue;
@@ -101,7 +101,7 @@ static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
                         } else {
                             key = [attribute hyp_remoteString];
                         }
-                        
+
                         if (value) {
                             NSString *relationIndexString = [NSString stringWithFormat:@"%lu", (unsigned long)relationIndex];
                             NSMutableDictionary *dictionary = [relations[relationIndexString] mutableCopy] ?: [NSMutableDictionary new];
@@ -110,17 +110,17 @@ static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
                         }
                     }
                 }
-                
+
                 if (hasValues) {
                     relationIndex++;
                 }
             }
-            
+
             NSString *nestedAttributesPrefix = [NSString stringWithFormat:@"%@_%@", [relationshipName hyp_remoteString], HYPPropertyMapperNestedAttributesKey];
             [managedObjectAttributes setValue:relations forKey:nestedAttributesPrefix];
         }
     }
-    
+
     return [managedObjectAttributes copy];
 }
 
@@ -128,7 +128,6 @@ static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
 #pragma mark - Private
 
 - (NSDateFormatter *)defaultDateFormatter {
-    //ISO 8601 standard
     static NSDateFormatter *_dateFormatter = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -137,7 +136,7 @@ static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
         [_dateFormatter setLocale:enUSPOSIXLocale];
         [_dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZZZZZ"];
     });
-    
+
     return _dateFormatter;
 }
 
