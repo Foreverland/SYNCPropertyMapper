@@ -13,24 +13,24 @@ static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
 
 - (void)hyp_fillWithDictionary:(NSDictionary *)dictionary {
     for (__strong NSString *key in dictionary) {
-        
+
         id value = [dictionary objectForKey:key];
-        
+
         BOOL isReservedKey = ([[NSManagedObject reservedAttributes] containsObject:key]);
         if (isReservedKey) {
             key = [self prefixedAttribute:key];
         }
-        
+
         NSAttributeDescription *attributeDescription = [self attributeDescriptionForRemoteKey:key];
         if (attributeDescription) {
             NSString *localKey = attributeDescription.name;
-            
+
             BOOL valueExists = (value &&
                                 ![value isKindOfClass:[NSNull class]]);
             if (valueExists) {
                 id processedValue = [self valueForAttributeDescription:attributeDescription
                                                       usingRemoteValue:value];
-                
+
                 BOOL valueHasChanged = (![[self valueForKey:localKey] isEqual:processedValue]);
                 if (valueHasChanged) {
                     [self setValue:processedValue forKey:localKey];
