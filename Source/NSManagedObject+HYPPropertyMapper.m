@@ -43,13 +43,10 @@ static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
 }
 
 - (NSDictionary *)hyp_dictionary {
-    
     return [self hyp_dictionaryWithDateFormatter:[self defaultDateFormatter]];
 }
 
-
 - (NSDictionary *)hyp_dictionaryWithDateFormatter:(NSDateFormatter *)formatter {
-    
     NSMutableDictionary *managedObjectAttributes = [NSMutableDictionary new];
     
     for (id propertyDescription in self.entity.properties) {
@@ -131,16 +128,17 @@ static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
 #pragma mark - Private
 
 - (NSDateFormatter *)defaultDateFormatter {
-    
     //ISO 8601 standard
+    static NSDateFormatter *_dateFormatter = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _dateFormatter = [[NSDateFormatter alloc] init];
+        NSLocale *enUSPOSIXLocale = [NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"];
+        [_dateFormatter setLocale:enUSPOSIXLocale];
+        [_dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZZZZZ"];
+    });
     
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    NSLocale *enUSPOSIXLocale = [NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"];
-    [dateFormatter setLocale:enUSPOSIXLocale];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZZZZZ"];
-    
-    return dateFormatter;
+    return _dateFormatter;
 }
-
 
 @end
