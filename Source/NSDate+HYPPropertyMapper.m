@@ -58,6 +58,12 @@
             hasTimezone = YES;
         }
 
+        // 2015-09-10T13:47:21.116+0000
+        else if (len == 28 && str[23] == '+') {
+            strncpy(newStr, str, 19);
+            hasTimezone = NO;
+        }
+
         // Poorly formatted timezone
         else {
             strncpy(newStr, str, len > 24 ? 24 : len);
