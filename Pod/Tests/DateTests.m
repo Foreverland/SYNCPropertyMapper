@@ -53,4 +53,15 @@
     XCTAssertEqualObjects(resultDate, date);
 }
 
+- (void)testDateE {
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    dateFormat.dateFormat = @"yyyy-MM-dd";
+    dateFormat.timeZone = [NSTimeZone timeZoneWithName:@"GMT"];
+
+    NSDate *date = [NSDate hyp_dateFromISO8601String:@"2015-09-10T00:00:00.116+0000"];
+    NSDate *resultDate = [dateFormat dateFromString:@"2015-09-10"];
+
+    XCTAssertEqualObjects(resultDate, date);
+}
+
 @end
