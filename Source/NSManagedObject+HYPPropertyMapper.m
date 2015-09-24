@@ -46,7 +46,7 @@ static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
     return [self hyp_dictionaryWithDateFormatter:[self defaultDateFormatter] mappingRelationshipsToNestedAttributes:YES];
 }
 
-- (NSDictionary *)hyp_dictionary:(BOOL)mapRelationshipsToNestedAttributes {
+- (NSDictionary *)hyp_dictionaryMappingRelationshipsToNestedAttributes:(BOOL)mapRelationshipsToNestedAttributes {
     return [self hyp_dictionaryWithDateFormatter:[self defaultDateFormatter] mappingRelationshipsToNestedAttributes:mapRelationshipsToNestedAttributes];
 }
 
