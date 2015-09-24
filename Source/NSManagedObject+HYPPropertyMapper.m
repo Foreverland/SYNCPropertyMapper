@@ -43,10 +43,18 @@ static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
 }
 
 - (NSDictionary *)hyp_dictionary {
-    return [self hyp_dictionaryWithDateFormatter:[self defaultDateFormatter]];
+    return [self hyp_dictionaryWithDateFormatter:[self defaultDateFormatter] mappingRelationshipsToNestedAttributes:YES];
+}
+
+- (NSDictionary *)hyp_dictionary:(BOOL)mapRelationshipsToNestedAttributes {
+    return [self hyp_dictionaryWithDateFormatter:[self defaultDateFormatter] mappingRelationshipsToNestedAttributes:mapRelationshipsToNestedAttributes];
 }
 
 - (NSDictionary *)hyp_dictionaryWithDateFormatter:(NSDateFormatter *)formatter {
+    return [self hyp_dictionaryWithDateFormatter:formatter mappingRelationshipsToNestedAttributes:YES];
+}
+
+- (NSDictionary *)hyp_dictionaryWithDateFormatter:(NSDateFormatter *)formatter mappingRelationshipsToNestedAttributes:(BOOL)mapRelationshipsToNestedAttributes {
     NSMutableDictionary *managedObjectAttributes = [NSMutableDictionary new];
 
     for (id propertyDescription in self.entity.properties) {
@@ -65,7 +73,7 @@ static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
             NSString *remoteKey = [self remoteKeyForAttributeDescription:attributeDescription];
             managedObjectAttributes[remoteKey] = value;
 
-        } else if ([propertyDescription isKindOfClass:[NSRelationshipDescription class]]) {
+        } else if (mapRelationshipsToNestedAttributes == YES && [propertyDescription isKindOfClass:[NSRelationshipDescription class]]) {
             NSString *relationshipName = [propertyDescription name];
 
             id relationships = [self valueForKey:relationshipName];
