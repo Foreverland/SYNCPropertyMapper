@@ -174,7 +174,7 @@
                             @"id" : @14,
                             @"text" : @"This is the text for the note 14"};
 
-    comparedDictionary[@"notes_attributes"] = @{@0 : note1, @1 : note2, @2 : note3};
+    comparedDictionary[@"notes_attributes"] = @{@"0" : note1, @"1" : note2, @"2" : note3};
     comparedDictionary[@"number_of_attendes"] = @30;
     comparedDictionary[@"type"] = @"Manager";
     comparedDictionary[@"updated_at"] = resultDateString;
