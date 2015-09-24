@@ -11,9 +11,19 @@
 
 @interface Tests : XCTestCase
 
+@property (nonatomic) NSDate *testDate;
+
 @end
 
 @implementation Tests
+
+- (NSDate *)testDate {
+    if (!_testDate) {
+        _testDate = [NSDate date];
+    }
+
+    return _testDate;
+}
 
 #pragma mark - Set up
 
@@ -30,7 +40,7 @@
 - (User *)userUsingDataStack:(DATAStack *)dataStack {
     User *user = [self entityNamed:@"User" inContext:dataStack.mainContext];
     user.age = @25;
-    user.birthDate = [NSDate date];
+    user.birthDate = self.testDate;
     user.contractID = @235;
     user.driverIdentifier = @"ABC8283";
     user.firstName = @"John";
@@ -38,8 +48,8 @@
     user.userDescription = @"John Description";
     user.remoteID = @111;
     user.userType = @"Manager";
-    user.createdAt = [NSDate date];
-    user.updatedAt = [NSDate date];
+    user.createdAt = self.testDate;
+    user.updatedAt = self.testDate;
     user.numberOfAttendes = @30;
     user.hobbies = [NSKeyedArchiver archivedDataWithRootObject:@[@"Football",
                                                                  @"Soccer",
@@ -89,42 +99,95 @@
     return company;
 }
 
-#pragma mark hyp_dictionary
+#pragma mark - hyp_dictionary
 
-- (void)testDictionaryKeysNotNil {
+- (NSDictionary *)userDictionaryWithNoRelationships {
+    NSDateFormatter *formatter = [NSDateFormatter new];
+    formatter.locale = [NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"];
+    formatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ssZZZZZ";
+    NSString *resultDateString = [formatter stringFromDate:self.testDate];
+
+    NSMutableDictionary *comparedDictionary = [NSMutableDictionary new];
+    comparedDictionary[@"age_of_person"] = @25;
+    comparedDictionary[@"birth_date"] = resultDateString;
+    comparedDictionary[@"contract_id"] = @235;
+    comparedDictionary[@"created_at"] = resultDateString;
+    comparedDictionary[@"description"] = @"John Description";
+    comparedDictionary[@"driver_identifier_str"] = @"ABC8283";
+    comparedDictionary[@"expenses"] = [NSKeyedArchiver archivedDataWithRootObject:@{@"cake" : @12.50,
+                                                                                    @"juice" : @0.50}];
+    comparedDictionary[@"first_name"] = @"John";
+    comparedDictionary[@"hobbies"] = [NSKeyedArchiver archivedDataWithRootObject:@[@"Football",
+                                                                                   @"Soccer",
+                                                                                   @"Code",
+                                                                                   @"More code"]];
+    comparedDictionary[@"id"] = @111;
+    comparedDictionary[@"ignored_parameter"] = [NSNull null];
+    comparedDictionary[@"last_name"] = @"Hyperseed";
+    comparedDictionary[@"number_of_attendes"] = @30;
+    comparedDictionary[@"type"] = @"Manager";
+    comparedDictionary[@"updated_at"] = resultDateString;
+
+    return [comparedDictionary copy];
+}
+
+- (void)testDictionaryNoRelationships {
+    DATAStack *dataStack = [self dataStack];
+    User *user = [self userUsingDataStack:dataStack];
+    NSDictionary *dictionary = [user hyp_dictionaryUsingRelationshipType:HYPPropertyMapperRelationshipTypeNone];
+    NSDictionary *comparedDictionary = [self userDictionaryWithNoRelationships];
+    XCTAssertEqualObjects(dictionary, [comparedDictionary copy]);
+}
+
+- (void)testDictionaryArrayRelationships {
+    DATAStack *dataStack = [self dataStack];
+    User *user = [self userUsingDataStack:dataStack];
+    NSDictionary *dictionary = [user hyp_dictionaryUsingRelationshipType:HYPPropertyMapperRelationshipTypeArray];
+    NSMutableDictionary *comparedDictionary = [[self userDictionaryWithNoRelationships] mutableCopy];
+
+    NSArray *notes = dictionary[@"notes"];
+    NSSortDescriptor *nameDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"id" ascending:YES];
+    NSArray *sortedNotes = [notes sortedArrayUsingDescriptors:[NSArray arrayWithObject:nameDescriptor]];
+    NSMutableDictionary *mutableDictionary = [dictionary mutableCopy];
+    mutableDictionary[@"notes"] = sortedNotes;
+    dictionary = [mutableDictionary copy];
+
+    NSDictionary *note1 = @{@"id" : @1,
+                            @"text" : @"This is the text for the note 1"};
+    NSDictionary *note2 = @{@"id" : @7,
+                            @"text" : @"This is the text for the note 7"};
+    NSDictionary *note3 = @{@"destroy" : @1,
+                            @"id" : @14,
+                            @"text" : @"This is the text for the note 14"};
+    comparedDictionary[@"notes"] = @[note1, note2, note3];
+
+    XCTAssertEqualObjects(dictionary, [comparedDictionary copy]);
+}
+
+- (void)testDictionaryNestedRelationships {
     DATAStack *dataStack = [self dataStack];
     User *user = [self userUsingDataStack:dataStack];
     NSDictionary *dictionary = [user hyp_dictionary];
+    NSMutableDictionary *comparedDictionary = [[self userDictionaryWithNoRelationships] mutableCopy];
 
-    XCTAssertNotNil(dictionary[@"age_of_person"]);
+    NSDictionary *notesDictionary = dictionary[@"notes_attributes"];
+    NSArray *notes = notesDictionary.allValues;
+    NSSortDescriptor *nameDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"id" ascending:YES];
+    NSArray *sortedNotes = [notes sortedArrayUsingDescriptors:[NSArray arrayWithObject:nameDescriptor]];
+    NSMutableDictionary *mutableDictionary = [dictionary mutableCopy];
+    mutableDictionary[@"notes_attributes"] = sortedNotes;
+    dictionary = [mutableDictionary copy];
 
-    XCTAssertNotNil(dictionary[@"birth_date"]);
+    NSDictionary *note1 = @{@"id" : @1,
+                            @"text" : @"This is the text for the note 1"};
+    NSDictionary *note2 = @{@"id" : @7,
+                            @"text" : @"This is the text for the note 7"};
+    NSDictionary *note3 = @{@"_destroy" : @1,
+                            @"id" : @14,
+                            @"text" : @"This is the text for the note 14"};
+    comparedDictionary[@"notes_attributes"] = @[note1, note2, note3];
 
-    XCTAssertNotNil(dictionary[@"contract_id"]);
-
-    XCTAssertNotNil(dictionary[@"driver_identifier_str"]);
-
-    XCTAssertNotNil(dictionary[@"first_name"]);
-
-    XCTAssertNotNil(dictionary[@"last_name"]);
-
-    XCTAssertNotNil(dictionary[@"description"]);
-
-    XCTAssertNotNil(dictionary[@"id"]);
-
-    XCTAssertNotNil(dictionary[@"type"]);
-
-    XCTAssertNotNil(dictionary[@"created_at"]);
-
-    XCTAssertNotNil(dictionary[@"updated_at"]);
-
-    XCTAssertNotNil(dictionary[@"number_of_attendes"]);
-
-    XCTAssertNotNil(dictionary[@"ignored_parameter"]);
-
-    XCTAssertNotNil(dictionary[@"hobbies"]);
-
-    XCTAssertNotNil(dictionary[@"expenses"]);
+    XCTAssertEqualObjects(dictionary, comparedDictionary);
 }
 
 - (void)testDictionaryValuesKindOfClass {
@@ -138,62 +201,33 @@
 
     XCTAssertTrue([dictionary[@"contract_id"] isKindOfClass:[NSNumber class]]);
 
-    XCTAssertTrue([dictionary[@"driver_identifier_str"] isKindOfClass:[NSString class]]);
-
-    XCTAssertTrue([dictionary[@"first_name"] isKindOfClass:[NSString class]]);
-
-    XCTAssertTrue([dictionary[@"last_name"] isKindOfClass:[NSString class]]);
+    XCTAssertTrue([dictionary[@"created_at"] isKindOfClass:[NSString class]]);
 
     XCTAssertTrue([dictionary[@"description"] isKindOfClass:[NSString class]]);
 
-    XCTAssertTrue([dictionary[@"id"] isKindOfClass:[NSNumber class]]);
+    XCTAssertTrue([dictionary[@"driver_identifier_str"] isKindOfClass:[NSString class]]);
 
-    XCTAssertTrue([dictionary[@"type"] isKindOfClass:[NSString class]]);
+    XCTAssertTrue([dictionary[@"expenses"] isKindOfClass:[NSData class]]);
 
-    XCTAssertTrue([dictionary[@"created_at"] isKindOfClass:[NSString class]]);
-
-    XCTAssertTrue([dictionary[@"updated_at"] isKindOfClass:[NSString class]]);
-
-    XCTAssertTrue([dictionary[@"number_of_attendes"] isKindOfClass:[NSNumber class]]);
-
-    XCTAssertTrue([dictionary[@"ignored_parameter"] isKindOfClass:[NSNull class]]);
+    XCTAssertTrue([dictionary[@"first_name"] isKindOfClass:[NSString class]]);
 
     XCTAssertTrue([dictionary[@"hobbies"] isKindOfClass:[NSData class]]);
 
-    XCTAssertTrue([dictionary[@"expenses"] isKindOfClass:[NSData class]]);
-}
+    XCTAssertTrue([dictionary[@"id"] isKindOfClass:[NSNumber class]]);
 
-- (void)testDictionaryValues {
-    DATAStack *dataStack = [self dataStack];
-    User *user = [self userUsingDataStack:dataStack];
-    NSDictionary *dictionary = [user hyp_dictionary];
+    XCTAssertNil(dictionary[@"ignore_transformable"]);
 
-    XCTAssertEqualObjects([dictionary valueForKey:@"age_of_person"], @25);
-    XCTAssertEqualObjects([dictionary valueForKey:@"contract_id"], @235);
-    XCTAssertEqualObjects([dictionary valueForKey:@"driver_identifier_str"], @"ABC8283");
-    XCTAssertEqualObjects([dictionary valueForKey:@"first_name"], @"John");
-    XCTAssertEqualObjects([dictionary valueForKey:@"description"], @"John Description");
+    XCTAssertTrue([dictionary[@"ignored_parameter"] isKindOfClass:[NSNull class]]);
 
-    XCTAssertNotNil([dictionary valueForKey:@"notes_attributes"]);
-    XCTAssertTrue([[dictionary valueForKey:@"notes_attributes"] isKindOfClass:[NSDictionary class]]);
+    XCTAssertTrue([dictionary[@"last_name"] isKindOfClass:[NSString class]]);
 
-    NSDictionary *notes = [dictionary valueForKey:@"notes_attributes"];
+    XCTAssertTrue([dictionary[@"notes_attributes"] isKindOfClass:[NSDictionary class]]);
 
-    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"id" ascending:YES];
-    NSArray *sortedNotes = [[notes allValues] sortedArrayUsingDescriptors:@[sortDescriptor]];
+    XCTAssertTrue([dictionary[@"number_of_attendes"] isKindOfClass:[NSNumber class]]);
 
-    XCTAssertEqual(sortedNotes.count, 3);
+    XCTAssertTrue([dictionary[@"type"] isKindOfClass:[NSString class]]);
 
-    NSDictionary *noteDictionary = [sortedNotes firstObject];
-    XCTAssertNotNil(noteDictionary);
-
-    XCTAssertEqualObjects([noteDictionary valueForKey:@"id"], @1);
-    XCTAssertEqualObjects([noteDictionary valueForKey:@"text"], @"This is the text for the note 1");
-
-    noteDictionary = [sortedNotes lastObject];
-    XCTAssertEqualObjects([noteDictionary valueForKey:@"id"], @14);
-    XCTAssertEqualObjects([noteDictionary valueForKey:@"text"], @"This is the text for the note 14");
-    XCTAssertEqualObjects([noteDictionary valueForKey:@"_destroy"], @YES);
+    XCTAssertTrue([dictionary[@"updated_at"] isKindOfClass:[NSString class]]);
 }
 
 #pragma mark - hyp_fillWithDictionary
@@ -405,7 +439,7 @@
 
     NSDictionary *values = @{@"id": @"1",
                              @"other_attribute": @"Market 1"};
-
+    
     Market *market = [self entityNamed:@"Market" inContext:dataStack.mainContext];
 
     [market hyp_fillWithDictionary:values];
