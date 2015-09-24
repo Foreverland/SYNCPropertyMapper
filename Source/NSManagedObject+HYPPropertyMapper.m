@@ -43,7 +43,7 @@ static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
 }
 
 - (NSDictionary *)hyp_dictionary {
-    return [self hyp_dictionaryWithDateFormatter:[self defaultDateFormatter] mappingRelationshipsToNestedAttributes:YES];
+    return [self hyp_dictionaryWithDateFormatter:[self defaultDateFormatter] includingNestedAttributes:YES];
 }
 
 - (NSDictionary *)hyp_dictionaryIncludingNestedAttributes:(BOOL)shouldIncludeNestedAttributes {
@@ -51,7 +51,7 @@ static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
 }
 
 - (NSDictionary *)hyp_dictionaryWithDateFormatter:(NSDateFormatter *)formatter {
-    return [self hyp_dictionaryWithDateFormatter:formatter mappingRelationshipsToNestedAttributes:YES];
+    return [self hyp_dictionaryWithDateFormatter:formatter includingNestedAttributes:YES];
 }
 
 - (NSDictionary *)hyp_dictionaryWithDateFormatter:(NSDateFormatter *)formatter includingNestedAttributes:(BOOL)shouldIncludeNestedAttributes {
