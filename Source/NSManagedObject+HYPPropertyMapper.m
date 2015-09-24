@@ -124,7 +124,7 @@ static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
                         [relations addObject:dictionary];
                     }
                 }
-                
+
                 [managedObjectAttributes setValue:relations forKey:[relationshipName hyp_remoteString]];
             } else if (relationshipType == HYPPropertyMapperRelationshipTypeNested) {
                 NSUInteger relationIndex = 0;
