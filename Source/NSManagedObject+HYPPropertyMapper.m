@@ -84,11 +84,7 @@ static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
 
             NSUInteger relationIndex = 0;
             NSMutableDictionary *relations = [NSMutableDictionary new];
-
-            NSSortDescriptor *nameDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"remoteID" ascending:YES];
-            NSArray *sortedRelationships = [relationships sortedArrayUsingDescriptors:[NSArray arrayWithObject:nameDescriptor]];
-
-            for (NSManagedObject *relation in sortedRelationships) {
+            for (NSManagedObject *relation in relationships) {
                 BOOL hasValues = NO;
 
                 for (NSAttributeDescription *propertyDescription in [relation.entity properties]) {
