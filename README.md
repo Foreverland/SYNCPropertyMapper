@@ -110,6 +110,16 @@ It supports relationships too, and we complain to the Rails rule `accepts_nested
 ]
 ```
 
+But you can also get relationships in other formats, you can use: 
+
+```objc
+NSDictionary *dictionary = [user hyp_dictionaryUsingRelationshipType:HYPPropertyMapperRelationshipTypeArray];
+```
+
+or
+
+`HYPPropertyMapperRelationshipTypeArray` or `HYPPropertyMapperRelationshipTypeNone`.
+
 ### Installation
 
 **NSManagedObject-HYPPropertyMapper** is available through [CocoaPods](http://cocoapods.org). To install it, simply add the following line to your Podfile:
