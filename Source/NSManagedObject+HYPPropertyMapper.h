@@ -6,12 +6,16 @@ static NSString * const HYPPropertyMapperCustomRemoteKey = @"hyper.remoteKey";
 
 - (void)hyp_fillWithDictionary:(NSDictionary *)dictionary;
 
-/*! Creates a NSDictionary of values based on the NSManagedObject subclass that can be serialized by NSJSONSerialization. Includes relationships to other models.
+/*! Creates a NSDictionary of values based on the NSManagedObject subclass that can be serialized by NSJSONSerialization. Includes relationships to other models using Ruby on Rail's nested attributes model.
  *  NSDate objects will be stringified to the ISO-8601 standard.
  * \return NSDictionary of values that can be serialized
  */
-
 - (NSDictionary *)hyp_dictionary;
+
+/*! Creates a NSDictionary of values based on the NSManagedObject subclass that can be serialized by NSJSONSerialization. Could include relationships to other models using Ruby on Rail's nested attributes model.
+ *  NSDate objects will be stringified to the ISO-8601 standard.
+ * \return NSDictionary of values that can be serialized
+ */
 
 - (NSDictionary *)hyp_dictionaryIncludingNestedAttributes:(BOOL)shouldIncludeNestedAttributes;
 
