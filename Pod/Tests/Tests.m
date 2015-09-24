@@ -144,6 +144,8 @@
     User *user = [self userUsingDataStack:dataStack];
     NSDictionary *dictionary = [user hyp_dictionaryUsingRelationshipType:HYPPropertyMapperRelationshipTypeArray];
     NSMutableDictionary *comparedDictionary = [[self userDictionaryWithNoRelationships] mutableCopy];
+    comparedDictionary[@"company"] = @{@"id" : @1,
+                                       @"name" : @"Facebook"};
 
     NSArray *notes = dictionary[@"notes"];
     NSSortDescriptor *nameDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"id" ascending:YES];
@@ -169,6 +171,8 @@
     User *user = [self userUsingDataStack:dataStack];
     NSDictionary *dictionary = [user hyp_dictionary];
     NSMutableDictionary *comparedDictionary = [[self userDictionaryWithNoRelationships] mutableCopy];
+    comparedDictionary[@"company_attributes"] = @{@"id" : @1,
+                                                  @"name" : @"Facebook"};
 
     NSDictionary *notesDictionary = dictionary[@"notes_attributes"];
     NSArray *notes = notesDictionary.allValues;
