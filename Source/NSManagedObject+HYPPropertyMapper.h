@@ -13,7 +13,7 @@ static NSString * const HYPPropertyMapperCustomRemoteKey = @"hyper.remoteKey";
 
 - (NSDictionary *)hyp_dictionary;
 
-- (NSDictionary *)hyp_dictionaryMappingRelationshipsToNestedAttributes:(BOOL)mapRelationshipsToNestedAttributes;
+- (NSDictionary *)hyp_dictionaryIncludingNestedAttributes:(BOOL)shouldIncludeNestedAttributes;
 
 /*! Creates a NSDictionary of values based on the NSManagedObject subclass that can be serialized by NSJSONSerialization. Includes relationships to other models.
  * \param dateFormatter - A custom date formatter that turns NSDate objects into NSString objects. Do not pass nil, instead use the 'hyp_dictionary' method
