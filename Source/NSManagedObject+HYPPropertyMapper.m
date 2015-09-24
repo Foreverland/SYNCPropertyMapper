@@ -88,8 +88,7 @@ static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
             NSMutableArray *relationsArray = [NSMutableArray new];
             for (NSManagedObject *relation in relationships) {
                 BOOL hasValues = NO;
-
-                NSMutableDictionary *dictionary = nil;
+                NSMutableDictionary *dictionary = [NSMutableDictionary new];
                 for (NSAttributeDescription *propertyDescription in [relation.entity properties]) {
                     if ([propertyDescription isKindOfClass:[NSAttributeDescription class]]) {
                         NSAttributeDescription *attributeDescription = (NSAttributeDescription *)propertyDescription;
@@ -114,16 +113,10 @@ static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
                             key = [attribute hyp_remoteString];
                         }
 
-                        if (relationshipType == HYPPropertyMapperRelationshipTypeArray) {
-                            if (value) {
-                                if (!dictionary) {
-                                    dictionary = [NSMutableDictionary new];
-                                }
-
+                        if (value) {
+                            if (relationshipType == HYPPropertyMapperRelationshipTypeArray) {
                                 dictionary[key] = value;
-                            }
-                        } else if (relationshipType == HYPPropertyMapperRelationshipTypeNested) {
-                            if (value) {
+                            } else if (relationshipType == HYPPropertyMapperRelationshipTypeNested) {
                                 NSString *relationIndexString = [NSString stringWithFormat:@"%lu", (unsigned long)relationIndex];
                                 NSMutableDictionary *dictionary = [relationsDictionary[relationIndexString] mutableCopy] ?: [NSMutableDictionary new];
                                 dictionary[key] = value;
@@ -134,7 +127,7 @@ static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
                 }
 
                 if (relationshipType == HYPPropertyMapperRelationshipTypeArray) {
-                    if (dictionary) {
+                    if (dictionary.count > 0) {
                         [relationsArray addObject:dictionary];
                     }
                 } else if (relationshipType == HYPPropertyMapperRelationshipTypeNested) {
