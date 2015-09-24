@@ -435,9 +435,9 @@
                              @"other_attribute": @"Market 1"};
     
     Market *market = [self entityNamed:@"Market" inContext:dataStack.mainContext];
-    
+
     [market hyp_fillWithDictionary:values];
-    
+
     XCTAssertEqualObjects(market.uniqueId, @"1");
     XCTAssertEqualObjects(market.otherAttribute, @"Market 1");
 }
