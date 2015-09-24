@@ -80,68 +80,15 @@ static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
             id relationships = [self valueForKey:relationshipName];
             BOOL isToOneRelationship = (![relationships isKindOfClass:[NSSet class]]);
             if (isToOneRelationship) {
-                continue;
-            }
-
-            NSUInteger relationIndex = 0;
-            NSMutableDictionary *relationsDictionary = [NSMutableDictionary new];
-            NSMutableArray *relationsArray = [NSMutableArray new];
-            for (NSManagedObject *relation in relationships) {
-                BOOL hasValues = NO;
-                NSMutableDictionary *dictionary = [NSMutableDictionary new];
-                for (NSAttributeDescription *propertyDescription in [relation.entity properties]) {
-                    if ([propertyDescription isKindOfClass:[NSAttributeDescription class]]) {
-                        NSAttributeDescription *attributeDescription = (NSAttributeDescription *)propertyDescription;
-                        id value = [relation valueForKey:[attributeDescription name]];
-                        if (value) {
-                            hasValues = YES;
-                        } else {
-                            continue;
-                        }
-
-                        NSString *attribute = [propertyDescription name];
-                        NSString *localKey = HYPPropertyMapperDefaultLocalValue;
-                        BOOL attributeIsKey = ([localKey isEqualToString:attribute]);
-
-                        NSString *key;
-                        if (attributeIsKey) {
-                            key = HYPPropertyMapperDefaultRemoteValue;
-                        } else if ([attribute isEqualToString:HYPPropertyMapperDestroyKey] &&
-                                   relationshipType == HYPPropertyMapperRelationshipTypeNested) {
-                            key = [NSString stringWithFormat:@"_%@", HYPPropertyMapperDestroyKey];
-                        } else {
-                            key = [attribute hyp_remoteString];
-                        }
-
-                        if (value) {
-                            if (relationshipType == HYPPropertyMapperRelationshipTypeArray) {
-                                dictionary[key] = value;
-                            } else if (relationshipType == HYPPropertyMapperRelationshipTypeNested) {
-                                NSString *relationIndexString = [NSString stringWithFormat:@"%lu", (unsigned long)relationIndex];
-                                NSMutableDictionary *dictionary = [relationsDictionary[relationIndexString] mutableCopy] ?: [NSMutableDictionary new];
-                                dictionary[key] = value;
-                                relationsDictionary[relationIndexString] = dictionary;
-                            }
-                        }
-                    }
-                }
-
-                if (relationshipType == HYPPropertyMapperRelationshipTypeArray) {
-                    if (dictionary.count > 0) {
-                        [relationsArray addObject:dictionary];
-                    }
-                } else if (relationshipType == HYPPropertyMapperRelationshipTypeNested) {
-                    if (hasValues) {
-                        relationIndex++;
-                    }
-                }
-            }
-
-            if (relationshipType == HYPPropertyMapperRelationshipTypeArray) {
-                [managedObjectAttributes setValue:relationsArray forKey:[relationshipName hyp_remoteString]];
-            } else if (relationshipType == HYPPropertyMapperRelationshipTypeNested) {
-                NSString *nestedAttributesPrefix = [NSString stringWithFormat:@"%@_%@", [relationshipName hyp_remoteString], HYPPropertyMapperNestedAttributesKey];
-                [managedObjectAttributes setValue:relationsDictionary forKey:nestedAttributesPrefix];
+                managedObjectAttributes = [self processManagedObjectAttributes:managedObjectAttributes
+                                                          forToOneRelationship:relationships
+                                                              relationshipName:relationshipName
+                                                         usingRelationshipType:relationshipType];
+            } else {
+                managedObjectAttributes = [self processManagedObjectAttributes:managedObjectAttributes
+                                                        forToManyRelationships:relationships
+                                                              relationshipName:relationshipName
+                                                         usingRelationshipType:relationshipType];
             }
         }
     }
@@ -149,6 +96,134 @@ static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
     return [managedObjectAttributes copy];
 }
 
+- (NSMutableDictionary *)processManagedObjectAttributes:(NSMutableDictionary *)managedObjectAttributes
+                                   forToOneRelationship:(NSManagedObject *)relation
+                                       relationshipName:(NSString *)relationshipName
+                                  usingRelationshipType:(HYPPropertyMapperRelationshipType)relationshipType {
+    NSUInteger relationIndex = 0;
+    BOOL hasValues = NO;
+    NSMutableDictionary *dictionary = [NSMutableDictionary new];
+    for (NSAttributeDescription *propertyDescription in [relation.entity properties]) {
+        if ([propertyDescription isKindOfClass:[NSAttributeDescription class]]) {
+            NSAttributeDescription *attributeDescription = (NSAttributeDescription *)propertyDescription;
+            id value = [relation valueForKey:[attributeDescription name]];
+            if (value) {
+                hasValues = YES;
+            } else {
+                continue;
+            }
+
+            NSString *attribute = [propertyDescription name];
+            NSString *localKey = HYPPropertyMapperDefaultLocalValue;
+            BOOL attributeIsKey = ([localKey isEqualToString:attribute]);
+
+            NSString *key;
+            if (attributeIsKey) {
+                key = HYPPropertyMapperDefaultRemoteValue;
+            } else if ([attribute isEqualToString:HYPPropertyMapperDestroyKey] &&
+                       relationshipType == HYPPropertyMapperRelationshipTypeNested) {
+                key = [NSString stringWithFormat:@"_%@", HYPPropertyMapperDestroyKey];
+            } else {
+                key = [attribute hyp_remoteString];
+            }
+
+            if (value) {
+                dictionary[key] = value;
+            }
+        }
+    }
+
+    if (relationshipType == HYPPropertyMapperRelationshipTypeArray) {
+    } else if (relationshipType == HYPPropertyMapperRelationshipTypeNested) {
+        if (hasValues) {
+            relationIndex++;
+        }
+    }
+
+    if (dictionary.count > 0) {
+        NSString *key;
+
+        if (relationshipType == HYPPropertyMapperRelationshipTypeArray) {
+            key = [relationshipName hyp_remoteString];
+        } else if (relationshipType == HYPPropertyMapperRelationshipTypeNested) {
+            key = [NSString stringWithFormat:@"%@_%@", [relationshipName hyp_remoteString], HYPPropertyMapperNestedAttributesKey];
+        }
+
+        if (key) {
+            [managedObjectAttributes setValue:dictionary forKey:key];
+        }
+    }
+
+    return managedObjectAttributes;
+}
+
+- (NSMutableDictionary *)processManagedObjectAttributes:(NSMutableDictionary *)managedObjectAttributes
+                                 forToManyRelationships:(NSSet *)relationships
+                                       relationshipName:(NSString *)relationshipName
+                                  usingRelationshipType:(HYPPropertyMapperRelationshipType)relationshipType {
+    NSUInteger relationIndex = 0;
+    NSMutableDictionary *relationsDictionary = [NSMutableDictionary new];
+    NSMutableArray *relationsArray = [NSMutableArray new];
+    for (NSManagedObject *relation in relationships) {
+        BOOL hasValues = NO;
+        NSMutableDictionary *dictionary = [NSMutableDictionary new];
+        for (NSAttributeDescription *propertyDescription in [relation.entity properties]) {
+            if ([propertyDescription isKindOfClass:[NSAttributeDescription class]]) {
+                NSAttributeDescription *attributeDescription = (NSAttributeDescription *)propertyDescription;
+                id value = [relation valueForKey:[attributeDescription name]];
+                if (value) {
+                    hasValues = YES;
+                } else {
+                    continue;
+                }
+
+                NSString *attribute = [propertyDescription name];
+                NSString *localKey = HYPPropertyMapperDefaultLocalValue;
+                BOOL attributeIsKey = ([localKey isEqualToString:attribute]);
+
+                NSString *key;
+                if (attributeIsKey) {
+                    key = HYPPropertyMapperDefaultRemoteValue;
+                } else if ([attribute isEqualToString:HYPPropertyMapperDestroyKey] &&
+                           relationshipType == HYPPropertyMapperRelationshipTypeNested) {
+                    key = [NSString stringWithFormat:@"_%@", HYPPropertyMapperDestroyKey];
+                } else {
+                    key = [attribute hyp_remoteString];
+                }
+
+                if (value) {
+                    if (relationshipType == HYPPropertyMapperRelationshipTypeArray) {
+                        dictionary[key] = value;
+                    } else if (relationshipType == HYPPropertyMapperRelationshipTypeNested) {
+                        NSString *relationIndexString = [NSString stringWithFormat:@"%lu", (unsigned long)relationIndex];
+                        NSMutableDictionary *dictionary = [relationsDictionary[relationIndexString] mutableCopy] ?: [NSMutableDictionary new];
+                        dictionary[key] = value;
+                        relationsDictionary[relationIndexString] = dictionary;
+                    }
+                }
+            }
+        }
+
+        if (relationshipType == HYPPropertyMapperRelationshipTypeArray) {
+            if (dictionary.count > 0) {
+                [relationsArray addObject:dictionary];
+            }
+        } else if (relationshipType == HYPPropertyMapperRelationshipTypeNested) {
+            if (hasValues) {
+                relationIndex++;
+            }
+        }
+    }
+
+    if (relationshipType == HYPPropertyMapperRelationshipTypeArray) {
+        [managedObjectAttributes setValue:relationsArray forKey:[relationshipName hyp_remoteString]];
+    } else if (relationshipType == HYPPropertyMapperRelationshipTypeNested) {
+        NSString *nestedAttributesPrefix = [NSString stringWithFormat:@"%@_%@", [relationshipName hyp_remoteString], HYPPropertyMapperNestedAttributesKey];
+        [managedObjectAttributes setValue:relationsDictionary forKey:nestedAttributesPrefix];
+    }
+
+    return managedObjectAttributes;
+}
 
 #pragma mark - Private
 
