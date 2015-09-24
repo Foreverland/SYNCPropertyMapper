@@ -110,15 +110,36 @@ It supports relationships too, and we complain to the Rails rule `accepts_nested
 ]
 ```
 
-But you can also get relationships in other formats, you can use: 
+If you don't want to get nested relationships you can also ignore relationships:
+
+```objc
+NSDictionary *dictionary = [user hyp_dictionaryUsingRelationshipType:HYPPropertyMapperRelationshipTypeNone];
+```
+
+```json
+"first_name": "John",
+"last_name": "Hyperseed"
+```
+
+Or get them as an array:
 
 ```objc
 NSDictionary *dictionary = [user hyp_dictionaryUsingRelationshipType:HYPPropertyMapperRelationshipTypeArray];
 ```
-
-or
-
-`HYPPropertyMapperRelationshipTypeArray` or `HYPPropertyMapperRelationshipTypeNone`.
+```json
+"first_name": "John",
+"last_name": "Hyperseed",
+"notes": [
+  {
+    "id": 0,
+    "text": "This is the text for the note A"
+  },
+  {
+    "id": 1,
+    "text": "This is the text for the note B"
+  }
+]
+```
 
 ### Installation
 
