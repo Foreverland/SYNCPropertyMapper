@@ -9,7 +9,7 @@
 @implementation DateTests
 
 - (void)testDateA {
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    NSDateFormatter *dateFormat = [NSDateFormatter new];
     dateFormat.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
     dateFormat.timeZone = [NSTimeZone timeZoneForSecondsFromGMT:2 * 60 * 60];
 
@@ -21,7 +21,7 @@
 }
 
 - (void)testDateB {
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    NSDateFormatter *dateFormat = [NSDateFormatter new];
     dateFormat.dateFormat = @"yyyy-MM-dd";
     dateFormat.timeZone = [NSTimeZone timeZoneWithName:@"GMT"];
 
@@ -32,7 +32,7 @@
 }
 
 - (void)testDateC {
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    NSDateFormatter *dateFormat = [NSDateFormatter new];
     dateFormat.dateFormat = @"yyyy-MM-dd";
     dateFormat.timeZone = [NSTimeZone timeZoneWithName:@"GMT"];
 
@@ -43,7 +43,7 @@
 }
 
 - (void)testDateD {
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    NSDateFormatter *dateFormat = [NSDateFormatter new];
     dateFormat.dateFormat = @"yyyy-MM-dd";
     dateFormat.timeZone = [NSTimeZone timeZoneWithName:@"GMT"];
 
@@ -54,7 +54,7 @@
 }
 
 - (void)testDateE {
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    NSDateFormatter *dateFormat = [NSDateFormatter new];
     dateFormat.dateFormat = @"yyyy-MM-dd";
     dateFormat.timeZone = [NSTimeZone timeZoneWithName:@"GMT"];
 

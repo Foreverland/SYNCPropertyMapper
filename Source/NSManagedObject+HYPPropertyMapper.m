@@ -84,7 +84,11 @@ static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
 
             NSUInteger relationIndex = 0;
             NSMutableDictionary *relations = [NSMutableDictionary new];
-            for (NSManagedObject *relation in relationships) {
+
+            NSSortDescriptor *nameDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"remoteID" ascending:YES];
+            NSArray *sortedRelationships = [relationships sortedArrayUsingDescriptors:[NSArray arrayWithObject:nameDescriptor]];
+
+            for (NSManagedObject *relation in sortedRelationships) {
                 BOOL hasValues = NO;
 
                 for (NSAttributeDescription *propertyDescription in [relation.entity properties]) {
@@ -139,10 +143,9 @@ static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
     static NSDateFormatter *_dateFormatter = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        _dateFormatter = [[NSDateFormatter alloc] init];
-        NSLocale *enUSPOSIXLocale = [NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"];
-        [_dateFormatter setLocale:enUSPOSIXLocale];
-        [_dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZZZZZ"];
+        _dateFormatter = [NSDateFormatter new];
+        _dateFormatter.locale = [NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"];
+        _dateFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ssZZZZZ";
     });
 
     return _dateFormatter;
