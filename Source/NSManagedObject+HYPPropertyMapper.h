@@ -4,8 +4,8 @@ static NSString * const HYPPropertyMapperCustomRemoteKey = @"hyper.remoteKey";
 
 typedef NS_ENUM(NSInteger, HYPPropertyMapperRelationshipType) {
     HYPPropertyMapperRelationshipTypeNone = 0,
-    HYPPropertyMapperRelationshipTypeNormalAttributes,
-    HYPPropertyMapperRelationshipTypeNestedAttributes
+    HYPPropertyMapperRelationshipTypeArray,
+    HYPPropertyMapperRelationshipTypeNested
 };
 
 @interface NSManagedObject (HYPPropertyMapper)
