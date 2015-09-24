@@ -43,18 +43,18 @@ static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
 }
 
 - (NSDictionary *)hyp_dictionary {
-    return [self hyp_dictionaryWithDateFormatter:[self defaultDateFormatter] includingNestedAttributes:YES];
+    return [self hyp_dictionaryWithDateFormatter:[self defaultDateFormatter] usingRelationshipType:HYPPropertyMapperRelationshipTypeNestedAttributes];
 }
 
-- (NSDictionary *)hyp_dictionaryIncludingNestedAttributes:(BOOL)shouldIncludeNestedAttributes {
-    return [self hyp_dictionaryWithDateFormatter:[self defaultDateFormatter] includingNestedAttributes:shouldIncludeNestedAttributes];
+- (NSDictionary *)hyp_dictionaryUsingRelationshipType:(HYPPropertyMapperRelationshipType)relationshipType {
+    return [self hyp_dictionaryWithDateFormatter:[self defaultDateFormatter] usingRelationshipType:relationshipType];
 }
 
 - (NSDictionary *)hyp_dictionaryWithDateFormatter:(NSDateFormatter *)formatter {
-    return [self hyp_dictionaryWithDateFormatter:formatter includingNestedAttributes:YES];
+    return [self hyp_dictionaryWithDateFormatter:formatter usingRelationshipType:HYPPropertyMapperRelationshipTypeNestedAttributes];
 }
 
-- (NSDictionary *)hyp_dictionaryWithDateFormatter:(NSDateFormatter *)formatter includingNestedAttributes:(BOOL)shouldIncludeNestedAttributes {
+- (NSDictionary *)hyp_dictionaryWithDateFormatter:(NSDateFormatter *)formatter usingRelationshipType:(HYPPropertyMapperRelationshipType)relationshipType {
     NSMutableDictionary *managedObjectAttributes = [NSMutableDictionary new];
 
     for (id propertyDescription in self.entity.properties) {
@@ -73,7 +73,7 @@ static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
             NSString *remoteKey = [self remoteKeyForAttributeDescription:attributeDescription];
             managedObjectAttributes[remoteKey] = value;
 
-        } else if (shouldIncludeNestedAttributes == YES && [propertyDescription isKindOfClass:[NSRelationshipDescription class]]) {
+        } else if ([propertyDescription isKindOfClass:[NSRelationshipDescription class]]) {
             NSString *relationshipName = [propertyDescription name];
 
             id relationships = [self valueForKey:relationshipName];
