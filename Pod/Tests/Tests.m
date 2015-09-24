@@ -125,7 +125,6 @@
                                                                                    @"Code",
                                                                                    @"More code"]];
     comparedDictionary[@"id"] = @111;
-    comparedDictionary[@"ignore_transformable"] = [NSNull null];
     comparedDictionary[@"ignored_parameter"] = [NSNull null];
     comparedDictionary[@"last_name"] = @"Hyperseed";
 
@@ -177,7 +176,7 @@
 
     XCTAssertTrue([dictionary[@"id"] isKindOfClass:[NSNumber class]]);
 
-    XCTAssertTrue([dictionary[@"ignore_transformable"] isKindOfClass:[NSNull class]]);
+    XCTAssertNil(dictionary[@"ignore_transformable"]);
 
     XCTAssertTrue([dictionary[@"ignored_parameter"] isKindOfClass:[NSNull class]]);
 

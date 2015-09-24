@@ -60,19 +60,19 @@ static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
     for (id propertyDescription in self.entity.properties) {
         if ([propertyDescription isKindOfClass:[NSAttributeDescription class]]) {
             NSAttributeDescription *attributeDescription = (NSAttributeDescription *)propertyDescription;
+            if (attributeDescription.attributeType != NSTransformableAttributeType) {
+                id value = [self valueForKey:attributeDescription.name];
+                BOOL nilOrNullValue = (!value ||
+                                       [value isKindOfClass:[NSNull class]]);
+                if (nilOrNullValue) {
+                    value = [NSNull null];
+                } else if ([value isKindOfClass:[NSDate class]]) {
+                    value = [formatter stringFromDate:value];
+                }
 
-            id value = [self valueForKey:attributeDescription.name];
-            BOOL nilOrNullValue = (!value ||
-                                   [value isKindOfClass:[NSNull class]]);
-            if (nilOrNullValue) {
-                value = [NSNull null];
-            } else if ([value isKindOfClass:[NSDate class]]) {
-                value = [formatter stringFromDate:value];
+                NSString *remoteKey = [self remoteKeyForAttributeDescription:attributeDescription];
+                managedObjectAttributes[remoteKey] = value;
             }
-
-            NSString *remoteKey = [self remoteKeyForAttributeDescription:attributeDescription];
-            managedObjectAttributes[remoteKey] = value;
-
         } else if ([propertyDescription isKindOfClass:[NSRelationshipDescription class]]) {
             NSString *relationshipName = [propertyDescription name];
 
