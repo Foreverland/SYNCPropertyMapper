@@ -101,15 +101,12 @@
 
 #pragma mark - hyp_dictionary
 
-- (void)testDictionaryNoRelationships {
+- (NSDictionary *)userDictionaryWithNoRelationships {
     NSDateFormatter *formatter = [NSDateFormatter new];
     formatter.locale = [NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"];
     formatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ssZZZZZ";
     NSString *resultDateString = [formatter stringFromDate:self.testDate];
 
-    DATAStack *dataStack = [self dataStack];
-    User *user = [self userUsingDataStack:dataStack];
-    NSDictionary *dictionary = [user hyp_dictionaryUsingRelationshipType:HYPPropertyMapperRelationshipTypeNone];
     NSMutableDictionary *comparedDictionary = [NSMutableDictionary new];
     comparedDictionary[@"age_of_person"] = @25;
     comparedDictionary[@"birth_date"] = resultDateString;
@@ -131,35 +128,22 @@
     comparedDictionary[@"type"] = @"Manager";
     comparedDictionary[@"updated_at"] = resultDateString;
 
-    XCTAssertEqualObjects(dictionary, comparedDictionary);
+    return [comparedDictionary copy];
+}
+
+- (void)testDictionaryNoRelationships {
+    DATAStack *dataStack = [self dataStack];
+    User *user = [self userUsingDataStack:dataStack];
+    NSDictionary *dictionary = [user hyp_dictionaryUsingRelationshipType:HYPPropertyMapperRelationshipTypeNone];
+    NSDictionary *comparedDictionary = [self userDictionaryWithNoRelationships];
+    XCTAssertEqualObjects(dictionary, [comparedDictionary copy]);
 }
 
 - (void)testDictionaryArrayRelationships {
-    NSDateFormatter *formatter = [NSDateFormatter new];
-    formatter.locale = [NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"];
-    formatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ssZZZZZ";
-    NSString *resultDateString = [formatter stringFromDate:self.testDate];
-
     DATAStack *dataStack = [self dataStack];
     User *user = [self userUsingDataStack:dataStack];
     NSDictionary *dictionary = [user hyp_dictionaryUsingRelationshipType:HYPPropertyMapperRelationshipTypeArray];
-    NSMutableDictionary *comparedDictionary = [NSMutableDictionary new];
-    comparedDictionary[@"age_of_person"] = @25;
-    comparedDictionary[@"birth_date"] = resultDateString;
-    comparedDictionary[@"contract_id"] = @235;
-    comparedDictionary[@"created_at"] = resultDateString;
-    comparedDictionary[@"description"] = @"John Description";
-    comparedDictionary[@"driver_identifier_str"] = @"ABC8283";
-    comparedDictionary[@"expenses"] = [NSKeyedArchiver archivedDataWithRootObject:@{@"cake" : @12.50,
-                                                                                    @"juice" : @0.50}];
-    comparedDictionary[@"first_name"] = @"John";
-    comparedDictionary[@"hobbies"] = [NSKeyedArchiver archivedDataWithRootObject:@[@"Football",
-                                                                                   @"Soccer",
-                                                                                   @"Code",
-                                                                                   @"More code"]];
-    comparedDictionary[@"id"] = @111;
-    comparedDictionary[@"ignored_parameter"] = [NSNull null];
-    comparedDictionary[@"last_name"] = @"Hyperseed";
+    NSMutableDictionary *comparedDictionary = [[self userDictionaryWithNoRelationships] mutableCopy];
 
     NSArray *notes = dictionary[@"notes"];
     NSSortDescriptor *nameDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"id" ascending:YES];
@@ -176,39 +160,15 @@
                             @"id" : @14,
                             @"text" : @"This is the text for the note 14"};
     comparedDictionary[@"notes"] = @[note1, note2, note3];
-    comparedDictionary[@"number_of_attendes"] = @30;
-    comparedDictionary[@"type"] = @"Manager";
-    comparedDictionary[@"updated_at"] = resultDateString;
 
-    XCTAssertEqualObjects(dictionary, comparedDictionary);
+    XCTAssertEqualObjects(dictionary, [comparedDictionary copy]);
 }
 
 - (void)testDictionaryNestedRelationships {
-    NSDateFormatter *formatter = [NSDateFormatter new];
-    formatter.locale = [NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"];
-    formatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ssZZZZZ";
-    NSString *resultDateString = [formatter stringFromDate:self.testDate];
-
     DATAStack *dataStack = [self dataStack];
     User *user = [self userUsingDataStack:dataStack];
     NSDictionary *dictionary = [user hyp_dictionary];
-    NSMutableDictionary *comparedDictionary = [NSMutableDictionary new];
-    comparedDictionary[@"age_of_person"] = @25;
-    comparedDictionary[@"birth_date"] = resultDateString;
-    comparedDictionary[@"contract_id"] = @235;
-    comparedDictionary[@"created_at"] = resultDateString;
-    comparedDictionary[@"description"] = @"John Description";
-    comparedDictionary[@"driver_identifier_str"] = @"ABC8283";
-    comparedDictionary[@"expenses"] = [NSKeyedArchiver archivedDataWithRootObject:@{@"cake" : @12.50,
-                                                                                    @"juice" : @0.50}];
-    comparedDictionary[@"first_name"] = @"John";
-    comparedDictionary[@"hobbies"] = [NSKeyedArchiver archivedDataWithRootObject:@[@"Football",
-                                                                                   @"Soccer",
-                                                                                   @"Code",
-                                                                                   @"More code"]];
-    comparedDictionary[@"id"] = @111;
-    comparedDictionary[@"ignored_parameter"] = [NSNull null];
-    comparedDictionary[@"last_name"] = @"Hyperseed";
+    NSMutableDictionary *comparedDictionary = [[self userDictionaryWithNoRelationships] mutableCopy];
 
     NSDictionary *notesDictionary = dictionary[@"notes_attributes"];
     NSArray *notes = notesDictionary.allValues;
@@ -226,9 +186,6 @@
                             @"id" : @14,
                             @"text" : @"This is the text for the note 14"};
     comparedDictionary[@"notes_attributes"] = @[note1, note2, note3];
-    comparedDictionary[@"number_of_attendes"] = @30;
-    comparedDictionary[@"type"] = @"Manager";
-    comparedDictionary[@"updated_at"] = resultDateString;
 
     XCTAssertEqualObjects(dictionary, comparedDictionary);
 }
