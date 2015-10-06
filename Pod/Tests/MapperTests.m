@@ -9,13 +9,13 @@
 #import "Market.h"
 #import "DATAStack.h"
 
-@interface Tests : XCTestCase
+@interface MapperTests : XCTestCase
 
 @property (nonatomic) NSDate *testDate;
 
 @end
 
-@implementation Tests
+@implementation MapperTests
 
 - (NSDate *)testDate {
     if (!_testDate) {
