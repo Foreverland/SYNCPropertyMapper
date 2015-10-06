@@ -7,6 +7,12 @@
 #import "Note.h"
 #import "Company.h"
 #import "Market.h"
+
+#import "Apartment.h"
+#import "Building.h"
+#import "Room.h"
+#import "Park.h"
+
 #import "DATAStack.h"
 
 @interface MapperTests : XCTestCase
@@ -192,6 +198,38 @@
     comparedDictionary[@"notes_attributes"] = @[note1, note2, note3];
 
     XCTAssertEqualObjects(dictionary, comparedDictionary);
+}
+
+- (void)testDictionaryDeepRelationships {
+    DATAStack *dataStack = [self dataStack];
+
+    Building *building = [self entityNamed:@"Building" inContext:dataStack.mainContext];
+    building.remoteID = @1;
+
+    Park *park = [self entityNamed:@"Park" inContext:dataStack.mainContext];
+    park.remoteID = @1;
+    [building addParksObject:park];
+
+    Apartment *apartment = [self entityNamed:@"Apartment" inContext:dataStack.mainContext];
+    apartment.remoteID = @1;
+
+    Room *room = [self entityNamed:@"Room" inContext:dataStack.mainContext];
+    room.remoteID = @1;
+    [apartment addRoomsObject:room];
+
+    [building addApartmentsObject:apartment];
+
+    NSDictionary *buildingDictionary = [building hyp_dictionaryUsingRelationshipType:HYPPropertyMapperRelationshipTypeArray];
+    NSMutableDictionary *compared = [NSMutableDictionary new];
+    NSArray *rooms = @[@{@"id" : @1}];
+    NSArray *apartments = @[@{@"id" : @1,
+                              @"rooms" : rooms}];
+    NSArray *parks = @[@{@"id" : @1}];
+    compared[@"id"] = @1;
+    compared[@"apartments"] = apartments;
+    compared[@"parks"] = parks;
+
+    XCTAssertEqualObjects(buildingDictionary, compared);
 }
 
 - (void)testDictionaryValuesKindOfClass {

@@ -40,6 +40,8 @@ typedef NS_ENUM(NSInteger, HYPPropertyMapperRelationshipType) {
  * \param relationshipType - It indicates wheter the result dictionary should include no relationships, nested attributes or normal attributes
  * \return NSDictionary of values that can be serialized
  */
-- (NSDictionary *)hyp_dictionaryWithDateFormatter:(NSDateFormatter *)formatter usingRelationshipType:(HYPPropertyMapperRelationshipType)relationshipType;
+- (NSDictionary *)hyp_dictionaryWithDateFormatter:(NSDateFormatter *)dateFormatter parent:(NSManagedObject *)parent usingRelationshipType:(HYPPropertyMapperRelationshipType)relationshipType;
+
+- (NSDictionary *)hyp_dictionaryWithDateFormatter:(NSDateFormatter *)dateFormatter usingRelationshipType:(HYPPropertyMapperRelationshipType)relationshipType;
 
 @end

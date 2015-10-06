@@ -1,5 +1,5 @@
 //
-//  Market.h
+//  Park.h
 //  Pod
 //
 //  Created by Elvis Nuñez on 06/10/15.
@@ -9,9 +9,11 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+@class Building;
+
 NS_ASSUME_NONNULL_BEGIN
 
-@interface Market : NSManagedObject
+@interface Park : NSManagedObject
 
 // Insert code here to declare functionality of your managed object subclass
 
@@ -19,4 +21,4 @@ NS_ASSUME_NONNULL_BEGIN
 
 NS_ASSUME_NONNULL_END
 
-#import "Market+CoreDataProperties.h"
+#import "Park+CoreDataProperties.h"
