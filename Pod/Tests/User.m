@@ -1,27 +1,17 @@
+//
+//  User.m
+//  Pod
+//
+//  Created by Elvis Nuñez on 06/10/15.
+//  Copyright © 2015 Example. All rights reserved.
+//
+
 #import "User.h"
 #import "Company.h"
 #import "Note.h"
 
-
 @implementation User
 
-@dynamic age;
-@dynamic birthDate;
-@dynamic contractID;
-@dynamic createdAt;
-@dynamic driverIdentifier;
-@dynamic expenses;
-@dynamic firstName;
-@dynamic hobbies;
-@dynamic ignoredParameter;
-@dynamic lastName;
-@dynamic numberOfAttendes;
-@dynamic remoteID;
-@dynamic updatedAt;
-@dynamic userDescription;
-@dynamic userType;
-@dynamic ignoreTransformable;
-@dynamic company;
-@dynamic notes;
+// Insert code here to add functionality to your managed object subclass
 
 @end

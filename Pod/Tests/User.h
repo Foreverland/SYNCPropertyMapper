@@ -1,35 +1,24 @@
-@import Foundation;
-@import CoreData;
+//
+//  User.h
+//  Pod
+//
+//  Created by Elvis Nuñez on 06/10/15.
+//  Copyright © 2015 Example. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
 
 @class Company, Note;
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface User : NSManagedObject
 
-@property (nonatomic) NSNumber *age;
-@property (nonatomic) NSDate *birthDate;
-@property (nonatomic) NSNumber *contractID;
-@property (nonatomic) NSDate *createdAt;
-@property (nonatomic) NSString *driverIdentifier;
-@property (nonatomic) NSData *expenses;
-@property (nonatomic) NSString *firstName;
-@property (nonatomic) NSData *hobbies;
-@property (nonatomic) NSString *ignoredParameter;
-@property (nonatomic) NSString *lastName;
-@property (nonatomic) NSNumber *numberOfAttendes;
-@property (nonatomic) NSNumber *remoteID;
-@property (nonatomic) NSDate *updatedAt;
-@property (nonatomic) NSString *userDescription;
-@property (nonatomic) NSString *userType;
-@property (nonatomic) id ignoreTransformable;
-@property (nonatomic) Company *company;
-@property (nonatomic) NSSet *notes;
-@end
-
-@interface User (CoreDataGeneratedAccessors)
-
-- (void)addNotesObject:(Note *)value;
-- (void)removeNotesObject:(Note *)value;
-- (void)addNotes:(NSSet *)values;
-- (void)removeNotes:(NSSet *)values;
+// Insert code here to declare functionality of your managed object subclass
 
 @end
+
+NS_ASSUME_NONNULL_END
+
+#import "User+CoreDataProperties.h"

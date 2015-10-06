@@ -7,15 +7,21 @@
 #import "Note.h"
 #import "Company.h"
 #import "Market.h"
+
+#import "Apartment.h"
+#import "Building.h"
+#import "Room.h"
+#import "Park.h"
+
 #import "DATAStack.h"
 
-@interface Tests : XCTestCase
+@interface MapperTests : XCTestCase
 
 @property (nonatomic) NSDate *testDate;
 
 @end
 
-@implementation Tests
+@implementation MapperTests
 
 - (NSDate *)testDate {
     if (!_testDate) {
@@ -66,12 +72,6 @@
     note.destroy = @YES;
 
     note = [self noteWithID:@7 inContext:dataStack.mainContext];
-    note.user = user;
-
-    note = [self entityNamed:@"Note" inContext:dataStack.mainContext];
-    note.user = user;
-
-    note = [self entityNamed:@"Note" inContext:dataStack.mainContext];
     note.user = user;
 
     Company *company = [self companyWithID:@1 andName:@"Facebook" inContext:dataStack.mainContext];
@@ -154,9 +154,11 @@
     mutableDictionary[@"notes"] = sortedNotes;
     dictionary = [mutableDictionary copy];
 
-    NSDictionary *note1 = @{@"id" : @1,
+    NSDictionary *note1 = @{@"destroy" : [NSNull null],
+                            @"id" : @1,
                             @"text" : @"This is the text for the note 1"};
-    NSDictionary *note2 = @{@"id" : @7,
+    NSDictionary *note2 = @{@"destroy" : [NSNull null],
+                            @"id" : @7,
                             @"text" : @"This is the text for the note 7"};
     NSDictionary *note3 = @{@"destroy" : @1,
                             @"id" : @14,
@@ -182,9 +184,11 @@
     mutableDictionary[@"notes_attributes"] = sortedNotes;
     dictionary = [mutableDictionary copy];
 
-    NSDictionary *note1 = @{@"id" : @1,
+    NSDictionary *note1 = @{@"_destroy" : [NSNull null],
+                            @"id" : @1,
                             @"text" : @"This is the text for the note 1"};
-    NSDictionary *note2 = @{@"id" : @7,
+    NSDictionary *note2 = @{@"_destroy" : [NSNull null],
+                            @"id" : @7,
                             @"text" : @"This is the text for the note 7"};
     NSDictionary *note3 = @{@"_destroy" : @1,
                             @"id" : @14,
@@ -192,6 +196,38 @@
     comparedDictionary[@"notes_attributes"] = @[note1, note2, note3];
 
     XCTAssertEqualObjects(dictionary, comparedDictionary);
+}
+
+- (void)testDictionaryDeepRelationships {
+    DATAStack *dataStack = [self dataStack];
+
+    Building *building = [self entityNamed:@"Building" inContext:dataStack.mainContext];
+    building.remoteID = @1;
+
+    Park *park = [self entityNamed:@"Park" inContext:dataStack.mainContext];
+    park.remoteID = @1;
+    [building addParksObject:park];
+
+    Apartment *apartment = [self entityNamed:@"Apartment" inContext:dataStack.mainContext];
+    apartment.remoteID = @1;
+
+    Room *room = [self entityNamed:@"Room" inContext:dataStack.mainContext];
+    room.remoteID = @1;
+    [apartment addRoomsObject:room];
+
+    [building addApartmentsObject:apartment];
+
+    NSDictionary *buildingDictionary = [building hyp_dictionaryUsingRelationshipType:HYPPropertyMapperRelationshipTypeArray];
+    NSMutableDictionary *compared = [NSMutableDictionary new];
+    NSArray *rooms = @[@{@"id" : @1}];
+    NSArray *apartments = @[@{@"id" : @1,
+                              @"rooms" : rooms}];
+    NSArray *parks = @[@{@"id" : @1}];
+    compared[@"id"] = @1;
+    compared[@"apartments"] = apartments;
+    compared[@"parks"] = parks;
+
+    XCTAssertEqualObjects(buildingDictionary, compared);
 }
 
 - (void)testDictionaryValuesKindOfClass {

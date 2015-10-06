@@ -1,5 +1,5 @@
 //
-//  Market.h
+//  Room.h
 //  Pod
 //
 //  Created by Elvis Nuñez on 06/10/15.
@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface Market : NSManagedObject
+@interface Room : NSManagedObject
 
 // Insert code here to declare functionality of your managed object subclass
 
@@ -19,4 +19,4 @@ NS_ASSUME_NONNULL_BEGIN
 
 NS_ASSUME_NONNULL_END
 
-#import "Market+CoreDataProperties.h"
+#import "Room+CoreDataProperties.h"

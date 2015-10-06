@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7549" systemVersion="14E7f" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="8195" systemVersion="15B22c" minimumToolsVersion="Xcode 4.3">
+    <entity name="Apartment" representedClassName="Apartment" syncable="YES">
+        <attribute name="remoteID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="building" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Building" inverseName="apartments" inverseEntity="Building" syncable="YES"/>
+        <relationship name="rooms" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Room" inverseName="apartment" inverseEntity="Room" syncable="YES"/>
+    </entity>
+    <entity name="Building" representedClassName="Building" syncable="YES">
+        <attribute name="remoteID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="apartments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Apartment" inverseName="building" inverseEntity="Apartment" syncable="YES"/>
+        <relationship name="parks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Park" inverseName="building" inverseEntity="Park" syncable="YES"/>
+    </entity>
     <entity name="Company" representedClassName="Company" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="remoteID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
@@ -19,6 +29,14 @@
         <attribute name="remoteID" optional="YES" attributeType="Integer 32" syncable="YES"/>
         <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="notes" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="Park" representedClassName="Park" syncable="YES">
+        <attribute name="remoteID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="building" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Building" inverseName="parks" inverseEntity="Building" syncable="YES"/>
+    </entity>
+    <entity name="Room" representedClassName="Room" syncable="YES">
+        <attribute name="remoteID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="apartment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Apartment" inverseName="rooms" inverseEntity="Apartment" syncable="YES"/>
     </entity>
     <entity name="User" representedClassName="User" syncable="YES">
         <attribute name="age" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES">
@@ -49,9 +67,13 @@
         <relationship name="notes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Note" inverseName="user" inverseEntity="Note" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Company" positionX="25" positionY="279" width="128" height="90"/>
+        <element name="Company" positionX="25" positionY="279" width="128" height="88"/>
         <element name="Market" positionX="-297" positionY="270" width="128" height="75"/>
         <element name="Note" positionX="-504" positionY="351" width="128" height="103"/>
-        <element name="User" positionX="-290" positionY="116" width="128" height="315"/>
+        <element name="User" positionX="-207" positionY="459" width="128" height="315"/>
+        <element name="Room" positionX="-189" positionY="963" width="128" height="73"/>
+        <element name="Apartment" positionX="-351" positionY="954" width="128" height="88"/>
+        <element name="Building" positionX="-513" positionY="963" width="128" height="88"/>
+        <element name="Park" positionX="-378" positionY="1134" width="128" height="73"/>
     </elements>
 </model>

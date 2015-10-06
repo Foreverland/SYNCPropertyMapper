@@ -5,7 +5,6 @@
 #import "NSManagedObject+HYPPropertyMapperHelpers.h"
 
 static NSString * const HYPPropertyMapperNestedAttributesKey = @"attributes";
-static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
 
 @implementation NSManagedObject (HYPPropertyMapper)
 
@@ -50,45 +49,50 @@ static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
     return [self hyp_dictionaryWithDateFormatter:[self defaultDateFormatter] usingRelationshipType:relationshipType];
 }
 
-- (NSDictionary *)hyp_dictionaryWithDateFormatter:(NSDateFormatter *)formatter {
-    return [self hyp_dictionaryWithDateFormatter:formatter usingRelationshipType:HYPPropertyMapperRelationshipTypeNested];
+- (NSDictionary *)hyp_dictionaryWithDateFormatter:(NSDateFormatter *)dateFormatter {
+    return [self hyp_dictionaryWithDateFormatter:dateFormatter parent:nil usingRelationshipType:HYPPropertyMapperRelationshipTypeNested];
 }
 
-- (NSDictionary *)hyp_dictionaryWithDateFormatter:(NSDateFormatter *)formatter usingRelationshipType:(HYPPropertyMapperRelationshipType)relationshipType {
+- (NSDictionary *)hyp_dictionaryWithDateFormatter:(NSDateFormatter *)dateFormatter usingRelationshipType:(HYPPropertyMapperRelationshipType)relationshipType {
+    return [self hyp_dictionaryWithDateFormatter:dateFormatter parent:nil usingRelationshipType:relationshipType];
+}
+
+- (NSDictionary *)hyp_dictionaryWithDateFormatter:(NSDateFormatter *)dateFormatter parent:(NSManagedObject *)parent usingRelationshipType:(HYPPropertyMapperRelationshipType)relationshipType {
     NSMutableDictionary *managedObjectAttributes = [NSMutableDictionary new];
 
     for (id propertyDescription in self.entity.properties) {
         if ([propertyDescription isKindOfClass:[NSAttributeDescription class]]) {
-            NSAttributeDescription *attributeDescription = (NSAttributeDescription *)propertyDescription;
-            if (attributeDescription.attributeType != NSTransformableAttributeType) {
-                id value = [self valueForKey:attributeDescription.name];
-                BOOL nilOrNullValue = (!value ||
-                                       [value isKindOfClass:[NSNull class]]);
-                if (nilOrNullValue) {
-                    value = [NSNull null];
-                } else if ([value isKindOfClass:[NSDate class]]) {
-                    value = [formatter stringFromDate:value];
-                }
-
-                NSString *remoteKey = [self remoteKeyForAttributeDescription:attributeDescription];
+            id value = [self valueForAttributeDescription:propertyDescription
+                                            dateFormatter:dateFormatter
+                                         relationshipType:relationshipType];
+            if (value) {
+                NSString *remoteKey = [self remoteKeyForAttributeDescription:propertyDescription
+                                                       usingRelationshipType:relationshipType];
                 managedObjectAttributes[remoteKey] = value;
             }
         } else if ([propertyDescription isKindOfClass:[NSRelationshipDescription class]] &&
                    relationshipType != HYPPropertyMapperRelationshipTypeNone) {
-            NSString *relationshipName = [propertyDescription name];
-
-            id relationships = [self valueForKey:relationshipName];
-            BOOL isToOneRelationship = (![relationships isKindOfClass:[NSSet class]]);
-            if (isToOneRelationship) {
-                NSDictionary *attributesForToOneRelationship = [self attributesForToOneRelationship:relationships
-                                                                                   relationshipName:relationshipName
-                                                                              usingRelationshipType:relationshipType];
-                [managedObjectAttributes addEntriesFromDictionary:attributesForToOneRelationship];
-            } else {
-                NSDictionary *attributesForToManyRelationship = [self attributesForToManyRelationship:relationships
-                                                                                     relationshipName:relationshipName
-                                                                                usingRelationshipType:relationshipType];
-                [managedObjectAttributes addEntriesFromDictionary:attributesForToManyRelationship];
+            NSRelationshipDescription *relationshipDescription = (NSRelationshipDescription *)propertyDescription;
+            BOOL relationshipIsNotInverse = (![parent.entity.name isEqualToString:relationshipDescription.destinationEntity.name]);
+            if (relationshipIsNotInverse) {
+                NSString *relationshipName = [propertyDescription name];
+                id relationships = [self valueForKey:relationshipName];
+                BOOL isToOneRelationship = (![relationships isKindOfClass:[NSSet class]]);
+                if (isToOneRelationship) {
+                    NSDictionary *attributesForToOneRelationship = [self attributesForToOneRelationship:relationships
+                                                                                       relationshipName:relationshipName
+                                                                                  usingRelationshipType:relationshipType
+                                                                                                 parent:self
+                                                                                          dateFormatter:dateFormatter];
+                    [managedObjectAttributes addEntriesFromDictionary:attributesForToOneRelationship];
+                } else {
+                    NSDictionary *attributesForToManyRelationship = [self attributesForToManyRelationship:relationships
+                                                                                         relationshipName:relationshipName
+                                                                                    usingRelationshipType:relationshipType
+                                                                                                   parent:self
+                                                                                            dateFormatter:dateFormatter];
+                    [managedObjectAttributes addEntriesFromDictionary:attributesForToManyRelationship];
+                }
             }
         }
     }
@@ -96,44 +100,16 @@ static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
     return [managedObjectAttributes copy];
 }
 
-- (NSDictionary *)attributesForRelationship:(NSManagedObject *)relationship
-                           relationshipName:(NSString *)relationshipName
-                           relationshipType:(HYPPropertyMapperRelationshipType)relationshipType {
-    NSMutableDictionary *attributes = [NSMutableDictionary new];
-    for (NSAttributeDescription *propertyDescription in [relationship.entity properties]) {
-        if ([propertyDescription isKindOfClass:[NSAttributeDescription class]]) {
-            NSAttributeDescription *attributeDescription = (NSAttributeDescription *)propertyDescription;
-            id value = [relationship valueForKey:attributeDescription.name];
-            if (value) {
-                NSString *attribute = propertyDescription.name;
-                NSString *localKey = HYPPropertyMapperDefaultLocalValue;
-                BOOL attributeIsKey = ([localKey isEqualToString:attribute]);
-
-                NSString *key;
-                if (attributeIsKey) {
-                    key = HYPPropertyMapperDefaultRemoteValue;
-                } else if ([attribute isEqualToString:HYPPropertyMapperDestroyKey] &&
-                           relationshipType == HYPPropertyMapperRelationshipTypeNested) {
-                    key = [NSString stringWithFormat:@"_%@", HYPPropertyMapperDestroyKey];
-                } else {
-                    key = [attribute hyp_remoteString];
-                }
-
-                attributes[key] = value;
-            }
-        }
-    }
-
-    return attributes;
-}
-
 - (NSDictionary *)attributesForToOneRelationship:(NSManagedObject *)relationship
                                 relationshipName:(NSString *)relationshipName
-                           usingRelationshipType:(HYPPropertyMapperRelationshipType)relationshipType {
+                           usingRelationshipType:(HYPPropertyMapperRelationshipType)relationshipType
+                                          parent:(NSManagedObject *)parent
+                                   dateFormatter:(NSDateFormatter *)dateFormatter {
+
     NSMutableDictionary *attributesForToOneRelationship = [NSMutableDictionary new];
-    NSDictionary *attributes = [self attributesForRelationship:relationship
-                                              relationshipName:relationshipName
-                                              relationshipType:relationshipType];
+    NSDictionary *attributes = [relationship hyp_dictionaryWithDateFormatter:dateFormatter
+                                                                      parent:parent
+                                                       usingRelationshipType:relationshipType];
     if (attributes.count > 0) {
         NSString *key = [relationshipName hyp_remoteString];
         if (relationshipType == HYPPropertyMapperRelationshipTypeNested) {
@@ -148,16 +124,17 @@ static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
 
 - (NSDictionary *)attributesForToManyRelationship:(NSSet *)relationships
                                  relationshipName:(NSString *)relationshipName
-                            usingRelationshipType:(HYPPropertyMapperRelationshipType)relationshipType {
+                            usingRelationshipType:(HYPPropertyMapperRelationshipType)relationshipType
+                                           parent:(NSManagedObject *)parent
+                                    dateFormatter:(NSDateFormatter *)dateFormatter {
     NSMutableDictionary *attributesForToManyRelationship = [NSMutableDictionary new];
     NSUInteger relationIndex = 0;
     NSMutableDictionary *relationsDictionary = [NSMutableDictionary new];
     NSMutableArray *relationsArray = [NSMutableArray new];
-    for (NSManagedObject *relation in relationships) {
-        NSDictionary *attributes = [self attributesForRelationship:relation
-                                                  relationshipName:relationshipName
-                                                  relationshipType:relationshipType];
-
+    for (NSManagedObject *relationship in relationships) {
+        NSDictionary *attributes = [relationship hyp_dictionaryWithDateFormatter:dateFormatter
+                                                                          parent:parent
+                                                           usingRelationshipType:relationshipType];
         if (attributes.count > 0) {
             if (relationshipType == HYPPropertyMapperRelationshipTypeArray) {
                 [relationsArray addObject:attributes];

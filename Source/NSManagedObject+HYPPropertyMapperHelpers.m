@@ -6,6 +6,25 @@
 
 @implementation NSManagedObject (HYPPropertyMapperHelpers)
 
+- (id)valueForAttributeDescription:(NSAttributeDescription *)attributeDescription
+                     dateFormatter:(NSDateFormatter *)dateFormatter
+                  relationshipType:(HYPPropertyMapperRelationshipType)relationshipType {
+    id value;
+
+    if (attributeDescription.attributeType != NSTransformableAttributeType) {
+        value = [self valueForKey:attributeDescription.name];
+        BOOL nilOrNullValue = (!value ||
+                               [value isKindOfClass:[NSNull class]]);
+        if (nilOrNullValue) {
+            value = [NSNull null];
+        } else if ([value isKindOfClass:[NSDate class]]) {
+            value = [dateFormatter stringFromDate:value];
+        }
+    }
+
+    return value;
+}
+
 - (NSAttributeDescription *)attributeDescriptionForRemoteKey:(NSString *)remoteKey {
     __block NSAttributeDescription *foundAttributeDescription;
 
@@ -48,6 +67,10 @@
 }
 
 - (NSString *)remoteKeyForAttributeDescription:(NSAttributeDescription *)attributeDescription {
+    return [self remoteKeyForAttributeDescription:attributeDescription usingRelationshipType:HYPPropertyMapperRelationshipTypeNested];
+}
+
+- (NSString *)remoteKeyForAttributeDescription:(NSAttributeDescription *)attributeDescription usingRelationshipType:(HYPPropertyMapperRelationshipType)relationshipType {
     NSDictionary *userInfo = attributeDescription.userInfo;
     NSString *localKey = attributeDescription.name;
     NSString *remoteKey;
@@ -57,6 +80,9 @@
         remoteKey = customRemoteKey;
     } else if ([localKey isEqualToString:HYPPropertyMapperDefaultLocalValue]) {
         remoteKey = HYPPropertyMapperDefaultRemoteValue;
+    } else if ([localKey isEqualToString:HYPPropertyMapperDestroyKey] &&
+               relationshipType == HYPPropertyMapperRelationshipTypeNested) {
+        remoteKey = [NSString stringWithFormat:@"_%@", HYPPropertyMapperDestroyKey];
     } else {
         remoteKey = [localKey hyp_remoteString];
     }
