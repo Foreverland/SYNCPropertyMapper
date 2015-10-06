@@ -99,4 +99,15 @@
     XCTAssertNil([user remoteKeyForAttributeDescription:nil]);
 }
 
+- (void)testDestroyKey {
+    Note *note = [self entityNamed:@"Note"];
+    NSAttributeDescription *attributeDescription;
+
+    attributeDescription = note.entity.propertiesByName[@"destroy"];    ;
+    XCTAssertEqualObjects([note remoteKeyForAttributeDescription:attributeDescription], @"_destroy");
+
+    attributeDescription = note.entity.propertiesByName[@"destroy"];
+    XCTAssertEqualObjects([note remoteKeyForAttributeDescription:attributeDescription usingRelationshipType:HYPPropertyMapperRelationshipTypeArray], @"destroy");
+}
+
 @end

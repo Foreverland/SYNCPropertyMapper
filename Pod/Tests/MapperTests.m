@@ -74,12 +74,6 @@
     note = [self noteWithID:@7 inContext:dataStack.mainContext];
     note.user = user;
 
-    note = [self entityNamed:@"Note" inContext:dataStack.mainContext];
-    note.user = user;
-
-    note = [self entityNamed:@"Note" inContext:dataStack.mainContext];
-    note.user = user;
-
     Company *company = [self companyWithID:@1 andName:@"Facebook" inContext:dataStack.mainContext];
     company.user = user;
 
@@ -160,9 +154,11 @@
     mutableDictionary[@"notes"] = sortedNotes;
     dictionary = [mutableDictionary copy];
 
-    NSDictionary *note1 = @{@"id" : @1,
+    NSDictionary *note1 = @{@"destroy" : [NSNull null],
+                            @"id" : @1,
                             @"text" : @"This is the text for the note 1"};
-    NSDictionary *note2 = @{@"id" : @7,
+    NSDictionary *note2 = @{@"destroy" : [NSNull null],
+                            @"id" : @7,
                             @"text" : @"This is the text for the note 7"};
     NSDictionary *note3 = @{@"destroy" : @1,
                             @"id" : @14,
@@ -188,9 +184,11 @@
     mutableDictionary[@"notes_attributes"] = sortedNotes;
     dictionary = [mutableDictionary copy];
 
-    NSDictionary *note1 = @{@"id" : @1,
+    NSDictionary *note1 = @{@"_destroy" : [NSNull null],
+                            @"id" : @1,
                             @"text" : @"This is the text for the note 1"};
-    NSDictionary *note2 = @{@"id" : @7,
+    NSDictionary *note2 = @{@"_destroy" : [NSNull null],
+                            @"id" : @7,
                             @"text" : @"This is the text for the note 7"};
     NSDictionary *note3 = @{@"_destroy" : @1,
                             @"id" : @14,
