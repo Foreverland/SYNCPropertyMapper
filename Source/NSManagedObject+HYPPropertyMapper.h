@@ -33,7 +33,7 @@ typedef NS_ENUM(NSInteger, HYPPropertyMapperRelationshipType) {
  * \param dateFormatter - A custom date formatter that turns NSDate objects into NSString objects. Do not pass nil, instead use the 'hyp_dictionary' method
  * \return NSDictionary of values that can be serialized
  */
-- (NSDictionary *)hyp_dictionaryWithDateFormatter:(NSDateFormatter *)formatter;
+- (NSDictionary *)hyp_dictionaryWithDateFormatter:(NSDateFormatter *)dateFormatter;
 
 /*! Creates a NSDictionary of values based on the NSManagedObject subclass that can be serialized by NSJSONSerialization. Could include relationships to other models using Ruby on Rail's nested attributes model.
  * \param dateFormatter - A custom date formatter that turns NSDate objects into NSString objects. Do not pass nil, instead use the 'hyp_dictionary' method

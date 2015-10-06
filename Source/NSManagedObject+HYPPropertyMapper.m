@@ -73,7 +73,8 @@ static NSString * const HYPPropertyMapperNestedAttributesKey = @"attributes";
         } else if ([propertyDescription isKindOfClass:[NSRelationshipDescription class]] &&
                    relationshipType != HYPPropertyMapperRelationshipTypeNone) {
             NSRelationshipDescription *relationshipDescription = (NSRelationshipDescription *)propertyDescription;
-            if (![parent.entity.name isEqualToString:relationshipDescription.destinationEntity.name]) {
+            BOOL relationshipIsNotInverse = (![parent.entity.name isEqualToString:relationshipDescription.destinationEntity.name]);
+            if (relationshipIsNotInverse) {
                 NSString *relationshipName = [propertyDescription name];
                 id relationships = [self valueForKey:relationshipName];
                 BOOL isToOneRelationship = (![relationships isKindOfClass:[NSSet class]]);
