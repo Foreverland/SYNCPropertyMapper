@@ -13,6 +13,8 @@
 #import "Room.h"
 #import "Park.h"
 
+#import "Recursive.h"
+
 #import "DATAStack.h"
 
 @interface MapperTests : XCTestCase
@@ -268,6 +270,35 @@
     XCTAssertTrue([dictionary[@"type"] isKindOfClass:[NSString class]]);
 
     XCTAssertTrue([dictionary[@"updated_at"] isKindOfClass:[NSString class]]);
+}
+
+- (void)testRecursive {
+    DATAStack *dataStack = [self dataStack];
+
+    Recursive *megachild = [self entityNamed:@"Recursive" inContext:dataStack.mainContext];
+    megachild.remoteID = @"megachild";
+
+    Recursive *grandchild = [self entityNamed:@"Recursive" inContext:dataStack.mainContext];
+    grandchild.remoteID = @"grandchild";
+    [grandchild addRecursivesObject:megachild];
+    megachild.recursive = grandchild;
+
+    Recursive *child = [self entityNamed:@"Recursive" inContext:dataStack.mainContext];
+    child.remoteID = @"child";
+    [child addRecursivesObject:grandchild];
+    grandchild.recursive = child;
+
+    Recursive *parent = [self entityNamed:@"Recursive" inContext:dataStack.mainContext];
+    parent.remoteID = @"Parent";
+    [parent addRecursivesObject:child];
+    child.recursive = parent;
+
+    NSDictionary *dictionary = [parent hyp_dictionaryUsingRelationshipType:HYPPropertyMapperRelationshipTypeArray];
+    NSArray *megachildArray = @[@{@"id" : @"megachild", @"recursives": @[]}];
+    NSArray *grandchildArray = @[@{@"id" : @"grandchild", @"recursives": megachildArray}];
+    NSArray *childArray = @[@{@"id" : @"child", @"recursives": grandchildArray}];
+    NSDictionary *parentDictionary = @{@"id" : @"Parent", @"recursives" : childArray};
+    XCTAssertEqualObjects(dictionary, parentDictionary);
 }
 
 #pragma mark - hyp_fillWithDictionary

@@ -11,6 +11,8 @@
 		143FCA571B89D3E50071CB3F /* DateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 143FCA561B89D3E50071CB3F /* DateTests.m */; };
 		146D72B31AB782920058798C /* MapperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 146D72B21AB782920058798C /* MapperTests.m */; };
 		14824F891AE835C900C1BF3D /* HelperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14824F881AE835C900C1BF3D /* HelperTests.m */; };
+		148517C81BC5CB610061320B /* Recursive+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 148517C51BC5CB610061320B /* Recursive+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
+		148517C91BC5CB610061320B /* Recursive.m in Sources */ = {isa = PBXBuildFile; fileRef = 148517C71BC5CB610061320B /* Recursive.m */; settings = {ASSET_TAGS = (); }; };
 		1485CE431B89CE01000C0C83 /* NSDate+HYPPropertyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1485CE421B89CE01000C0C83 /* NSDate+HYPPropertyMapper.m */; };
 		14CF60011BC3B27900B63EB9 /* Company+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 14CF5FF21BC3B27900B63EB9 /* Company+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
 		14CF60021BC3B27900B63EB9 /* Company.m in Sources */ = {isa = PBXBuildFile; fileRef = 14CF5FF41BC3B27900B63EB9 /* Company.m */; settings = {ASSET_TAGS = (); }; };
@@ -42,6 +44,10 @@
 		146D72B11AB782920058798C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		146D72B21AB782920058798C /* MapperTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MapperTests.m; sourceTree = "<group>"; };
 		14824F881AE835C900C1BF3D /* HelperTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelperTests.m; sourceTree = "<group>"; };
+		148517C41BC5CB610061320B /* Recursive+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Recursive+CoreDataProperties.h"; sourceTree = "<group>"; };
+		148517C51BC5CB610061320B /* Recursive+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Recursive+CoreDataProperties.m"; sourceTree = "<group>"; };
+		148517C61BC5CB610061320B /* Recursive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Recursive.h; sourceTree = "<group>"; };
+		148517C71BC5CB610061320B /* Recursive.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Recursive.m; sourceTree = "<group>"; };
 		1485CE411B89CE01000C0C83 /* NSDate+HYPPropertyMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+HYPPropertyMapper.h"; sourceTree = "<group>"; };
 		1485CE421B89CE01000C0C83 /* NSDate+HYPPropertyMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+HYPPropertyMapper.m"; sourceTree = "<group>"; };
 		14C136511AB784B200B7B07A /* .travis.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = .travis.yml; path = ../.travis.yml; sourceTree = "<group>"; };
@@ -168,6 +174,10 @@
 		14CF600A1BC3B28400B63EB9 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				148517C41BC5CB610061320B /* Recursive+CoreDataProperties.h */,
+				148517C51BC5CB610061320B /* Recursive+CoreDataProperties.m */,
+				148517C61BC5CB610061320B /* Recursive.h */,
+				148517C71BC5CB610061320B /* Recursive.m */,
 				14CF600B1BC3B41000B63EB9 /* Building+CoreDataProperties.h */,
 				14CF600C1BC3B41000B63EB9 /* Building+CoreDataProperties.m */,
 				14CF600D1BC3B41000B63EB9 /* Building.h */,
@@ -343,9 +353,11 @@
 				14CF60071BC3B27900B63EB9 /* Note+CoreDataProperties.m in Sources */,
 				44F04AC11AE79F9E00545DCB /* Model.xcdatamodeld in Sources */,
 				1485CE431B89CE01000C0C83 /* NSDate+HYPPropertyMapper.m in Sources */,
+				148517C81BC5CB610061320B /* Recursive+CoreDataProperties.m in Sources */,
 				14CF60021BC3B27900B63EB9 /* Company.m in Sources */,
 				14824F891AE835C900C1BF3D /* HelperTests.m in Sources */,
 				14CF601E1BC3B41000B63EB9 /* Park.m in Sources */,
+				148517C91BC5CB610061320B /* Recursive.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

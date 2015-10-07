@@ -1,13 +1,7 @@
 //
 //  Market.h
-//  Pod
-//
-//  Created by Elvis Nuñez on 06/10/15.
-//  Copyright © 2015 Example. All rights reserved.
-//
-
-#import <Foundation/Foundation.h>
-#import <CoreData/CoreData.h>
+@import Foundation;
+@import CoreData;
 
 NS_ASSUME_NONNULL_BEGIN
 

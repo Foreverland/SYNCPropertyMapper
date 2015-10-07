@@ -34,6 +34,11 @@
         <attribute name="remoteID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <relationship name="building" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Building" inverseName="parks" inverseEntity="Building" syncable="YES"/>
     </entity>
+    <entity name="Recursive" representedClassName="Recursive" syncable="YES">
+        <attribute name="remoteID" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="recursive" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Recursive" inverseName="recursives" inverseEntity="Recursive" syncable="YES"/>
+        <relationship name="recursives" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Recursive" inverseName="recursive" inverseEntity="Recursive" syncable="YES"/>
+    </entity>
     <entity name="Room" representedClassName="Room" syncable="YES">
         <attribute name="remoteID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <relationship name="apartment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Apartment" inverseName="rooms" inverseEntity="Apartment" syncable="YES"/>
@@ -67,13 +72,14 @@
         <relationship name="notes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Note" inverseName="user" inverseEntity="Note" syncable="YES"/>
     </entity>
     <elements>
+        <element name="Apartment" positionX="-351" positionY="954" width="128" height="88"/>
+        <element name="Building" positionX="-513" positionY="963" width="128" height="88"/>
         <element name="Company" positionX="25" positionY="279" width="128" height="88"/>
         <element name="Market" positionX="-297" positionY="270" width="128" height="75"/>
         <element name="Note" positionX="-504" positionY="351" width="128" height="103"/>
-        <element name="User" positionX="-207" positionY="459" width="128" height="315"/>
-        <element name="Room" positionX="-189" positionY="963" width="128" height="73"/>
-        <element name="Apartment" positionX="-351" positionY="954" width="128" height="88"/>
-        <element name="Building" positionX="-513" positionY="963" width="128" height="88"/>
         <element name="Park" positionX="-378" positionY="1134" width="128" height="73"/>
+        <element name="Room" positionX="-189" positionY="963" width="128" height="73"/>
+        <element name="User" positionX="-207" positionY="459" width="128" height="315"/>
+        <element name="Recursive" positionX="-65" positionY="857" width="128" height="88"/>
     </elements>
 </model>

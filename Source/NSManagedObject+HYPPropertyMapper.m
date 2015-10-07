@@ -73,25 +73,27 @@ static NSString * const HYPPropertyMapperNestedAttributesKey = @"attributes";
         } else if ([propertyDescription isKindOfClass:[NSRelationshipDescription class]] &&
                    relationshipType != HYPPropertyMapperRelationshipTypeNone) {
             NSRelationshipDescription *relationshipDescription = (NSRelationshipDescription *)propertyDescription;
-            BOOL relationshipIsNotInverse = (![parent.entity.name isEqualToString:relationshipDescription.destinationEntity.name]);
-            if (relationshipIsNotInverse) {
-                NSString *relationshipName = [propertyDescription name];
+            BOOL relationshipIsNotInverse = (parent && [parent.entity isEqual:relationshipDescription.destinationEntity] && !relationshipDescription.isToMany);
+            if (!relationshipIsNotInverse) {
+                NSString *relationshipName = [relationshipDescription name];
                 id relationships = [self valueForKey:relationshipName];
-                BOOL isToOneRelationship = (![relationships isKindOfClass:[NSSet class]]);
-                if (isToOneRelationship) {
-                    NSDictionary *attributesForToOneRelationship = [self attributesForToOneRelationship:relationships
-                                                                                       relationshipName:relationshipName
-                                                                                  usingRelationshipType:relationshipType
-                                                                                                 parent:self
-                                                                                          dateFormatter:dateFormatter];
-                    [managedObjectAttributes addEntriesFromDictionary:attributesForToOneRelationship];
-                } else {
-                    NSDictionary *attributesForToManyRelationship = [self attributesForToManyRelationship:relationships
-                                                                                         relationshipName:relationshipName
-                                                                                    usingRelationshipType:relationshipType
-                                                                                                   parent:self
-                                                                                            dateFormatter:dateFormatter];
-                    [managedObjectAttributes addEntriesFromDictionary:attributesForToManyRelationship];
+                if (relationships) {
+                    BOOL isToOneRelationship = (![relationships isKindOfClass:[NSSet class]]);
+                    if (isToOneRelationship) {
+                        NSDictionary *attributesForToOneRelationship = [self attributesForToOneRelationship:relationships
+                                                                                           relationshipName:relationshipName
+                                                                                      usingRelationshipType:relationshipType
+                                                                                                     parent:self
+                                                                                              dateFormatter:dateFormatter];
+                        [managedObjectAttributes addEntriesFromDictionary:attributesForToOneRelationship];
+                    } else {
+                        NSDictionary *attributesForToManyRelationship = [self attributesForToManyRelationship:relationships
+                                                                                             relationshipName:relationshipName
+                                                                                        usingRelationshipType:relationshipType
+                                                                                                       parent:self
+                                                                                                dateFormatter:dateFormatter];
+                        [managedObjectAttributes addEntriesFromDictionary:attributesForToManyRelationship];
+                    }
                 }
             }
         }

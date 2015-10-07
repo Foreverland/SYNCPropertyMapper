@@ -1,11 +1,9 @@
 @import Foundation;
 @import CoreData;
 
-@class Building;
-
 NS_ASSUME_NONNULL_BEGIN
 
-@interface Park : NSManagedObject
+@interface Recursive : NSManagedObject
 
 // Insert code here to declare functionality of your managed object subclass
 
@@ -13,4 +11,4 @@ NS_ASSUME_NONNULL_BEGIN
 
 NS_ASSUME_NONNULL_END
 
-#import "Park+CoreDataProperties.h"
+#import "Recursive+CoreDataProperties.h"

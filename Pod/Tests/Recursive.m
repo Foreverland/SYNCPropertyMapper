@@ -1,6 +1,6 @@
-#import "Room.h"
+#import "Recursive.h"
 
-@implementation Room
+@implementation Recursive
 
 // Insert code here to add functionality to your managed object subclass
 
