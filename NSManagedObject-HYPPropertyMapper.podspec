@@ -20,7 +20,7 @@ Pod::Spec.new do |s|
     :git => 'https://github.com/hyperoslo/NSManagedObject-HYPPropertyMapper.git',
     :tag => s.version.to_s
   }
-  s.source_files = 'Source/'
+  s.source_files = 'Source'
   s.frameworks = 'Foundation'
   s.requires_arc = true
   s.dependency 'NSString-HYPNetworking', '~> 0.3.3'
