@@ -8,7 +8,7 @@
 #import "Note.h"
 #import "Company.h"
 #import "Market.h"
-#import "DATAStack.h"
+@import DATAStack;
 
 @interface PrivateTests : XCTestCase
 
@@ -24,7 +24,7 @@
 - (NSManagedObjectContext *)managedObjectContext {
     DATAStack *dataStack = [[DATAStack alloc] initWithModelName:@"Model"
                                                          bundle:[NSBundle bundleForClass:[self class]]
-                                                      storeType:DATAStackInMemoryStoreType];
+                                                      storeType:DATAStackStoreTypeInMemory];
     return dataStack.mainContext;
 }
 

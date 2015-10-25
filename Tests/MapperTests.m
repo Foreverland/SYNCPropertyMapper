@@ -15,7 +15,7 @@
 
 #import "Recursive.h"
 
-#import "DATAStack.h"
+@import DATAStack;
 
 @interface MapperTests : XCTestCase
 
@@ -38,7 +38,7 @@
 - (DATAStack *)dataStack {
     return [[DATAStack alloc] initWithModelName:@"Model"
                                          bundle:[NSBundle bundleForClass:[self class]]
-                                      storeType:DATAStackInMemoryStoreType];
+                                      storeType:DATAStackStoreTypeInMemory];
 }
 - (id)entityNamed:(NSString *)entityName inContext:(NSManagedObjectContext *)context {
     return [NSEntityDescription insertNewObjectForEntityForName:entityName
