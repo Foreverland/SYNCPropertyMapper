@@ -29,6 +29,8 @@
 		14260D5B1BDD5D2100E6A83B /* Room+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 14260D421BDD5D2100E6A83B /* Room+CoreDataProperties.m */; };
 		14260D5C1BDD5D2100E6A83B /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 14260D441BDD5D2100E6A83B /* User.m */; };
 		14260D5D1BDD5D2100E6A83B /* User+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 14260D461BDD5D2100E6A83B /* User+CoreDataProperties.m */; };
+		14704C261BE8271400DBFA1D /* MultiLetterEntity+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 14704C231BE8271400DBFA1D /* MultiLetterEntity+CoreDataProperties.m */; };
+		14704C271BE8271400DBFA1D /* MultiLetterEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 14704C251BE8271400DBFA1D /* MultiLetterEntity.m */; };
 		FEF267E8E559DCE44CDA1D89 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A270238462A3030B20904C17 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -76,6 +78,10 @@
 		14260D461BDD5D2100E6A83B /* User+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "User+CoreDataProperties.m"; sourceTree = "<group>"; };
 		146D72AC1AB782920058798C /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		146D72B11AB782920058798C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		14704C221BE8271400DBFA1D /* MultiLetterEntity+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MultiLetterEntity+CoreDataProperties.h"; sourceTree = "<group>"; };
+		14704C231BE8271400DBFA1D /* MultiLetterEntity+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MultiLetterEntity+CoreDataProperties.m"; sourceTree = "<group>"; };
+		14704C241BE8271400DBFA1D /* MultiLetterEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiLetterEntity.h; sourceTree = "<group>"; };
+		14704C251BE8271400DBFA1D /* MultiLetterEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiLetterEntity.m; sourceTree = "<group>"; };
 		14C0AF7F1BD6D4230009ECBE /* .slather.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .slather.yml; sourceTree = "<group>"; };
 		14C0AF801BD6D4230009ECBE /* .travis.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .travis.yml; sourceTree = "<group>"; };
 		14C0AF811BD6D4230009ECBE /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
@@ -122,6 +128,32 @@
 		146D72AF1AB782920058798C /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				14704C1D1BE8267D00DBFA1D /* Models */,
+				14260D291BDD5D2100E6A83B /* DateTests.m */,
+				14260D2A1BDD5D2100E6A83B /* HelperTests.m */,
+				14260D2C1BDD5D2100E6A83B /* MapperTests.m */,
+				14260D2B1BDD5D2100E6A83B /* Info.plist */,
+				14260D311BDD5D2100E6A83B /* Model.xcdatamodeld */,
+				146D72B01AB782920058798C /* Supporting Files */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		146D72B01AB782920058798C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				146D72B11AB782920058798C /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		14704C1D1BE8267D00DBFA1D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				14704C221BE8271400DBFA1D /* MultiLetterEntity+CoreDataProperties.h */,
+				14704C231BE8271400DBFA1D /* MultiLetterEntity+CoreDataProperties.m */,
+				14704C241BE8271400DBFA1D /* MultiLetterEntity.h */,
+				14704C251BE8271400DBFA1D /* MultiLetterEntity.m */,
 				14260D1D1BDD5D2100E6A83B /* Apartment.h */,
 				14260D1E1BDD5D2100E6A83B /* Apartment.m */,
 				14260D1F1BDD5D2100E6A83B /* Apartment+CoreDataProperties.h */,
@@ -134,15 +166,10 @@
 				14260D261BDD5D2100E6A83B /* Company.m */,
 				14260D271BDD5D2100E6A83B /* Company+CoreDataProperties.h */,
 				14260D281BDD5D2100E6A83B /* Company+CoreDataProperties.m */,
-				14260D291BDD5D2100E6A83B /* DateTests.m */,
-				14260D2A1BDD5D2100E6A83B /* HelperTests.m */,
-				14260D2B1BDD5D2100E6A83B /* Info.plist */,
-				14260D2C1BDD5D2100E6A83B /* MapperTests.m */,
 				14260D2D1BDD5D2100E6A83B /* Market.h */,
 				14260D2E1BDD5D2100E6A83B /* Market.m */,
 				14260D2F1BDD5D2100E6A83B /* Market+CoreDataProperties.h */,
 				14260D301BDD5D2100E6A83B /* Market+CoreDataProperties.m */,
-				14260D311BDD5D2100E6A83B /* Model.xcdatamodeld */,
 				14260D331BDD5D2100E6A83B /* Note.h */,
 				14260D341BDD5D2100E6A83B /* Note.m */,
 				14260D351BDD5D2100E6A83B /* Note+CoreDataProperties.h */,
@@ -163,17 +190,8 @@
 				14260D441BDD5D2100E6A83B /* User.m */,
 				14260D451BDD5D2100E6A83B /* User+CoreDataProperties.h */,
 				14260D461BDD5D2100E6A83B /* User+CoreDataProperties.m */,
-				146D72B01AB782920058798C /* Supporting Files */,
 			);
-			path = Tests;
-			sourceTree = "<group>";
-		};
-		146D72B01AB782920058798C /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				146D72B11AB782920058798C /* Info.plist */,
-			);
-			name = "Supporting Files";
+			name = Models;
 			sourceTree = "<group>";
 		};
 		14C136501AB7849300B7B07A /* Metadata */ = {
@@ -339,8 +357,10 @@
 				14260D591BDD5D2100E6A83B /* Recursive+CoreDataProperties.m in Sources */,
 				14260D581BDD5D2100E6A83B /* Recursive.m in Sources */,
 				14260D5A1BDD5D2100E6A83B /* Room.m in Sources */,
+				14704C271BE8271400DBFA1D /* MultiLetterEntity.m in Sources */,
 				14260D521BDD5D2100E6A83B /* Market+CoreDataProperties.m in Sources */,
 				14260D4C1BDD5D2100E6A83B /* Company+CoreDataProperties.m in Sources */,
+				14704C261BE8271400DBFA1D /* MultiLetterEntity+CoreDataProperties.m in Sources */,
 				14260D481BDD5D2100E6A83B /* Apartment+CoreDataProperties.m in Sources */,
 				14260D4A1BDD5D2100E6A83B /* Building+CoreDataProperties.m in Sources */,
 				14260D491BDD5D2100E6A83B /* Building.m in Sources */,

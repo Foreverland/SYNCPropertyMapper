@@ -14,6 +14,7 @@
 #import "Park.h"
 
 #import "Recursive.h"
+#import "MultiLetterEntity.h"
 
 @import DATAStack;
 
@@ -459,6 +460,13 @@
     XCTAssertEqualObjects([user valueForKey:@"userDescription"], @"This is the description?");
 
     XCTAssertEqualObjects([user valueForKey:@"userType"], @"user type");
+
+    MultiLetterEntity *entity = [self entityNamed:@"MultiLetterEntity" inContext:dataStack.mainContext];
+    [entity hyp_fillWithDictionary:values];
+
+    XCTAssertEqualObjects([entity valueForKey:@"remoteID"], @100);
+
+    XCTAssertEqualObjects([entity valueForKey:@"multiLetterEntityDescription"], @"This is the description?");
 }
 
 - (void)testCreatedAt {
