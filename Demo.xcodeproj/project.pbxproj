@@ -29,9 +29,6 @@
 		14260D5B1BDD5D2100E6A83B /* Room+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 14260D421BDD5D2100E6A83B /* Room+CoreDataProperties.m */; };
 		14260D5C1BDD5D2100E6A83B /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 14260D441BDD5D2100E6A83B /* User.m */; };
 		14260D5D1BDD5D2100E6A83B /* User+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 14260D461BDD5D2100E6A83B /* User+CoreDataProperties.m */; };
-		14260D641BDD5D2F00E6A83B /* NSDate+HYPPropertyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 14260D5F1BDD5D2F00E6A83B /* NSDate+HYPPropertyMapper.m */; };
-		14260D651BDD5D2F00E6A83B /* NSManagedObject+HYPPropertyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 14260D611BDD5D2F00E6A83B /* NSManagedObject+HYPPropertyMapper.m */; };
-		14260D661BDD5D2F00E6A83B /* NSManagedObject+HYPPropertyMapperHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 14260D631BDD5D2F00E6A83B /* NSManagedObject+HYPPropertyMapperHelpers.m */; };
 		FEF267E8E559DCE44CDA1D89 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A270238462A3030B20904C17 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -77,12 +74,6 @@
 		14260D441BDD5D2100E6A83B /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		14260D451BDD5D2100E6A83B /* User+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "User+CoreDataProperties.h"; sourceTree = "<group>"; };
 		14260D461BDD5D2100E6A83B /* User+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "User+CoreDataProperties.m"; sourceTree = "<group>"; };
-		14260D5E1BDD5D2F00E6A83B /* NSDate+HYPPropertyMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+HYPPropertyMapper.h"; sourceTree = "<group>"; };
-		14260D5F1BDD5D2F00E6A83B /* NSDate+HYPPropertyMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+HYPPropertyMapper.m"; sourceTree = "<group>"; };
-		14260D601BDD5D2F00E6A83B /* NSManagedObject+HYPPropertyMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+HYPPropertyMapper.h"; sourceTree = "<group>"; };
-		14260D611BDD5D2F00E6A83B /* NSManagedObject+HYPPropertyMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+HYPPropertyMapper.m"; sourceTree = "<group>"; };
-		14260D621BDD5D2F00E6A83B /* NSManagedObject+HYPPropertyMapperHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+HYPPropertyMapperHelpers.h"; sourceTree = "<group>"; };
-		14260D631BDD5D2F00E6A83B /* NSManagedObject+HYPPropertyMapperHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+HYPPropertyMapperHelpers.m"; sourceTree = "<group>"; };
 		146D72AC1AB782920058798C /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		146D72B11AB782920058798C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		14C0AF7F1BD6D4230009ECBE /* .slather.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .slather.yml; sourceTree = "<group>"; };
@@ -111,7 +102,6 @@
 			isa = PBXGroup;
 			children = (
 				14C136501AB7849300B7B07A /* Metadata */,
-				14C0AF841BD6D4370009ECBE /* Source */,
 				146D72AF1AB782920058798C /* Tests */,
 				146D72941AB782920058798C /* Products */,
 				E36EFC07599631C332C6A62B /* Pods */,
@@ -184,19 +174,6 @@
 				146D72B11AB782920058798C /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		14C0AF841BD6D4370009ECBE /* Source */ = {
-			isa = PBXGroup;
-			children = (
-				14260D5E1BDD5D2F00E6A83B /* NSDate+HYPPropertyMapper.h */,
-				14260D5F1BDD5D2F00E6A83B /* NSDate+HYPPropertyMapper.m */,
-				14260D601BDD5D2F00E6A83B /* NSManagedObject+HYPPropertyMapper.h */,
-				14260D611BDD5D2F00E6A83B /* NSManagedObject+HYPPropertyMapper.m */,
-				14260D621BDD5D2F00E6A83B /* NSManagedObject+HYPPropertyMapperHelpers.h */,
-				14260D631BDD5D2F00E6A83B /* NSManagedObject+HYPPropertyMapperHelpers.m */,
-			);
-			path = Source;
 			sourceTree = "<group>";
 		};
 		14C136501AB7849300B7B07A /* Metadata */ = {
@@ -349,9 +326,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				14260D5B1BDD5D2100E6A83B /* Room+CoreDataProperties.m in Sources */,
-				14260D651BDD5D2F00E6A83B /* NSManagedObject+HYPPropertyMapper.m in Sources */,
 				14260D471BDD5D2100E6A83B /* Apartment.m in Sources */,
-				14260D641BDD5D2F00E6A83B /* NSDate+HYPPropertyMapper.m in Sources */,
 				14260D4E1BDD5D2100E6A83B /* HelperTests.m in Sources */,
 				14260D5D1BDD5D2100E6A83B /* User+CoreDataProperties.m in Sources */,
 				14260D571BDD5D2100E6A83B /* Park+CoreDataProperties.m in Sources */,
@@ -363,7 +338,6 @@
 				14260D541BDD5D2100E6A83B /* Note.m in Sources */,
 				14260D591BDD5D2100E6A83B /* Recursive+CoreDataProperties.m in Sources */,
 				14260D581BDD5D2100E6A83B /* Recursive.m in Sources */,
-				14260D661BDD5D2F00E6A83B /* NSManagedObject+HYPPropertyMapperHelpers.m in Sources */,
 				14260D5A1BDD5D2100E6A83B /* Room.m in Sources */,
 				14260D521BDD5D2100E6A83B /* Market+CoreDataProperties.m in Sources */,
 				14260D4C1BDD5D2100E6A83B /* Company+CoreDataProperties.m in Sources */,
