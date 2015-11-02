@@ -452,14 +452,14 @@
                              @"type": @"user type"};
 
     DATAStack *dataStack = [self dataStack];
-    User *user = [self userUsingDataStack:dataStack];
+    /*User *user = [self userUsingDataStack:dataStack];
     [user hyp_fillWithDictionary:values];
 
     XCTAssertEqualObjects([user valueForKey:@"remoteID"], @100);
 
     XCTAssertEqualObjects([user valueForKey:@"userDescription"], @"This is the description?");
 
-    XCTAssertEqualObjects([user valueForKey:@"userType"], @"user type");
+    XCTAssertEqualObjects([user valueForKey:@"userType"], @"user type");*/
 
     MultiLetterEntity *entity = [self entityNamed:@"MultiLetterEntity" inContext:dataStack.mainContext];
     [entity hyp_fillWithDictionary:values];

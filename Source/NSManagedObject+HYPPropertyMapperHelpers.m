@@ -139,7 +139,7 @@
 }
 
 - (NSString *)remotePrefix {
-    return [NSString stringWithFormat:@"%@_", [self.entity.name lowercaseString]];
+    return [NSString stringWithFormat:@"%@_", [self.entity.name hyp_remoteString]];
 }
 
 - (NSString *)prefixedAttribute:(NSString *)attribute {
