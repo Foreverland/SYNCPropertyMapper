@@ -7,73 +7,73 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		14260D471BDD5D2100E6A83B /* Apartment.m in Sources */ = {isa = PBXBuildFile; fileRef = 14260D1E1BDD5D2100E6A83B /* Apartment.m */; };
-		14260D481BDD5D2100E6A83B /* Apartment+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 14260D201BDD5D2100E6A83B /* Apartment+CoreDataProperties.m */; };
-		14260D491BDD5D2100E6A83B /* Building.m in Sources */ = {isa = PBXBuildFile; fileRef = 14260D221BDD5D2100E6A83B /* Building.m */; };
-		14260D4A1BDD5D2100E6A83B /* Building+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 14260D241BDD5D2100E6A83B /* Building+CoreDataProperties.m */; };
-		14260D4B1BDD5D2100E6A83B /* Company.m in Sources */ = {isa = PBXBuildFile; fileRef = 14260D261BDD5D2100E6A83B /* Company.m */; };
-		14260D4C1BDD5D2100E6A83B /* Company+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 14260D281BDD5D2100E6A83B /* Company+CoreDataProperties.m */; };
 		14260D4D1BDD5D2100E6A83B /* DateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14260D291BDD5D2100E6A83B /* DateTests.m */; };
 		14260D4E1BDD5D2100E6A83B /* HelperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14260D2A1BDD5D2100E6A83B /* HelperTests.m */; };
 		14260D501BDD5D2100E6A83B /* MapperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14260D2C1BDD5D2100E6A83B /* MapperTests.m */; };
-		14260D511BDD5D2100E6A83B /* Market.m in Sources */ = {isa = PBXBuildFile; fileRef = 14260D2E1BDD5D2100E6A83B /* Market.m */; };
-		14260D521BDD5D2100E6A83B /* Market+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 14260D301BDD5D2100E6A83B /* Market+CoreDataProperties.m */; };
-		14260D531BDD5D2100E6A83B /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14260D311BDD5D2100E6A83B /* Model.xcdatamodeld */; };
-		14260D541BDD5D2100E6A83B /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 14260D341BDD5D2100E6A83B /* Note.m */; };
-		14260D551BDD5D2100E6A83B /* Note+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 14260D361BDD5D2100E6A83B /* Note+CoreDataProperties.m */; };
-		14260D561BDD5D2100E6A83B /* Park.m in Sources */ = {isa = PBXBuildFile; fileRef = 14260D381BDD5D2100E6A83B /* Park.m */; };
-		14260D571BDD5D2100E6A83B /* Park+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 14260D3A1BDD5D2100E6A83B /* Park+CoreDataProperties.m */; };
-		14260D581BDD5D2100E6A83B /* Recursive.m in Sources */ = {isa = PBXBuildFile; fileRef = 14260D3C1BDD5D2100E6A83B /* Recursive.m */; };
-		14260D591BDD5D2100E6A83B /* Recursive+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 14260D3E1BDD5D2100E6A83B /* Recursive+CoreDataProperties.m */; };
-		14260D5A1BDD5D2100E6A83B /* Room.m in Sources */ = {isa = PBXBuildFile; fileRef = 14260D401BDD5D2100E6A83B /* Room.m */; };
-		14260D5B1BDD5D2100E6A83B /* Room+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 14260D421BDD5D2100E6A83B /* Room+CoreDataProperties.m */; };
-		14260D5C1BDD5D2100E6A83B /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 14260D441BDD5D2100E6A83B /* User.m */; };
-		14260D5D1BDD5D2100E6A83B /* User+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 14260D461BDD5D2100E6A83B /* User+CoreDataProperties.m */; };
+		1467A3781C06057B0036EC82 /* Apartment+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 1467A3531C06057B0036EC82 /* Apartment+CoreDataProperties.m */; };
+		1467A3791C06057B0036EC82 /* Apartment.m in Sources */ = {isa = PBXBuildFile; fileRef = 1467A3551C06057B0036EC82 /* Apartment.m */; };
+		1467A37A1C06057B0036EC82 /* Building+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 1467A3571C06057B0036EC82 /* Building+CoreDataProperties.m */; };
+		1467A37B1C06057B0036EC82 /* Building.m in Sources */ = {isa = PBXBuildFile; fileRef = 1467A3591C06057B0036EC82 /* Building.m */; };
+		1467A37C1C06057B0036EC82 /* Company+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 1467A35B1C06057B0036EC82 /* Company+CoreDataProperties.m */; };
+		1467A37D1C06057B0036EC82 /* Company.m in Sources */ = {isa = PBXBuildFile; fileRef = 1467A35D1C06057B0036EC82 /* Company.m */; };
+		1467A37E1C06057B0036EC82 /* Market+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 1467A35F1C06057B0036EC82 /* Market+CoreDataProperties.m */; };
+		1467A37F1C06057B0036EC82 /* Market.m in Sources */ = {isa = PBXBuildFile; fileRef = 1467A3611C06057B0036EC82 /* Market.m */; };
+		1467A3801C06057B0036EC82 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1467A3621C06057B0036EC82 /* Model.xcdatamodeld */; };
+		1467A3811C06057B0036EC82 /* Note+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 1467A3651C06057B0036EC82 /* Note+CoreDataProperties.m */; };
+		1467A3821C06057B0036EC82 /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 1467A3671C06057B0036EC82 /* Note.m */; };
+		1467A3831C06057B0036EC82 /* Park+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 1467A3691C06057B0036EC82 /* Park+CoreDataProperties.m */; };
+		1467A3841C06057B0036EC82 /* Park.m in Sources */ = {isa = PBXBuildFile; fileRef = 1467A36B1C06057B0036EC82 /* Park.m */; };
+		1467A3851C06057B0036EC82 /* Recursive+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 1467A36D1C06057B0036EC82 /* Recursive+CoreDataProperties.m */; };
+		1467A3861C06057B0036EC82 /* Recursive.m in Sources */ = {isa = PBXBuildFile; fileRef = 1467A36F1C06057B0036EC82 /* Recursive.m */; };
+		1467A3871C06057B0036EC82 /* Room+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 1467A3711C06057B0036EC82 /* Room+CoreDataProperties.m */; };
+		1467A3881C06057B0036EC82 /* Room.m in Sources */ = {isa = PBXBuildFile; fileRef = 1467A3731C06057B0036EC82 /* Room.m */; };
+		1467A3891C06057B0036EC82 /* User+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 1467A3751C06057B0036EC82 /* User+CoreDataProperties.m */; };
+		1467A38A1C06057B0036EC82 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 1467A3771C06057B0036EC82 /* User.m */; };
 		FEF267E8E559DCE44CDA1D89 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A270238462A3030B20904C17 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		14260D1D1BDD5D2100E6A83B /* Apartment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Apartment.h; sourceTree = "<group>"; };
-		14260D1E1BDD5D2100E6A83B /* Apartment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Apartment.m; sourceTree = "<group>"; };
-		14260D1F1BDD5D2100E6A83B /* Apartment+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Apartment+CoreDataProperties.h"; sourceTree = "<group>"; };
-		14260D201BDD5D2100E6A83B /* Apartment+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Apartment+CoreDataProperties.m"; sourceTree = "<group>"; };
-		14260D211BDD5D2100E6A83B /* Building.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Building.h; sourceTree = "<group>"; };
-		14260D221BDD5D2100E6A83B /* Building.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Building.m; sourceTree = "<group>"; };
-		14260D231BDD5D2100E6A83B /* Building+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Building+CoreDataProperties.h"; sourceTree = "<group>"; };
-		14260D241BDD5D2100E6A83B /* Building+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Building+CoreDataProperties.m"; sourceTree = "<group>"; };
-		14260D251BDD5D2100E6A83B /* Company.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Company.h; sourceTree = "<group>"; };
-		14260D261BDD5D2100E6A83B /* Company.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Company.m; sourceTree = "<group>"; };
-		14260D271BDD5D2100E6A83B /* Company+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Company+CoreDataProperties.h"; sourceTree = "<group>"; };
-		14260D281BDD5D2100E6A83B /* Company+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Company+CoreDataProperties.m"; sourceTree = "<group>"; };
 		14260D291BDD5D2100E6A83B /* DateTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateTests.m; sourceTree = "<group>"; };
 		14260D2A1BDD5D2100E6A83B /* HelperTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelperTests.m; sourceTree = "<group>"; };
 		14260D2B1BDD5D2100E6A83B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		14260D2C1BDD5D2100E6A83B /* MapperTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapperTests.m; sourceTree = "<group>"; };
-		14260D2D1BDD5D2100E6A83B /* Market.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Market.h; sourceTree = "<group>"; };
-		14260D2E1BDD5D2100E6A83B /* Market.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Market.m; sourceTree = "<group>"; };
-		14260D2F1BDD5D2100E6A83B /* Market+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Market+CoreDataProperties.h"; sourceTree = "<group>"; };
-		14260D301BDD5D2100E6A83B /* Market+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Market+CoreDataProperties.m"; sourceTree = "<group>"; };
-		14260D321BDD5D2100E6A83B /* PropertyMapperTestModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PropertyMapperTestModel.xcdatamodel; sourceTree = "<group>"; };
-		14260D331BDD5D2100E6A83B /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Note.h; sourceTree = "<group>"; };
-		14260D341BDD5D2100E6A83B /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Note.m; sourceTree = "<group>"; };
-		14260D351BDD5D2100E6A83B /* Note+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Note+CoreDataProperties.h"; sourceTree = "<group>"; };
-		14260D361BDD5D2100E6A83B /* Note+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Note+CoreDataProperties.m"; sourceTree = "<group>"; };
-		14260D371BDD5D2100E6A83B /* Park.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Park.h; sourceTree = "<group>"; };
-		14260D381BDD5D2100E6A83B /* Park.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Park.m; sourceTree = "<group>"; };
-		14260D391BDD5D2100E6A83B /* Park+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Park+CoreDataProperties.h"; sourceTree = "<group>"; };
-		14260D3A1BDD5D2100E6A83B /* Park+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Park+CoreDataProperties.m"; sourceTree = "<group>"; };
-		14260D3B1BDD5D2100E6A83B /* Recursive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Recursive.h; sourceTree = "<group>"; };
-		14260D3C1BDD5D2100E6A83B /* Recursive.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Recursive.m; sourceTree = "<group>"; };
-		14260D3D1BDD5D2100E6A83B /* Recursive+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Recursive+CoreDataProperties.h"; sourceTree = "<group>"; };
-		14260D3E1BDD5D2100E6A83B /* Recursive+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Recursive+CoreDataProperties.m"; sourceTree = "<group>"; };
-		14260D3F1BDD5D2100E6A83B /* Room.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Room.h; sourceTree = "<group>"; };
-		14260D401BDD5D2100E6A83B /* Room.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Room.m; sourceTree = "<group>"; };
-		14260D411BDD5D2100E6A83B /* Room+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Room+CoreDataProperties.h"; sourceTree = "<group>"; };
-		14260D421BDD5D2100E6A83B /* Room+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Room+CoreDataProperties.m"; sourceTree = "<group>"; };
-		14260D431BDD5D2100E6A83B /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
-		14260D441BDD5D2100E6A83B /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
-		14260D451BDD5D2100E6A83B /* User+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "User+CoreDataProperties.h"; sourceTree = "<group>"; };
-		14260D461BDD5D2100E6A83B /* User+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "User+CoreDataProperties.m"; sourceTree = "<group>"; };
+		1467A3521C06057B0036EC82 /* Apartment+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Apartment+CoreDataProperties.h"; sourceTree = "<group>"; };
+		1467A3531C06057B0036EC82 /* Apartment+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Apartment+CoreDataProperties.m"; sourceTree = "<group>"; };
+		1467A3541C06057B0036EC82 /* Apartment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Apartment.h; sourceTree = "<group>"; };
+		1467A3551C06057B0036EC82 /* Apartment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Apartment.m; sourceTree = "<group>"; };
+		1467A3561C06057B0036EC82 /* Building+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Building+CoreDataProperties.h"; sourceTree = "<group>"; };
+		1467A3571C06057B0036EC82 /* Building+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Building+CoreDataProperties.m"; sourceTree = "<group>"; };
+		1467A3581C06057B0036EC82 /* Building.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Building.h; sourceTree = "<group>"; };
+		1467A3591C06057B0036EC82 /* Building.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Building.m; sourceTree = "<group>"; };
+		1467A35A1C06057B0036EC82 /* Company+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Company+CoreDataProperties.h"; sourceTree = "<group>"; };
+		1467A35B1C06057B0036EC82 /* Company+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Company+CoreDataProperties.m"; sourceTree = "<group>"; };
+		1467A35C1C06057B0036EC82 /* Company.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Company.h; sourceTree = "<group>"; };
+		1467A35D1C06057B0036EC82 /* Company.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Company.m; sourceTree = "<group>"; };
+		1467A35E1C06057B0036EC82 /* Market+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Market+CoreDataProperties.h"; sourceTree = "<group>"; };
+		1467A35F1C06057B0036EC82 /* Market+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Market+CoreDataProperties.m"; sourceTree = "<group>"; };
+		1467A3601C06057B0036EC82 /* Market.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Market.h; sourceTree = "<group>"; };
+		1467A3611C06057B0036EC82 /* Market.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Market.m; sourceTree = "<group>"; };
+		1467A3631C06057B0036EC82 /* PropertyMapperTestModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PropertyMapperTestModel.xcdatamodel; sourceTree = "<group>"; };
+		1467A3641C06057B0036EC82 /* Note+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Note+CoreDataProperties.h"; sourceTree = "<group>"; };
+		1467A3651C06057B0036EC82 /* Note+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Note+CoreDataProperties.m"; sourceTree = "<group>"; };
+		1467A3661C06057B0036EC82 /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Note.h; sourceTree = "<group>"; };
+		1467A3671C06057B0036EC82 /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Note.m; sourceTree = "<group>"; };
+		1467A3681C06057B0036EC82 /* Park+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Park+CoreDataProperties.h"; sourceTree = "<group>"; };
+		1467A3691C06057B0036EC82 /* Park+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Park+CoreDataProperties.m"; sourceTree = "<group>"; };
+		1467A36A1C06057B0036EC82 /* Park.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Park.h; sourceTree = "<group>"; };
+		1467A36B1C06057B0036EC82 /* Park.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Park.m; sourceTree = "<group>"; };
+		1467A36C1C06057B0036EC82 /* Recursive+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Recursive+CoreDataProperties.h"; sourceTree = "<group>"; };
+		1467A36D1C06057B0036EC82 /* Recursive+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Recursive+CoreDataProperties.m"; sourceTree = "<group>"; };
+		1467A36E1C06057B0036EC82 /* Recursive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Recursive.h; sourceTree = "<group>"; };
+		1467A36F1C06057B0036EC82 /* Recursive.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Recursive.m; sourceTree = "<group>"; };
+		1467A3701C06057B0036EC82 /* Room+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Room+CoreDataProperties.h"; sourceTree = "<group>"; };
+		1467A3711C06057B0036EC82 /* Room+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Room+CoreDataProperties.m"; sourceTree = "<group>"; };
+		1467A3721C06057B0036EC82 /* Room.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Room.h; sourceTree = "<group>"; };
+		1467A3731C06057B0036EC82 /* Room.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Room.m; sourceTree = "<group>"; };
+		1467A3741C06057B0036EC82 /* User+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "User+CoreDataProperties.h"; sourceTree = "<group>"; };
+		1467A3751C06057B0036EC82 /* User+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "User+CoreDataProperties.m"; sourceTree = "<group>"; };
+		1467A3761C06057B0036EC82 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		1467A3771C06057B0036EC82 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		146D72AC1AB782920058798C /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		146D72B11AB782920058798C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		14C0AF7F1BD6D4230009ECBE /* .slather.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .slather.yml; sourceTree = "<group>"; };
@@ -98,6 +98,50 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1467A3511C06057B0036EC82 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1467A3521C06057B0036EC82 /* Apartment+CoreDataProperties.h */,
+				1467A3531C06057B0036EC82 /* Apartment+CoreDataProperties.m */,
+				1467A3541C06057B0036EC82 /* Apartment.h */,
+				1467A3551C06057B0036EC82 /* Apartment.m */,
+				1467A3561C06057B0036EC82 /* Building+CoreDataProperties.h */,
+				1467A3571C06057B0036EC82 /* Building+CoreDataProperties.m */,
+				1467A3581C06057B0036EC82 /* Building.h */,
+				1467A3591C06057B0036EC82 /* Building.m */,
+				1467A35A1C06057B0036EC82 /* Company+CoreDataProperties.h */,
+				1467A35B1C06057B0036EC82 /* Company+CoreDataProperties.m */,
+				1467A35C1C06057B0036EC82 /* Company.h */,
+				1467A35D1C06057B0036EC82 /* Company.m */,
+				1467A35E1C06057B0036EC82 /* Market+CoreDataProperties.h */,
+				1467A35F1C06057B0036EC82 /* Market+CoreDataProperties.m */,
+				1467A3601C06057B0036EC82 /* Market.h */,
+				1467A3611C06057B0036EC82 /* Market.m */,
+				1467A3621C06057B0036EC82 /* Model.xcdatamodeld */,
+				1467A3641C06057B0036EC82 /* Note+CoreDataProperties.h */,
+				1467A3651C06057B0036EC82 /* Note+CoreDataProperties.m */,
+				1467A3661C06057B0036EC82 /* Note.h */,
+				1467A3671C06057B0036EC82 /* Note.m */,
+				1467A3681C06057B0036EC82 /* Park+CoreDataProperties.h */,
+				1467A3691C06057B0036EC82 /* Park+CoreDataProperties.m */,
+				1467A36A1C06057B0036EC82 /* Park.h */,
+				1467A36B1C06057B0036EC82 /* Park.m */,
+				1467A36C1C06057B0036EC82 /* Recursive+CoreDataProperties.h */,
+				1467A36D1C06057B0036EC82 /* Recursive+CoreDataProperties.m */,
+				1467A36E1C06057B0036EC82 /* Recursive.h */,
+				1467A36F1C06057B0036EC82 /* Recursive.m */,
+				1467A3701C06057B0036EC82 /* Room+CoreDataProperties.h */,
+				1467A3711C06057B0036EC82 /* Room+CoreDataProperties.m */,
+				1467A3721C06057B0036EC82 /* Room.h */,
+				1467A3731C06057B0036EC82 /* Room.m */,
+				1467A3741C06057B0036EC82 /* User+CoreDataProperties.h */,
+				1467A3751C06057B0036EC82 /* User+CoreDataProperties.m */,
+				1467A3761C06057B0036EC82 /* User.h */,
+				1467A3771C06057B0036EC82 /* User.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		146D728A1AB782920058798C = {
 			isa = PBXGroup;
 			children = (
@@ -122,47 +166,11 @@
 		146D72AF1AB782920058798C /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				14260D1D1BDD5D2100E6A83B /* Apartment.h */,
-				14260D1E1BDD5D2100E6A83B /* Apartment.m */,
-				14260D1F1BDD5D2100E6A83B /* Apartment+CoreDataProperties.h */,
-				14260D201BDD5D2100E6A83B /* Apartment+CoreDataProperties.m */,
-				14260D211BDD5D2100E6A83B /* Building.h */,
-				14260D221BDD5D2100E6A83B /* Building.m */,
-				14260D231BDD5D2100E6A83B /* Building+CoreDataProperties.h */,
-				14260D241BDD5D2100E6A83B /* Building+CoreDataProperties.m */,
-				14260D251BDD5D2100E6A83B /* Company.h */,
-				14260D261BDD5D2100E6A83B /* Company.m */,
-				14260D271BDD5D2100E6A83B /* Company+CoreDataProperties.h */,
-				14260D281BDD5D2100E6A83B /* Company+CoreDataProperties.m */,
+				1467A3511C06057B0036EC82 /* Models */,
 				14260D291BDD5D2100E6A83B /* DateTests.m */,
 				14260D2A1BDD5D2100E6A83B /* HelperTests.m */,
 				14260D2B1BDD5D2100E6A83B /* Info.plist */,
 				14260D2C1BDD5D2100E6A83B /* MapperTests.m */,
-				14260D2D1BDD5D2100E6A83B /* Market.h */,
-				14260D2E1BDD5D2100E6A83B /* Market.m */,
-				14260D2F1BDD5D2100E6A83B /* Market+CoreDataProperties.h */,
-				14260D301BDD5D2100E6A83B /* Market+CoreDataProperties.m */,
-				14260D311BDD5D2100E6A83B /* Model.xcdatamodeld */,
-				14260D331BDD5D2100E6A83B /* Note.h */,
-				14260D341BDD5D2100E6A83B /* Note.m */,
-				14260D351BDD5D2100E6A83B /* Note+CoreDataProperties.h */,
-				14260D361BDD5D2100E6A83B /* Note+CoreDataProperties.m */,
-				14260D371BDD5D2100E6A83B /* Park.h */,
-				14260D381BDD5D2100E6A83B /* Park.m */,
-				14260D391BDD5D2100E6A83B /* Park+CoreDataProperties.h */,
-				14260D3A1BDD5D2100E6A83B /* Park+CoreDataProperties.m */,
-				14260D3B1BDD5D2100E6A83B /* Recursive.h */,
-				14260D3C1BDD5D2100E6A83B /* Recursive.m */,
-				14260D3D1BDD5D2100E6A83B /* Recursive+CoreDataProperties.h */,
-				14260D3E1BDD5D2100E6A83B /* Recursive+CoreDataProperties.m */,
-				14260D3F1BDD5D2100E6A83B /* Room.h */,
-				14260D401BDD5D2100E6A83B /* Room.m */,
-				14260D411BDD5D2100E6A83B /* Room+CoreDataProperties.h */,
-				14260D421BDD5D2100E6A83B /* Room+CoreDataProperties.m */,
-				14260D431BDD5D2100E6A83B /* User.h */,
-				14260D441BDD5D2100E6A83B /* User.m */,
-				14260D451BDD5D2100E6A83B /* User+CoreDataProperties.h */,
-				14260D461BDD5D2100E6A83B /* User+CoreDataProperties.m */,
 				146D72B01AB782920058798C /* Supporting Files */,
 			);
 			path = Tests;
@@ -325,28 +333,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				14260D5B1BDD5D2100E6A83B /* Room+CoreDataProperties.m in Sources */,
-				14260D471BDD5D2100E6A83B /* Apartment.m in Sources */,
+				1467A3891C06057B0036EC82 /* User+CoreDataProperties.m in Sources */,
+				1467A3811C06057B0036EC82 /* Note+CoreDataProperties.m in Sources */,
+				1467A3781C06057B0036EC82 /* Apartment+CoreDataProperties.m in Sources */,
+				1467A3831C06057B0036EC82 /* Park+CoreDataProperties.m in Sources */,
+				1467A37E1C06057B0036EC82 /* Market+CoreDataProperties.m in Sources */,
+				1467A37C1C06057B0036EC82 /* Company+CoreDataProperties.m in Sources */,
+				1467A38A1C06057B0036EC82 /* User.m in Sources */,
 				14260D4E1BDD5D2100E6A83B /* HelperTests.m in Sources */,
-				14260D5D1BDD5D2100E6A83B /* User+CoreDataProperties.m in Sources */,
-				14260D571BDD5D2100E6A83B /* Park+CoreDataProperties.m in Sources */,
+				1467A3821C06057B0036EC82 /* Note.m in Sources */,
+				1467A37F1C06057B0036EC82 /* Market.m in Sources */,
+				1467A3861C06057B0036EC82 /* Recursive.m in Sources */,
+				1467A3851C06057B0036EC82 /* Recursive+CoreDataProperties.m in Sources */,
+				1467A3881C06057B0036EC82 /* Room.m in Sources */,
 				14260D501BDD5D2100E6A83B /* MapperTests.m in Sources */,
-				14260D4B1BDD5D2100E6A83B /* Company.m in Sources */,
-				14260D5C1BDD5D2100E6A83B /* User.m in Sources */,
-				14260D511BDD5D2100E6A83B /* Market.m in Sources */,
-				14260D551BDD5D2100E6A83B /* Note+CoreDataProperties.m in Sources */,
-				14260D541BDD5D2100E6A83B /* Note.m in Sources */,
-				14260D591BDD5D2100E6A83B /* Recursive+CoreDataProperties.m in Sources */,
-				14260D581BDD5D2100E6A83B /* Recursive.m in Sources */,
-				14260D5A1BDD5D2100E6A83B /* Room.m in Sources */,
-				14260D521BDD5D2100E6A83B /* Market+CoreDataProperties.m in Sources */,
-				14260D4C1BDD5D2100E6A83B /* Company+CoreDataProperties.m in Sources */,
-				14260D481BDD5D2100E6A83B /* Apartment+CoreDataProperties.m in Sources */,
-				14260D4A1BDD5D2100E6A83B /* Building+CoreDataProperties.m in Sources */,
-				14260D491BDD5D2100E6A83B /* Building.m in Sources */,
-				14260D531BDD5D2100E6A83B /* Model.xcdatamodeld in Sources */,
+				1467A3791C06057B0036EC82 /* Apartment.m in Sources */,
 				14260D4D1BDD5D2100E6A83B /* DateTests.m in Sources */,
-				14260D561BDD5D2100E6A83B /* Park.m in Sources */,
+				1467A37B1C06057B0036EC82 /* Building.m in Sources */,
+				1467A3871C06057B0036EC82 /* Room+CoreDataProperties.m in Sources */,
+				1467A37D1C06057B0036EC82 /* Company.m in Sources */,
+				1467A37A1C06057B0036EC82 /* Building+CoreDataProperties.m in Sources */,
+				1467A3801C06057B0036EC82 /* Model.xcdatamodeld in Sources */,
+				1467A3841C06057B0036EC82 /* Park.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -485,12 +493,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		14260D311BDD5D2100E6A83B /* Model.xcdatamodeld */ = {
+		1467A3621C06057B0036EC82 /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				14260D321BDD5D2100E6A83B /* PropertyMapperTestModel.xcdatamodel */,
+				1467A3631C06057B0036EC82 /* PropertyMapperTestModel.xcdatamodel */,
 			);
-			currentVersion = 14260D321BDD5D2100E6A83B /* PropertyMapperTestModel.xcdatamodel */;
+			currentVersion = 1467A3631C06057B0036EC82 /* PropertyMapperTestModel.xcdatamodel */;
 			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
