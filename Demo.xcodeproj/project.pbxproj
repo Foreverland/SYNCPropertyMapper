@@ -169,8 +169,8 @@
 				1467A3511C06057B0036EC82 /* Models */,
 				14260D291BDD5D2100E6A83B /* DateTests.m */,
 				14260D2A1BDD5D2100E6A83B /* HelperTests.m */,
-				14260D2B1BDD5D2100E6A83B /* Info.plist */,
 				14260D2C1BDD5D2100E6A83B /* MapperTests.m */,
+				14260D2B1BDD5D2100E6A83B /* Info.plist */,
 				146D72B01AB782920058798C /* Supporting Files */,
 			);
 			path = Tests;
