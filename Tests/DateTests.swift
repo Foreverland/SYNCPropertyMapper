@@ -77,7 +77,7 @@ class DateTests: XCTestCase {
 
     func testTimestampD() {
         let date = NSDate.dateWithDayString("2015-09-10")
-        let resultDate = NSDate.hyp_dateFromUnixTimestampNumber(1441843200000000)
+        let resultDate = NSDate.hyp_dateFromUnixTimestampNumber(NSNumber(double: 1441843200000000.0))
 
         XCTAssertNotNil(resultDate)
         XCTAssertEqual(date, resultDate)
