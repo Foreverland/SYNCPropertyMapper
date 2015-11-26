@@ -76,6 +76,11 @@
             hasTimezone = NO;
         }
 
+        // 2015-09-10T00:00:00.XXXXXXZ
+        else if (str[19] == '.' && str[len - 1] == 'Z') {
+            strncpy(newStr, str, 19);
+        }
+
         // Poorly formatted timezone
         else {
             strncpy(newStr, str, len > 24 ? 24 : len);

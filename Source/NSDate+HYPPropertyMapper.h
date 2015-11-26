@@ -14,6 +14,9 @@ typedef NS_ENUM(NSInteger, HYPDateType) {
 
 + (NSDate *)hyp_dateFromUnixTimestampString:(NSString *)unixTimestamp;
 
+/*
+ unixTimestamp shouldn't be more than NSIntegerMax (2,147,483,647)
+ */
 + (NSDate *)hyp_dateFromUnixTimestampNumber:(NSNumber *)unixTimestamp;
 
 + (NSDate *)hyp_dateFromISO8601String:(NSString *)iso8601;
