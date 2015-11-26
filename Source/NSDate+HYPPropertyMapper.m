@@ -108,27 +108,7 @@
 }
 
 + (NSDate *)hyp_dateFromUnixTimestampNumber:(NSNumber *)unixTimestamp {
-    NSDate *convertedDate = nil;
-
-    CGFloat maximumValidTimestamp = 9999999999.0;
-    BOOL timestampContainsMiliseconds = (unixTimestamp.doubleValue > maximumValidTimestamp);
-    if (timestampContainsMiliseconds) {
-        NSString *validUnixTimestamp = @"1441843200";
-        NSString *timestampString = unixTimestamp.stringValue;
-        NSInteger validLength = [validUnixTimestamp length];
-        NSString *parsedString = [timestampString substringToIndex:validLength];
-        NSNumberFormatter *numberFormatter = [NSNumberFormatter new];
-        numberFormatter.numberStyle = NSNumberFormatterDecimalStyle;
-        NSNumber *unixTimestampNumber = [numberFormatter numberFromString:parsedString];
-
-        convertedDate = [[NSDate alloc] initWithTimeIntervalSince1970:unixTimestampNumber.doubleValue];
-    } else {
-        NSNumberFormatter *numberFormatter = [NSNumberFormatter new];
-        numberFormatter.numberStyle = NSNumberFormatterDecimalStyle;
-        convertedDate = [[NSDate alloc] initWithTimeIntervalSince1970:unixTimestamp.doubleValue];
-    }
-
-    return convertedDate;
+    return [self hyp_dateFromUnixTimestampString:[unixTimestamp stringValue]];
 }
 
 + (NSDate *)hyp_dateFromUnixTimestampString:(NSString *)unixTimestamp {
@@ -143,8 +123,9 @@
     NSNumberFormatter *numberFormatter = [NSNumberFormatter new];
     numberFormatter.numberStyle = NSNumberFormatterDecimalStyle;
     NSNumber *unixTimestampNumber = [numberFormatter numberFromString:parsedString];
+    NSDate *date = [[NSDate alloc] initWithTimeIntervalSince1970:unixTimestampNumber.doubleValue];
 
-    return [self hyp_dateFromUnixTimestampNumber:unixTimestampNumber];
+    return date;
 }
 
 @end
