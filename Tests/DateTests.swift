@@ -68,8 +68,15 @@ class DateTests: XCTestCase {
         XCTAssertNotNil(resultDate)
         XCTAssertEqual(date, resultDate)
     }
-}
 
+    func testDateType() {
+        let isoDateType = "2014-01-02T00:00:00.007450+00:00".hyp_dateType()
+        XCTAssertEqual(isoDateType, HYPDateType.ISO8601)
+
+        let timestampDateType = "1441843200000000".hyp_dateType()
+        XCTAssertEqual(timestampDateType, HYPDateType.UnixTimestamp)
+    }
+}
 
 extension NSDateFormatter {
     static func GMTFormatter() -> NSDateFormatter {

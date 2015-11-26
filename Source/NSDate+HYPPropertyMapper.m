@@ -1,12 +1,25 @@
 #import "NSDate+HYPPropertyMapper.h"
 
-@implementation NSDate (HYPPropertyMapper)
-
-+ (NSDate *)hyp_dateFromISO8601String:(NSString *)iso8601 {
-    return [self hyp_dateFromDateString:iso8601];
-}
+@implementation NSDate (HYPPropertyMapperDateHandling)
 
 + (NSDate *)hyp_dateFromDateString:(NSString *)dateString {
+    NSDate *parsedDate = nil;
+
+    HYPDateType dateType = [dateString hyp_dateType];
+    switch (dateType) {
+        case HYPDateTypeISO8601: {
+            parsedDate = [self hyp_dateFromISO8601String:dateString];
+        } break;
+        case HYPDateTypeUnixTimestamp: {
+            parsedDate = [self hyp_dateFromUnixTimestamp:dateString];
+        } break;
+        default: break;
+    }
+
+    return parsedDate;
+}
+
++ (NSDate *)hyp_dateFromISO8601String:(NSString *)dateString {
     if (!dateString || [dateString isEqual:[NSNull null]]) {
         return nil;
     }
@@ -97,6 +110,27 @@
 
     NSAssert1(NO, @"Failed to parse date: %@", dateString);
     return nil;
+}
+
++ (NSDate *)hyp_dateFromUnixTimestamp:(NSString *)unixTimestamp {
+    NSNumberFormatter *numberFormatter = [NSNumberFormatter new];
+    numberFormatter.numberStyle = NSNumberFormatterDecimalStyle;
+    NSNumber *unixTimestampNumber = [numberFormatter numberFromString:unixTimestamp];
+    NSDate *date = [[NSDate alloc] initWithTimeIntervalSince1970:unixTimestampNumber.doubleValue];
+
+    return date;
+}
+
+@end
+
+@implementation NSString (HYPPropertyMapperDateHandling)
+
+- (HYPDateType)hyp_dateType {
+    if ([self containsString:@"-"]) {
+        return HYPDateTypeISO8601;
+    } else {
+        return HYPDateTypeUnixTimestamp;
+    }
 }
 
 @end
