@@ -130,7 +130,7 @@
     } else if (numberValueAndStringAttribute) {
         value = [NSString stringWithFormat:@"%@", remoteValue];
     } else if (stringValueAndDateAttribute) {
-        value = [NSDate hyp_dateFromISO8601String:remoteValue];
+        value = [NSDate hyp_dateFromDateString:remoteValue];
     } else if (arrayOrDictionaryValueAndDataAttribute) {
         value = [NSKeyedArchiver archivedDataWithRootObject:remoteValue];
     }

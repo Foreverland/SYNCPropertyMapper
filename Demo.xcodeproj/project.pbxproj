@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		14260D4D1BDD5D2100E6A83B /* DateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14260D291BDD5D2100E6A83B /* DateTests.m */; };
 		14260D4E1BDD5D2100E6A83B /* HelperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14260D2A1BDD5D2100E6A83B /* HelperTests.m */; };
 		14260D501BDD5D2100E6A83B /* MapperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14260D2C1BDD5D2100E6A83B /* MapperTests.m */; };
 		1467A3781C06057B0036EC82 /* Apartment+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 1467A3531C06057B0036EC82 /* Apartment+CoreDataProperties.m */; };
@@ -29,11 +28,11 @@
 		1467A3881C06057B0036EC82 /* Room.m in Sources */ = {isa = PBXBuildFile; fileRef = 1467A3731C06057B0036EC82 /* Room.m */; };
 		1467A3891C06057B0036EC82 /* User+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 1467A3751C06057B0036EC82 /* User+CoreDataProperties.m */; };
 		1467A38A1C06057B0036EC82 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 1467A3771C06057B0036EC82 /* User.m */; };
+		1467A38C1C0605FD0036EC82 /* DateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1467A38B1C0605FD0036EC82 /* DateTests.swift */; };
 		FEF267E8E559DCE44CDA1D89 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A270238462A3030B20904C17 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		14260D291BDD5D2100E6A83B /* DateTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateTests.m; sourceTree = "<group>"; };
 		14260D2A1BDD5D2100E6A83B /* HelperTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelperTests.m; sourceTree = "<group>"; };
 		14260D2B1BDD5D2100E6A83B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		14260D2C1BDD5D2100E6A83B /* MapperTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapperTests.m; sourceTree = "<group>"; };
@@ -74,6 +73,7 @@
 		1467A3751C06057B0036EC82 /* User+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "User+CoreDataProperties.m"; sourceTree = "<group>"; };
 		1467A3761C06057B0036EC82 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		1467A3771C06057B0036EC82 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		1467A38B1C0605FD0036EC82 /* DateTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateTests.swift; sourceTree = "<group>"; };
 		146D72AC1AB782920058798C /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		146D72B11AB782920058798C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		14C0AF7F1BD6D4230009ECBE /* .slather.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .slather.yml; sourceTree = "<group>"; };
@@ -167,11 +167,11 @@
 			isa = PBXGroup;
 			children = (
 				1467A3511C06057B0036EC82 /* Models */,
-				14260D291BDD5D2100E6A83B /* DateTests.m */,
 				14260D2A1BDD5D2100E6A83B /* HelperTests.m */,
 				14260D2C1BDD5D2100E6A83B /* MapperTests.m */,
 				14260D2B1BDD5D2100E6A83B /* Info.plist */,
 				146D72B01AB782920058798C /* Supporting Files */,
+				1467A38B1C0605FD0036EC82 /* DateTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -340,6 +340,7 @@
 				1467A37E1C06057B0036EC82 /* Market+CoreDataProperties.m in Sources */,
 				1467A37C1C06057B0036EC82 /* Company+CoreDataProperties.m in Sources */,
 				1467A38A1C06057B0036EC82 /* User.m in Sources */,
+				1467A38C1C0605FD0036EC82 /* DateTests.swift in Sources */,
 				14260D4E1BDD5D2100E6A83B /* HelperTests.m in Sources */,
 				1467A3821C06057B0036EC82 /* Note.m in Sources */,
 				1467A37F1C06057B0036EC82 /* Market.m in Sources */,
@@ -348,7 +349,6 @@
 				1467A3881C06057B0036EC82 /* Room.m in Sources */,
 				14260D501BDD5D2100E6A83B /* MapperTests.m in Sources */,
 				1467A3791C06057B0036EC82 /* Apartment.m in Sources */,
-				14260D4D1BDD5D2100E6A83B /* DateTests.m in Sources */,
 				1467A37B1C06057B0036EC82 /* Building.m in Sources */,
 				1467A3871C06057B0036EC82 /* Room+CoreDataProperties.m in Sources */,
 				1467A37D1C06057B0036EC82 /* Company.m in Sources */,
