@@ -12,7 +12,9 @@ typedef NS_ENUM(NSInteger, HYPDateType) {
 
 + (NSDate *)hyp_dateFromDateString:(NSString *)dateString;
 
-+ (NSDate *)hyp_dateFromUnixTimestamp:(NSString *)unixTimestamp;
++ (NSDate *)hyp_dateFromUnixTimestampString:(NSString *)unixTimestamp;
+
++ (NSDate *)hyp_dateFromUnixTimestampNumber:(NSNumber *)unixTimestamp;
 
 + (NSDate *)hyp_dateFromISO8601String:(NSString *)iso8601;
 

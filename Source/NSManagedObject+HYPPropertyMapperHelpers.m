@@ -119,6 +119,9 @@
     BOOL stringValueAndDateAttribute   = ([remoteValue isKindOfClass:[NSString class]] &&
                                           attributedClass == [NSDate class]);
 
+    BOOL numberValueAndDateAttribute   = ([remoteValue isKindOfClass:[NSNumber class]] &&
+                                          attributedClass == [NSDate class]);
+
     BOOL arrayOrDictionaryValueAndDataAttribute   = (([remoteValue isKindOfClass:[NSArray class]] ||
                                                       [remoteValue isKindOfClass:[NSDictionary class]]) &&
                                                      attributedClass == [NSData class]);
@@ -131,6 +134,8 @@
         value = [NSString stringWithFormat:@"%@", remoteValue];
     } else if (stringValueAndDateAttribute) {
         value = [NSDate hyp_dateFromDateString:remoteValue];
+    } else if (numberValueAndDateAttribute) {
+        value = [NSDate hyp_dateFromUnixTimestampNumber:remoteValue];
     } else if (arrayOrDictionaryValueAndDataAttribute) {
         value = [NSKeyedArchiver archivedDataWithRootObject:remoteValue];
     }
