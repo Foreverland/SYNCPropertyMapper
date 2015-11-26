@@ -3,24 +3,28 @@
 @implementation NSDate (HYPPropertyMapper)
 
 + (NSDate *)hyp_dateFromISO8601String:(NSString *)iso8601 {
-    if (!iso8601 || [iso8601 isEqual:[NSNull null]]) {
+    return [self hyp_dateFromDateString:iso8601];
+}
+
++ (NSDate *)hyp_dateFromDateString:(NSString *)dateString {
+    if (!dateString || [dateString isEqual:[NSNull null]]) {
         return nil;
     }
 
     // Parse number
-    if ([iso8601 isKindOfClass:[NSNumber class]]) {
-        return [NSDate dateWithTimeIntervalSince1970:[(NSNumber *)iso8601 doubleValue]];
+    if ([dateString isKindOfClass:[NSNumber class]]) {
+        return [NSDate dateWithTimeIntervalSince1970:[(NSNumber *)dateString doubleValue]];
     }
 
     // Parse string
-    else if ([iso8601 isKindOfClass:[NSString class]]) {
-        if ([iso8601 length] == [HYPPropertyMapperDateNoTimestampFormat length]) {
-            NSMutableString *mutableRemoteValue = [iso8601 mutableCopy];
+    else if ([dateString isKindOfClass:[NSString class]]) {
+        if ([dateString length] == [HYPPropertyMapperDateNoTimestampFormat length]) {
+            NSMutableString *mutableRemoteValue = [dateString mutableCopy];
             [mutableRemoteValue appendString:HYPPropertyMapperTimestamp];
-            iso8601 = [mutableRemoteValue copy];
+            dateString = [mutableRemoteValue copy];
         }
 
-        const char *str = [iso8601 cStringUsingEncoding:NSUTF8StringEncoding];
+        const char *str = [dateString cStringUsingEncoding:NSUTF8StringEncoding];
         size_t len = strlen(str);
         if (len == 0) {
             return nil;
@@ -91,7 +95,7 @@
         return [NSDate dateWithTimeIntervalSince1970:t];
     }
 
-    NSAssert1(NO, @"Failed to parse date: %@", iso8601);
+    NSAssert1(NO, @"Failed to parse date: %@", dateString);
     return nil;
 }
 
