@@ -78,7 +78,7 @@ static NSString * const HYPPropertyMapperNestedAttributesKey = @"attributes";
                 NSString *relationshipName = [relationshipDescription name];
                 id relationships = [self valueForKey:relationshipName];
                 if (relationships) {
-                    BOOL isToOneRelationship = (![relationships isKindOfClass:[NSSet class]]);
+                    BOOL isToOneRelationship = (![relationships isKindOfClass:[NSSet class]] && ![relationships isKindOfClass:[NSOrderedSet class]]);
                     if (isToOneRelationship) {
                         NSDictionary *attributesForToOneRelationship = [self attributesForToOneRelationship:relationships
                                                                                            relationshipName:relationshipName
