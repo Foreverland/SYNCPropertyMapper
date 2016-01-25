@@ -170,6 +170,65 @@
     XCTAssertEqualObjects(dictionary, [comparedDictionary copy]);
 }
 
+- (void)testDictionaryArrayRelationshipsOrdered {
+    DATAStack *dataStack = [[DATAStack alloc] initWithModelName:@"Ordered"
+                                                         bundle:[NSBundle bundleForClass:[self class]]
+                                                      storeType:DATAStackStoreTypeInMemory];
+
+    User *user = [self entityNamed:@"User" inContext:dataStack.mainContext];
+    user.age = @25;
+    user.birthDate = self.testDate;
+    user.contractID = @235;
+    user.driverIdentifier = @"ABC8283";
+    user.firstName = @"John";
+    user.lastName = @"Hyperseed";
+    user.userDescription = @"John Description";
+    user.remoteID = @111;
+    user.userType = @"Manager";
+    user.createdAt = self.testDate;
+    user.updatedAt = self.testDate;
+    user.numberOfAttendes = @30;
+    user.hobbies = [NSKeyedArchiver archivedDataWithRootObject:@[@"Football",
+                                                                 @"Soccer",
+                                                                 @"Code",
+                                                                 @"More code"]];
+    user.expenses = [NSKeyedArchiver archivedDataWithRootObject:@{@"cake" : @12.50,
+                                                                  @"juice" : @0.50}];
+
+    Note *note = [self noteWithID:@1 inContext:dataStack.mainContext];
+    note.user = user;
+
+    note = [self noteWithID:@14 inContext:dataStack.mainContext];
+    note.user = user;
+    note.destroy = @YES;
+
+    note = [self noteWithID:@7 inContext:dataStack.mainContext];
+    note.user = user;
+
+    NSDictionary *dictionary = [user hyp_dictionaryUsingRelationshipType:HYPPropertyMapperRelationshipTypeArray];
+    NSMutableDictionary *comparedDictionary = [[self userDictionaryWithNoRelationships] mutableCopy];
+
+    NSArray *notes = dictionary[@"notes"];
+    NSSortDescriptor *nameDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"id" ascending:YES];
+    NSArray *sortedNotes = [notes sortedArrayUsingDescriptors:[NSArray arrayWithObject:nameDescriptor]];
+    NSMutableDictionary *mutableDictionary = [dictionary mutableCopy];
+    mutableDictionary[@"notes"] = sortedNotes;
+    dictionary = [mutableDictionary copy];
+
+    NSDictionary *note1 = @{@"destroy" : [NSNull null],
+                            @"id" : @1,
+                            @"text" : @"This is the text for the note 1"};
+    NSDictionary *note2 = @{@"destroy" : [NSNull null],
+                            @"id" : @7,
+                            @"text" : @"This is the text for the note 7"};
+    NSDictionary *note3 = @{@"destroy" : @1,
+                            @"id" : @14,
+                            @"text" : @"This is the text for the note 14"};
+    comparedDictionary[@"notes"] = @[note1, note2, note3];
+
+    XCTAssertEqualObjects(dictionary, [comparedDictionary copy]);
+}
+
 - (void)testDictionaryNestedRelationships {
     DATAStack *dataStack = [self dataStack];
     User *user = [self userUsingDataStack:dataStack];

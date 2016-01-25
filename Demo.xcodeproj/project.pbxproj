@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		141D2BA21C56472E007709B9 /* Ordered.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 141D2BA01C56472E007709B9 /* Ordered.xcdatamodeld */; };
 		14260D4E1BDD5D2100E6A83B /* HelperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14260D2A1BDD5D2100E6A83B /* HelperTests.m */; };
 		14260D501BDD5D2100E6A83B /* MapperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14260D2C1BDD5D2100E6A83B /* MapperTests.m */; };
 		1467A3781C06057B0036EC82 /* Apartment+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 1467A3531C06057B0036EC82 /* Apartment+CoreDataProperties.m */; };
@@ -33,6 +34,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		141D2BA11C56472E007709B9 /* PropertyMapperTestModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PropertyMapperTestModel.xcdatamodel; sourceTree = "<group>"; };
 		14260D2A1BDD5D2100E6A83B /* HelperTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelperTests.m; sourceTree = "<group>"; };
 		14260D2B1BDD5D2100E6A83B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		14260D2C1BDD5D2100E6A83B /* MapperTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapperTests.m; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 				1467A35F1C06057B0036EC82 /* Market+CoreDataProperties.m */,
 				1467A3601C06057B0036EC82 /* Market.h */,
 				1467A3611C06057B0036EC82 /* Market.m */,
+				141D2BA01C56472E007709B9 /* Ordered.xcdatamodeld */,
 				1467A3621C06057B0036EC82 /* Model.xcdatamodeld */,
 				1467A3641C06057B0036EC82 /* Note+CoreDataProperties.h */,
 				1467A3651C06057B0036EC82 /* Note+CoreDataProperties.m */,
@@ -351,6 +354,7 @@
 				1467A3791C06057B0036EC82 /* Apartment.m in Sources */,
 				1467A37B1C06057B0036EC82 /* Building.m in Sources */,
 				1467A3871C06057B0036EC82 /* Room+CoreDataProperties.m in Sources */,
+				141D2BA21C56472E007709B9 /* Ordered.xcdatamodeld in Sources */,
 				1467A37D1C06057B0036EC82 /* Company.m in Sources */,
 				1467A37A1C06057B0036EC82 /* Building+CoreDataProperties.m in Sources */,
 				1467A3801C06057B0036EC82 /* Model.xcdatamodeld in Sources */,
@@ -493,6 +497,16 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
+		141D2BA01C56472E007709B9 /* Ordered.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				141D2BA11C56472E007709B9 /* PropertyMapperTestModel.xcdatamodel */,
+			);
+			currentVersion = 141D2BA11C56472E007709B9 /* PropertyMapperTestModel.xcdatamodel */;
+			path = Ordered.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
 		1467A3621C06057B0036EC82 /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
