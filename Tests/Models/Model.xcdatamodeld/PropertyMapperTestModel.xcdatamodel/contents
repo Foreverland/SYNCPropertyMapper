@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="8195" systemVersion="15B22c" minimumToolsVersion="Xcode 4.3">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15D21" minimumToolsVersion="Xcode 4.3">
     <entity name="Apartment" representedClassName="Apartment" syncable="YES">
         <attribute name="remoteID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <relationship name="building" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Building" inverseName="apartments" inverseEntity="Building" syncable="YES"/>
@@ -63,6 +63,7 @@
         <attribute name="ignoredParameter" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="ignoreTransformable" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="money" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
         <attribute name="numberOfAttendes" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="remoteID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="updatedAt" optional="YES" attributeType="Date" syncable="YES"/>
@@ -78,8 +79,8 @@
         <element name="Market" positionX="-297" positionY="270" width="128" height="75"/>
         <element name="Note" positionX="-504" positionY="351" width="128" height="103"/>
         <element name="Park" positionX="-378" positionY="1134" width="128" height="73"/>
-        <element name="Room" positionX="-189" positionY="963" width="128" height="73"/>
-        <element name="User" positionX="-207" positionY="459" width="128" height="315"/>
         <element name="Recursive" positionX="-65" positionY="857" width="128" height="88"/>
+        <element name="Room" positionX="-189" positionY="963" width="128" height="73"/>
+        <element name="User" positionX="-207" positionY="459" width="128" height="330"/>
     </elements>
 </model>

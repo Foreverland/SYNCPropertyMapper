@@ -19,6 +19,8 @@
             value = [NSNull null];
         } else if ([value isKindOfClass:[NSDate class]]) {
             value = [dateFormatter stringFromDate:value];
+        } else if ([value isKindOfClass:[NSDecimalNumber class]]){
+            value = [value stringValue];
         }
     }
 
@@ -109,7 +111,9 @@
     if ([remoteValue isKindOfClass:attributedClass]) {
         value = remoteValue;
     }
-
+    
+    NSLog(@"remote %@ attribute %@", [remoteValue class], attributedClass);
+    
     BOOL stringValueAndNumberAttribute = ([remoteValue isKindOfClass:[NSString class]] &&
                                           attributedClass == [NSNumber class]);
 
@@ -125,6 +129,10 @@
     BOOL arrayOrDictionaryValueAndDataAttribute   = (([remoteValue isKindOfClass:[NSArray class]] ||
                                                       [remoteValue isKindOfClass:[NSDictionary class]]) &&
                                                      attributedClass == [NSData class]);
+    
+    BOOL stringValueAndDecimalAttribute = ([remoteValue isKindOfClass:[NSString class]] &&
+                                           attributedClass == [NSDecimalNumber class]); 
+
 
     if (stringValueAndNumberAttribute) {
         NSNumberFormatter *formatter = [NSNumberFormatter new];
@@ -138,8 +146,9 @@
         value = [NSDate hyp_dateFromUnixTimestampNumber:remoteValue];
     } else if (arrayOrDictionaryValueAndDataAttribute) {
         value = [NSKeyedArchiver archivedDataWithRootObject:remoteValue];
+    } else if (stringValueAndDecimalAttribute){
+        value = [NSDecimalNumber decimalNumberWithString:remoteValue];
     }
-
     return value;
 }
 

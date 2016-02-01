@@ -59,6 +59,7 @@
     user.createdAt = self.testDate;
     user.updatedAt = self.testDate;
     user.numberOfAttendes = @30;
+    user.money = [NSDecimalNumber decimalNumberWithString:@"0.3"];
     user.hobbies = [NSKeyedArchiver archivedDataWithRootObject:@[@"Football",
                                                                  @"Soccer",
                                                                  @"Code",
@@ -129,6 +130,7 @@
     comparedDictionary[@"number_of_attendes"] = @30;
     comparedDictionary[@"type"] = @"Manager";
     comparedDictionary[@"updated_at"] = resultDateString;
+    comparedDictionary[@"money"] = @"0.3";
 
     return [comparedDictionary copy];
 }
@@ -188,6 +190,7 @@
     user.createdAt = self.testDate;
     user.updatedAt = self.testDate;
     user.numberOfAttendes = @30;
+    user.money = [NSDecimalNumber decimalNumberWithString:@"0.3"];
     user.hobbies = [NSKeyedArchiver archivedDataWithRootObject:@[@"Football",
                                                                  @"Soccer",
                                                                  @"Code",
@@ -329,6 +332,8 @@
     XCTAssertTrue([dictionary[@"type"] isKindOfClass:[NSString class]]);
 
     XCTAssertTrue([dictionary[@"updated_at"] isKindOfClass:[NSString class]]);
+    
+    XCTAssertTrue([dictionary[@"money"] isKindOfClass:[NSString class]]);
 }
 
 - (void)testRecursive {
@@ -473,6 +478,16 @@
     [user hyp_fillWithDictionary:values];
 
     XCTAssertEqualObjects([user valueForKey:@"contractID"], @100);
+}
+
+- (void)testDecimal {
+    NSDictionary *values = @{@"money" : @"0.3"};
+    
+    DATAStack *dataStack = [self dataStack];
+    User *user = [self userUsingDataStack:dataStack];
+    [user hyp_fillWithDictionary:values];
+    
+    XCTAssertEqualObjects([user valueForKey:@"money"], [NSDecimalNumber decimalNumberWithString:@"0.3"]);
 }
 
 - (void)testArrayStorage {

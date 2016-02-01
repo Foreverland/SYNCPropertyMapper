@@ -8,6 +8,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nullable, nonatomic, retain) NSNumber *age;
 @property (nullable, nonatomic, retain) NSDate *birthDate;
+@property (nullable, nonatomic, retain) NSDecimalNumber *money;
 @property (nullable, nonatomic, retain) NSNumber *contractID;
 @property (nullable, nonatomic, retain) NSDate *createdAt;
 @property (nullable, nonatomic, retain) NSString *driverIdentifier;

@@ -6,6 +6,7 @@
 
 @dynamic age;
 @dynamic birthDate;
+@dynamic money;
 @dynamic contractID;
 @dynamic createdAt;
 @dynamic driverIdentifier;
