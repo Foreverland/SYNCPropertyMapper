@@ -7,6 +7,7 @@
 #import "Note.h"
 #import "Company.h"
 #import "Market.h"
+#import "Attributes.h"
 
 #import "Apartment.h"
 #import "Building.h"
@@ -103,6 +104,45 @@
 }
 
 #pragma mark - hyp_dictionary
+
+
+- (void)testAllAttributes {
+    NSDictionary *values = @{@"integer_string" : @"16",
+                             @"integer16" : @16,
+                             @"integer32" : @32,
+                             @"integer64" : @64,
+                             @"decimal_string" : @"12.2",
+                             @"decimal" : @12.2,
+                             @"double_value_string": @"12.2",
+                             @"double_value": @12.2,
+                             @"float_value_string" : @"12.2",
+                             @"float_value" : @12.2,
+                             @"string" : @"string",
+                             @"boolean" : @YES,
+                             @"binary_data" : @"Data",
+                             @"transformable" : @"Ignore me, too"};
+
+    DATAStack *dataStack = [self dataStack];
+    Attributes *attributes = [self entityNamed:@"Attributes" inContext:dataStack.mainContext];
+    [attributes hyp_fillWithDictionary:values];
+
+    NSDictionary *resultDictionary = [attributes hyp_dictionary];
+    XCTAssertEqualObjects(resultDictionary[@"integer_string"], @16);
+    XCTAssertEqualObjects(resultDictionary[@"integer16"], @16);
+    XCTAssertEqualObjects(resultDictionary[@"integer32"], @32);
+    XCTAssertEqualObjects(resultDictionary[@"integer64"], @64);
+    XCTAssertEqualObjects(resultDictionary[@"decimal_string"], [NSDecimalNumber decimalNumberWithString:@"12.2"]);
+    XCTAssertEqualObjects(resultDictionary[@"decimal"], [NSDecimalNumber decimalNumberWithString:@"12.2"]);
+    XCTAssertEqualObjects(resultDictionary[@"double_value_string"], @12.2);
+    XCTAssertEqualObjects(resultDictionary[@"double_value"], @12.2);
+    XCTAssertEqualWithAccuracy([resultDictionary[@"float_value_string"] longValue], [@12 longValue], 1.0);
+    XCTAssertEqualWithAccuracy([resultDictionary[@"float_value"] longValue], [@12 longValue], 1.0);
+    XCTAssertEqualObjects(resultDictionary[@"string"], @"string");
+    XCTAssertEqualObjects(resultDictionary[@"boolean"], @YES);
+    XCTAssertEqualObjects(resultDictionary[@"binary_data"], [NSKeyedArchiver archivedDataWithRootObject:@"Data"]);
+    XCTAssertNil(resultDictionary[@"transformable"]);
+    XCTAssertEqual(values.allKeys.count - 1, resultDictionary.allKeys.count);
+}
 
 - (NSDictionary *)userDictionaryWithNoRelationships {
     NSDateFormatter *formatter = [NSDateFormatter new];

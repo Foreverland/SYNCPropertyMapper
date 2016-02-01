@@ -28,6 +28,8 @@
 		1467A3891C06057B0036EC82 /* User+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 1467A3751C06057B0036EC82 /* User+CoreDataProperties.m */; };
 		1467A38A1C06057B0036EC82 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 1467A3771C06057B0036EC82 /* User.m */; };
 		1467A38C1C0605FD0036EC82 /* DateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1467A38B1C0605FD0036EC82 /* DateTests.swift */; };
+		146856701C5F961F000E1997 /* Attributes+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 1468566D1C5F961F000E1997 /* Attributes+CoreDataProperties.m */; };
+		146856711C5F961F000E1997 /* Attributes.m in Sources */ = {isa = PBXBuildFile; fileRef = 1468566F1C5F961F000E1997 /* Attributes.m */; };
 		148956E11C5F6AED00CA505D /* Ordered.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 148956DF1C5F6AED00CA505D /* Ordered.xcdatamodeld */; };
 		148956E41C5F6AF500CA505D /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 148956E21C5F6AF500CA505D /* Model.xcdatamodeld */; };
 		14BAEF221C5F5F250023D0CA /* HYPFillWithDictionaryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14BAEF211C5F5F250023D0CA /* HYPFillWithDictionaryTests.m */; };
@@ -75,6 +77,10 @@
 		1467A3761C06057B0036EC82 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		1467A3771C06057B0036EC82 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		1467A38B1C0605FD0036EC82 /* DateTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateTests.swift; sourceTree = "<group>"; };
+		1468566C1C5F961F000E1997 /* Attributes+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Attributes+CoreDataProperties.h"; sourceTree = "<group>"; };
+		1468566D1C5F961F000E1997 /* Attributes+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Attributes+CoreDataProperties.m"; sourceTree = "<group>"; };
+		1468566E1C5F961F000E1997 /* Attributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Attributes.h; sourceTree = "<group>"; };
+		1468566F1C5F961F000E1997 /* Attributes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Attributes.m; sourceTree = "<group>"; };
 		146D72AC1AB782920058798C /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		146D72B11AB782920058798C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		148956E01C5F6AED00CA505D /* Ordered.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Ordered.xcdatamodel; sourceTree = "<group>"; };
@@ -105,6 +111,10 @@
 		1467A3511C06057B0036EC82 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				1468566C1C5F961F000E1997 /* Attributes+CoreDataProperties.h */,
+				1468566D1C5F961F000E1997 /* Attributes+CoreDataProperties.m */,
+				1468566E1C5F961F000E1997 /* Attributes.h */,
+				1468566F1C5F961F000E1997 /* Attributes.m */,
 				1467A3521C06057B0036EC82 /* Apartment+CoreDataProperties.h */,
 				1467A3531C06057B0036EC82 /* Apartment+CoreDataProperties.m */,
 				1467A3541C06057B0036EC82 /* Apartment.h */,
@@ -175,9 +185,9 @@
 				14260D2A1BDD5D2100E6A83B /* HelperTests.m */,
 				14260D2C1BDD5D2100E6A83B /* HYPDictionaryTests.m */,
 				14BAEF211C5F5F250023D0CA /* HYPFillWithDictionaryTests.m */,
+				1467A38B1C0605FD0036EC82 /* DateTests.swift */,
 				14260D2B1BDD5D2100E6A83B /* Info.plist */,
 				146D72B01AB782920058798C /* Supporting Files */,
-				1467A38B1C0605FD0036EC82 /* DateTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -341,6 +351,7 @@
 			files = (
 				1467A3891C06057B0036EC82 /* User+CoreDataProperties.m in Sources */,
 				1467A3811C06057B0036EC82 /* Note+CoreDataProperties.m in Sources */,
+				146856711C5F961F000E1997 /* Attributes.m in Sources */,
 				1467A3781C06057B0036EC82 /* Apartment+CoreDataProperties.m in Sources */,
 				1467A3831C06057B0036EC82 /* Park+CoreDataProperties.m in Sources */,
 				1467A37E1C06057B0036EC82 /* Market+CoreDataProperties.m in Sources */,
@@ -352,6 +363,7 @@
 				1467A37F1C06057B0036EC82 /* Market.m in Sources */,
 				148956E41C5F6AF500CA505D /* Model.xcdatamodeld in Sources */,
 				1467A3861C06057B0036EC82 /* Recursive.m in Sources */,
+				146856701C5F961F000E1997 /* Attributes+CoreDataProperties.m in Sources */,
 				14BAEF221C5F5F250023D0CA /* HYPFillWithDictionaryTests.m in Sources */,
 				1467A3851C06057B0036EC82 /* Recursive+CoreDataProperties.m in Sources */,
 				1467A3881C06057B0036EC82 /* Room.m in Sources */,
