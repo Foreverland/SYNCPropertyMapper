@@ -20,8 +20,8 @@
         <attribute name="boolean" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="decimal" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="double" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="float" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="doubleValue" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="floatValue" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="integer16" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="integer32" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="integer64" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
