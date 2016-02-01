@@ -110,9 +110,7 @@
 
     if ([remoteValue isKindOfClass:attributedClass]) {
         value = remoteValue;
-    }
-    
-    NSLog(@"remote %@ attribute %@", [remoteValue class], attributedClass);
+    }   
     
     BOOL stringValueAndNumberAttribute = ([remoteValue isKindOfClass:[NSString class]] &&
                                           attributedClass == [NSNumber class]);
