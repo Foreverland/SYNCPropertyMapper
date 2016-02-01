@@ -129,7 +129,7 @@
     XCTAssertEqualObjects(demo.integer16, @16);
     XCTAssertEqualObjects(demo.integer32, @32);
     XCTAssertEqualObjects(demo.integer64, @64);
-    XCTAssertEqualObjects(demo.decimal, @12.2);
+    XCTAssertEqualObjects(demo.decimal, [NSDecimalNumber decimalNumberWithString:@"12.2"]);
     XCTAssertEqualObjects(demo.doubleValue, @12.2);
     XCTAssertEqualWithAccuracy(demo.floatValue.longValue, [@12 longValue], 1.0);
     XCTAssertEqualObjects(demo.string, @"string");
