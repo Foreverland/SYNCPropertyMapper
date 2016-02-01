@@ -117,19 +117,12 @@
                              @"float_value" : @12.2,
                              @"string" : @"string",
                              @"boolean" : @YES,
-                             @"date" : @"1989-02-14T00:00:00+00:00",
                              @"binary_data" : @"Data",
                              @"transformable" : @"Ignore me, too"};
 
     DATAStack *dataStack = [self dataStack];
     Attributes *attributes = [self entityNamed:@"Attributes" inContext:dataStack.mainContext];
     [attributes hyp_fillWithDictionary:values];
-
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    dateFormat.dateFormat = @"yyyy-MM-dd";
-    NSDate *expectedDate = [dateFormat dateFromString:@"1989-02-14"];
-    NSInteger seconds = -[[NSTimeZone defaultTimeZone] secondsFromGMTForDate:attributes.date];
-    NSDate *parsedDate = [NSDate dateWithTimeInterval:seconds sinceDate:attributes.date];
 
     XCTAssertEqualObjects(attributes.integerString, @16);
     XCTAssertEqualObjects(attributes.integer16, @16);
@@ -143,7 +136,6 @@
     XCTAssertEqualWithAccuracy(attributes.floatValue.longValue, [@12 longValue], 1.0);
     XCTAssertEqualObjects(attributes.string, @"string");
     XCTAssertEqualObjects(attributes.boolean, @YES);
-    XCTAssertEqualObjects(parsedDate, expectedDate);
     XCTAssertEqualObjects(attributes.binaryData, [NSKeyedArchiver archivedDataWithRootObject:@"Data"]);
     XCTAssertNil(attributes.transformable);
 }

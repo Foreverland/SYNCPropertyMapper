@@ -119,7 +119,6 @@
                              @"float_value" : @12.2,
                              @"string" : @"string",
                              @"boolean" : @YES,
-                             @"date" : @"1989-02-14T00:00:00+00:00",
                              @"binary_data" : @"Data",
                              @"transformable" : @"Ignore me, too"};
 
@@ -140,7 +139,6 @@
     XCTAssertEqualWithAccuracy([resultDictionary[@"float_value"] longValue], [@12 longValue], 1.0);
     XCTAssertEqualObjects(resultDictionary[@"string"], @"string");
     XCTAssertEqualObjects(resultDictionary[@"boolean"], @YES);
-    XCTAssertEqualObjects(resultDictionary[@"date"], @"1989-02-14T01:00:00+01:00");
     XCTAssertEqualObjects(resultDictionary[@"binary_data"], [NSKeyedArchiver archivedDataWithRootObject:@"Data"]);
     XCTAssertNil(resultDictionary[@"transformable"]);
     XCTAssertEqual(values.allKeys.count - 1, resultDictionary.allKeys.count);

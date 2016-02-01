@@ -6,7 +6,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nullable, nonatomic, retain) NSData *binaryData;
 @property (nullable, nonatomic, retain) NSNumber *boolean;
-@property (nullable, nonatomic, retain) NSDate *date;
 @property (nullable, nonatomic, retain) NSDecimalNumber *decimal;
 @property (nullable, nonatomic, retain) NSNumber *doubleValue;
 @property (nullable, nonatomic, retain) NSNumber *floatValue;

@@ -4,7 +4,6 @@
 
 @dynamic binaryData;
 @dynamic boolean;
-@dynamic date;
 @dynamic decimal;
 @dynamic doubleValue;
 @dynamic floatValue;
