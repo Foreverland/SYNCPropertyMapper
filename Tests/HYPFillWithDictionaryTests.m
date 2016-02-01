@@ -40,6 +40,7 @@
                                          bundle:[NSBundle bundleForClass:[self class]]
                                       storeType:DATAStackStoreTypeInMemory];
 }
+
 - (id)entityNamed:(NSString *)entityName inContext:(NSManagedObjectContext *)context {
     return [NSEntityDescription insertNewObjectForEntityForName:entityName
                                          inManagedObjectContext:context];
