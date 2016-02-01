@@ -7,7 +7,7 @@
 #import "Note.h"
 #import "Company.h"
 #import "Market.h"
-
+#import "Demo.h"
 #import "Apartment.h"
 #import "Building.h"
 #import "Room.h"
@@ -103,6 +103,41 @@
 }
 
 #pragma mark - hyp_fillWithDictionary
+
+- (void)testAllAttributes {
+    NSDictionary *values = @{@"integer16" : @16,
+                             @"integer32" : @32,
+                             @"integer64" : @64,
+                             @"decimal" : @12.2,
+                             @"double_value": @12.2,
+                             @"float_value" : @12.2,
+                             @"string" : @"string",
+                             @"boolean" : @YES,
+                             @"date" : @"1989-02-14T00:00:00+00:00",
+                             @"binary_data" : @"Ignore me",
+                             @"transformable" : @"Ignore me, too"};
+
+    DATAStack *dataStack = [self dataStack];
+    Demo *demo = [self entityNamed:@"Demo" inContext:dataStack.mainContext];
+    [demo hyp_fillWithDictionary:values];
+
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    dateFormat.dateFormat = @"yyyy-MM-dd";
+    dateFormat.timeZone = [NSTimeZone timeZoneWithName:@"GMT"];
+    NSDate *date = [dateFormat dateFromString:@"1989-02-14"];
+
+    XCTAssertEqualObjects(demo.integer16, @16);
+    XCTAssertEqualObjects(demo.integer32, @32);
+    XCTAssertEqualObjects(demo.integer64, @64);
+    XCTAssertEqualObjects(demo.decimal, @12.2);
+    XCTAssertEqualObjects(demo.doubleValue, @12.2);
+    XCTAssertEqualWithAccuracy(demo.floatValue.longValue, [@12 longValue], 1.0);
+    XCTAssertEqualObjects(demo.string, @"string");
+    XCTAssertEqualObjects(demo.boolean, @YES);
+    XCTAssertEqualObjects(demo.date, date);
+    XCTAssertNil(demo.binaryData);
+    XCTAssertNil(demo.transformable);
+}
 
 - (void)testFillManagedObjectWithDictionary {
     NSDictionary *values = @{@"first_name" : @"Jane",
