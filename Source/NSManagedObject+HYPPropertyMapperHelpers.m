@@ -126,6 +126,9 @@
                                                       [remoteValue isKindOfClass:[NSDictionary class]]) &&
                                                      attributedClass == [NSData class]);
 
+    BOOL numberValueAndDecimalAttribute = ([remoteValue isKindOfClass:[NSNumber class]] &&
+                                           attributedClass == [NSDecimalNumber class]);
+
     if (stringValueAndNumberAttribute) {
         NSNumberFormatter *formatter = [NSNumberFormatter new];
         formatter.locale = [NSLocale localeWithLocaleIdentifier:@"en_US"];
@@ -138,6 +141,9 @@
         value = [NSDate hyp_dateFromUnixTimestampNumber:remoteValue];
     } else if (arrayOrDictionaryValueAndDataAttribute) {
         value = [NSKeyedArchiver archivedDataWithRootObject:remoteValue];
+    } else if (numberValueAndDecimalAttribute) {
+        NSNumber *number = (NSNumber *)remoteValue;
+        value = [NSDecimalNumber decimalNumberWithDecimal:[number decimalValue]];
     }
 
     return value;
