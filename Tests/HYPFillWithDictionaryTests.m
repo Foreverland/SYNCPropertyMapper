@@ -118,7 +118,7 @@
                              @"transformable" : @"Ignore me, too"};
 
     DATAStack *dataStack = [self dataStack];
-    Attributes *attributes = [self entityNamed:@"Demo" inContext:dataStack.mainContext];
+    Attributes *attributes = [self entityNamed:@"Attributes" inContext:dataStack.mainContext];
     [attributes hyp_fillWithDictionary:values];
 
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
