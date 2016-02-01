@@ -185,9 +185,9 @@
 				14260D2A1BDD5D2100E6A83B /* HelperTests.m */,
 				14260D2C1BDD5D2100E6A83B /* HYPDictionaryTests.m */,
 				14BAEF211C5F5F250023D0CA /* HYPFillWithDictionaryTests.m */,
+				1467A38B1C0605FD0036EC82 /* DateTests.swift */,
 				14260D2B1BDD5D2100E6A83B /* Info.plist */,
 				146D72B01AB782920058798C /* Supporting Files */,
-				1467A38B1C0605FD0036EC82 /* DateTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";

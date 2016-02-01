@@ -127,8 +127,13 @@
 
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     dateFormat.dateFormat = @"yyyy-MM-dd";
-    dateFormat.timeZone = [NSTimeZone timeZoneWithName:@"GMT"];
+    dateFormat.timeZone = [NSTimeZone defaultTimeZone];
     NSDate *date = [dateFormat dateFromString:@"1989-02-14"];
+
+    NSTimeZone *timezone = [NSTimeZone defaultTimeZone];
+    NSDate *returnedDate = attributes.date;
+    NSInteger secondsB = -[timezone secondsFromGMTForDate:returnedDate];
+    NSDate *parsedDate = [NSDate dateWithTimeInterval:secondsB sinceDate:returnedDate];
 
     XCTAssertEqualObjects(attributes.integerString, @16);
     XCTAssertEqualObjects(attributes.integer16, @16);
@@ -142,7 +147,7 @@
     XCTAssertEqualWithAccuracy(attributes.floatValue.longValue, [@12 longValue], 1.0);
     XCTAssertEqualObjects(attributes.string, @"string");
     XCTAssertEqualObjects(attributes.boolean, @YES);
-    XCTAssertEqualObjects(attributes.date, date);
+    XCTAssertEqualObjects(parsedDate, date);
     XCTAssertEqualObjects(attributes.binaryData, [NSKeyedArchiver archivedDataWithRootObject:@"Data"]);
     XCTAssertNil(attributes.transformable);
 }
