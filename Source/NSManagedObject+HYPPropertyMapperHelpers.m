@@ -10,7 +10,6 @@
                      dateFormatter:(NSDateFormatter *)dateFormatter
                   relationshipType:(HYPPropertyMapperRelationshipType)relationshipType {
     id value;
-
     if (attributeDescription.attributeType != NSTransformableAttributeType) {
         value = [self valueForKey:attributeDescription.name];
         BOOL nilOrNullValue = (!value ||
@@ -122,9 +121,7 @@
     BOOL numberValueAndDateAttribute   = ([remoteValue isKindOfClass:[NSNumber class]] &&
                                           attributedClass == [NSDate class]);
 
-    BOOL arrayOrDictionaryValueAndDataAttribute   = (([remoteValue isKindOfClass:[NSArray class]] ||
-                                                      [remoteValue isKindOfClass:[NSDictionary class]]) &&
-                                                     attributedClass == [NSData class]);
+    BOOL dataAttribute                 = (attributedClass == [NSData class]);
 
     BOOL numberValueAndDecimalAttribute = ([remoteValue isKindOfClass:[NSNumber class]] &&
                                            attributedClass == [NSDecimalNumber class]);
@@ -142,7 +139,7 @@
         value = [NSDate hyp_dateFromDateString:remoteValue];
     } else if (numberValueAndDateAttribute) {
         value = [NSDate hyp_dateFromUnixTimestampNumber:remoteValue];
-    } else if (arrayOrDictionaryValueAndDataAttribute) {
+    } else if (dataAttribute) {
         value = [NSKeyedArchiver archivedDataWithRootObject:remoteValue];
     } else if (numberValueAndDecimalAttribute) {
         NSNumber *number = (NSNumber *)remoteValue;

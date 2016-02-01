@@ -23,5 +23,5 @@ Pod::Spec.new do |s|
   s.source_files = 'Source'
   s.frameworks = 'Foundation'
   s.requires_arc = true
-  s.dependency 'NSString-HYPNetworking', '~> 0.3.3'
+  s.dependency 'NSString-HYPNetworking', '~> 0.4.0'
 end

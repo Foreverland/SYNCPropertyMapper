@@ -118,7 +118,7 @@
                              @"string" : @"string",
                              @"boolean" : @YES,
                              @"date" : @"1989-02-14T00:00:00+00:00",
-                             @"binary_data" : @"Ignore me",
+                             @"binary_data" : @"Data",
                              @"transformable" : @"Ignore me, too"};
 
     DATAStack *dataStack = [self dataStack];
@@ -143,7 +143,7 @@
     XCTAssertEqualObjects(attributes.string, @"string");
     XCTAssertEqualObjects(attributes.boolean, @YES);
     XCTAssertEqualObjects(attributes.date, date);
-    XCTAssertNil(attributes.binaryData);
+    XCTAssertEqualObjects(attributes.binaryData, [NSKeyedArchiver archivedDataWithRootObject:@"Data"]);
     XCTAssertNil(attributes.transformable);
 }
 
