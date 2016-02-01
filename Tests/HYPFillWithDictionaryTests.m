@@ -7,7 +7,7 @@
 #import "Note.h"
 #import "Company.h"
 #import "Market.h"
-#import "Demo.h"
+#import "Attributes.h"
 #import "Apartment.h"
 #import "Building.h"
 #import "Room.h"
@@ -118,25 +118,25 @@
                              @"transformable" : @"Ignore me, too"};
 
     DATAStack *dataStack = [self dataStack];
-    Demo *demo = [self entityNamed:@"Demo" inContext:dataStack.mainContext];
-    [demo hyp_fillWithDictionary:values];
+    Attributes *attributes = [self entityNamed:@"Demo" inContext:dataStack.mainContext];
+    [attributes hyp_fillWithDictionary:values];
 
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     dateFormat.dateFormat = @"yyyy-MM-dd";
     dateFormat.timeZone = [NSTimeZone timeZoneWithName:@"GMT"];
     NSDate *date = [dateFormat dateFromString:@"1989-02-14"];
 
-    XCTAssertEqualObjects(demo.integer16, @16);
-    XCTAssertEqualObjects(demo.integer32, @32);
-    XCTAssertEqualObjects(demo.integer64, @64);
-    XCTAssertEqualObjects(demo.decimal, [NSDecimalNumber decimalNumberWithString:@"12.2"]);
-    XCTAssertEqualObjects(demo.doubleValue, @12.2);
-    XCTAssertEqualWithAccuracy(demo.floatValue.longValue, [@12 longValue], 1.0);
-    XCTAssertEqualObjects(demo.string, @"string");
-    XCTAssertEqualObjects(demo.boolean, @YES);
-    XCTAssertEqualObjects(demo.date, date);
-    XCTAssertNil(demo.binaryData);
-    XCTAssertNil(demo.transformable);
+    XCTAssertEqualObjects(attributes.integer16, @16);
+    XCTAssertEqualObjects(attributes.integer32, @32);
+    XCTAssertEqualObjects(attributes.integer64, @64);
+    XCTAssertEqualObjects(attributes.decimal, [NSDecimalNumber decimalNumberWithString:@"12.2"]);
+    XCTAssertEqualObjects(attributes.doubleValue, @12.2);
+    XCTAssertEqualWithAccuracy(attributes.floatValue.longValue, [@12 longValue], 1.0);
+    XCTAssertEqualObjects(attributes.string, @"string");
+    XCTAssertEqualObjects(attributes.boolean, @YES);
+    XCTAssertEqualObjects(attributes.date, date);
+    XCTAssertNil(attributes.binaryData);
+    XCTAssertNil(attributes.transformable);
 }
 
 - (void)testFillManagedObjectWithDictionary {

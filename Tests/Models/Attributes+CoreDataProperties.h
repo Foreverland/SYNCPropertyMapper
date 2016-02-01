@@ -1,8 +1,8 @@
-#import "Demo.h"
+#import "Attributes.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface Demo (CoreDataProperties)
+@interface Attributes (CoreDataProperties)
 
 @property (nullable, nonatomic, retain) NSData *binaryData;
 @property (nullable, nonatomic, retain) NSNumber *boolean;

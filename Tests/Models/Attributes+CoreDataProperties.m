@@ -1,6 +1,6 @@
-#import "Demo+CoreDataProperties.h"
+#import "Attributes+CoreDataProperties.h"
 
-@implementation Demo (CoreDataProperties)
+@implementation Attributes (CoreDataProperties)
 
 @dynamic binaryData;
 @dynamic boolean;
