@@ -28,11 +28,11 @@
 		1467A3891C06057B0036EC82 /* User+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 1467A3751C06057B0036EC82 /* User+CoreDataProperties.m */; };
 		1467A38A1C06057B0036EC82 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 1467A3771C06057B0036EC82 /* User.m */; };
 		1467A38C1C0605FD0036EC82 /* DateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1467A38B1C0605FD0036EC82 /* DateTests.swift */; };
+		146856701C5F961F000E1997 /* Attributes+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 1468566D1C5F961F000E1997 /* Attributes+CoreDataProperties.m */; };
+		146856711C5F961F000E1997 /* Attributes.m in Sources */ = {isa = PBXBuildFile; fileRef = 1468566F1C5F961F000E1997 /* Attributes.m */; };
 		148956E11C5F6AED00CA505D /* Ordered.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 148956DF1C5F6AED00CA505D /* Ordered.xcdatamodeld */; };
 		148956E41C5F6AF500CA505D /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 148956E21C5F6AF500CA505D /* Model.xcdatamodeld */; };
 		14BAEF221C5F5F250023D0CA /* HYPFillWithDictionaryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14BAEF211C5F5F250023D0CA /* HYPFillWithDictionaryTests.m */; };
-		14FD8CC91C5F819C00DFBDBA /* Attributes+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FD8CC61C5F819C00DFBDBA /* Attributes+CoreDataProperties.m */; };
-		14FD8CCA1C5F819C00DFBDBA /* Attributes.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FD8CC81C5F819C00DFBDBA /* Attributes.m */; };
 		FEF267E8E559DCE44CDA1D89 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A270238462A3030B20904C17 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -77,6 +77,10 @@
 		1467A3761C06057B0036EC82 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		1467A3771C06057B0036EC82 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		1467A38B1C0605FD0036EC82 /* DateTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateTests.swift; sourceTree = "<group>"; };
+		1468566C1C5F961F000E1997 /* Attributes+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Attributes+CoreDataProperties.h"; sourceTree = "<group>"; };
+		1468566D1C5F961F000E1997 /* Attributes+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Attributes+CoreDataProperties.m"; sourceTree = "<group>"; };
+		1468566E1C5F961F000E1997 /* Attributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Attributes.h; sourceTree = "<group>"; };
+		1468566F1C5F961F000E1997 /* Attributes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Attributes.m; sourceTree = "<group>"; };
 		146D72AC1AB782920058798C /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		146D72B11AB782920058798C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		148956E01C5F6AED00CA505D /* Ordered.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Ordered.xcdatamodel; sourceTree = "<group>"; };
@@ -87,10 +91,6 @@
 		14C0AF811BD6D4230009ECBE /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 		14C0AF821BD6D4230009ECBE /* CONTRIBUTING.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CONTRIBUTING.md; sourceTree = "<group>"; };
 		14C0AF831BD6D4230009ECBE /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		14FD8CC51C5F819C00DFBDBA /* Attributes+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Attributes+CoreDataProperties.h"; sourceTree = "<group>"; };
-		14FD8CC61C5F819C00DFBDBA /* Attributes+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Attributes+CoreDataProperties.m"; sourceTree = "<group>"; };
-		14FD8CC71C5F819C00DFBDBA /* Attributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Attributes.h; sourceTree = "<group>"; };
-		14FD8CC81C5F819C00DFBDBA /* Attributes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Attributes.m; sourceTree = "<group>"; };
 		A270238462A3030B20904C17 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3F34E9973A0D22911EE3A3B /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		E61B1695DF4EEEBA82FBCFBD /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -111,10 +111,10 @@
 		1467A3511C06057B0036EC82 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				14FD8CC51C5F819C00DFBDBA /* Attributes+CoreDataProperties.h */,
-				14FD8CC61C5F819C00DFBDBA /* Attributes+CoreDataProperties.m */,
-				14FD8CC71C5F819C00DFBDBA /* Attributes.h */,
-				14FD8CC81C5F819C00DFBDBA /* Attributes.m */,
+				1468566C1C5F961F000E1997 /* Attributes+CoreDataProperties.h */,
+				1468566D1C5F961F000E1997 /* Attributes+CoreDataProperties.m */,
+				1468566E1C5F961F000E1997 /* Attributes.h */,
+				1468566F1C5F961F000E1997 /* Attributes.m */,
 				1467A3521C06057B0036EC82 /* Apartment+CoreDataProperties.h */,
 				1467A3531C06057B0036EC82 /* Apartment+CoreDataProperties.m */,
 				1467A3541C06057B0036EC82 /* Apartment.h */,
@@ -349,14 +349,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				14FD8CCA1C5F819C00DFBDBA /* Attributes.m in Sources */,
 				1467A3891C06057B0036EC82 /* User+CoreDataProperties.m in Sources */,
 				1467A3811C06057B0036EC82 /* Note+CoreDataProperties.m in Sources */,
+				146856711C5F961F000E1997 /* Attributes.m in Sources */,
 				1467A3781C06057B0036EC82 /* Apartment+CoreDataProperties.m in Sources */,
 				1467A3831C06057B0036EC82 /* Park+CoreDataProperties.m in Sources */,
 				1467A37E1C06057B0036EC82 /* Market+CoreDataProperties.m in Sources */,
 				1467A37C1C06057B0036EC82 /* Company+CoreDataProperties.m in Sources */,
-				14FD8CC91C5F819C00DFBDBA /* Attributes+CoreDataProperties.m in Sources */,
 				1467A38A1C06057B0036EC82 /* User.m in Sources */,
 				1467A38C1C0605FD0036EC82 /* DateTests.swift in Sources */,
 				14260D4E1BDD5D2100E6A83B /* HelperTests.m in Sources */,
@@ -364,6 +363,7 @@
 				1467A37F1C06057B0036EC82 /* Market.m in Sources */,
 				148956E41C5F6AF500CA505D /* Model.xcdatamodeld in Sources */,
 				1467A3861C06057B0036EC82 /* Recursive.m in Sources */,
+				146856701C5F961F000E1997 /* Attributes+CoreDataProperties.m in Sources */,
 				14BAEF221C5F5F250023D0CA /* HYPFillWithDictionaryTests.m in Sources */,
 				1467A3851C06057B0036EC82 /* Recursive+CoreDataProperties.m in Sources */,
 				1467A3881C06057B0036EC82 /* Room.m in Sources */,

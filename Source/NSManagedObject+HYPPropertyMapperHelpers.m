@@ -129,6 +129,9 @@
     BOOL numberValueAndDecimalAttribute = ([remoteValue isKindOfClass:[NSNumber class]] &&
                                            attributedClass == [NSDecimalNumber class]);
 
+    BOOL stringValueAndDecimalAttribute = ([remoteValue isKindOfClass:[NSString class]] &&
+                                           attributedClass == [NSDecimalNumber class]);
+
     if (stringValueAndNumberAttribute) {
         NSNumberFormatter *formatter = [NSNumberFormatter new];
         formatter.locale = [NSLocale localeWithLocaleIdentifier:@"en_US"];
@@ -144,6 +147,8 @@
     } else if (numberValueAndDecimalAttribute) {
         NSNumber *number = (NSNumber *)remoteValue;
         value = [NSDecimalNumber decimalNumberWithDecimal:[number decimalValue]];
+    } else if (stringValueAndDecimalAttribute) {
+        value = [NSDecimalNumber decimalNumberWithString:remoteValue];
     }
 
     return value;

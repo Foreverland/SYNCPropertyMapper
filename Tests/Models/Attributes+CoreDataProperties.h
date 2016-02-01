@@ -15,6 +15,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSNumber *integer64;
 @property (nullable, nonatomic, retain) NSString *string;
 @property (nullable, nonatomic, retain) id transformable;
+@property (nullable, nonatomic, retain) NSNumber *integerString;
+@property (nullable, nonatomic, retain) NSDecimalNumber *decimalString;
+@property (nullable, nonatomic, retain) NSNumber *doubleValueString;
+@property (nullable, nonatomic, retain) NSNumber *floatValueString;
 
 @end
 

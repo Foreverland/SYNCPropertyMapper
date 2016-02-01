@@ -10,11 +10,15 @@
         <attribute name="boolean" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="decimal" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="decimalString" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
         <attribute name="doubleValue" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="doubleValueString" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="floatValue" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="floatValueString" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="integer16" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="integer32" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="integer64" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="integerString" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="string" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="transformable" optional="YES" attributeType="Transformable" syncable="YES"/>
     </entity>
@@ -86,9 +90,9 @@
     </entity>
     <elements>
         <element name="Apartment" positionX="-18" positionY="27" width="128" height="90"/>
+        <element name="Attributes" positionX="45" positionY="189" width="128" height="270"/>
         <element name="Building" positionX="0" positionY="45" width="128" height="90"/>
         <element name="Company" positionX="18" positionY="63" width="128" height="90"/>
-        <element name="Attributes" positionX="45" positionY="189" width="128" height="210"/>
         <element name="Market" positionX="-45" positionY="0" width="128" height="75"/>
         <element name="Note" positionX="9" positionY="54" width="128" height="105"/>
         <element name="Park" positionX="27" positionY="72" width="128" height="75"/>

@@ -13,5 +13,9 @@
 @dynamic integer64;
 @dynamic string;
 @dynamic transformable;
+@dynamic integerString;
+@dynamic decimalString;
+@dynamic doubleValueString;
+@dynamic floatValueString;
 
 @end
