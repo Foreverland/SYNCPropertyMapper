@@ -128,6 +128,7 @@
     XCTAssertEqualObjects(attributes.integer16, @16);
     XCTAssertEqualObjects(attributes.integer32, @32);
     XCTAssertEqualObjects(attributes.integer64, @64);
+
     XCTAssertEqualObjects(attributes.decimalString, [NSDecimalNumber decimalNumberWithString:@"12.2"]);
     XCTAssertEqualObjects(NSStringFromClass([attributes.decimalString class]), NSStringFromClass([NSDecimalNumber class]));
     XCTAssertNotEqualObjects(NSStringFromClass([attributes.decimalString class]), NSStringFromClass([NSNumber class]));
