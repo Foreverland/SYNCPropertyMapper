@@ -128,8 +128,15 @@
     XCTAssertEqualObjects(attributes.integer16, @16);
     XCTAssertEqualObjects(attributes.integer32, @32);
     XCTAssertEqualObjects(attributes.integer64, @64);
+
     XCTAssertEqualObjects(attributes.decimalString, [NSDecimalNumber decimalNumberWithString:@"12.2"]);
+    XCTAssertEqualObjects(NSStringFromClass([attributes.decimalString class]), NSStringFromClass([NSDecimalNumber class]));
+    XCTAssertNotEqualObjects(NSStringFromClass([attributes.decimalString class]), NSStringFromClass([NSNumber class]));
+
     XCTAssertEqualObjects(attributes.decimal, [NSDecimalNumber decimalNumberWithString:@"12.2"]);
+    XCTAssertEqualObjects(NSStringFromClass([attributes.decimal class]), NSStringFromClass([NSDecimalNumber class]));
+    XCTAssertNotEqualObjects(NSStringFromClass([attributes.decimal class]), NSStringFromClass([NSNumber class]));
+
     XCTAssertEqualObjects(attributes.doubleValueString, @12.2);
     XCTAssertEqualObjects(attributes.doubleValue, @12.2);
     XCTAssertEqualWithAccuracy(attributes.floatValueString.longValue, [@12 longValue], 1.0);

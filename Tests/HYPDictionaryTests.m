@@ -131,8 +131,15 @@
     XCTAssertEqualObjects(resultDictionary[@"integer16"], @16);
     XCTAssertEqualObjects(resultDictionary[@"integer32"], @32);
     XCTAssertEqualObjects(resultDictionary[@"integer64"], @64);
+
     XCTAssertEqualObjects(resultDictionary[@"decimal_string"], [NSDecimalNumber decimalNumberWithString:@"12.2"]);
+    XCTAssertEqualObjects(NSStringFromClass([resultDictionary[@"decimal_string"] class]), NSStringFromClass([NSDecimalNumber class]));
+    XCTAssertNotEqualObjects(NSStringFromClass([resultDictionary[@"decimal_string"] class]), NSStringFromClass([NSNumber class]));
+
     XCTAssertEqualObjects(resultDictionary[@"decimal"], [NSDecimalNumber decimalNumberWithString:@"12.2"]);
+    XCTAssertEqualObjects(NSStringFromClass([resultDictionary[@"decimal"] class]), NSStringFromClass([NSDecimalNumber class]));
+    XCTAssertNotEqualObjects(NSStringFromClass([resultDictionary[@"decimal"] class]), NSStringFromClass([NSNumber class]));
+
     XCTAssertEqualObjects(resultDictionary[@"double_value_string"], @12.2);
     XCTAssertEqualObjects(resultDictionary[@"double_value"], @12.2);
     XCTAssertEqualWithAccuracy([resultDictionary[@"float_value_string"] longValue], [@12 longValue], 1.0);
