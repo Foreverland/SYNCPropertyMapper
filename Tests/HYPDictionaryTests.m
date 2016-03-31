@@ -61,6 +61,7 @@
     user.createdAt = self.testDate;
     user.updatedAt = self.testDate;
     user.numberOfAttendes = @30;
+    user.rawSigned = @"raw";
     user.hobbies = [NSKeyedArchiver archivedDataWithRootObject:@[@"Football",
                                                                  @"Soccer",
                                                                  @"Code",
@@ -179,6 +180,7 @@
     comparedDictionary[@"number_of_attendes"] = @30;
     comparedDictionary[@"type"] = @"Manager";
     comparedDictionary[@"updated_at"] = resultDateString;
+    comparedDictionary[@"signed"] = @"raw";
 
     return [comparedDictionary copy];
 }
@@ -226,6 +228,7 @@
                                                       storeType:DATAStackStoreTypeInMemory];
 
     User *user = [self entityNamed:@"User" inContext:dataStack.mainContext];
+    user.rawSigned = @"raw";
     user.age = @25;
     user.birthDate = self.testDate;
     user.contractID = @235;

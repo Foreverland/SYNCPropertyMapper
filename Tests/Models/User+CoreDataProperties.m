@@ -4,6 +4,7 @@
 
 @implementation User (CoreDataProperties)
 
+@dynamic rawSigned;
 @dynamic age;
 @dynamic birthDate;
 @dynamic contractID;

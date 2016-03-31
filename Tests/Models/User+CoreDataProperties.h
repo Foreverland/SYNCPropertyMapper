@@ -6,6 +6,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface User (CoreDataProperties)
 
+@property (nullable, nonatomic, retain) NSString *rawSigned;
 @property (nullable, nonatomic, retain) NSNumber *age;
 @property (nullable, nonatomic, retain) NSDate *birthDate;
 @property (nullable, nonatomic, retain) NSNumber *contractID;
