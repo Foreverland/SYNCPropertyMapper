@@ -2,7 +2,7 @@
 
 @implementation Attributes (CoreDataProperties)
 
-@dynamic attributeType;
+@dynamic attributesType;
 @dynamic binaryData;
 @dynamic boolean;
 @dynamic decimal;

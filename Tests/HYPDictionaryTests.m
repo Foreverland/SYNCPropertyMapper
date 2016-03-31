@@ -125,7 +125,7 @@
     DATAStack *dataStack = [self dataStack];
     Attributes *attributes = [self entityNamed:@"Attributes" inContext:dataStack.mainContext];
     [attributes hyp_fillWithDictionary:values];
-    XCTAssertEqualObjects(values[@"type"], attributes.attributeType);
+    XCTAssertEqualObjects(values[@"type"], attributes.attributesType);
 
     NSDictionary *resultDictionary = [attributes hyp_dictionary];
     XCTAssertEqualObjects(resultDictionary[@"integer_string"], @16);

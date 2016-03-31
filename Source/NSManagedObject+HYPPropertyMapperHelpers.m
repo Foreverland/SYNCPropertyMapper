@@ -33,13 +33,21 @@
 
             NSDictionary *userInfo = [self.entity.propertiesByName[attributeDescription.name] userInfo];
             NSString *customRemoteKey = userInfo[HYPPropertyMapperCustomRemoteKey];
-            if (customRemoteKey.length > 0 && [customRemoteKey isEqualToString:remoteKey]) {
-                foundAttributeDescription = self.entity.propertiesByName[attributeDescription.name];
-            } else if ([attributeDescription.name isEqualToString:[remoteKey hyp_localString]]) {
+            BOOL currentAttributeHasTheSameRemoteKey = (customRemoteKey.length > 0 && [customRemoteKey isEqualToString:remoteKey]);
+            if (currentAttributeHasTheSameRemoteKey) {
                 foundAttributeDescription = attributeDescription;
+                *stop = YES;
             }
 
-            if (foundAttributeDescription) {
+            NSString *localKey = [remoteKey hyp_localString];
+            BOOL isReservedKey = ([[NSManagedObject reservedAttributes] containsObject:remoteKey]);
+            if (isReservedKey) {
+                NSString *prefixedRemoteKey = [self prefixedAttribute:remoteKey];
+                localKey = [prefixedRemoteKey hyp_localString];
+            }
+
+            if ([attributeDescription.name isEqualToString:localKey]) {
+                foundAttributeDescription = attributeDescription;
                 *stop = YES;
             }
         }
