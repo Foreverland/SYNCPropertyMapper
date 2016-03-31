@@ -61,6 +61,7 @@
     user.createdAt = self.testDate;
     user.updatedAt = self.testDate;
     user.numberOfAttendes = @30;
+    user.rawSigned = @"raw";
     user.hobbies = [NSKeyedArchiver archivedDataWithRootObject:@[@"Football",
                                                                  @"Soccer",
                                                                  @"Code",
@@ -105,7 +106,6 @@
 
 #pragma mark - hyp_dictionary
 
-
 - (void)testAllAttributes {
     NSDictionary *values = @{@"integer_string" : @"16",
                              @"integer16" : @16,
@@ -118,6 +118,7 @@
                              @"float_value_string" : @"12.2",
                              @"float_value" : @12.2,
                              @"string" : @"string",
+                             @"type" : @"custom",
                              @"boolean" : @YES,
                              @"binary_data" : @"Data",
                              @"transformable" : @"Ignore me, too"};
@@ -125,6 +126,7 @@
     DATAStack *dataStack = [self dataStack];
     Attributes *attributes = [self entityNamed:@"Attributes" inContext:dataStack.mainContext];
     [attributes hyp_fillWithDictionary:values];
+    XCTAssertEqualObjects(values[@"type"], attributes.attributesType);
 
     NSDictionary *resultDictionary = [attributes hyp_dictionary];
     XCTAssertEqualObjects(resultDictionary[@"integer_string"], @16);
@@ -149,6 +151,7 @@
     XCTAssertEqualObjects(resultDictionary[@"binary_data"], [NSKeyedArchiver archivedDataWithRootObject:@"Data"]);
     XCTAssertNil(resultDictionary[@"transformable"]);
     XCTAssertEqual(values.allKeys.count - 1, resultDictionary.allKeys.count);
+    XCTAssertEqualObjects(resultDictionary[@"type"], @"custom");
 }
 
 - (NSDictionary *)userDictionaryWithNoRelationships {
@@ -177,6 +180,7 @@
     comparedDictionary[@"number_of_attendes"] = @30;
     comparedDictionary[@"type"] = @"Manager";
     comparedDictionary[@"updated_at"] = resultDateString;
+    comparedDictionary[@"signed"] = @"raw";
 
     return [comparedDictionary copy];
 }
@@ -224,6 +228,7 @@
                                                       storeType:DATAStackStoreTypeInMemory];
 
     User *user = [self entityNamed:@"User" inContext:dataStack.mainContext];
+    user.rawSigned = @"raw";
     user.age = @25;
     user.birthDate = self.testDate;
     user.contractID = @235;

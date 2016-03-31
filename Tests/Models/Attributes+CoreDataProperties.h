@@ -4,6 +4,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface Attributes (CoreDataProperties)
 
+@property (nullable, nonatomic, retain) NSString *attributesType;
 @property (nullable, nonatomic, retain) NSData *binaryData;
 @property (nullable, nonatomic, retain) NSNumber *boolean;
 @property (nullable, nonatomic, retain) NSDecimalNumber *decimal;

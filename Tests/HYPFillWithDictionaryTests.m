@@ -293,15 +293,12 @@
     NSDictionary *values = @{@"id": @100,
                              @"description": @"This is the description?",
                              @"type": @"user type"};
-
     DATAStack *dataStack = [self dataStack];
     User *user = [self userUsingDataStack:dataStack];
     [user hyp_fillWithDictionary:values];
 
     XCTAssertEqualObjects([user valueForKey:@"remoteID"], @100);
-
     XCTAssertEqualObjects([user valueForKey:@"userDescription"], @"This is the description?");
-
     XCTAssertEqualObjects([user valueForKey:@"userType"], @"user type");
 }
 
@@ -329,7 +326,8 @@
 
 - (void)testCustomRemoteKeys {
     NSDictionary *values = @{@"age_of_person" : @20,
-                             @"driver_identifier_str" : @"123"};
+                             @"driver_identifier_str" : @"123",
+                             @"signed" : @"salesman"};
 
     DATAStack *dataStack = [self dataStack];
     User *user = [self userUsingDataStack:dataStack];
@@ -337,6 +335,7 @@
 
     XCTAssertEqualObjects(user.age, @20);
     XCTAssertEqualObjects(user.driverIdentifier, @"123");
+    XCTAssertEqualObjects(user.rawSigned, @"salesman");
 }
 
 - (void)testIgnoredTransformables {

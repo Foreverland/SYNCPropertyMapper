@@ -15,11 +15,6 @@ static NSString * const HYPPropertyMapperNestedAttributesKey = @"attributes";
 
         id value = [dictionary objectForKey:key];
 
-        BOOL isReservedKey = ([[NSManagedObject reservedAttributes] containsObject:key]);
-        if (isReservedKey) {
-            key = [self prefixedAttribute:key];
-        }
-
         NSAttributeDescription *attributeDescription = [self attributeDescriptionForRemoteKey:key];
         if (attributeDescription) {
             NSString *localKey = attributeDescription.name;
