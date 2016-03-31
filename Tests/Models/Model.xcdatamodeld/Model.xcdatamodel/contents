@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15C50" minimumToolsVersion="Xcode 7.0">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10171" systemVersion="15E65" minimumToolsVersion="Xcode 7.0">
     <entity name="Apartment" representedClassName="Apartment" syncable="YES">
         <attribute name="remoteID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <relationship name="building" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Building" inverseName="apartments" inverseEntity="Building" syncable="YES"/>
         <relationship name="rooms" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Room" inverseName="apartment" inverseEntity="Room" syncable="YES"/>
     </entity>
     <entity name="Attributes" representedClassName="Attributes" syncable="YES">
+        <attribute name="attributeType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="binaryData" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="boolean" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="decimal" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
@@ -89,7 +90,7 @@
     </entity>
     <elements>
         <element name="Apartment" positionX="-18" positionY="27" width="128" height="90"/>
-        <element name="Attributes" positionX="45" positionY="189" width="128" height="255"/>
+        <element name="Attributes" positionX="45" positionY="189" width="128" height="270"/>
         <element name="Building" positionX="0" positionY="45" width="128" height="90"/>
         <element name="Company" positionX="18" positionY="63" width="128" height="90"/>
         <element name="Market" positionX="-45" positionY="0" width="128" height="75"/>
