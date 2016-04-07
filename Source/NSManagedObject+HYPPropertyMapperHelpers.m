@@ -38,6 +38,11 @@
                 foundAttributeDescription = attributeDescription;
                 *stop = YES;
             }
+            
+            if ([attributeDescription.name isEqualToString:remoteKey]) {
+                foundAttributeDescription = attributeDescription;
+                *stop = YES;
+            }
 
             NSString *localKey = [remoteKey hyp_localString];
             BOOL isReservedKey = ([[NSManagedObject reservedAttributes] containsObject:remoteKey]);

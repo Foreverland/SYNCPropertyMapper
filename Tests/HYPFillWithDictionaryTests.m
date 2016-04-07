@@ -147,6 +147,49 @@
     XCTAssertNil(attributes.transformable);
 }
 
+- (void)testAllAttributesInCamelCase {
+    NSDictionary *values = @{@"integerString" : @"16",
+                             @"integer16" : @16,
+                             @"integer32" : @32,
+                             @"integer64" : @64,
+                             @"decimalString" : @"12.2",
+                             @"decimal" : @12.2,
+                             @"doubleValueString": @"12.2",
+                             @"doubleValue": @12.2,
+                             @"floatValueString" : @"12.2",
+                             @"floatValue" : @12.2,
+                             @"string" : @"string",
+                             @"boolean" : @YES,
+                             @"binaryData" : @"Data",
+                             @"transformable" : @"Ignore me, too"};
+    
+    DATAStack *dataStack = [self dataStack];
+    Attributes *attributes = [self entityNamed:@"Attributes" inContext:dataStack.mainContext];
+    [attributes hyp_fillWithDictionary:values];
+    
+    XCTAssertEqualObjects(attributes.integerString, @16);
+    XCTAssertEqualObjects(attributes.integer16, @16);
+    XCTAssertEqualObjects(attributes.integer32, @32);
+    XCTAssertEqualObjects(attributes.integer64, @64);
+    
+    XCTAssertEqualObjects(attributes.decimalString, [NSDecimalNumber decimalNumberWithString:@"12.2"]);
+    XCTAssertEqualObjects(NSStringFromClass([attributes.decimalString class]), NSStringFromClass([NSDecimalNumber class]));
+    XCTAssertNotEqualObjects(NSStringFromClass([attributes.decimalString class]), NSStringFromClass([NSNumber class]));
+    
+    XCTAssertEqualObjects(attributes.decimal, [NSDecimalNumber decimalNumberWithString:@"12.2"]);
+    XCTAssertEqualObjects(NSStringFromClass([attributes.decimal class]), NSStringFromClass([NSDecimalNumber class]));
+    XCTAssertNotEqualObjects(NSStringFromClass([attributes.decimal class]), NSStringFromClass([NSNumber class]));
+    
+    XCTAssertEqualObjects(attributes.doubleValueString, @12.2);
+    XCTAssertEqualObjects(attributes.doubleValue, @12.2);
+    XCTAssertEqualWithAccuracy(attributes.floatValueString.longValue, [@12 longValue], 1.0);
+    XCTAssertEqualWithAccuracy(attributes.floatValue.longValue, [@12 longValue], 1.0);
+    XCTAssertEqualObjects(attributes.string, @"string");
+    XCTAssertEqualObjects(attributes.boolean, @YES);
+    XCTAssertEqualObjects(attributes.binaryData, [NSKeyedArchiver archivedDataWithRootObject:@"Data"]);
+    XCTAssertNil(attributes.transformable);
+}
+
 - (void)testFillManagedObjectWithDictionary {
     NSDictionary *values = @{@"first_name" : @"Jane",
                              @"last_name"  : @"Hyperseed"};
