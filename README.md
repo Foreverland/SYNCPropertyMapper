@@ -2,6 +2,29 @@
 
 Mapping your Core Data objects with your JSON providing backend has never been this easy. 
 
+## JSON in CamelCase
+
+```json
+{
+  "firstName": "John",
+  "lastName": "Hyperseed"
+}
+```
+
+``` objc
+NSDictionary *values = [JSON valueForKey:@"user"];
+[user hyp_fillWithDictionary:values];
+```
+
+Your Core Data entities should match your backend models. Your attributes should match their JSON counterparts. For example `firstName` maps to `firstName`, `address` to `address`.
+
+There are two exceptions to this rule:
+
+* `id`s should match `remoteID`
+* Reserved attributes should be prefixed with the `entityName` (`type` becomes `userType`, `description` becomes `userDescription` and so on). In the JSON they don't need to change, you can keep `type` and `description` for example. A full list of reserved attributes can be found [here](https://github.com/hyperoslo/NSManagedObject-HYPPropertyMapper/blob/master/Source/NSManagedObject%2BHYPPropertyMapper.m#L265)
+
+## JSON in snake_case
+
 ```json
 {
   "first_name": "John",
@@ -20,6 +43,8 @@ There are two exceptions to this rule:
 
 * `id`s should match `remoteID`
 * Reserved attributes should be prefixed with the `entityName` (`type` becomes `userType`, `description` becomes `userDescription` and so on). In the JSON they don't need to change, you can keep `type` and `description` for example. A full list of reserved attributes can be found [here](https://github.com/hyperoslo/NSManagedObject-HYPPropertyMapper/blob/master/Source/NSManagedObject%2BHYPPropertyMapper.m#L265)
+
+## Custom
 
 If you want to map your Core Data attribute with a JSON attribute that has different naming, you can do by adding `hyper.remoteKey` in the user info box with the value you want to map.
 
