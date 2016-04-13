@@ -122,25 +122,27 @@
         value = remoteValue;
     }
 
-    BOOL stringValueAndNumberAttribute = ([remoteValue isKindOfClass:[NSString class]] &&
+    BOOL stringValueAndNumberAttribute  = ([remoteValue isKindOfClass:[NSString class]] &&
                                           attributedClass == [NSNumber class]);
 
-    BOOL numberValueAndStringAttribute = ([remoteValue isKindOfClass:[NSNumber class]] &&
+    BOOL numberValueAndStringAttribute  = ([remoteValue isKindOfClass:[NSNumber class]] &&
                                           attributedClass == [NSString class]);
 
-    BOOL stringValueAndDateAttribute   = ([remoteValue isKindOfClass:[NSString class]] &&
+    BOOL stringValueAndDateAttribute    = ([remoteValue isKindOfClass:[NSString class]] &&
                                           attributedClass == [NSDate class]);
 
-    BOOL numberValueAndDateAttribute   = ([remoteValue isKindOfClass:[NSNumber class]] &&
+    BOOL numberValueAndDateAttribute    = ([remoteValue isKindOfClass:[NSNumber class]] &&
                                           attributedClass == [NSDate class]);
 
-    BOOL dataAttribute                 = (attributedClass == [NSData class]);
+    BOOL dataAttribute                  = (attributedClass == [NSData class]);
 
     BOOL numberValueAndDecimalAttribute = ([remoteValue isKindOfClass:[NSNumber class]] &&
                                            attributedClass == [NSDecimalNumber class]);
 
     BOOL stringValueAndDecimalAttribute = ([remoteValue isKindOfClass:[NSString class]] &&
                                            attributedClass == [NSDecimalNumber class]);
+
+    BOOL transformableAttribute         = (!attributedClass && [attributeDescription valueTransformerName] && value == nil);
 
     if (stringValueAndNumberAttribute) {
         NSNumberFormatter *formatter = [NSNumberFormatter new];
@@ -159,6 +161,14 @@
         value = [NSDecimalNumber decimalNumberWithDecimal:[number decimalValue]];
     } else if (stringValueAndDecimalAttribute) {
         value = [NSDecimalNumber decimalNumberWithString:remoteValue];
+    } else if (transformableAttribute) {
+        NSValueTransformer *transformer = [NSValueTransformer valueTransformerForName:[attributeDescription valueTransformerName]];
+        if (transformer) {
+            id newValue = [transformer transformedValue:remoteValue];
+            if (newValue) {
+                value = newValue;
+            }
+        }
     }
 
     return value;

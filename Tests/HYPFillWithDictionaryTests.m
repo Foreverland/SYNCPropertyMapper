@@ -391,6 +391,22 @@
     XCTAssertNil(user.ignoreTransformable);
 }
 
+- (void)testRegisteredTransformables {
+    NSDictionary *values = @{@"registeredTransformable" : @"/Date(1451606400000)/"};
+   
+    DATAStack *dataStack = [self dataStack];
+    User *user = [self userUsingDataStack:dataStack];
+    [user hyp_fillWithDictionary:values];
+
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    dateFormat.dateFormat = @"yyyy-MM-dd";
+    dateFormat.timeZone = [NSTimeZone timeZoneWithName:@"GMT"];
+    NSDate *date = [dateFormat dateFromString:@"2016-01-01"];
+    XCTAssertNotNil(user.registeredTransformable);
+    XCTAssertEqualObjects(user.registeredTransformable, date);
+    XCTAssertTrue([user.registeredTransformable isKindOfClass:[NSDate class]]);
+}
+
 - (void)testCustomKey {
     DATAStack *dataStack = [self dataStack];
 

@@ -15,6 +15,7 @@
 @dynamic hobbies;
 @dynamic ignoredParameter;
 @dynamic ignoreTransformable;
+@dynamic registeredTransformable;
 @dynamic lastName;
 @dynamic numberOfAttendes;
 @dynamic remoteID;

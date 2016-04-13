@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSData *hobbies;
 @property (nullable, nonatomic, retain) NSString *ignoredParameter;
 @property (nullable, nonatomic, retain) id ignoreTransformable;
+@property (nullable, nonatomic, retain) id registeredTransformable;
 @property (nullable, nonatomic, retain) NSString *lastName;
 @property (nullable, nonatomic, retain) NSNumber *numberOfAttendes;
 @property (nullable, nonatomic, retain) NSNumber *remoteID;
