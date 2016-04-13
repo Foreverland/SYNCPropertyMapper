@@ -36,7 +36,7 @@
     XCTAssertEqualObjects(attributeDescription.name, @"name");
 
     attributeDescription = [company attributeDescriptionForRemoteKey:@"id"];
-    XCTAssertEqualObjects(attributeDescription.name, @"b");
+    XCTAssertEqualObjects(attributeDescription.name, @"remoteID");
 }
 
 - (void)testAttributeDescriptionForKeyB {
