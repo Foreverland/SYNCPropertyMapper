@@ -391,6 +391,18 @@
     XCTAssertNil(user.ignoreTransformable);
 }
 
+- (void)testRegisteredTransformables {
+    NSDictionary *values = @{@"registeredTransformable" : @"/Date(1460537233000)/"};
+   
+    DATAStack *dataStack = [self dataStack];
+    User *user = [self userUsingDataStack:dataStack];
+    [user hyp_fillWithDictionary:values];
+
+    XCTAssertNotNil(user.registeredTransformable);
+    XCTAssertTrue([user.registeredTransformable isKindOfClass:[NSDate class]]);
+}
+
+
 - (void)testCustomKey {
     DATAStack *dataStack = [self dataStack];
 
