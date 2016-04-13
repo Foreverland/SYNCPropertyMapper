@@ -122,19 +122,19 @@
         value = remoteValue;
     }
 
-    BOOL stringValueAndNumberAttribute = ([remoteValue isKindOfClass:[NSString class]] &&
+    BOOL stringValueAndNumberAttribute  = ([remoteValue isKindOfClass:[NSString class]] &&
                                           attributedClass == [NSNumber class]);
 
-    BOOL numberValueAndStringAttribute = ([remoteValue isKindOfClass:[NSNumber class]] &&
+    BOOL numberValueAndStringAttribute  = ([remoteValue isKindOfClass:[NSNumber class]] &&
                                           attributedClass == [NSString class]);
 
-    BOOL stringValueAndDateAttribute   = ([remoteValue isKindOfClass:[NSString class]] &&
+    BOOL stringValueAndDateAttribute    = ([remoteValue isKindOfClass:[NSString class]] &&
                                           attributedClass == [NSDate class]);
 
-    BOOL numberValueAndDateAttribute   = ([remoteValue isKindOfClass:[NSNumber class]] &&
+    BOOL numberValueAndDateAttribute    = ([remoteValue isKindOfClass:[NSNumber class]] &&
                                           attributedClass == [NSDate class]);
 
-    BOOL dataAttribute                 = (attributedClass == [NSData class]);
+    BOOL dataAttribute                  = (attributedClass == [NSData class]);
 
     BOOL numberValueAndDecimalAttribute = ([remoteValue isKindOfClass:[NSNumber class]] &&
                                            attributedClass == [NSDecimalNumber class]);
