@@ -160,6 +160,19 @@
     } else if (stringValueAndDecimalAttribute) {
         value = [NSDecimalNumber decimalNumberWithString:remoteValue];
     }
+    
+    // If it's a transformable value - there will be no class name, but transformer name will be present. Value will be nil at this point
+    if (!attributedClass && [attributeDescription valueTransformerName] && value == nil) {
+        // get a registered transformer for specified name
+        NSValueTransformer *transformer = [NSValueTransformer valueTransformerForName:[attributeDescription valueTransformerName]];
+        if (transformer) {
+            // get new value from transformer
+            id newValue = [transformer transformedValue:remoteValue];
+            if (newValue) {
+                value = newValue;
+            }
+        }
+    }
 
     return value;
 }
