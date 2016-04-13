@@ -1,5 +1,5 @@
 //
-//  BoolStringTransformer.m
+//  DateStringTransformer.m
 //  Demo
 //
 //  Created by Aleksandr Kelbas on 13/04/2016.
