@@ -1,6 +1,6 @@
 PODS:
-  - DATAStack (4.2.2)
-  - NSManagedObject-HYPPropertyMapper (3.5.0):
+  - DATAStack (4.2.4)
+  - NSManagedObject-HYPPropertyMapper (3.6.0):
     - NSString-HYPNetworking (~> 0.4.0)
   - NSString-HYPNetworking (0.4.0)
 
@@ -13,8 +13,8 @@ EXTERNAL SOURCES:
     :path: "."
 
 SPEC CHECKSUMS:
-  DATAStack: f38df2e6deaf9d2eed15a0a68ba6c4c76e657f8a
-  NSManagedObject-HYPPropertyMapper: c307b6455b8fd572f793e4a80b9055f3c2fc0e3b
+  DATAStack: 1574febd31668d7abfd898ce0b2913f8785027af
+  NSManagedObject-HYPPropertyMapper: dbcaa74a43b522d45dacf1ad1c56b41ef008a0c0
   NSString-HYPNetworking: 24c3828eebde8a37cc16101a475934a56ac820c0
 
 COCOAPODS: 0.39.0
