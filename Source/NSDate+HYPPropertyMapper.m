@@ -32,80 +32,150 @@
             dateString = [mutableRemoteValue copy];
         }
 
-        const char *str = [dateString cStringUsingEncoding:NSUTF8StringEncoding];
-        size_t len = strlen(str);
-        if (len == 0) {
+        const char *originalString = [dateString cStringUsingEncoding:NSUTF8StringEncoding];
+        size_t originalLength = strlen(originalString);
+        if (originalLength == 0) {
             return nil;
         }
 
-        struct tm tm;
-        char newStr[25] = "";
+        char currentString[25] = "";
         BOOL hasTimezone = NO;
+        BOOL hasMiliseconds = NO;
 
-        // 2014-03-30T09:13:00Z
-        if (len == 20 && str[len - 1] == 'Z') {
-            strncpy(newStr, str, len - 1);
+        NSLog(@"dateString: %@", dateString);
+
+        // ----
+        // In general lines, if a Z is found, then the Z is removed since all dates operate
+        // in GMT as a base, unless they have timezone, and Z is the GMT indicator.
+        // If +00:00 or any number after + is found, then it means that the date has a timezone.
+        // This means that `hasTimezone` will have to be set to YES, and since all timezones go to
+        // the end of the date, then they will be parsed at the end of the process and appended back
+        // to the parsed date.
+        // ----
+
+        // Copy all the date excluding the Z.
+        // Current date: 2014-03-30T09:13:00Z
+        // Will become:  2014-03-30T09:13:00
+        // Unit test H
+        if (originalLength == 20 && originalString[originalLength - 1] == 'Z') {
+            strncpy(currentString, originalString, originalLength - 1);
+            printf("newStr: %s\n\n", currentString);
         }
 
-        // 2014-03-30T09:13:00-07:00
-        else if (len == 25 && str[22] == ':') {
-            strncpy(newStr, str, 19);
+        // Copy all the date excluding the timezone also set `hasTimezone` to YES.
+        // Current date: 2014-01-01T00:00:00+00:00
+        // Will become:  2014-01-01T00:00:00
+        // Unit test B and C
+        else if (originalLength == 25 && originalString[22] == ':') {
+            strncpy(currentString, originalString, 19);
             hasTimezone = YES;
+            printf("newStr: %s\n\n", currentString);
         }
 
-        // 2014-03-30T09:13:00.000Z
-        else if (len == 24 && str[len - 1] == 'Z') {
-            strncpy(newStr, str, 19);
+        // Copy all the date excluding the miliseconds and the Z.
+        // Current date: 2014-03-30T09:13:00.000Z
+        // Will become:  2014-03-30T09:13:00
+        // Unit test G
+        else if (originalLength == 24 && originalString[originalLength - 1] == 'Z') {
+            strncpy(currentString, originalString, 19);
+            hasMiliseconds = YES;
+            printf("newStr: %s\n\n", currentString);
         }
 
-        // 2015-06-23T12:40:08.000+02:00
-        else if (len == 29 && str[26] == ':') {
-            strncpy(newStr, str, 19);
+        // Copy all the date excluding the miliseconds and the timezone also set `hasTimezone` to YES.
+        // Current date: 2015-06-23T12:40:08.000+02:00
+        // Will become:  2015-06-23T12:40:08
+        // Unit test A
+        else if (originalLength == 29 && originalString[26] == ':') {
+            strncpy(currentString, originalString, 19);
             hasTimezone = YES;
+            hasMiliseconds = YES;
+            printf("newStr: %s\n\n", currentString);
         }
 
-        // 2015-08-23T09:29:30.007450+00:00
-        else if (len == 32 && str[29] == ':') {
-            strncpy(newStr, str, 19);
+        // Copy all the date excluding the microseconds and the timezone also set `hasTimezone` to YES.
+        // Current date: 2015-08-23T09:29:30.007450+00:00
+        // Will become:  2015-08-23T09:29:30
+        // Unit test D
+        else if (originalLength == 32 && originalString[29] == ':') {
+            strncpy(currentString, originalString, 19);
             hasTimezone = YES;
+            hasMiliseconds = YES;
+            printf("newStr: %s\n\n", currentString);
         }
 
-        // 2015-09-10T13:47:21.116+0000
-        else if (len == 28 && str[23] == '+') {
-            strncpy(newStr, str, 19);
-            hasTimezone = NO;
+        // Copy all the date excluding the microseconds and the timezone.
+        // Current date: 2015-09-10T13:47:21.116+0000
+        // Will become:  2015-09-10T13:47:21
+        // Unit test E
+        else if (originalLength == 28 && originalString[23] == '+') {
+            strncpy(currentString, originalString, 19);
+            printf("newStr: %s\n\n", currentString);
         }
 
-        // 2015-09-10T00:00:00.XXXXXXZ
-        else if (str[19] == '.' && str[len - 1] == 'Z') {
-            strncpy(newStr, str, 19);
+        // Copy all the date excluding the microseconds and the Z.
+        // Current date: 2015-09-10T00:00:00.184968Z
+        // Will become:  2015-09-10T00:00:00
+        // Unit test F
+        else if (originalString[19] == '.' && originalString[originalLength - 1] == 'Z') {
+            strncpy(currentString, originalString, 19);
+            printf("newStr: %s\n\n", currentString);
         }
 
         // Poorly formatted timezone
         else {
-            strncpy(newStr, str, len > 24 ? 24 : len);
+            strncpy(currentString, originalString, originalLength > 24 ? 24 : originalLength);
+            printf("newStr: %s\n\n", currentString);
         }
 
         // Timezone
-        size_t l = strlen(newStr);
+        size_t currentLength = strlen(currentString);
         if (hasTimezone) {
-            strncpy(newStr + l, str + len - 6, 3);
-            strncpy(newStr + l + 3, str + len - 2, 2);
+            // Add the first part of the removed timezone to the end of the string.
+            // Orignal date: 2015-06-23T14:40:08.000+02:00
+            // Current date: 2015-06-23T14:40:08
+            // Will become:  2015-06-23T14:40:08+02
+            strncpy(currentString + currentLength, originalString + originalLength - 6, 3);
+            printf("timezone phase a: %s\n\n", currentString);
+
+            // Add the second part of the removed timezone to the end of the string.
+            // Original date: 2015-06-23T14:40:08.000+02:00
+            // Current date:  2015-06-23T14:40:08+02
+            // Will become:   2015-06-23T14:40:08+0200
+            strncpy(currentString + currentLength + 3, originalString + originalLength - 2, 2);
+            printf("timezone phase b: %s\n\n", currentString);
         } else {
-            strncpy(newStr + l, "+0000", 5);
+            // Add GMT timezone to the end of the string
+            // Current date: 2015-09-10T00:00:00
+            // Will become:  2015-09-10T00:00:00+0000
+            strncpy(currentString + currentLength, "+0000", 5);
+            printf("newStr: %s\n\n", currentString);
         }
 
         // Add null terminator
-        newStr[sizeof(newStr) - 1] = 0;
+        currentString[sizeof(currentString) - 1] = 0;
 
-        if (strptime(newStr, "%FT%T%z", &tm) == NULL) {
+        // Parse the formatted date using `strptime`.
+        // %F: Equivalent to %Y-%m-%d, the ISO 8601 date format
+        //  T: The date, time separator
+        // %T: Equivalent to %H:%M:%S
+        // %z: An RFC-822/ISO 8601 standard timezone specification
+        struct tm tm;
+        if (strptime(currentString, "%FT%T%z", &tm) == NULL) {
             return nil;
         }
 
-        time_t t;
-        t = mktime(&tm);
+        time_t timeStruct = mktime(&tm);
+        double time = (double)timeStruct;
 
-        return [NSDate dateWithTimeIntervalSince1970:t];
+        if (hasMiliseconds) {
+            NSString *trimmedDate = [dateString substringFromIndex:@"2015-09-10T00:00:00.".length];
+            NSString *microseconds = [trimmedDate substringToIndex:@"000".length];
+            double m = microseconds.doubleValue / 1000.0;
+            time += m;
+        }
+
+        return [NSDate dateWithTimeIntervalSince1970:time];
     }
 
     NSAssert1(NO, @"Failed to parse date: %@", dateString);
