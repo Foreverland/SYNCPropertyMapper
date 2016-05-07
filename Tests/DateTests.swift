@@ -5,10 +5,10 @@ import NSManagedObject_HYPPropertyMapper
 class DateTests: XCTestCase {
     func testDateA() {
         let date = NSDate.dateWithHourAndTimeZoneString("2015-06-23T12:40:08.000")
-        let resultDate = NSDate.hyp_dateFromDateString("2015-06-23T12:40:08.000+02:00")
+        let resultDate = NSDate.hyp_dateFromDateString("2015-06-23T14:40:08.000+02:00")
 
         XCTAssertNotNil(resultDate)
-        XCTAssertEqualWithAccuracy(resultDate.timeIntervalSinceReferenceDate, date.timeIntervalSinceReferenceDate, accuracy: 1.0)
+        XCTAssertEqual(date.timeIntervalSince1970, resultDate.timeIntervalSince1970)
     }
 
     func testDateB() {
@@ -49,6 +49,13 @@ class DateTests: XCTestCase {
 
         XCTAssertNotNil(resultDate)
         XCTAssertEqual(date, resultDate)
+    }
+
+    func testDateG() {
+        let date = NSDate.dateWithHourAndTimeZoneString("2015-06-23T19:04:19.911Z")
+        let resultDate = NSDate.hyp_dateFromDateString("2015-06-23T19:04:19.911Z")
+        XCTAssertNotNil(resultDate)
+        XCTAssertEqual(date.timeIntervalSince1970, resultDate.timeIntervalSinceReferenceDate)
     }
 
     func testTimestampA() {
@@ -105,9 +112,16 @@ extension NSDate {
     static func dateWithHourAndTimeZoneString(dateString: String) -> NSDate {
         let formatter = NSDateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
-        formatter.timeZone = NSTimeZone(forSecondsFromGMT: 2 * 60 * 60)
+        formatter.timeZone = NSTimeZone(name: "GMT")
         let date = formatter.dateFromString(dateString)!
 
         return date
+    }
+
+    func prettyPrint() {
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        let string = formatter.stringFromDate(self)
+        print(string)
     }
 }

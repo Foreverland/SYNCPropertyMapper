@@ -42,48 +42,59 @@
         char newStr[25] = "";
         BOOL hasTimezone = NO;
 
+        NSLog(@"dateString: %@", dateString);
+
         // 2014-03-30T09:13:00Z
         if (len == 20 && str[len - 1] == 'Z') {
             strncpy(newStr, str, len - 1);
+            printf("newStr: %s\n\n", newStr);
+
         }
 
         // 2014-03-30T09:13:00-07:00
         else if (len == 25 && str[22] == ':') {
             strncpy(newStr, str, 19);
             hasTimezone = YES;
+            printf("newStr: %s\n\n", newStr);
         }
 
         // 2014-03-30T09:13:00.000Z
         else if (len == 24 && str[len - 1] == 'Z') {
             strncpy(newStr, str, 19);
+            printf("newStr: %s\n\n", newStr);
         }
 
         // 2015-06-23T12:40:08.000+02:00
         else if (len == 29 && str[26] == ':') {
             strncpy(newStr, str, 19);
             hasTimezone = YES;
+            printf("newStr: %s\n\n", newStr);
         }
 
         // 2015-08-23T09:29:30.007450+00:00
         else if (len == 32 && str[29] == ':') {
             strncpy(newStr, str, 19);
             hasTimezone = YES;
+            printf("newStr: %s\n\n", newStr);
         }
 
         // 2015-09-10T13:47:21.116+0000
         else if (len == 28 && str[23] == '+') {
             strncpy(newStr, str, 19);
             hasTimezone = NO;
+            printf("newStr: %s\n\n", newStr);
         }
 
         // 2015-09-10T00:00:00.XXXXXXZ
         else if (str[19] == '.' && str[len - 1] == 'Z') {
             strncpy(newStr, str, 19);
+            printf("newStr: %s\n\n", newStr);
         }
 
         // Poorly formatted timezone
         else {
             strncpy(newStr, str, len > 24 ? 24 : len);
+            printf("newStr: %s\n\n", newStr);
         }
 
         // Timezone
@@ -91,8 +102,10 @@
         if (hasTimezone) {
             strncpy(newStr + l, str + len - 6, 3);
             strncpy(newStr + l + 3, str + len - 2, 2);
+            printf("newStr: %s\n\n", newStr);
         } else {
             strncpy(newStr + l, "+0000", 5);
+            printf("newStr: %s\n\n", newStr);
         }
 
         // Add null terminator
