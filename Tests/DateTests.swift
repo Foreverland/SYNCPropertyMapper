@@ -55,7 +55,14 @@ class DateTests: XCTestCase {
         let date = NSDate.dateWithHourAndTimeZoneString("2015-06-23T19:04:19.911Z")
         let resultDate = NSDate.hyp_dateFromDateString("2015-06-23T19:04:19.911Z")
         XCTAssertNotNil(resultDate)
-        XCTAssertEqual(date.timeIntervalSince1970, resultDate.timeIntervalSinceReferenceDate)
+        XCTAssertEqual(date, resultDate)
+    }
+
+    func testDateH() {
+        let date = NSDate.dateWithHourAndTimeZoneString("2014-03-30T09:13:00.000Z")
+        let resultDate = NSDate.hyp_dateFromDateString("2014-03-30T09:13:00Z")
+        XCTAssertNotNil(resultDate)
+        XCTAssertEqual(date, resultDate)
     }
 
     func testTimestampA() {
