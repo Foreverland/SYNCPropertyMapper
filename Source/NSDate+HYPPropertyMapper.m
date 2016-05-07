@@ -33,8 +33,8 @@
         }
 
         const char *str = [dateString cStringUsingEncoding:NSUTF8StringEncoding];
-        size_t len = strlen(str);
-        if (len == 0) {
+        size_t length = strlen(str);
+        if (length == 0) {
             return nil;
         }
 
@@ -45,63 +45,63 @@
         NSLog(@"dateString: %@", dateString);
 
         // 2014-03-30T09:13:00Z
-        if (len == 20 && str[len - 1] == 'Z') {
-            strncpy(newStr, str, len - 1);
+        // Remove Z from date, since `strptime` doesn't use Z
+        if (length == 20 && str[length - 1] == 'Z') {
+            strncpy(newStr, str, length - 1);
             printf("newStr: %s\n\n", newStr);
-
         }
 
         // 2014-03-30T09:13:00-07:00
-        else if (len == 25 && str[22] == ':') {
+        else if (length == 25 && str[22] == ':') {
             strncpy(newStr, str, 19);
             hasTimezone = YES;
             printf("newStr: %s\n\n", newStr);
         }
 
         // 2014-03-30T09:13:00.000Z
-        else if (len == 24 && str[len - 1] == 'Z') {
+        else if (length == 24 && str[length - 1] == 'Z') {
             strncpy(newStr, str, 19);
             printf("newStr: %s\n\n", newStr);
         }
 
         // 2015-06-23T12:40:08.000+02:00
-        else if (len == 29 && str[26] == ':') {
+        else if (length == 29 && str[26] == ':') {
             strncpy(newStr, str, 19);
             hasTimezone = YES;
             printf("newStr: %s\n\n", newStr);
         }
 
         // 2015-08-23T09:29:30.007450+00:00
-        else if (len == 32 && str[29] == ':') {
+        else if (length == 32 && str[29] == ':') {
             strncpy(newStr, str, 19);
             hasTimezone = YES;
             printf("newStr: %s\n\n", newStr);
         }
 
         // 2015-09-10T13:47:21.116+0000
-        else if (len == 28 && str[23] == '+') {
+        else if (length == 28 && str[23] == '+') {
             strncpy(newStr, str, 19);
             hasTimezone = NO;
             printf("newStr: %s\n\n", newStr);
         }
 
         // 2015-09-10T00:00:00.XXXXXXZ
-        else if (str[19] == '.' && str[len - 1] == 'Z') {
+        else if (str[19] == '.' && str[length - 1] == 'Z') {
             strncpy(newStr, str, 19);
             printf("newStr: %s\n\n", newStr);
         }
 
         // Poorly formatted timezone
         else {
-            strncpy(newStr, str, len > 24 ? 24 : len);
+            strncpy(newStr, str, length > 24 ? 24 : length);
             printf("newStr: %s\n\n", newStr);
         }
 
         // Timezone
         size_t l = strlen(newStr);
         if (hasTimezone) {
-            strncpy(newStr + l, str + len - 6, 3);
-            strncpy(newStr + l + 3, str + len - 2, 2);
+            strncpy(newStr + l, str + length - 6, 3);
+            strncpy(newStr + l + 3, str + length - 2, 2);
             printf("newStr: %s\n\n", newStr);
         } else {
             strncpy(newStr + l, "+0000", 5);
