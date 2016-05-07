@@ -125,26 +125,26 @@
         }
 
         // Timezone
-        size_t lengthBeforeTimeZone = strlen(currentString);
+        size_t currentLength = strlen(currentString);
         if (hasTimezone) {
             // Add the first part of the removed timezone to the end of the string.
             // Orignal date: 2015-06-23T14:40:08.000+02:00
             // Current date: 2015-06-23T14:40:08
             // Will become:  2015-06-23T14:40:08+02
-            strncpy(currentString + lengthBeforeTimeZone, originalString + originalLength - 6, 3);
+            strncpy(currentString + currentLength, originalString + originalLength - 6, 3);
             printf("timezone phase a: %s\n\n", currentString);
 
             // Add the second part of the removed timezone to the end of the string.
             // Original date: 2015-06-23T14:40:08.000+02:00
             // Current date:  2015-06-23T14:40:08+02
             // Will become:   2015-06-23T14:40:08+0200
-            strncpy(currentString + lengthBeforeTimeZone + 3, originalString + originalLength - 2, 2);
+            strncpy(currentString + currentLength + 3, originalString + originalLength - 2, 2);
             printf("timezone phase b: %s\n\n", currentString);
         } else {
             // Add GMT timezone to the end of the string
             // Current date: 2015-09-10T00:00:00
             // Will become:  2015-09-10T00:00:00+0000
-            strncpy(currentString + lengthBeforeTimeZone, "+0000", 5);
+            strncpy(currentString + currentLength, "+0000", 5);
             printf("newStr: %s\n\n", currentString);
         }
 
