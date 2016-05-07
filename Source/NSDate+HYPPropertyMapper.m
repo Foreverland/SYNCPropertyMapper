@@ -40,6 +40,7 @@
 
         char currentString[25] = "";
         BOOL hasTimezone = NO;
+        BOOL hasMiliseconds = NO;
 
         NSLog(@"dateString: %@", dateString);
 
@@ -77,6 +78,7 @@
         // Unit test G
         else if (originalLength == 24 && originalString[originalLength - 1] == 'Z') {
             strncpy(currentString, originalString, 19);
+            hasMiliseconds = YES;
             printf("newStr: %s\n\n", currentString);
         }
 
@@ -87,6 +89,7 @@
         else if (originalLength == 29 && originalString[26] == ':') {
             strncpy(currentString, originalString, 19);
             hasTimezone = YES;
+            hasMiliseconds = YES;
             printf("newStr: %s\n\n", currentString);
         }
 
@@ -97,6 +100,7 @@
         else if (originalLength == 32 && originalString[29] == ':') {
             strncpy(currentString, originalString, 19);
             hasTimezone = YES;
+            hasMiliseconds = YES;
             printf("newStr: %s\n\n", currentString);
         }
 
@@ -161,10 +165,17 @@
             return nil;
         }
 
-        time_t t;
-        t = mktime(&tm);
+        time_t timeStruct = mktime(&tm);
+        double time = (double)timeStruct;
 
-        return [NSDate dateWithTimeIntervalSince1970:t];
+        if (hasMiliseconds) {
+            NSString *trimmedDate = [dateString substringFromIndex:@"2015-09-10T00:00:00.".length];
+            NSString *microseconds = [trimmedDate substringToIndex:@"000".length];
+            double m = microseconds.doubleValue / 1000.0;
+            time += m;
+        }
+
+        return [NSDate dateWithTimeIntervalSince1970:time];
     }
 
     NSAssert1(NO, @"Failed to parse date: %@", dateString);
