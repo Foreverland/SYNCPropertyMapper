@@ -3,6 +3,7 @@
 #import "NSManagedObject+HYPPropertyMapper.h"
 #import "NSString+HYPNetworking.h"
 #import "NSDate+HYPPropertyMapper.h"
+#import "NSEntityDescription+SYNCPrimaryKey.h"
 
 @implementation NSManagedObject (HYPPropertyMapperHelpers)
 
@@ -63,8 +64,8 @@
             if ([propertyDescription isKindOfClass:[NSAttributeDescription class]]) {
                 NSAttributeDescription *attributeDescription = (NSAttributeDescription *)propertyDescription;
 
-                if ([remoteKey isEqualToString:HYPPropertyMapperDefaultRemoteValue] &&
-                    [attributeDescription.name isEqualToString:HYPPropertyMapperDefaultLocalValue]) {
+                if ([remoteKey isEqualToString:SYNCDefaultRemotePrimaryKey] &&
+                    ([attributeDescription.name isEqualToString:SYNCDefaultLocalPrimaryKey] || [attributeDescription.name isEqualToString:SYNCDefaultLocalCompatiblePrimaryKey])) {
                     foundAttributeDescription = self.entity.propertiesByName[attributeDescription.name];
                 }
 
@@ -90,8 +91,8 @@
     NSString *customRemoteKey = userInfo[HYPPropertyMapperCustomRemoteKey];
     if (customRemoteKey) {
         remoteKey = customRemoteKey;
-    } else if ([localKey isEqualToString:HYPPropertyMapperDefaultLocalValue]) {
-        remoteKey = HYPPropertyMapperDefaultRemoteValue;
+    } else if ([localKey isEqualToString:SYNCDefaultLocalPrimaryKey] || [localKey isEqualToString:SYNCDefaultLocalCompatiblePrimaryKey]) {
+        remoteKey = SYNCDefaultRemotePrimaryKey;
     } else if ([localKey isEqualToString:HYPPropertyMapperDestroyKey] &&
                relationshipType == HYPPropertyMapperRelationshipTypeNested) {
         remoteKey = [NSString stringWithFormat:@"_%@", HYPPropertyMapperDestroyKey];

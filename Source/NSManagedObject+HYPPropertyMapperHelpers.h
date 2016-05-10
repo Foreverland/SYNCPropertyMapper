@@ -2,8 +2,6 @@
 
 #import "NSManagedObject+HYPPropertyMapper.h"
 
-static NSString * const HYPPropertyMapperDefaultRemoteValue = @"id";
-static NSString * const HYPPropertyMapperDefaultLocalValue = @"remoteID";
 static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
 
 @interface NSManagedObject (HYPPropertyMapperHelpers)
