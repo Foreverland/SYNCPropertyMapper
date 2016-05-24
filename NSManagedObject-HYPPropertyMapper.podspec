@@ -24,5 +24,5 @@ Pod::Spec.new do |s|
   s.frameworks = 'Foundation'
   s.requires_arc = true
   s.dependency 'NSString-HYPNetworking', '~> 1.0.1'
-  s.dependency 'NSEntityDescription-SYNCPrimaryKey', '~> 1.2.1'
+  s.dependency 'NSEntityDescription-SYNCPrimaryKey', '~> 1.2.2'
 end
