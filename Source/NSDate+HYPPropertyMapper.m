@@ -56,6 +56,8 @@
         // If after the date theres `.` and a number `2014-03-30T09:13:00.XXX` the `XXX` is the milisecond
         // then `hasMiliseconds` will be set to YES. The same goes for `XX` decisecond (hasCentiseconds set to YES).
         // and microseconds `XXXXXX` (hasMicroseconds set yo YES).
+        //
+        // If your date format is not supported, then you'll get "Signal Sigabrt". Just ask your format to be included.
         // ----
 
         // Copy all the date excluding the Z.
