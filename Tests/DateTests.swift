@@ -76,6 +76,13 @@ class DateTests: XCTestCase {
         let resultDate = NSDate.hyp_dateFromDateString("2014-01-02T00:monsterofthelakeI'mhere00:00.007450+00:00")
         XCTAssertNil(resultDate)        
     }
+
+    func testDateJ() {
+        let date = NSDate.dateWithDayString("2016-01-09")
+        let resultDate = NSDate.hyp_dateFromDateString("2016-01-09T00:00:00.00")
+        XCTAssertNotNil(resultDate)
+        XCTAssertEqual(date, resultDate)
+    }
 }
 
 class TimestampDateTests: XCTestCase {

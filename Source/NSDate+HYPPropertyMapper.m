@@ -113,6 +113,15 @@
             strncpy(currentString, originalString, 19);
         }
 
+        // Copy all the date excluding the miliseconds.
+        // Current date: 2016-01-09T00:00:00.00
+        // Will become:  2016-01-09T00:00:00
+        // Unit test J
+        else if (originalLength == 23 && originalString[19] == '.') {
+            strncpy(currentString, originalString, 19);
+            hasMiliseconds = YES;
+        }
+
         // Poorly formatted timezone
         else {
             strncpy(currentString, originalString, originalLength > 24 ? 24 : originalLength);
