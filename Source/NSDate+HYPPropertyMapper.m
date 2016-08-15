@@ -40,15 +40,24 @@
 
         char currentString[25] = "";
         BOOL hasTimezone = NO;
+        BOOL hasCentiseconds = NO;
         BOOL hasMiliseconds = NO;
+        BOOL hasMicroseconds = NO;
 
         // ----
         // In general lines, if a Z is found, then the Z is removed since all dates operate
         // in GMT as a base, unless they have timezone, and Z is the GMT indicator.
+        //
         // If +00:00 or any number after + is found, then it means that the date has a timezone.
         // This means that `hasTimezone` will have to be set to YES, and since all timezones go to
         // the end of the date, then they will be parsed at the end of the process and appended back
         // to the parsed date.
+        //
+        // If after the date theres `.` and a number `2014-03-30T09:13:00.XXX` the `XXX` is the milisecond
+        // then `hasMiliseconds` will be set to YES. The same goes for `XX` decisecond (hasCentiseconds set to YES).
+        // and microseconds `XXXXXX` (hasMicroseconds set yo YES).
+        //
+        // If your date format is not supported, then you'll get "Signal Sigabrt". Just ask your format to be included.
         // ----
 
         // Copy all the date excluding the Z.
@@ -94,7 +103,7 @@
         else if (originalLength == 32 && originalString[29] == ':') {
             strncpy(currentString, originalString, 19);
             hasTimezone = YES;
-            hasMiliseconds = YES;
+            hasMicroseconds = YES;
         }
 
         // Copy all the date excluding the microseconds and the timezone.
@@ -111,6 +120,15 @@
         // Unit test F
         else if (originalString[19] == '.' && originalString[originalLength - 1] == 'Z') {
             strncpy(currentString, originalString, 19);
+        }
+
+        // Copy all the date excluding the miliseconds.
+        // Current date: 2016-01-09T00:00:00.00
+        // Will become:  2016-01-09T00:00:00
+        // Unit test J
+        else if (originalLength == 22 && originalString[19] == '.') {
+            strncpy(currentString, originalString, 19);
+            hasCentiseconds = YES;
         }
 
         // Poorly formatted timezone
@@ -154,12 +172,24 @@
 
         time_t timeStruct = mktime(&tm);
         double time = (double)timeStruct;
+        NSString *trimmedDate = [dateString substringFromIndex:@"2015-09-10T00:00:00.".length];
+
+        if (hasCentiseconds) {
+            NSString *centisecondsString = [trimmedDate substringToIndex:@"00".length];
+            double centiseconds = centisecondsString.doubleValue / 100.0;
+            time += centiseconds;
+        }
 
         if (hasMiliseconds) {
-            NSString *trimmedDate = [dateString substringFromIndex:@"2015-09-10T00:00:00.".length];
-            NSString *microseconds = [trimmedDate substringToIndex:@"000".length];
-            double m = microseconds.doubleValue / 1000.0;
-            time += m;
+            NSString *milisecondsString = [trimmedDate substringToIndex:@"000".length];
+            double miliseconds = milisecondsString.doubleValue / 1000.0;
+            time += miliseconds;
+        }
+
+        if (hasMicroseconds) {
+            NSString *microsecondsString = [trimmedDate substringToIndex:@"000000".length];
+            double microseconds = microsecondsString.doubleValue / 1000000.0;
+            time += microseconds;
         }
 
         return [NSDate dateWithTimeIntervalSince1970:time];

@@ -27,16 +27,13 @@ class DateTests: XCTestCase {
         XCTAssertEqual(date, resultDate)
     }
 
-    /*
-    // Microseconds are being converted to miliseconds
     func testDateD() {
         let date = NSDate.dateWithDayString("2014-01-02")
-        let resultDate = NSDate.hyp_dateFromDateString("2014-01-02T00:00:00.007450+00:00")
+        let resultDate = NSDate.hyp_dateFromDateString("2014-01-02T00:00:00.000000+00:00")
 
         XCTAssertNotNil(resultDate)
         XCTAssertEqual(date, resultDate)
     }
-    */
 
     func testDateE() {
         let date = NSDate.dateWithDayString("2015-09-10")
@@ -75,6 +72,13 @@ class DateTests: XCTestCase {
     func testDateI() {
         let resultDate = NSDate.hyp_dateFromDateString("2014-01-02T00:monsterofthelakeI'mhere00:00.007450+00:00")
         XCTAssertNil(resultDate)        
+    }
+
+    func testDateJ() {
+        let date = NSDate.dateWithDayString("2016-01-09")
+        let resultDate = NSDate.hyp_dateFromDateString("2016-01-09T00:00:00.00")
+        XCTAssertNotNil(resultDate)
+        XCTAssertEqual(date, resultDate)
     }
 }
 
