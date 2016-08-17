@@ -172,24 +172,27 @@
 
         time_t timeStruct = mktime(&tm);
         double time = (double)timeStruct;
-        NSString *trimmedDate = [dateString substringFromIndex:@"2015-09-10T00:00:00.".length];
 
-        if (hasCentiseconds) {
-            NSString *centisecondsString = [trimmedDate substringToIndex:@"00".length];
-            double centiseconds = centisecondsString.doubleValue / 100.0;
-            time += centiseconds;
-        }
+        if (hasCentiseconds || hasMiliseconds || hasMicroseconds) {
+            NSString *trimmedDate = [dateString substringFromIndex:@"2015-09-10T00:00:00.".length];
 
-        if (hasMiliseconds) {
-            NSString *milisecondsString = [trimmedDate substringToIndex:@"000".length];
-            double miliseconds = milisecondsString.doubleValue / 1000.0;
-            time += miliseconds;
-        }
+            if (hasCentiseconds) {
+                NSString *centisecondsString = [trimmedDate substringToIndex:@"00".length];
+                double centiseconds = centisecondsString.doubleValue / 100.0;
+                time += centiseconds;
+            }
 
-        if (hasMicroseconds) {
-            NSString *microsecondsString = [trimmedDate substringToIndex:@"000000".length];
-            double microseconds = microsecondsString.doubleValue / 1000000.0;
-            time += microseconds;
+            if (hasMiliseconds) {
+                NSString *milisecondsString = [trimmedDate substringToIndex:@"000".length];
+                double miliseconds = milisecondsString.doubleValue / 1000.0;
+                time += miliseconds;
+            }
+
+            if (hasMicroseconds) {
+                NSString *microsecondsString = [trimmedDate substringToIndex:@"000000".length];
+                double microseconds = microsecondsString.doubleValue / 1000000.0;
+                time += microseconds;
+            }
         }
 
         return [NSDate dateWithTimeIntervalSince1970:time];
