@@ -2,8 +2,8 @@
 
 #import "NSManagedObject+HYPPropertyMapper.h"
 #import "NSString+HYPNetworking.h"
-#import "NSDate+HYPPropertyMapper.h"
 #import "NSEntityDescription+SYNCPrimaryKey.h"
+@import DateParser;
 
 @implementation NSManagedObject (HYPPropertyMapperHelpers)
 
@@ -152,9 +152,9 @@
     } else if (numberValueAndStringAttribute) {
         value = [NSString stringWithFormat:@"%@", remoteValue];
     } else if (stringValueAndDateAttribute) {
-        value = [NSDate hyp_dateFromDateString:remoteValue];
+        value = [NSDate dateFromDateString:remoteValue];
     } else if (numberValueAndDateAttribute) {
-        value = [NSDate hyp_dateFromUnixTimestampNumber:remoteValue];
+        value = [NSDate dateFromUnixTimestampNumber:remoteValue];
     } else if (dataAttribute) {
         value = [NSKeyedArchiver archivedDataWithRootObject:remoteValue];
     } else if (numberValueAndDecimalAttribute) {

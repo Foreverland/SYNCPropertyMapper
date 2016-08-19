@@ -27,7 +27,6 @@
 		1467A3881C06057B0036EC82 /* Room.m in Sources */ = {isa = PBXBuildFile; fileRef = 1467A3731C06057B0036EC82 /* Room.m */; };
 		1467A3891C06057B0036EC82 /* User+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 1467A3751C06057B0036EC82 /* User+CoreDataProperties.m */; };
 		1467A38A1C06057B0036EC82 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 1467A3771C06057B0036EC82 /* User.m */; };
-		1467A38C1C0605FD0036EC82 /* DateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1467A38B1C0605FD0036EC82 /* DateTests.swift */; };
 		146856701C5F961F000E1997 /* Attributes+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 1468566D1C5F961F000E1997 /* Attributes+CoreDataProperties.m */; };
 		146856711C5F961F000E1997 /* Attributes.m in Sources */ = {isa = PBXBuildFile; fileRef = 1468566F1C5F961F000E1997 /* Attributes.m */; };
 		148956E11C5F6AED00CA505D /* Ordered.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 148956DF1C5F6AED00CA505D /* Ordered.xcdatamodeld */; };
@@ -77,7 +76,6 @@
 		1467A3751C06057B0036EC82 /* User+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "User+CoreDataProperties.m"; sourceTree = "<group>"; };
 		1467A3761C06057B0036EC82 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		1467A3771C06057B0036EC82 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
-		1467A38B1C0605FD0036EC82 /* DateTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateTests.swift; sourceTree = "<group>"; };
 		1468566C1C5F961F000E1997 /* Attributes+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Attributes+CoreDataProperties.h"; sourceTree = "<group>"; };
 		1468566D1C5F961F000E1997 /* Attributes+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Attributes+CoreDataProperties.m"; sourceTree = "<group>"; };
 		1468566E1C5F961F000E1997 /* Attributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Attributes.h; sourceTree = "<group>"; };
@@ -191,7 +189,6 @@
 				14260D2A1BDD5D2100E6A83B /* HelperTests.m */,
 				14260D2C1BDD5D2100E6A83B /* HYPDictionaryTests.m */,
 				14BAEF211C5F5F250023D0CA /* HYPFillWithDictionaryTests.m */,
-				1467A38B1C0605FD0036EC82 /* DateTests.swift */,
 				14260D2B1BDD5D2100E6A83B /* Info.plist */,
 				146D72B01AB782920058798C /* Supporting Files */,
 			);
@@ -364,7 +361,6 @@
 				1467A37E1C06057B0036EC82 /* Market+CoreDataProperties.m in Sources */,
 				1467A37C1C06057B0036EC82 /* Company+CoreDataProperties.m in Sources */,
 				1467A38A1C06057B0036EC82 /* User.m in Sources */,
-				1467A38C1C0605FD0036EC82 /* DateTests.swift in Sources */,
 				14260D4E1BDD5D2100E6A83B /* HelperTests.m in Sources */,
 				1467A3821C06057B0036EC82 /* Note.m in Sources */,
 				1467A37F1C06057B0036EC82 /* Market.m in Sources */,
