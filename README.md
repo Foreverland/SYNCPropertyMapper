@@ -58,7 +58,7 @@ For mapping for arrays and dictionaries just set attributes as `Binary Data` on 
 
 ### Dates
 
-We went for supporting [ISO8601](http://en.wikipedia.org/wiki/ISO_8601) and unix timestamp out of the box because those are the most common formats when parsing dates, also we have a [quite performant way to parse this strings](https://github.com/hyperoslo/NSManagedObject-HYPPropertyMapper/blob/master/Source/NSManagedObject%2BHYPPropertyMapper.m#L272-L319) which overcomes the [performance issues of using `NSDateFormatter`](http://blog.soff.es/how-to-drastically-improve-your-app-with-an-afternoon-and-instruments/).
+We went for supporting [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) and unix timestamp out of the box because those are the most common formats when parsing dates, also we have a [quite performant way to parse this strings](https://github.com/hyperoslo/NSManagedObject-HYPPropertyMapper/blob/master/Source/NSManagedObject%2BHYPPropertyMapper.m#L272-L319) which overcomes the [performance issues of using `NSDateFormatter`](http://blog.soff.es/how-to-drastically-improve-your-app-with-an-afternoon-and-instruments/).
 
 ```objc
 NSDictionary *values = @{@"created_at" : @"2014-01-01T00:00:00+00:00",
@@ -77,6 +77,12 @@ NSDate *updatedAt = [managedObject valueForKey:@"updatedAt"];
 NSDate *publishedAt = [managedObject valueForKey:@"publishedAt"];
 // ==> "2015-09-10 00:00:00 +00:00" 
 ```
+
+If your date is not [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) compliant, you can use a transformer attribute to parse your date, too. First set your attribute to `Transformable`, and set the name of your transformer like, in this example is `DateStringTransformer`:
+
+![transformable-attribute](https://raw.githubusercontent.com/hyperoslo/NSManagedObject-HYPPropertyMapper/master/Resources/date-transformable.png)
+
+You can find an example of date transformer in [DateStringTransformer](https://github.com/hyperoslo/NSManagedObject-HYPPropertyMapper/blob/master/Tests/Models/DateStringTransformer.m).
 
 ### Array
 ```objc
