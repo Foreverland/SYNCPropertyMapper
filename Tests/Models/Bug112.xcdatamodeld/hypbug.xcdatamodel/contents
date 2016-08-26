@@ -7,7 +7,6 @@
     </entity>
     <entity name="Task" representedClassName="" syncable="YES">
         <attribute name="id" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="owner" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Owner" inverseName="task" inverseEntity="Owner" syncable="YES"/>
         <relationship name="taskList" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TaskList" inverseName="tasks" inverseEntity="TaskList" syncable="YES"/>
     </entity>
@@ -18,7 +17,7 @@
     </entity>
     <elements>
         <element name="Owner" positionX="-54" positionY="-54" width="128" height="88"/>
-        <element name="Task" positionX="169" positionY="84" width="128" height="103"/>
+        <element name="Task" positionX="169" positionY="84" width="128" height="88"/>
         <element name="TaskList" positionX="-245" positionY="99" width="128" height="88"/>
     </elements>
 </model>
