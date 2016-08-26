@@ -21,7 +21,19 @@ class FillWithDictionaryTests: XCTestCase {
 
         try! dataStack.mainContext.save()
 
-        XCTAssertNotNil(tasklist.hyp_dictionary())
+        let ownerBody = ["id" : 1]
+        let taskBoby = [
+            "id" : 1,
+            "owner" : ownerBody
+        ]
+        let expected = [
+            "id" : 1,
+            "owner" : ownerBody,
+            "tasks" : [ taskBoby ]
+        ]
+        XCTAssertEqual(expected, tasklist.hyp_dictionary())
     }
 }
+
+
 
