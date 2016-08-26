@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15G31" minimumToolsVersion="Xcode 7.0">
     <entity name="Owner" representedClassName=".Owner" syncable="YES">
-        <attribute name="id" attributeType="String" syncable="YES"/>
+        <attribute name="id" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <relationship name="task" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Task" inverseName="owner" inverseEntity="Task" syncable="YES"/>
         <relationship name="taskList" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Tasklist" inverseName="owner" inverseEntity="Tasklist" syncable="YES"/>
     </entity>
     <entity name="Task" representedClassName=".Task" syncable="YES">
-        <attribute name="id" attributeType="String" syncable="YES"/>
+        <attribute name="id" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="owner" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Owner" inverseName="task" inverseEntity="Owner" syncable="YES"/>
         <relationship name="taskList" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Tasklist" inverseName="tasks" inverseEntity="Tasklist" syncable="YES"/>
     </entity>
     <entity name="Tasklist" representedClassName=".Tasklist" syncable="YES">
-        <attribute name="id" attributeType="String" syncable="YES"/>
+        <attribute name="id" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <relationship name="owner" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Owner" inverseName="taskList" inverseEntity="Owner" syncable="YES"/>
         <relationship name="tasks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Task" inverseName="taskList" inverseEntity="Task" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Tasklist" positionX="-63" positionY="-18" width="128" height="90"/>
-        <element name="Task" positionX="-54" positionY="-9" width="128" height="105"/>
-        <element name="Owner" positionX="-36" positionY="9" width="128" height="90"/>
+        <element name="Owner" positionX="-54" positionY="-54" width="128" height="88"/>
+        <element name="Task" positionX="169" positionY="84" width="128" height="103"/>
+        <element name="Tasklist" positionX="-245" positionY="99" width="128" height="88"/>
     </elements>
 </model>

@@ -8,14 +8,14 @@ class FillWithDictionaryTests: XCTestCase {
         let dataStack = Helper.dataStackWithModelName("Bug112")
 
         let owner = Helper.insertEntity("Owner", dataStack: dataStack)
-        owner.setValue(NSProcessInfo.processInfo().globallyUniqueString, forKey: "id")
+        owner.setValue(1, forKey: "id")
 
         let tasklist = Helper.insertEntity("Tasklist", dataStack: dataStack)
-        tasklist.setValue(NSProcessInfo.processInfo().globallyUniqueString, forKey: "id")
+        tasklist.setValue(1, forKey: "id")
         tasklist.setValue(owner, forKey: "owner")
 
         let task = Helper.insertEntity("Task", dataStack: dataStack)
-        task.setValue(NSProcessInfo.processInfo().globallyUniqueString, forKey: "id")
+        task.setValue(1, forKey: "id")
         task.setValue(tasklist, forKey: "taskList")
         task.setValue(owner, forKey: "owner")
 
@@ -24,3 +24,4 @@ class FillWithDictionaryTests: XCTestCase {
         XCTAssertNotNil(tasklist.hyp_dictionary())
     }
 }
+
