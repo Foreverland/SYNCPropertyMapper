@@ -31,9 +31,23 @@ class FillWithDictionaryTests: XCTestCase {
             "owner" : ownerBody,
             "tasks" : [ taskBoby ]
         ]
+
+        /*
+        {
+            "id": 1,
+            "owner": {
+                "id": 1
+            },
+            "tasks": [
+                        {
+                            "id": 1,
+                            "owner": {
+                                "id": 1
+                            }
+                        }
+            ]
+        }
+        */
         XCTAssertEqual(expected, tasklist.hyp_dictionary())
     }
 }
-
-
-
