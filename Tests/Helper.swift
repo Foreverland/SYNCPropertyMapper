@@ -44,7 +44,8 @@ import DATAStack
         return objects
     }
 
-    func entityDescription(name: String, dataStack: DATAStack) -> NSEntityDescription {
-        return NSEntityDescription.entityForName(name, inManagedObjectContext: dataStack.mainContext)!
+    class func insertEntity(name: String, dataStack: DATAStack) -> NSManagedObject {
+        let entity = NSEntityDescription.entityForName(name, inManagedObjectContext: dataStack.mainContext)!
+        return NSManagedObject(entity: entity, insertIntoManagedObjectContext: dataStack.mainContext)
     }
 }

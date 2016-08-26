@@ -6,17 +6,15 @@ import NSManagedObject_HYPPropertyMapper
 class FillWithDictionaryTests: XCTestCase {
     func testBug112() {
         let dataStack = Helper.dataStackWithModelName("Bug112")
-        let ownerEntity = NSEntityDescription.entityForName("Owner", inManagedObjectContext: dataStack.mainContext)!
-        let owner = NSManagedObject(entity: ownerEntity, insertIntoManagedObjectContext: dataStack.mainContext)
+
+        let owner = Helper.insertEntity("Owner", dataStack: dataStack)
         owner.setValue(NSProcessInfo.processInfo().globallyUniqueString, forKey: "id")
 
-        let tasklistEntity = NSEntityDescription.entityForName("Tasklist", inManagedObjectContext: dataStack.mainContext)!
-        let tasklist = NSManagedObject(entity: tasklistEntity, insertIntoManagedObjectContext: dataStack.mainContext)
+        let tasklist = Helper.insertEntity("Tasklist", dataStack: dataStack)
         tasklist.setValue(NSProcessInfo.processInfo().globallyUniqueString, forKey: "id")
         tasklist.setValue(owner, forKey: "owner")
 
-        let taskEntity = NSEntityDescription.entityForName("Task", inManagedObjectContext: dataStack.mainContext)!
-        let task = NSManagedObject(entity: taskEntity, insertIntoManagedObjectContext: dataStack.mainContext)
+        let task = Helper.insertEntity("Task", dataStack: dataStack)
         task.setValue(NSProcessInfo.processInfo().globallyUniqueString, forKey: "id")
         task.setValue(tasklist, forKey: "taskList")
         task.setValue(owner, forKey: "owner")
