@@ -49,5 +49,7 @@ class FillWithDictionaryTests: XCTestCase {
         }
         */
         XCTAssertEqual(expected, taskList.hyp_dictionary())
+
+        try! dataStack.drop()
     }
 }
