@@ -10,13 +10,13 @@ class FillWithDictionaryTests: XCTestCase {
         let owner = Helper.insertEntity("Owner", dataStack: dataStack)
         owner.setValue(1, forKey: "id")
 
-        let tasklist = Helper.insertEntity("Tasklist", dataStack: dataStack)
-        tasklist.setValue(1, forKey: "id")
-        tasklist.setValue(owner, forKey: "owner")
+        let taskList = Helper.insertEntity("TaskList", dataStack: dataStack)
+        taskList.setValue(1, forKey: "id")
+        taskList.setValue(owner, forKey: "owner")
 
         let task = Helper.insertEntity("Task", dataStack: dataStack)
         task.setValue(1, forKey: "id")
-        task.setValue(tasklist, forKey: "taskList")
+        task.setValue(taskList, forKey: "taskList")
         task.setValue(owner, forKey: "owner")
 
         try! dataStack.mainContext.save()
@@ -48,6 +48,6 @@ class FillWithDictionaryTests: XCTestCase {
             ]
         }
         */
-        XCTAssertEqual(expected, tasklist.hyp_dictionary())
+        XCTAssertEqual(expected, taskList.hyp_dictionary())
     }
 }
