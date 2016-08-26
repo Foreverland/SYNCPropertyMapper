@@ -21,13 +21,6 @@ class FillWithDictionaryTests: XCTestCase {
 
         try! dataStack.mainContext.save()
 
-        print("Data saved successfully!")
-        print("-----")
-        print(tasklist)
-        print(task)
-        print("-----")
-
-        print("Trying to make JSON...")
-        print(tasklist.hyp_dictionary())
+        XCTAssertNotNil(tasklist.hyp_dictionary())
     }
 }

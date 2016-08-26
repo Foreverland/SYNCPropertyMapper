@@ -86,7 +86,6 @@
 		146D72AC1AB782920058798C /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		146D72B11AB782920058798C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		14828C261D700516001DEE7E /* hypbug.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = hypbug.xcdatamodel; sourceTree = "<group>"; };
-		14828C281D700649001DEE7E /* Tests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Bridging-Header.h"; sourceTree = "<group>"; };
 		14828C291D700649001DEE7E /* FillWithDictionaryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FillWithDictionaryTests.swift; sourceTree = "<group>"; };
 		14828C2B1D70070A001DEE7E /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		148956E01C5F6AED00CA505D /* Ordered.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Ordered.xcdatamodel; sourceTree = "<group>"; };
@@ -120,7 +119,73 @@
 		1467A3511C06057B0036EC82 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				14E39C021D7008B80083AF2E /* Classes */,
 				14828C251D700516001DEE7E /* Bug112.xcdatamodeld */,
+				148956DF1C5F6AED00CA505D /* Ordered.xcdatamodeld */,
+				148956E21C5F6AF500CA505D /* Model.xcdatamodeld */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		146D728A1AB782920058798C = {
+			isa = PBXGroup;
+			children = (
+				14C136501AB7849300B7B07A /* Metadata */,
+				146D72AF1AB782920058798C /* Tests */,
+				146D72941AB782920058798C /* Products */,
+				89EE9DB533D15584F9C7F761 /* Frameworks */,
+				2873EC376ADC9A5C5F48FAAE /* Pods */,
+			);
+			indentWidth = 4;
+			sourceTree = "<group>";
+			tabWidth = 4;
+		};
+		146D72941AB782920058798C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				146D72AC1AB782920058798C /* Tests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		146D72AF1AB782920058798C /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				1467A3511C06057B0036EC82 /* Models */,
+				14260D2A1BDD5D2100E6A83B /* HelperTests.m */,
+				14260D2C1BDD5D2100E6A83B /* HYPDictionaryTests.m */,
+				14BAEF211C5F5F250023D0CA /* HYPFillWithDictionaryTests.m */,
+				14828C291D700649001DEE7E /* FillWithDictionaryTests.swift */,
+				14260D2B1BDD5D2100E6A83B /* Info.plist */,
+				146D72B01AB782920058798C /* Supporting Files */,
+				14828C2B1D70070A001DEE7E /* Helper.swift */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		146D72B01AB782920058798C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				146D72B11AB782920058798C /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		14C136501AB7849300B7B07A /* Metadata */ = {
+			isa = PBXGroup;
+			children = (
+				14C0AF7F1BD6D4230009ECBE /* .slather.yml */,
+				14C0AF801BD6D4230009ECBE /* .travis.yml */,
+				14C0AF811BD6D4230009ECBE /* CHANGELOG.md */,
+				14C0AF821BD6D4230009ECBE /* CONTRIBUTING.md */,
+				14C0AF831BD6D4230009ECBE /* README.md */,
+			);
+			name = Metadata;
+			sourceTree = "<group>";
+		};
+		14E39C021D7008B80083AF2E /* Classes */ = {
+			isa = PBXGroup;
+			children = (
 				1468566C1C5F961F000E1997 /* Attributes+CoreDataProperties.h */,
 				1468566D1C5F961F000E1997 /* Attributes+CoreDataProperties.m */,
 				1468566E1C5F961F000E1997 /* Attributes.h */,
@@ -163,67 +228,8 @@
 				1467A3771C06057B0036EC82 /* User.m */,
 				5FC996E71CBE3DAC00AABF9C /* DateStringTransformer.h */,
 				5FC996E81CBE3DAC00AABF9C /* DateStringTransformer.m */,
-				148956DF1C5F6AED00CA505D /* Ordered.xcdatamodeld */,
-				148956E21C5F6AF500CA505D /* Model.xcdatamodeld */,
 			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		146D728A1AB782920058798C = {
-			isa = PBXGroup;
-			children = (
-				14C136501AB7849300B7B07A /* Metadata */,
-				146D72AF1AB782920058798C /* Tests */,
-				146D72941AB782920058798C /* Products */,
-				89EE9DB533D15584F9C7F761 /* Frameworks */,
-				2873EC376ADC9A5C5F48FAAE /* Pods */,
-			);
-			indentWidth = 4;
-			sourceTree = "<group>";
-			tabWidth = 4;
-		};
-		146D72941AB782920058798C /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				146D72AC1AB782920058798C /* Tests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		146D72AF1AB782920058798C /* Tests */ = {
-			isa = PBXGroup;
-			children = (
-				1467A3511C06057B0036EC82 /* Models */,
-				14260D2A1BDD5D2100E6A83B /* HelperTests.m */,
-				14260D2C1BDD5D2100E6A83B /* HYPDictionaryTests.m */,
-				14BAEF211C5F5F250023D0CA /* HYPFillWithDictionaryTests.m */,
-				14828C291D700649001DEE7E /* FillWithDictionaryTests.swift */,
-				14828C281D700649001DEE7E /* Tests-Bridging-Header.h */,
-				14260D2B1BDD5D2100E6A83B /* Info.plist */,
-				146D72B01AB782920058798C /* Supporting Files */,
-				14828C2B1D70070A001DEE7E /* Helper.swift */,
-			);
-			path = Tests;
-			sourceTree = "<group>";
-		};
-		146D72B01AB782920058798C /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				146D72B11AB782920058798C /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		14C136501AB7849300B7B07A /* Metadata */ = {
-			isa = PBXGroup;
-			children = (
-				14C0AF7F1BD6D4230009ECBE /* .slather.yml */,
-				14C0AF801BD6D4230009ECBE /* .travis.yml */,
-				14C0AF811BD6D4230009ECBE /* CHANGELOG.md */,
-				14C0AF821BD6D4230009ECBE /* CONTRIBUTING.md */,
-				14C0AF831BD6D4230009ECBE /* README.md */,
-			);
-			name = Metadata;
+			name = Classes;
 			sourceTree = "<group>";
 		};
 		2873EC376ADC9A5C5F48FAAE /* Pods */ = {
@@ -490,7 +496,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sample.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Tests/Tests-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -505,7 +510,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sample.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Tests/Tests-Bridging-Header.h";
 			};
 			name = Release;
 		};
