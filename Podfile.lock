@@ -3,7 +3,7 @@ PODS:
   - DateParser (0.1.0)
   - NSEntityDescription-SYNCPrimaryKey (1.2.4):
     - NSString-HYPNetworking (~> 1.0.3)
-  - NSManagedObject-HYPPropertyMapper (4.0.0):
+  - NSManagedObject-HYPPropertyMapper (4.0.1):
     - DateParser (~> 0.1.0)
     - NSEntityDescription-SYNCPrimaryKey (~> 1.2.4)
     - NSString-HYPNetworking (~> 1.0.3)
@@ -21,7 +21,7 @@ SPEC CHECKSUMS:
   DATAStack: f38d3fa8405fdb84066241c7d3215a5e056c5691
   DateParser: 6609ccde5a21650e2f61cea718a2e5c6c34ce4e8
   NSEntityDescription-SYNCPrimaryKey: 8f3024bddb098157b08710dc29a011e9948c5ed8
-  NSManagedObject-HYPPropertyMapper: 048656c98d4efd01db06c35ce1e643047d79f733
+  NSManagedObject-HYPPropertyMapper: 2b42481a261b467024f6b6096fbe0a307a5198e3
   NSString-HYPNetworking: d4cc1047b85a02bdadd90c51b5d497e07d812efc
 
 PODFILE CHECKSUM: 64fbb676c45c089f5aa7761100110e3462f645a6
