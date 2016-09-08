@@ -421,4 +421,24 @@
     XCTAssertEqualObjects(market.otherAttribute, @"Market 1");
 }
 
+- (void)testCustomKeyPath {
+    DATAStack *dataStack = [self dataStack];
+    
+    NSDictionary *values = @{@"id": @"1",
+                             @"other_attribute": @"Market 1",
+                             @"some_attribute": @{
+                                     @"value": @"Market 2",
+                                     @"other": @"Market 3" }
+                             };
+    
+    Market *market = [self entityNamed:@"Market" inContext:dataStack.mainContext];
+    
+    [market hyp_fillWithDictionary:values];
+    
+    XCTAssertEqualObjects(market.uniqueId, @"1");
+    XCTAssertEqualObjects(market.otherAttribute, @"Market 1");
+    XCTAssertEqualObjects(market.keyPathAttribute, @"Market 2");
+    XCTAssertEqualObjects(market.otherKeyPathAttribute, @"Market 3");
+}
+
 @end

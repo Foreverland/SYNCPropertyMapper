@@ -6,6 +6,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface Market (CoreDataProperties)
 
+@property (nullable, nonatomic, retain) NSString *otherKeyPathAttribute;
+@property (nullable, nonatomic, retain) NSString *keyPathAttribute;
 @property (nullable, nonatomic, retain) NSString *otherAttribute;
 @property (nullable, nonatomic, retain) NSString *uniqueId;
 

@@ -20,20 +20,38 @@ static NSString * const HYPPropertyMapperNestedAttributesKey = @"attributes";
         if (attributeDescription) {
             NSString *localKey = attributeDescription.name;
 
-            BOOL valueExists = (value &&
-                                ![value isKindOfClass:[NSNull class]]);
-            if (valueExists) {
-                id processedValue = [self valueForAttributeDescription:attributeDescription
-                                                      usingRemoteValue:value];
-
-                BOOL valueHasChanged = (![[self valueForKey:localKey] isEqual:processedValue]);
-                if (valueHasChanged) {
-                    [self setValue:processedValue forKey:localKey];
+            if (value && ![value isKindOfClass:[NSNull class]] && [value isKindOfClass:[NSDictionary class]]) {
+                NSString *remoteKey = [self remoteKeyForAttributeDescription:attributeDescription];
+                if (remoteKey && [remoteKey rangeOfString:@"."].location != NSNotFound) {
+                    
+                    NSArray *attributeDescriptions = [self attributeDescriptionsForRemoteKeyPath:remoteKey];
+                    for (NSAttributeDescription *ad in attributeDescriptions) {
+                        NSString *remoteKey = [self remoteKeyForAttributeDescription:ad];
+                        [self hyp_setDictionaryValue:[dictionary valueForKeyPath:remoteKey] forKey:ad.name attributeDescription:ad];
+                    }
                 }
-            } else if ([self valueForKey:localKey]) {
-                [self setValue:nil forKey:localKey];
+            }
+            else {
+                [self hyp_setDictionaryValue:value forKey:localKey attributeDescription:attributeDescription];
             }
         }
+    }
+}
+
+- (void)hyp_setDictionaryValue:(id)value forKey:(NSString *)key attributeDescription:(NSAttributeDescription *)attributeDescription {
+    
+    BOOL valueExists = (value &&
+                        ![value isKindOfClass:[NSNull class]]);
+    if (valueExists) {
+        id processedValue = [self valueForAttributeDescription:attributeDescription
+                                              usingRemoteValue:value];
+        
+        BOOL valueHasChanged = (![[self valueForKey:key] isEqual:processedValue]);
+        if (valueHasChanged) {
+            [self setValue:processedValue forKey:key];
+        }
+    } else if ([self valueForKey:key]) {
+        [self setValue:nil forKey:key];
     }
 }
 
