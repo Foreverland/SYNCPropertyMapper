@@ -18,20 +18,21 @@ static NSString * const HYPPropertyMapperNestedAttributesKey = @"attributes";
 
         NSAttributeDescription *attributeDescription = [self attributeDescriptionForRemoteKey:key];
         if (attributeDescription) {
-            NSString *localKey = attributeDescription.name;
-
             if (value && ![value isKindOfClass:[NSNull class]] && [value isKindOfClass:[NSDictionary class]]) {
                 NSString *remoteKey = [self remoteKeyForAttributeDescription:attributeDescription];
                 if (remoteKey && [remoteKey rangeOfString:@"."].location != NSNotFound) {
-                    
-                    NSArray *attributeDescriptions = [self attributeDescriptionsForRemoteKeyPath:remoteKey];
-                    for (NSAttributeDescription *ad in attributeDescriptions) {
-                        NSString *remoteKey = [self remoteKeyForAttributeDescription:ad];
-                        [self hyp_setDictionaryValue:[dictionary valueForKeyPath:remoteKey] forKey:ad.name attributeDescription:ad];
+                    NSArray *keyPathAttributeDescriptions = [self attributeDescriptionsForRemoteKeyPath:remoteKey];
+                    for (NSAttributeDescription *keyPathAttributeDescription in keyPathAttributeDescriptions) {
+                        NSString *remoteKey = [self remoteKeyForAttributeDescription:keyPathAttributeDescription];
+                        NSString *localKey = keyPathAttributeDescription.name;
+                        [self hyp_setDictionaryValue:[dictionary valueForKeyPath:remoteKey]
+                                              forKey:localKey
+                                attributeDescription:keyPathAttributeDescriptions];
                     }
                 }
             }
             else {
+                NSString *localKey = attributeDescription.name;
                 [self hyp_setDictionaryValue:value forKey:localKey attributeDescription:attributeDescription];
             }
         }
