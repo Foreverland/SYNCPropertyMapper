@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSDecimalNumber *decimalString;
 @property (nullable, nonatomic, retain) NSNumber *doubleValueString;
 @property (nullable, nonatomic, retain) NSNumber *floatValueString;
+@property (nullable, nonatomic, retain) NSString *customTransformerString;
 
 @end
 

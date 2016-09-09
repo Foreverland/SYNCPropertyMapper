@@ -17,5 +17,6 @@
 @dynamic decimalString;
 @dynamic doubleValueString;
 @dynamic floatValueString;
+@dynamic customTransformerString;
 
 @end

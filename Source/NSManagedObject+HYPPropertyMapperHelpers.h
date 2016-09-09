@@ -3,6 +3,7 @@
 #import "NSManagedObject+HYPPropertyMapper.h"
 
 static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
+static NSString * const HYPPropertyMapperCustomValueTransformerKey = @"hyper.valueTransformer";
 
 @interface NSManagedObject (HYPPropertyMapperHelpers)
 
