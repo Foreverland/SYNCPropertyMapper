@@ -40,6 +40,13 @@
                 *stop = YES;
             }
             
+            NSString *customRootRemoteKey = [[customRemoteKey componentsSeparatedByString:@"."] firstObject];
+            BOOL currentAttributeHasTheSameRootRemoteKey = (customRootRemoteKey.length > 0 && [customRootRemoteKey isEqualToString:remoteKey]);
+            if (currentAttributeHasTheSameRootRemoteKey) {
+                foundAttributeDescription = attributeDescription;
+                *stop = YES;
+            }
+            
             if ([attributeDescription.name isEqualToString:remoteKey]) {
                 foundAttributeDescription = attributeDescription;
                 *stop = YES;
@@ -77,6 +84,27 @@
     }
 
     return foundAttributeDescription;
+}
+
+- (NSArray *)attributeDescriptionsForRemoteKeyPath:(NSString *)remoteKey {
+    __block NSMutableArray *foundAttributeDescriptions = [NSMutableArray array];
+    
+    [self.entity.properties enumerateObjectsUsingBlock:^(id propertyDescription, NSUInteger idx, BOOL *stop) {
+        if ([propertyDescription isKindOfClass:[NSAttributeDescription class]]) {
+            NSAttributeDescription *attributeDescription = (NSAttributeDescription *)propertyDescription;
+            
+            NSDictionary *userInfo = [self.entity.propertiesByName[attributeDescription.name] userInfo];
+            NSString *customRemoteKeyPath = userInfo[HYPPropertyMapperCustomRemoteKey];
+            NSString *customRootRemoteKey = [[customRemoteKeyPath componentsSeparatedByString:@"."] firstObject];
+            NSString *rootRemoteKey = [[remoteKey componentsSeparatedByString:@"."] firstObject];
+            BOOL currentAttributeHasTheSameRootRemoteKey = (customRootRemoteKey.length > 0 && [customRootRemoteKey isEqualToString:rootRemoteKey]);
+            if (currentAttributeHasTheSameRootRemoteKey) {
+                [foundAttributeDescriptions addObject:attributeDescription];
+            }
+        }
+    }];
+    
+    return foundAttributeDescriptions;
 }
 
 - (NSString *)remoteKeyForAttributeDescription:(NSAttributeDescription *)attributeDescription {

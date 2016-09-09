@@ -18,22 +18,40 @@ static NSString * const HYPPropertyMapperNestedAttributesKey = @"attributes";
 
         NSAttributeDescription *attributeDescription = [self attributeDescriptionForRemoteKey:key];
         if (attributeDescription) {
-            NSString *localKey = attributeDescription.name;
-
-            BOOL valueExists = (value &&
-                                ![value isKindOfClass:[NSNull class]]);
-            if (valueExists) {
-                id processedValue = [self valueForAttributeDescription:attributeDescription
-                                                      usingRemoteValue:value];
-
-                BOOL valueHasChanged = (![[self valueForKey:localKey] isEqual:processedValue]);
-                if (valueHasChanged) {
-                    [self setValue:processedValue forKey:localKey];
+            if (value && ![value isKindOfClass:[NSNull class]] && [value isKindOfClass:[NSDictionary class]]) {
+                NSString *remoteKey = [self remoteKeyForAttributeDescription:attributeDescription];
+                if (remoteKey && [remoteKey rangeOfString:@"."].location != NSNotFound) {
+                    NSArray *keyPathAttributeDescriptions = [self attributeDescriptionsForRemoteKeyPath:remoteKey];
+                    for (NSAttributeDescription *keyPathAttributeDescription in keyPathAttributeDescriptions) {
+                        NSString *remoteKey = [self remoteKeyForAttributeDescription:keyPathAttributeDescription];
+                        NSString *localKey = keyPathAttributeDescription.name;
+                        [self hyp_setDictionaryValue:[dictionary valueForKeyPath:remoteKey]
+                                              forKey:localKey
+                                attributeDescription:keyPathAttributeDescription];
+                    }
                 }
-            } else if ([self valueForKey:localKey]) {
-                [self setValue:nil forKey:localKey];
+            } else {
+                NSString *localKey = attributeDescription.name;
+                [self hyp_setDictionaryValue:value forKey:localKey attributeDescription:attributeDescription];
             }
         }
+    }
+}
+
+- (void)hyp_setDictionaryValue:(id)value forKey:(NSString *)key attributeDescription:(NSAttributeDescription *)attributeDescription {
+    
+    BOOL valueExists = (value &&
+                        ![value isKindOfClass:[NSNull class]]);
+    if (valueExists) {
+        id processedValue = [self valueForAttributeDescription:attributeDescription
+                                              usingRemoteValue:value];
+        
+        BOOL valueHasChanged = (![[self valueForKey:key] isEqual:processedValue]);
+        if (valueHasChanged) {
+            [self setValue:processedValue forKey:key];
+        }
+    } else if ([self valueForKey:key]) {
+        [self setValue:nil forKey:key];
     }
 }
 

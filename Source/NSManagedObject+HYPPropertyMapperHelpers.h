@@ -11,6 +11,7 @@ static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
                   relationshipType:(HYPPropertyMapperRelationshipType)relationshipType;
 
 - (NSAttributeDescription *)attributeDescriptionForRemoteKey:(NSString *)key;
+- (NSArray *)attributeDescriptionsForRemoteKeyPath:(NSString *)key;
 
 - (id)valueForAttributeDescription:(id)attributeDescription
                   usingRemoteValue:(id)removeValue;
