@@ -54,6 +54,9 @@
     
     attributeDescription = [market attributeDescriptionForRemoteKey:@"some_attribute.other"];
     XCTAssertEqualObjects(attributeDescription.name, @"otherKeyPathAttribute");
+    
+    attributeDescription = [market attributeDescriptionForRemoteKey:@"some_attribute.deep.path"];
+    XCTAssertEqualObjects(attributeDescription.name, @"deepKeyPathAttribute");
 }
 
 - (void)testAttributeDescriptionForKeyC {
@@ -96,6 +99,9 @@
     
     attributeDescription = market.entity.propertiesByName[@"otherKeyPathAttribute"];
     XCTAssertEqualObjects([market remoteKeyForAttributeDescription:attributeDescription], @"some_attribute.other");
+    
+    attributeDescription = market.entity.propertiesByName[@"deepKeyPathAttribute"];
+    XCTAssertEqualObjects([market remoteKeyForAttributeDescription:attributeDescription], @"some_attribute.deep.path");
 }
 
 - (void)testRemoteKeyForAttributeDescriptionC {

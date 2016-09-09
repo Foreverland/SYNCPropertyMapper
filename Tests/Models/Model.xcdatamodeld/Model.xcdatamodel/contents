@@ -33,6 +33,11 @@
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="company" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="Market" representedClassName="Market" syncable="YES">
+        <attribute name="deepKeyPathAttribute" optional="YES" attributeType="String" syncable="YES">
+            <userInfo>
+                <entry key="hyper.remoteKey" value="some_attribute.deep.path"/>
+            </userInfo>
+        </attribute>
         <attribute name="keyPathAttribute" optional="YES" attributeType="String" syncable="YES">
             <userInfo>
                 <entry key="hyper.remoteKey" value="some_attribute.value"/>
@@ -109,7 +114,7 @@
         <element name="Attributes" positionX="45" positionY="189" width="128" height="270"/>
         <element name="Building" positionX="0" positionY="45" width="128" height="90"/>
         <element name="Company" positionX="18" positionY="63" width="128" height="90"/>
-        <element name="Market" positionX="-45" positionY="0" width="128" height="105"/>
+        <element name="Market" positionX="-45" positionY="0" width="128" height="120"/>
         <element name="Note" positionX="9" positionY="54" width="128" height="105"/>
         <element name="Park" positionX="27" positionY="72" width="128" height="75"/>
         <element name="Recursive" positionX="45" positionY="90" width="128" height="90"/>

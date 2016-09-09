@@ -428,7 +428,10 @@
                              @"other_attribute": @"Market 1",
                              @"some_attribute": @{
                                      @"value": @"Market 2",
-                                     @"other": @"Market 3" }
+                                     @"other": @"Market 3",
+                                     @"deep": @{
+                                             @"path": @"Market 4" }
+                                     }
                              };
     
     Market *market = [self entityNamed:@"Market" inContext:dataStack.mainContext];
@@ -439,6 +442,7 @@
     XCTAssertEqualObjects(market.otherAttribute, @"Market 1");
     XCTAssertEqualObjects(market.keyPathAttribute, @"Market 2");
     XCTAssertEqualObjects(market.otherKeyPathAttribute, @"Market 3");
+    XCTAssertEqualObjects(market.deepKeyPathAttribute, @"Market 4");
 }
 
 @end
