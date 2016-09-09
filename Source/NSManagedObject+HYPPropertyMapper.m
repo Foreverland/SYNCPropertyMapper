@@ -27,7 +27,7 @@ static NSString * const HYPPropertyMapperNestedAttributesKey = @"attributes";
                         NSString *localKey = keyPathAttributeDescription.name;
                         [self hyp_setDictionaryValue:[dictionary valueForKeyPath:remoteKey]
                                               forKey:localKey
-                                attributeDescription:keyPathAttributeDescriptions];
+                                attributeDescription:keyPathAttributeDescription];
                     }
                 }
             }
