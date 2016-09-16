@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10171" systemVersion="15E65" minimumToolsVersion="Xcode 7.0">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10171" systemVersion="15G31" minimumToolsVersion="Xcode 7.0">
     <entity name="Apartment" representedClassName="Apartment" syncable="YES">
         <attribute name="remoteID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <relationship name="building" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Building" inverseName="apartments" inverseEntity="Building" syncable="YES"/>
@@ -9,6 +9,11 @@
         <attribute name="attributesType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="binaryData" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="boolean" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="customTransformerString" optional="YES" attributeType="String" syncable="YES">
+            <userInfo>
+                <entry key="hyper.valueTransformer" value="HYPTestValueTransformer"/>
+            </userInfo>
+        </attribute>
         <attribute name="decimal" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
         <attribute name="decimalString" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
         <attribute name="doubleValue" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
@@ -96,7 +101,7 @@
     </entity>
     <elements>
         <element name="Apartment" positionX="-18" positionY="27" width="128" height="90"/>
-        <element name="Attributes" positionX="45" positionY="189" width="128" height="270"/>
+        <element name="Attributes" positionX="45" positionY="189" width="128" height="285"/>
         <element name="Building" positionX="0" positionY="45" width="128" height="90"/>
         <element name="Company" positionX="18" positionY="63" width="128" height="90"/>
         <element name="Market" positionX="-45" positionY="0" width="128" height="75"/>
