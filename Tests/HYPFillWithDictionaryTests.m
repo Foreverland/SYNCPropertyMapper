@@ -15,6 +15,8 @@
 
 #import "Recursive.h"
 
+#import "HYPTestValueTransformer.h"
+
 @import DATAStack;
 
 @interface HYPFillWithDictionaryTests : XCTestCase
@@ -118,8 +120,11 @@
                              @"string" : @"string",
                              @"boolean" : @YES,
                              @"binary_data" : @"Data",
-                             @"transformable" : @"Ignore me, too"};
-
+                             @"transformable" : @"Ignore me, too",
+                             @"custom_transformer_string" : @"Foo &amp; bar"};
+    
+    [NSValueTransformer setValueTransformer:[[HYPTestValueTransformer alloc] init] forName:@"HYPTestValueTransformer"];
+    
     DATAStack *dataStack = [self dataStack];
     Attributes *attributes = [self entityNamed:@"Attributes" inContext:dataStack.mainContext];
     [attributes hyp_fillWithDictionary:values];
@@ -145,6 +150,7 @@
     XCTAssertEqualObjects(attributes.boolean, @YES);
     XCTAssertEqualObjects(attributes.binaryData, [NSKeyedArchiver archivedDataWithRootObject:@"Data"]);
     XCTAssertNil(attributes.transformable);
+    XCTAssertEqualObjects(attributes.customTransformerString, @"Foo & bar");
 }
 
 - (void)testAllAttributesInCamelCase {
@@ -161,7 +167,10 @@
                              @"string" : @"string",
                              @"boolean" : @YES,
                              @"binaryData" : @"Data",
-                             @"transformable" : @"Ignore me, too"};
+                             @"transformable" : @"Ignore me, too",
+                             @"customTransformerString" : @"Foo &amp; bar"};
+    
+    [NSValueTransformer setValueTransformer:[[HYPTestValueTransformer alloc] init] forName:@"HYPTestValueTransformer"];
     
     DATAStack *dataStack = [self dataStack];
     Attributes *attributes = [self entityNamed:@"Attributes" inContext:dataStack.mainContext];
@@ -188,6 +197,7 @@
     XCTAssertEqualObjects(attributes.boolean, @YES);
     XCTAssertEqualObjects(attributes.binaryData, [NSKeyedArchiver archivedDataWithRootObject:@"Data"]);
     XCTAssertNil(attributes.transformable);
+    XCTAssertEqualObjects(attributes.customTransformerString, @"Foo & bar");
 }
 
 - (void)testFillManagedObjectWithDictionary {

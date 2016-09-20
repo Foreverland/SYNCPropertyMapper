@@ -15,10 +15,16 @@
         value = [self valueForKey:attributeDescription.name];
         BOOL nilOrNullValue = (!value ||
                                [value isKindOfClass:[NSNull class]]);
+        NSString *customTransformerName = attributeDescription.userInfo[HYPPropertyMapperCustomValueTransformerKey];
         if (nilOrNullValue) {
             value = [NSNull null];
         } else if ([value isKindOfClass:[NSDate class]]) {
             value = [dateFormatter stringFromDate:value];
+        } else if (customTransformerName) {
+            NSValueTransformer *transformer = [NSValueTransformer valueTransformerForName:customTransformerName];
+            if (transformer) {
+                value = [transformer reverseTransformedValue:value];
+            }
         }
     }
 
@@ -173,6 +179,14 @@
 
     BOOL transformableAttribute         = (!attributedClass && [attributeDescription valueTransformerName] && value == nil);
 
+    NSString *customTransformerName = attributeDescription.userInfo[HYPPropertyMapperCustomValueTransformerKey];
+    if (customTransformerName) {
+        NSValueTransformer *transformer = [NSValueTransformer valueTransformerForName:customTransformerName];
+        if (transformer) {
+            value = [transformer transformedValue:value];
+        }
+    }
+    
     if (stringValueAndNumberAttribute) {
         NSNumberFormatter *formatter = [NSNumberFormatter new];
         formatter.locale = [NSLocale localeWithLocaleIdentifier:@"en_US"];

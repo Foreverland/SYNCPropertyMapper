@@ -16,6 +16,8 @@
 
 #import "Recursive.h"
 
+#import "HYPTestValueTransformer.h"
+
 @import DATAStack;
 
 @interface HYPDictionaryTests : XCTestCase
@@ -121,8 +123,11 @@
                              @"type" : @"custom",
                              @"boolean" : @YES,
                              @"binary_data" : @"Data",
-                             @"transformable" : @"Ignore me, too"};
+                             @"transformable" : @"Ignore me, too",
+                             @"custom_transformer_string": @"Foo & bar"};
 
+    [NSValueTransformer setValueTransformer:[[HYPTestValueTransformer alloc] init] forName:@"HYPTestValueTransformer"];
+    
     DATAStack *dataStack = [self dataStack];
     Attributes *attributes = [self entityNamed:@"Attributes" inContext:dataStack.mainContext];
     [attributes hyp_fillWithDictionary:values];
@@ -152,6 +157,7 @@
     XCTAssertNil(resultDictionary[@"transformable"]);
     XCTAssertEqual(values.allKeys.count - 1, resultDictionary.allKeys.count);
     XCTAssertEqualObjects(resultDictionary[@"type"], @"custom");
+    XCTAssertEqualObjects(resultDictionary[@"custom_transformer_string"], @"Foo &amp; bar");
 }
 
 - (NSDictionary *)userDictionaryWithNoRelationships {
