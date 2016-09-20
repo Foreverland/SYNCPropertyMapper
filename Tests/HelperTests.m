@@ -48,6 +48,15 @@
 
     attributeDescription = [market attributeDescriptionForRemoteKey:@"other_attribute"];
     XCTAssertEqualObjects(attributeDescription.name, @"otherAttribute");
+    
+    attributeDescription = [market attributeDescriptionForRemoteKey:@"some_attribute.value"];
+    XCTAssertEqualObjects(attributeDescription.name, @"keyPathAttribute");
+    
+    attributeDescription = [market attributeDescriptionForRemoteKey:@"some_attribute.other"];
+    XCTAssertEqualObjects(attributeDescription.name, @"otherKeyPathAttribute");
+    
+    attributeDescription = [market attributeDescriptionForRemoteKey:@"some_attribute.deep.path"];
+    XCTAssertEqualObjects(attributeDescription.name, @"deepKeyPathAttribute");
 }
 
 - (void)testAttributeDescriptionForKeyC {
@@ -84,6 +93,15 @@
 
     attributeDescription = market.entity.propertiesByName[@"otherAttribute"];
     XCTAssertEqualObjects([market remoteKeyForAttributeDescription:attributeDescription], @"other_attribute");
+    
+    attributeDescription = market.entity.propertiesByName[@"keyPathAttribute"];
+    XCTAssertEqualObjects([market remoteKeyForAttributeDescription:attributeDescription], @"some_attribute.value");
+    
+    attributeDescription = market.entity.propertiesByName[@"otherKeyPathAttribute"];
+    XCTAssertEqualObjects([market remoteKeyForAttributeDescription:attributeDescription], @"some_attribute.other");
+    
+    attributeDescription = market.entity.propertiesByName[@"deepKeyPathAttribute"];
+    XCTAssertEqualObjects([market remoteKeyForAttributeDescription:attributeDescription], @"some_attribute.deep.path");
 }
 
 - (void)testRemoteKeyForAttributeDescriptionC {
