@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		14260D4E1BDD5D2100E6A83B /* HelperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14260D2A1BDD5D2100E6A83B /* HelperTests.m */; };
 		14260D501BDD5D2100E6A83B /* HYPDictionaryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14260D2C1BDD5D2100E6A83B /* HYPDictionaryTests.m */; };
+		1443F19D1D94484A004E1FA5 /* NSManagedObject+HYPPropertyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1443F19A1D94484A004E1FA5 /* NSManagedObject+HYPPropertyMapper.m */; };
+		1443F19E1D94484A004E1FA5 /* NSManagedObject+HYPPropertyMapperHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 1443F19C1D94484A004E1FA5 /* NSManagedObject+HYPPropertyMapperHelpers.m */; };
 		1467A3781C06057B0036EC82 /* Apartment+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 1467A3531C06057B0036EC82 /* Apartment+CoreDataProperties.m */; };
 		1467A3791C06057B0036EC82 /* Apartment.m in Sources */ = {isa = PBXBuildFile; fileRef = 1467A3551C06057B0036EC82 /* Apartment.m */; };
 		1467A37A1C06057B0036EC82 /* Building+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 1467A3571C06057B0036EC82 /* Building+CoreDataProperties.m */; };
@@ -43,6 +45,10 @@
 		14260D2A1BDD5D2100E6A83B /* HelperTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelperTests.m; sourceTree = "<group>"; };
 		14260D2B1BDD5D2100E6A83B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		14260D2C1BDD5D2100E6A83B /* HYPDictionaryTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYPDictionaryTests.m; sourceTree = "<group>"; };
+		1443F1991D94484A004E1FA5 /* NSManagedObject+HYPPropertyMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+HYPPropertyMapper.h"; sourceTree = "<group>"; };
+		1443F19A1D94484A004E1FA5 /* NSManagedObject+HYPPropertyMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+HYPPropertyMapper.m"; sourceTree = "<group>"; };
+		1443F19B1D94484A004E1FA5 /* NSManagedObject+HYPPropertyMapperHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+HYPPropertyMapperHelpers.h"; sourceTree = "<group>"; };
+		1443F19C1D94484A004E1FA5 /* NSManagedObject+HYPPropertyMapperHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+HYPPropertyMapperHelpers.m"; sourceTree = "<group>"; };
 		1467A3521C06057B0036EC82 /* Apartment+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Apartment+CoreDataProperties.h"; sourceTree = "<group>"; };
 		1467A3531C06057B0036EC82 /* Apartment+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Apartment+CoreDataProperties.m"; sourceTree = "<group>"; };
 		1467A3541C06057B0036EC82 /* Apartment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Apartment.h; sourceTree = "<group>"; };
@@ -116,6 +122,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1443F1981D94484A004E1FA5 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				1443F1991D94484A004E1FA5 /* NSManagedObject+HYPPropertyMapper.h */,
+				1443F19A1D94484A004E1FA5 /* NSManagedObject+HYPPropertyMapper.m */,
+				1443F19B1D94484A004E1FA5 /* NSManagedObject+HYPPropertyMapperHelpers.h */,
+				1443F19C1D94484A004E1FA5 /* NSManagedObject+HYPPropertyMapperHelpers.m */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
 		1467A3511C06057B0036EC82 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -130,6 +147,7 @@
 		146D728A1AB782920058798C = {
 			isa = PBXGroup;
 			children = (
+				1443F1981D94484A004E1FA5 /* Source */,
 				14C136501AB7849300B7B07A /* Metadata */,
 				146D72AF1AB782920058798C /* Tests */,
 				146D72941AB782920058798C /* Products */,
@@ -372,6 +390,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				1467A3891C06057B0036EC82 /* User+CoreDataProperties.m in Sources */,
+				1443F19D1D94484A004E1FA5 /* NSManagedObject+HYPPropertyMapper.m in Sources */,
+				1443F19E1D94484A004E1FA5 /* NSManagedObject+HYPPropertyMapperHelpers.m in Sources */,
 				1467A3811C06057B0036EC82 /* Note+CoreDataProperties.m in Sources */,
 				146856711C5F961F000E1997 /* Attributes.m in Sources */,
 				14828C271D700516001DEE7E /* Bug112.xcdatamodeld in Sources */,

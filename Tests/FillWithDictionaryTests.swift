@@ -32,23 +32,7 @@ class FillWithDictionaryTests: XCTestCase {
             "tasks" : [ taskBoby ]
         ]
 
-        /*
-        {
-            "id": 1,
-            "owner": {
-                "id": 1
-            },
-            "tasks": [
-                        {
-                            "id": 1,
-                            "owner": {
-                                "id": 1
-                            }
-                        }
-            ]
-        }
-        */
-        XCTAssertEqual(expected, taskList.hyp_dictionary())
+        XCTAssertEqual(expected, taskList.hyp_dictionaryUsingRelationshipType(HYPPropertyMapperRelationshipType.Array))
 
         try! dataStack.drop()
     }

@@ -1,6 +1,7 @@
 @import CoreData;
 
 static NSString * const HYPPropertyMapperCustomRemoteKey = @"hyper.remoteKey";
+static NSString * const HYPPropertyMapperNonExportableKey = @"hyper.nonExportable";
 
 typedef NS_ENUM(NSInteger, HYPPropertyMapperRelationshipType) {
     HYPPropertyMapperRelationshipTypeNone = 0,
