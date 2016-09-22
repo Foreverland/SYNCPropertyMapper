@@ -40,7 +40,6 @@
 		5FC996E91CBE3DAC00AABF9C /* DateStringTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FC996E81CBE3DAC00AABF9C /* DateStringTransformer.m */; };
         E2359AFC89F1C58DD0068318 /* Pods_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6782857CE3E9CC5743D801DA /* Pods_Tests.framework */; };
 		FFC59AEE1D82BBB3000A9192 /* HYPTestValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = FFC59AED1D82BBB3000A9192 /* HYPTestValueTransformer.m */; };
->>>>>>> master
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
