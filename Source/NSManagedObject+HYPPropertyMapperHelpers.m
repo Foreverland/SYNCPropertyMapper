@@ -157,6 +157,14 @@
         value = remoteValue;
     }
 
+    NSString *customTransformerName = attributeDescription.userInfo[HYPPropertyMapperCustomValueTransformerKey];
+    if (customTransformerName) {
+        NSValueTransformer *transformer = [NSValueTransformer valueTransformerForName:customTransformerName];
+        if (transformer) {
+            value = [transformer transformedValue:value];
+        }
+    }
+
     BOOL stringValueAndNumberAttribute  = ([remoteValue isKindOfClass:[NSString class]] &&
                                           attributedClass == [NSNumber class]);
 
@@ -179,14 +187,6 @@
 
     BOOL transformableAttribute         = (!attributedClass && [attributeDescription valueTransformerName] && value == nil);
 
-    NSString *customTransformerName = attributeDescription.userInfo[HYPPropertyMapperCustomValueTransformerKey];
-    if (customTransformerName) {
-        NSValueTransformer *transformer = [NSValueTransformer valueTransformerForName:customTransformerName];
-        if (transformer) {
-            value = [transformer transformedValue:value];
-        }
-    }
-    
     if (stringValueAndNumberAttribute) {
         NSNumberFormatter *formatter = [NSNumberFormatter new];
         formatter.locale = [NSLocale localeWithLocaleIdentifier:@"en_US"];

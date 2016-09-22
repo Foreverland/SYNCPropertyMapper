@@ -1,11 +1,3 @@
-//
-//  HYPTestValueTransformer.m
-//  Demo
-//
-//  Created by Marthin Freij on 2016-09-09.
-//
-//
-
 #import "HYPTestValueTransformer.h"
 
 @implementation HYPTestValueTransformer
@@ -19,7 +11,6 @@
 }
 
 - (id)transformedValue:(id)value {
-
     if (value == nil) return nil;
     
     NSString *stringValue = nil;
@@ -35,7 +26,6 @@
 }
 
 - (id)reverseTransformedValue:(id)value {
-
     if (value == nil) return nil;
     
     NSString *stringValue = nil;
