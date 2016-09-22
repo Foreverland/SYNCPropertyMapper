@@ -3,17 +3,19 @@
 
 #import "NSManagedObject+HYPPropertyMapper.h"
 
-#import "User.h"
-#import "Note.h"
-#import "Company.h"
-#import "Market.h"
-#import "Attributes.h"
-#import "Apartment.h"
-#import "Building.h"
-#import "Room.h"
-#import "Park.h"
-
-#import "Recursive.h"
+#import "OrderedUser+CoreDataClass.h"
+#import "OrderedNote+CoreDataClass.h"
+#import "Company+CoreDataClass.h"
+#import "Market+CoreDataClass.h"
+#import "Attribute+CoreDataClass.h"
+#import "Apartment+CoreDataClass.h"
+#import "Building+CoreDataClass.h"
+#import "Room+CoreDataClass.h"
+#import "Park+CoreDataClass.h"
+#import "Recursive+CoreDataClass.h"
+#import "User+CoreDataClass.h"
+#import "Note+CoreDataClass.h"
+#import "KeyPath+CoreDataClass.h"
 
 #import "HYPTestValueTransformer.h"
 
@@ -126,7 +128,7 @@
     [NSValueTransformer setValueTransformer:[[HYPTestValueTransformer alloc] init] forName:@"HYPTestValueTransformer"];
     
     DATAStack *dataStack = [self dataStack];
-    Attributes *attributes = [self entityNamed:@"Attributes" inContext:dataStack.mainContext];
+    Attribute *attributes = [self entityNamed:@"Attribute" inContext:dataStack.mainContext];
     [attributes hyp_fillWithDictionary:values];
 
     XCTAssertEqualObjects(attributes.integerString, @16);
@@ -173,7 +175,7 @@
     [NSValueTransformer setValueTransformer:[[HYPTestValueTransformer alloc] init] forName:@"HYPTestValueTransformer"];
     
     DATAStack *dataStack = [self dataStack];
-    Attributes *attributes = [self entityNamed:@"Attributes" inContext:dataStack.mainContext];
+    Attribute *attributes = [self entityNamed:@"Attribute" inContext:dataStack.mainContext];
     [attributes hyp_fillWithDictionary:values];
     
     XCTAssertEqualObjects(attributes.integerString, @16);
@@ -431,28 +433,40 @@
     XCTAssertEqualObjects(market.otherAttribute, @"Market 1");
 }
 
-- (void)testCustomKeyPath {
+- (void)testCustomKeyPathSnakeCase {
     DATAStack *dataStack = [self dataStack];
-    
-    NSDictionary *values = @{@"id": @"1",
-                             @"other_attribute": @"Market 1",
-                             @"some_attribute": @{
-                                     @"value": @"Market 2",
-                                     @"other": @"Market 3",
-                                     @"deep": @{
-                                             @"path": @"Market 4" }
+
+    NSDictionary *values = @{@"snake_parent": @{
+                                     @"value_one": @"Value 1",
+                                     @"depth_one": @{
+                                             @"depth_two": @"Value 2" }
                                      }
                              };
-    
-    Market *market = [self entityNamed:@"Market" inContext:dataStack.mainContext];
-    
-    [market hyp_fillWithDictionary:values];
-    
-    XCTAssertEqualObjects(market.uniqueId, @"1");
-    XCTAssertEqualObjects(market.otherAttribute, @"Market 1");
-    XCTAssertEqualObjects(market.keyPathAttribute, @"Market 2");
-    XCTAssertEqualObjects(market.otherKeyPathAttribute, @"Market 3");
-    XCTAssertEqualObjects(market.deepKeyPathAttribute, @"Market 4");
+
+    KeyPath *keyPaths = [self entityNamed:@"KeyPath" inContext:dataStack.mainContext];
+
+    [keyPaths hyp_fillWithDictionary:values];
+
+    XCTAssertEqualObjects(keyPaths.snakeCaseDepthOne, @"Value 1");
+    XCTAssertEqualObjects(keyPaths.snakeCaseDepthTwo, @"Value 2");
+}
+
+- (void)testCustomKeyPathCamelCase {
+    DATAStack *dataStack = [self dataStack];
+
+    NSDictionary *values = @{@"camelParent": @{
+                                     @"valueOne": @"Value 1",
+                                     @"depthOne": @{
+                                             @"depthTwo": @"Value 2" }
+                                     }
+                             };
+
+    KeyPath *keyPaths = [self entityNamed:@"KeyPath" inContext:dataStack.mainContext];
+
+    [keyPaths hyp_fillWithDictionary:values];
+
+    XCTAssertEqualObjects(keyPaths.camelCaseDepthOne, @"Value 1");
+    XCTAssertEqualObjects(keyPaths.camelCaseDepthTwo, @"Value 2");
 }
 
 @end

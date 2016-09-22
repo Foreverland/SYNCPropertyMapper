@@ -11,34 +11,15 @@
 		14260D501BDD5D2100E6A83B /* HYPDictionaryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14260D2C1BDD5D2100E6A83B /* HYPDictionaryTests.m */; };
 		1443F19D1D94484A004E1FA5 /* NSManagedObject+HYPPropertyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1443F19A1D94484A004E1FA5 /* NSManagedObject+HYPPropertyMapper.m */; };
 		1443F19E1D94484A004E1FA5 /* NSManagedObject+HYPPropertyMapperHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 1443F19C1D94484A004E1FA5 /* NSManagedObject+HYPPropertyMapperHelpers.m */; };
-		1467A3781C06057B0036EC82 /* Apartment+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 1467A3531C06057B0036EC82 /* Apartment+CoreDataProperties.m */; };
-		1467A3791C06057B0036EC82 /* Apartment.m in Sources */ = {isa = PBXBuildFile; fileRef = 1467A3551C06057B0036EC82 /* Apartment.m */; };
-		1467A37A1C06057B0036EC82 /* Building+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 1467A3571C06057B0036EC82 /* Building+CoreDataProperties.m */; };
-		1467A37B1C06057B0036EC82 /* Building.m in Sources */ = {isa = PBXBuildFile; fileRef = 1467A3591C06057B0036EC82 /* Building.m */; };
-		1467A37C1C06057B0036EC82 /* Company+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 1467A35B1C06057B0036EC82 /* Company+CoreDataProperties.m */; };
-		1467A37D1C06057B0036EC82 /* Company.m in Sources */ = {isa = PBXBuildFile; fileRef = 1467A35D1C06057B0036EC82 /* Company.m */; };
-		1467A37E1C06057B0036EC82 /* Market+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 1467A35F1C06057B0036EC82 /* Market+CoreDataProperties.m */; };
-		1467A37F1C06057B0036EC82 /* Market.m in Sources */ = {isa = PBXBuildFile; fileRef = 1467A3611C06057B0036EC82 /* Market.m */; };
-		1467A3811C06057B0036EC82 /* Note+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 1467A3651C06057B0036EC82 /* Note+CoreDataProperties.m */; };
-		1467A3821C06057B0036EC82 /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 1467A3671C06057B0036EC82 /* Note.m */; };
-		1467A3831C06057B0036EC82 /* Park+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 1467A3691C06057B0036EC82 /* Park+CoreDataProperties.m */; };
-		1467A3841C06057B0036EC82 /* Park.m in Sources */ = {isa = PBXBuildFile; fileRef = 1467A36B1C06057B0036EC82 /* Park.m */; };
-		1467A3851C06057B0036EC82 /* Recursive+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 1467A36D1C06057B0036EC82 /* Recursive+CoreDataProperties.m */; };
-		1467A3861C06057B0036EC82 /* Recursive.m in Sources */ = {isa = PBXBuildFile; fileRef = 1467A36F1C06057B0036EC82 /* Recursive.m */; };
-		1467A3871C06057B0036EC82 /* Room+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 1467A3711C06057B0036EC82 /* Room+CoreDataProperties.m */; };
-		1467A3881C06057B0036EC82 /* Room.m in Sources */ = {isa = PBXBuildFile; fileRef = 1467A3731C06057B0036EC82 /* Room.m */; };
-		1467A3891C06057B0036EC82 /* User+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 1467A3751C06057B0036EC82 /* User+CoreDataProperties.m */; };
-		1467A38A1C06057B0036EC82 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 1467A3771C06057B0036EC82 /* User.m */; };
-		146856701C5F961F000E1997 /* Attributes+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 1468566D1C5F961F000E1997 /* Attributes+CoreDataProperties.m */; };
-		146856711C5F961F000E1997 /* Attributes.m in Sources */ = {isa = PBXBuildFile; fileRef = 1468566F1C5F961F000E1997 /* Attributes.m */; };
 		14828C271D700516001DEE7E /* Bug112.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14828C251D700516001DEE7E /* Bug112.xcdatamodeld */; };
 		14828C2A1D700649001DEE7E /* FillWithDictionaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14828C291D700649001DEE7E /* FillWithDictionaryTests.swift */; };
 		14828C2C1D70070A001DEE7E /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14828C2B1D70070A001DEE7E /* Helper.swift */; };
 		148956E11C5F6AED00CA505D /* Ordered.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 148956DF1C5F6AED00CA505D /* Ordered.xcdatamodeld */; };
 		148956E41C5F6AF500CA505D /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 148956E21C5F6AF500CA505D /* Model.xcdatamodeld */; };
 		14BAEF221C5F5F250023D0CA /* HYPFillWithDictionaryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14BAEF211C5F5F250023D0CA /* HYPFillWithDictionaryTests.m */; };
-		5FC996E91CBE3DAC00AABF9C /* DateStringTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FC996E81CBE3DAC00AABF9C /* DateStringTransformer.m */; };
-		FFC59AEE1D82BBB3000A9192 /* HYPTestValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = FFC59AED1D82BBB3000A9192 /* HYPTestValueTransformer.m */; };
+		14D28F391D9459C800627442 /* DateStringTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D28F361D9459C800627442 /* DateStringTransformer.m */; };
+		14D28F3A1D9459C800627442 /* HYPTestValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D28F381D9459C800627442 /* HYPTestValueTransformer.m */; };
+		1F6513B2B464DBCF44C2EC04 /* Pods_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83B14461308119C88681D8FA /* Pods_Tests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,46 +30,6 @@
 		1443F19A1D94484A004E1FA5 /* NSManagedObject+HYPPropertyMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+HYPPropertyMapper.m"; sourceTree = "<group>"; };
 		1443F19B1D94484A004E1FA5 /* NSManagedObject+HYPPropertyMapperHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+HYPPropertyMapperHelpers.h"; sourceTree = "<group>"; };
 		1443F19C1D94484A004E1FA5 /* NSManagedObject+HYPPropertyMapperHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+HYPPropertyMapperHelpers.m"; sourceTree = "<group>"; };
-		1467A3521C06057B0036EC82 /* Apartment+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Apartment+CoreDataProperties.h"; sourceTree = "<group>"; };
-		1467A3531C06057B0036EC82 /* Apartment+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Apartment+CoreDataProperties.m"; sourceTree = "<group>"; };
-		1467A3541C06057B0036EC82 /* Apartment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Apartment.h; sourceTree = "<group>"; };
-		1467A3551C06057B0036EC82 /* Apartment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Apartment.m; sourceTree = "<group>"; };
-		1467A3561C06057B0036EC82 /* Building+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Building+CoreDataProperties.h"; sourceTree = "<group>"; };
-		1467A3571C06057B0036EC82 /* Building+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Building+CoreDataProperties.m"; sourceTree = "<group>"; };
-		1467A3581C06057B0036EC82 /* Building.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Building.h; sourceTree = "<group>"; };
-		1467A3591C06057B0036EC82 /* Building.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Building.m; sourceTree = "<group>"; };
-		1467A35A1C06057B0036EC82 /* Company+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Company+CoreDataProperties.h"; sourceTree = "<group>"; };
-		1467A35B1C06057B0036EC82 /* Company+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Company+CoreDataProperties.m"; sourceTree = "<group>"; };
-		1467A35C1C06057B0036EC82 /* Company.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Company.h; sourceTree = "<group>"; };
-		1467A35D1C06057B0036EC82 /* Company.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Company.m; sourceTree = "<group>"; };
-		1467A35E1C06057B0036EC82 /* Market+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Market+CoreDataProperties.h"; sourceTree = "<group>"; };
-		1467A35F1C06057B0036EC82 /* Market+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Market+CoreDataProperties.m"; sourceTree = "<group>"; };
-		1467A3601C06057B0036EC82 /* Market.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Market.h; sourceTree = "<group>"; };
-		1467A3611C06057B0036EC82 /* Market.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Market.m; sourceTree = "<group>"; };
-		1467A3641C06057B0036EC82 /* Note+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Note+CoreDataProperties.h"; sourceTree = "<group>"; };
-		1467A3651C06057B0036EC82 /* Note+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Note+CoreDataProperties.m"; sourceTree = "<group>"; };
-		1467A3661C06057B0036EC82 /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Note.h; sourceTree = "<group>"; };
-		1467A3671C06057B0036EC82 /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Note.m; sourceTree = "<group>"; };
-		1467A3681C06057B0036EC82 /* Park+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Park+CoreDataProperties.h"; sourceTree = "<group>"; };
-		1467A3691C06057B0036EC82 /* Park+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Park+CoreDataProperties.m"; sourceTree = "<group>"; };
-		1467A36A1C06057B0036EC82 /* Park.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Park.h; sourceTree = "<group>"; };
-		1467A36B1C06057B0036EC82 /* Park.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Park.m; sourceTree = "<group>"; };
-		1467A36C1C06057B0036EC82 /* Recursive+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Recursive+CoreDataProperties.h"; sourceTree = "<group>"; };
-		1467A36D1C06057B0036EC82 /* Recursive+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Recursive+CoreDataProperties.m"; sourceTree = "<group>"; };
-		1467A36E1C06057B0036EC82 /* Recursive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Recursive.h; sourceTree = "<group>"; };
-		1467A36F1C06057B0036EC82 /* Recursive.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Recursive.m; sourceTree = "<group>"; };
-		1467A3701C06057B0036EC82 /* Room+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Room+CoreDataProperties.h"; sourceTree = "<group>"; };
-		1467A3711C06057B0036EC82 /* Room+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Room+CoreDataProperties.m"; sourceTree = "<group>"; };
-		1467A3721C06057B0036EC82 /* Room.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Room.h; sourceTree = "<group>"; };
-		1467A3731C06057B0036EC82 /* Room.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Room.m; sourceTree = "<group>"; };
-		1467A3741C06057B0036EC82 /* User+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "User+CoreDataProperties.h"; sourceTree = "<group>"; };
-		1467A3751C06057B0036EC82 /* User+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "User+CoreDataProperties.m"; sourceTree = "<group>"; };
-		1467A3761C06057B0036EC82 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
-		1467A3771C06057B0036EC82 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
-		1468566C1C5F961F000E1997 /* Attributes+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Attributes+CoreDataProperties.h"; sourceTree = "<group>"; };
-		1468566D1C5F961F000E1997 /* Attributes+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Attributes+CoreDataProperties.m"; sourceTree = "<group>"; };
-		1468566E1C5F961F000E1997 /* Attributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Attributes.h; sourceTree = "<group>"; };
-		1468566F1C5F961F000E1997 /* Attributes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Attributes.m; sourceTree = "<group>"; };
 		146D72AC1AB782920058798C /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		146D72B11AB782920058798C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		14828C261D700516001DEE7E /* hypbug.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = hypbug.xcdatamodel; sourceTree = "<group>"; };
@@ -102,14 +43,14 @@
 		14C0AF811BD6D4230009ECBE /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 		14C0AF821BD6D4230009ECBE /* CONTRIBUTING.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CONTRIBUTING.md; sourceTree = "<group>"; };
 		14C0AF831BD6D4230009ECBE /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		14D28F351D9459C800627442 /* DateStringTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateStringTransformer.h; sourceTree = "<group>"; };
+		14D28F361D9459C800627442 /* DateStringTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateStringTransformer.m; sourceTree = "<group>"; };
+		14D28F371D9459C800627442 /* HYPTestValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYPTestValueTransformer.h; sourceTree = "<group>"; };
+		14D28F381D9459C800627442 /* HYPTestValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYPTestValueTransformer.m; sourceTree = "<group>"; };
 		1D1942E6DFEC7BA1ECBCFA55 /* Pods-Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.release.xcconfig"; sourceTree = "<group>"; };
-		5FC996E71CBE3DAC00AABF9C /* DateStringTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateStringTransformer.h; sourceTree = "<group>"; };
-		5FC996E81CBE3DAC00AABF9C /* DateStringTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateStringTransformer.m; sourceTree = "<group>"; };
 		76ED3651E49292BE7F84B482 /* Pods-Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		83B14461308119C88681D8FA /* Pods_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A270238462A3030B20904C17 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		FFC59AEC1D82BBB3000A9192 /* HYPTestValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYPTestValueTransformer.h; sourceTree = "<group>"; };
-		FFC59AED1D82BBB3000A9192 /* HYPTestValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYPTestValueTransformer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F6513B2B464DBCF44C2EC04 /* Pods_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,7 +79,6 @@
 		1467A3511C06057B0036EC82 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				14E39C021D7008B80083AF2E /* Classes */,
 				14828C251D700516001DEE7E /* Bug112.xcdatamodeld */,
 				148956DF1C5F6AED00CA505D /* Ordered.xcdatamodeld */,
 				148956E21C5F6AF500CA505D /* Model.xcdatamodeld */,
@@ -170,6 +111,7 @@
 		146D72AF1AB782920058798C /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				14D28F341D9459C800627442 /* Transformers */,
 				1467A3511C06057B0036EC82 /* Models */,
 				14260D2A1BDD5D2100E6A83B /* HelperTests.m */,
 				14260D2C1BDD5D2100E6A83B /* HYPDictionaryTests.m */,
@@ -178,8 +120,6 @@
 				14260D2B1BDD5D2100E6A83B /* Info.plist */,
 				146D72B01AB782920058798C /* Supporting Files */,
 				14828C2B1D70070A001DEE7E /* Helper.swift */,
-				FFC59AEC1D82BBB3000A9192 /* HYPTestValueTransformer.h */,
-				FFC59AED1D82BBB3000A9192 /* HYPTestValueTransformer.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -204,53 +144,15 @@
 			name = Metadata;
 			sourceTree = "<group>";
 		};
-		14E39C021D7008B80083AF2E /* Classes */ = {
+		14D28F341D9459C800627442 /* Transformers */ = {
 			isa = PBXGroup;
 			children = (
-				1468566C1C5F961F000E1997 /* Attributes+CoreDataProperties.h */,
-				1468566D1C5F961F000E1997 /* Attributes+CoreDataProperties.m */,
-				1468566E1C5F961F000E1997 /* Attributes.h */,
-				1468566F1C5F961F000E1997 /* Attributes.m */,
-				1467A3521C06057B0036EC82 /* Apartment+CoreDataProperties.h */,
-				1467A3531C06057B0036EC82 /* Apartment+CoreDataProperties.m */,
-				1467A3541C06057B0036EC82 /* Apartment.h */,
-				1467A3551C06057B0036EC82 /* Apartment.m */,
-				1467A3561C06057B0036EC82 /* Building+CoreDataProperties.h */,
-				1467A3571C06057B0036EC82 /* Building+CoreDataProperties.m */,
-				1467A3581C06057B0036EC82 /* Building.h */,
-				1467A3591C06057B0036EC82 /* Building.m */,
-				1467A35A1C06057B0036EC82 /* Company+CoreDataProperties.h */,
-				1467A35B1C06057B0036EC82 /* Company+CoreDataProperties.m */,
-				1467A35C1C06057B0036EC82 /* Company.h */,
-				1467A35D1C06057B0036EC82 /* Company.m */,
-				1467A35E1C06057B0036EC82 /* Market+CoreDataProperties.h */,
-				1467A35F1C06057B0036EC82 /* Market+CoreDataProperties.m */,
-				1467A3601C06057B0036EC82 /* Market.h */,
-				1467A3611C06057B0036EC82 /* Market.m */,
-				1467A3641C06057B0036EC82 /* Note+CoreDataProperties.h */,
-				1467A3651C06057B0036EC82 /* Note+CoreDataProperties.m */,
-				1467A3661C06057B0036EC82 /* Note.h */,
-				1467A3671C06057B0036EC82 /* Note.m */,
-				1467A3681C06057B0036EC82 /* Park+CoreDataProperties.h */,
-				1467A3691C06057B0036EC82 /* Park+CoreDataProperties.m */,
-				1467A36A1C06057B0036EC82 /* Park.h */,
-				1467A36B1C06057B0036EC82 /* Park.m */,
-				1467A36C1C06057B0036EC82 /* Recursive+CoreDataProperties.h */,
-				1467A36D1C06057B0036EC82 /* Recursive+CoreDataProperties.m */,
-				1467A36E1C06057B0036EC82 /* Recursive.h */,
-				1467A36F1C06057B0036EC82 /* Recursive.m */,
-				1467A3701C06057B0036EC82 /* Room+CoreDataProperties.h */,
-				1467A3711C06057B0036EC82 /* Room+CoreDataProperties.m */,
-				1467A3721C06057B0036EC82 /* Room.h */,
-				1467A3731C06057B0036EC82 /* Room.m */,
-				1467A3741C06057B0036EC82 /* User+CoreDataProperties.h */,
-				1467A3751C06057B0036EC82 /* User+CoreDataProperties.m */,
-				1467A3761C06057B0036EC82 /* User.h */,
-				1467A3771C06057B0036EC82 /* User.m */,
-				5FC996E71CBE3DAC00AABF9C /* DateStringTransformer.h */,
-				5FC996E81CBE3DAC00AABF9C /* DateStringTransformer.m */,
+				14D28F351D9459C800627442 /* DateStringTransformer.h */,
+				14D28F361D9459C800627442 /* DateStringTransformer.m */,
+				14D28F371D9459C800627442 /* HYPTestValueTransformer.h */,
+				14D28F381D9459C800627442 /* HYPTestValueTransformer.m */,
 			);
-			name = Classes;
+			path = Transformers;
 			sourceTree = "<group>";
 		};
 		89EE9DB533D15584F9C7F761 /* Frameworks */ = {
@@ -392,38 +294,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1467A3891C06057B0036EC82 /* User+CoreDataProperties.m in Sources */,
 				1443F19D1D94484A004E1FA5 /* NSManagedObject+HYPPropertyMapper.m in Sources */,
+				14D28F3A1D9459C800627442 /* HYPTestValueTransformer.m in Sources */,
 				1443F19E1D94484A004E1FA5 /* NSManagedObject+HYPPropertyMapperHelpers.m in Sources */,
-				1467A3811C06057B0036EC82 /* Note+CoreDataProperties.m in Sources */,
-				146856711C5F961F000E1997 /* Attributes.m in Sources */,
 				14828C271D700516001DEE7E /* Bug112.xcdatamodeld in Sources */,
+				14D28F391D9459C800627442 /* DateStringTransformer.m in Sources */,
 				14828C2A1D700649001DEE7E /* FillWithDictionaryTests.swift in Sources */,
-				1467A3781C06057B0036EC82 /* Apartment+CoreDataProperties.m in Sources */,
-				1467A3831C06057B0036EC82 /* Park+CoreDataProperties.m in Sources */,
-				1467A37E1C06057B0036EC82 /* Market+CoreDataProperties.m in Sources */,
-				1467A37C1C06057B0036EC82 /* Company+CoreDataProperties.m in Sources */,
-				1467A38A1C06057B0036EC82 /* User.m in Sources */,
 				14260D4E1BDD5D2100E6A83B /* HelperTests.m in Sources */,
-				1467A3821C06057B0036EC82 /* Note.m in Sources */,
-				1467A37F1C06057B0036EC82 /* Market.m in Sources */,
 				148956E41C5F6AF500CA505D /* Model.xcdatamodeld in Sources */,
-				1467A3861C06057B0036EC82 /* Recursive.m in Sources */,
-				FFC59AEE1D82BBB3000A9192 /* HYPTestValueTransformer.m in Sources */,
-				146856701C5F961F000E1997 /* Attributes+CoreDataProperties.m in Sources */,
 				14BAEF221C5F5F250023D0CA /* HYPFillWithDictionaryTests.m in Sources */,
-				1467A3851C06057B0036EC82 /* Recursive+CoreDataProperties.m in Sources */,
-				1467A3881C06057B0036EC82 /* Room.m in Sources */,
 				14260D501BDD5D2100E6A83B /* HYPDictionaryTests.m in Sources */,
-				1467A3791C06057B0036EC82 /* Apartment.m in Sources */,
-				5FC996E91CBE3DAC00AABF9C /* DateStringTransformer.m in Sources */,
-				1467A37B1C06057B0036EC82 /* Building.m in Sources */,
 				148956E11C5F6AED00CA505D /* Ordered.xcdatamodeld in Sources */,
-				1467A3871C06057B0036EC82 /* Room+CoreDataProperties.m in Sources */,
-				1467A37D1C06057B0036EC82 /* Company.m in Sources */,
-				1467A37A1C06057B0036EC82 /* Building+CoreDataProperties.m in Sources */,
 				14828C2C1D70070A001DEE7E /* Helper.swift in Sources */,
-				1467A3841C06057B0036EC82 /* Park.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

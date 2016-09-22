@@ -4,10 +4,12 @@
 #import "NSManagedObject+HYPPropertyMapper.h"
 #import "NSManagedObject+HYPPropertyMapperHelpers.h"
 
-#import "User.h"
-#import "Note.h"
-#import "Company.h"
-#import "Market.h"
+#import "Company+CoreDataClass.h"
+#import "Market+CoreDataClass.h"
+#import "User+CoreDataClass.h"
+#import "Note+CoreDataClass.h"
+#import "KeyPath+CoreDataClass.h"
+
 @import DATAStack;
 
 @interface PrivateTests : XCTestCase
@@ -48,15 +50,6 @@
 
     attributeDescription = [market attributeDescriptionForRemoteKey:@"other_attribute"];
     XCTAssertEqualObjects(attributeDescription.name, @"otherAttribute");
-    
-    attributeDescription = [market attributeDescriptionForRemoteKey:@"some_attribute.value"];
-    XCTAssertEqualObjects(attributeDescription.name, @"keyPathAttribute");
-    
-    attributeDescription = [market attributeDescriptionForRemoteKey:@"some_attribute.other"];
-    XCTAssertEqualObjects(attributeDescription.name, @"otherKeyPathAttribute");
-    
-    attributeDescription = [market attributeDescriptionForRemoteKey:@"some_attribute.deep.path"];
-    XCTAssertEqualObjects(attributeDescription.name, @"deepKeyPathAttribute");
 }
 
 - (void)testAttributeDescriptionForKeyC {
@@ -71,6 +64,23 @@
 
     attributeDescription = [user attributeDescriptionForRemoteKey:@"not_found_key"];
     XCTAssertNil(attributeDescription);
+}
+
+- (void)testAttributeDescriptionForKeyD {
+    KeyPath *keyPath = [self entityNamed:@"KeyPath"];
+    NSAttributeDescription *attributeDescription;
+
+    attributeDescription = [keyPath attributeDescriptionForRemoteKey:@"snake_parent.value_one"];
+    XCTAssertEqualObjects(attributeDescription.name, @"snakeCaseDepthOne");
+
+    attributeDescription = [keyPath attributeDescriptionForRemoteKey:@"snake_parent.depth_one.depth_two"];
+    XCTAssertEqualObjects(attributeDescription.name, @"snakeCaseDepthTwo");
+
+    attributeDescription = [keyPath attributeDescriptionForRemoteKey:@"camelParent.valueOne"];
+    XCTAssertEqualObjects(attributeDescription.name, @"camelCaseDepthOne");
+
+    attributeDescription = [keyPath attributeDescriptionForRemoteKey:@"camelParent.depthOne.depthTwo"];
+    XCTAssertEqualObjects(attributeDescription.name, @"camelCaseDepthTwo");
 }
 
 - (void)testRemoteKeyForAttributeDescriptionA {
@@ -93,15 +103,6 @@
 
     attributeDescription = market.entity.propertiesByName[@"otherAttribute"];
     XCTAssertEqualObjects([market remoteKeyForAttributeDescription:attributeDescription], @"other_attribute");
-    
-    attributeDescription = market.entity.propertiesByName[@"keyPathAttribute"];
-    XCTAssertEqualObjects([market remoteKeyForAttributeDescription:attributeDescription], @"some_attribute.value");
-    
-    attributeDescription = market.entity.propertiesByName[@"otherKeyPathAttribute"];
-    XCTAssertEqualObjects([market remoteKeyForAttributeDescription:attributeDescription], @"some_attribute.other");
-    
-    attributeDescription = market.entity.propertiesByName[@"deepKeyPathAttribute"];
-    XCTAssertEqualObjects([market remoteKeyForAttributeDescription:attributeDescription], @"some_attribute.deep.path");
 }
 
 - (void)testRemoteKeyForAttributeDescriptionC {
@@ -115,6 +116,23 @@
     XCTAssertEqualObjects([user remoteKeyForAttributeDescription:attributeDescription], @"driver_identifier_str");
 
     XCTAssertNil([user remoteKeyForAttributeDescription:nil]);
+}
+
+- (void)testRemoteKeyForAttributeDescriptionD {
+    KeyPath *keyPath = [self entityNamed:@"KeyPath"];
+    NSAttributeDescription *attributeDescription;
+
+    attributeDescription = keyPath.entity.propertiesByName[@"snakeCaseDepthOne"];
+    XCTAssertEqualObjects([keyPath remoteKeyForAttributeDescription:attributeDescription], @"snake_parent.value_one");
+
+    attributeDescription = keyPath.entity.propertiesByName[@"snakeCaseDepthTwo"];
+    XCTAssertEqualObjects([keyPath remoteKeyForAttributeDescription:attributeDescription], @"snake_parent.depth_one.depth_two");
+
+    attributeDescription = keyPath.entity.propertiesByName[@"camelCaseDepthOne"];
+    XCTAssertEqualObjects([keyPath remoteKeyForAttributeDescription:attributeDescription], @"camelParent.valueOne");
+
+    attributeDescription = keyPath.entity.propertiesByName[@"camelCaseDepthTwo"];
+    XCTAssertEqualObjects([keyPath remoteKeyForAttributeDescription:attributeDescription], @"camelParent.depthOne.depthTwo");
 }
 
 - (void)testDestroyKey {
