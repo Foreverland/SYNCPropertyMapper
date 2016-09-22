@@ -12,6 +12,7 @@
 #import "Building.h"
 #import "Room.h"
 #import "Park.h"
+#import "KeyPaths+CoreDataClass.h"
 
 #import "Recursive.h"
 
@@ -431,28 +432,22 @@
     XCTAssertEqualObjects(market.otherAttribute, @"Market 1");
 }
 
-- (void)testCustomKeyPath {
+- (void)testCustomKeyPathSnakeCase {
     DATAStack *dataStack = [self dataStack];
-    
-    NSDictionary *values = @{@"id": @"1",
-                             @"other_attribute": @"Market 1",
-                             @"some_attribute": @{
-                                     @"value": @"Market 2",
-                                     @"other": @"Market 3",
-                                     @"deep": @{
-                                             @"path": @"Market 4" }
+
+    NSDictionary *values = @{@"snake_parent": @{
+                                     @"value_one": @"Value 1",
+                                     @"depth_one": @{
+                                             @"depth_two": @"Value 2" }
                                      }
                              };
-    
-    Market *market = [self entityNamed:@"Market" inContext:dataStack.mainContext];
-    
-    [market hyp_fillWithDictionary:values];
-    
-    XCTAssertEqualObjects(market.uniqueId, @"1");
-    XCTAssertEqualObjects(market.otherAttribute, @"Market 1");
-    XCTAssertEqualObjects(market.keyPathAttribute, @"Market 2");
-    XCTAssertEqualObjects(market.otherKeyPathAttribute, @"Market 3");
-    XCTAssertEqualObjects(market.deepKeyPathAttribute, @"Market 4");
+
+    KeyPaths *keyPaths = [self entityNamed:@"KeyPaths" inContext:dataStack.mainContext];
+
+    [keyPaths hyp_fillWithDictionary:values];
+
+    XCTAssertEqualObjects(keyPaths.snakeCaseDepthOne, @"Value 1");
+    XCTAssertEqualObjects(keyPaths.snakeCaseDepthTwo, @"Value 2");
 }
 
 @end

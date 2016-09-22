@@ -13,14 +13,15 @@ static NSString * const HYPPropertyMapperNestedAttributesKey = @"attributes";
 
 - (void)hyp_fillWithDictionary:(NSDictionary *)dictionary {
     for (__strong NSString *key in dictionary) {
-
         id value = [dictionary objectForKey:key];
 
         NSAttributeDescription *attributeDescription = [self attributeDescriptionForRemoteKey:key];
         if (attributeDescription) {
-            if (value && ![value isKindOfClass:[NSNull class]] && [value isKindOfClass:[NSDictionary class]]) {
+            BOOL valueExists = (value && ![value isKindOfClass:[NSNull class]]);
+            if (valueExists && [value isKindOfClass:[NSDictionary class]]) {
                 NSString *remoteKey = [self remoteKeyForAttributeDescription:attributeDescription];
-                if (remoteKey && [remoteKey rangeOfString:@"."].location != NSNotFound) {
+                BOOL hasCustomKeyPath = remoteKey && [remoteKey rangeOfString:@"."].location != NSNotFound;
+                if (hasCustomKeyPath) {
                     NSArray *keyPathAttributeDescriptions = [self attributeDescriptionsForRemoteKeyPath:remoteKey];
                     for (NSAttributeDescription *keyPathAttributeDescription in keyPathAttributeDescriptions) {
                         NSString *remoteKey = [self remoteKeyForAttributeDescription:keyPathAttributeDescription];
@@ -32,14 +33,15 @@ static NSString * const HYPPropertyMapperNestedAttributesKey = @"attributes";
                 }
             } else {
                 NSString *localKey = attributeDescription.name;
-                [self hyp_setDictionaryValue:value forKey:localKey attributeDescription:attributeDescription];
+                [self hyp_setDictionaryValue:value
+                                      forKey:localKey
+                        attributeDescription:attributeDescription];
             }
         }
     }
 }
 
 - (void)hyp_setDictionaryValue:(id)value forKey:(NSString *)key attributeDescription:(NSAttributeDescription *)attributeDescription {
-    
     BOOL valueExists = (value &&
                         ![value isKindOfClass:[NSNull class]]);
     if (valueExists) {

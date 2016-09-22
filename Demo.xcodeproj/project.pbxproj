@@ -34,6 +34,8 @@
 		14828C271D700516001DEE7E /* Bug112.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14828C251D700516001DEE7E /* Bug112.xcdatamodeld */; };
 		14828C2A1D700649001DEE7E /* FillWithDictionaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14828C291D700649001DEE7E /* FillWithDictionaryTests.swift */; };
 		14828C2C1D70070A001DEE7E /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14828C2B1D70070A001DEE7E /* Helper.swift */; };
+		1488606F1D94520800E266BE /* KeyPaths+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 1488606C1D94520800E266BE /* KeyPaths+CoreDataClass.m */; };
+		148860701D94520800E266BE /* KeyPaths+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 1488606E1D94520800E266BE /* KeyPaths+CoreDataProperties.m */; };
 		148956E11C5F6AED00CA505D /* Ordered.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 148956DF1C5F6AED00CA505D /* Ordered.xcdatamodeld */; };
 		148956E41C5F6AF500CA505D /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 148956E21C5F6AF500CA505D /* Model.xcdatamodeld */; };
 		14BAEF221C5F5F250023D0CA /* HYPFillWithDictionaryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14BAEF211C5F5F250023D0CA /* HYPFillWithDictionaryTests.m */; };
@@ -94,6 +96,10 @@
 		14828C261D700516001DEE7E /* hypbug.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = hypbug.xcdatamodel; sourceTree = "<group>"; };
 		14828C291D700649001DEE7E /* FillWithDictionaryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FillWithDictionaryTests.swift; sourceTree = "<group>"; };
 		14828C2B1D70070A001DEE7E /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		1488606B1D94520800E266BE /* KeyPaths+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KeyPaths+CoreDataClass.h"; sourceTree = "<group>"; };
+		1488606C1D94520800E266BE /* KeyPaths+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KeyPaths+CoreDataClass.m"; sourceTree = "<group>"; };
+		1488606D1D94520800E266BE /* KeyPaths+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KeyPaths+CoreDataProperties.h"; sourceTree = "<group>"; };
+		1488606E1D94520800E266BE /* KeyPaths+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KeyPaths+CoreDataProperties.m"; sourceTree = "<group>"; };
 		148956E01C5F6AED00CA505D /* Ordered.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Ordered.xcdatamodel; sourceTree = "<group>"; };
 		148956E31C5F6AF500CA505D /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		14BAEF211C5F5F250023D0CA /* HYPFillWithDictionaryTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYPFillWithDictionaryTests.m; sourceTree = "<group>"; };
@@ -207,6 +213,10 @@
 		14E39C021D7008B80083AF2E /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				1488606B1D94520800E266BE /* KeyPaths+CoreDataClass.h */,
+				1488606C1D94520800E266BE /* KeyPaths+CoreDataClass.m */,
+				1488606D1D94520800E266BE /* KeyPaths+CoreDataProperties.h */,
+				1488606E1D94520800E266BE /* KeyPaths+CoreDataProperties.m */,
 				1468566C1C5F961F000E1997 /* Attributes+CoreDataProperties.h */,
 				1468566D1C5F961F000E1997 /* Attributes+CoreDataProperties.m */,
 				1468566E1C5F961F000E1997 /* Attributes.h */,
@@ -413,6 +423,8 @@
 				146856701C5F961F000E1997 /* Attributes+CoreDataProperties.m in Sources */,
 				14BAEF221C5F5F250023D0CA /* HYPFillWithDictionaryTests.m in Sources */,
 				1467A3851C06057B0036EC82 /* Recursive+CoreDataProperties.m in Sources */,
+				1488606F1D94520800E266BE /* KeyPaths+CoreDataClass.m in Sources */,
+				148860701D94520800E266BE /* KeyPaths+CoreDataProperties.m in Sources */,
 				1467A3881C06057B0036EC82 /* Room.m in Sources */,
 				14260D501BDD5D2100E6A83B /* HYPDictionaryTests.m in Sources */,
 				1467A3791C06057B0036EC82 /* Apartment.m in Sources */,
