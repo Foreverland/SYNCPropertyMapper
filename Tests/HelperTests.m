@@ -4,10 +4,11 @@
 #import "NSManagedObject+HYPPropertyMapper.h"
 #import "NSManagedObject+HYPPropertyMapperHelpers.h"
 
-#import "User.h"
-#import "Note.h"
-#import "Company.h"
-#import "Market.h"
+#import "Company+CoreDataClass.h"
+#import "Market+CoreDataClass.h"
+#import "User+CoreDataClass.h"
+#import "Note+CoreDataClass.h"
+
 @import DATAStack;
 
 @interface PrivateTests : XCTestCase

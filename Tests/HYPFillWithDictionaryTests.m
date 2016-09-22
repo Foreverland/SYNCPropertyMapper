@@ -3,18 +3,19 @@
 
 #import "NSManagedObject+HYPPropertyMapper.h"
 
-#import "User.h"
-#import "Note.h"
-#import "Company.h"
-#import "Market.h"
-#import "Attributes.h"
-#import "Apartment.h"
-#import "Building.h"
-#import "Room.h"
-#import "Park.h"
-#import "KeyPaths+CoreDataClass.h"
-
-#import "Recursive.h"
+#import "OrderedUser+CoreDataClass.h"
+#import "OrderedNote+CoreDataClass.h"
+#import "Company+CoreDataClass.h"
+#import "Market+CoreDataClass.h"
+#import "Attribute+CoreDataClass.h"
+#import "Apartment+CoreDataClass.h"
+#import "Building+CoreDataClass.h"
+#import "Room+CoreDataClass.h"
+#import "Park+CoreDataClass.h"
+#import "Recursive+CoreDataClass.h"
+#import "User+CoreDataClass.h"
+#import "Note+CoreDataClass.h"
+#import "KeyPath+CoreDataClass.h"
 
 #import "HYPTestValueTransformer.h"
 
@@ -127,7 +128,7 @@
     [NSValueTransformer setValueTransformer:[[HYPTestValueTransformer alloc] init] forName:@"HYPTestValueTransformer"];
     
     DATAStack *dataStack = [self dataStack];
-    Attributes *attributes = [self entityNamed:@"Attributes" inContext:dataStack.mainContext];
+    Attribute *attributes = [self entityNamed:@"Attributes" inContext:dataStack.mainContext];
     [attributes hyp_fillWithDictionary:values];
 
     XCTAssertEqualObjects(attributes.integerString, @16);
@@ -174,7 +175,7 @@
     [NSValueTransformer setValueTransformer:[[HYPTestValueTransformer alloc] init] forName:@"HYPTestValueTransformer"];
     
     DATAStack *dataStack = [self dataStack];
-    Attributes *attributes = [self entityNamed:@"Attributes" inContext:dataStack.mainContext];
+    Attribute *attributes = [self entityNamed:@"Attributes" inContext:dataStack.mainContext];
     [attributes hyp_fillWithDictionary:values];
     
     XCTAssertEqualObjects(attributes.integerString, @16);
@@ -442,7 +443,7 @@
                                      }
                              };
 
-    KeyPaths *keyPaths = [self entityNamed:@"KeyPaths" inContext:dataStack.mainContext];
+    KeyPath *keyPaths = [self entityNamed:@"KeyPaths" inContext:dataStack.mainContext];
 
     [keyPaths hyp_fillWithDictionary:values];
 
