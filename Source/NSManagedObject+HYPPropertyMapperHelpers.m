@@ -22,7 +22,7 @@
             value = [dateFormatter stringFromDate:value];
         } else if (customTransformerName) {
             NSValueTransformer *transformer = [NSValueTransformer valueTransformerForName:customTransformerName];
-            if (transformer) {
+            if (transformer) {
                 value = [transformer reverseTransformedValue:value];
             }
         }
@@ -182,7 +182,7 @@
     NSString *customTransformerName = attributeDescription.userInfo[HYPPropertyMapperCustomValueTransformerKey];
     if (customTransformerName) {
         NSValueTransformer *transformer = [NSValueTransformer valueTransformerForName:customTransformerName];
-        if (transformer) {
+        if (transformer) {
             value = [transformer transformedValue:value];
         }
     }
