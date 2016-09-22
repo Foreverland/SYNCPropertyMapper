@@ -38,7 +38,9 @@
 		148956E41C5F6AF500CA505D /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 148956E21C5F6AF500CA505D /* Model.xcdatamodeld */; };
 		14BAEF221C5F5F250023D0CA /* HYPFillWithDictionaryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14BAEF211C5F5F250023D0CA /* HYPFillWithDictionaryTests.m */; };
 		5FC996E91CBE3DAC00AABF9C /* DateStringTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FC996E81CBE3DAC00AABF9C /* DateStringTransformer.m */; };
-		DF2DF8A68F53B7E2F83208E9 /* Pods_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83B14461308119C88681D8FA /* Pods_Tests.framework */; };
+        E2359AFC89F1C58DD0068318 /* Pods_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6782857CE3E9CC5743D801DA /* Pods_Tests.framework */; };
+		FFC59AEE1D82BBB3000A9192 /* HYPTestValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = FFC59AED1D82BBB3000A9192 /* HYPTestValueTransformer.m */; };
+>>>>>>> master
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -108,6 +110,8 @@
 		76ED3651E49292BE7F84B482 /* Pods-Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		83B14461308119C88681D8FA /* Pods_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A270238462A3030B20904C17 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FFC59AEC1D82BBB3000A9192 /* HYPTestValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYPTestValueTransformer.h; sourceTree = "<group>"; };
+		FFC59AED1D82BBB3000A9192 /* HYPTestValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYPTestValueTransformer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,6 +181,8 @@
 				14260D2B1BDD5D2100E6A83B /* Info.plist */,
 				146D72B01AB782920058798C /* Supporting Files */,
 				14828C2B1D70070A001DEE7E /* Helper.swift */,
+				FFC59AEC1D82BBB3000A9192 /* HYPTestValueTransformer.h */,
+				FFC59AED1D82BBB3000A9192 /* HYPTestValueTransformer.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -406,6 +412,7 @@
 				1467A37F1C06057B0036EC82 /* Market.m in Sources */,
 				148956E41C5F6AF500CA505D /* Model.xcdatamodeld in Sources */,
 				1467A3861C06057B0036EC82 /* Recursive.m in Sources */,
+				FFC59AEE1D82BBB3000A9192 /* HYPTestValueTransformer.m in Sources */,
 				146856701C5F961F000E1997 /* Attributes+CoreDataProperties.m in Sources */,
 				14BAEF221C5F5F250023D0CA /* HYPFillWithDictionaryTests.m in Sources */,
 				1467A3851C06057B0036EC82 /* Recursive+CoreDataProperties.m in Sources */,
