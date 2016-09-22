@@ -23,7 +23,6 @@ Pod::Spec.new do |s|
   s.source_files = 'Source'
   s.frameworks = 'Foundation'
   s.requires_arc = true
-  s.dependency 'NSString-HYPNetworking', '~> 1.0.3'
   s.dependency 'DateParser', '~> 0.1.0'
-  s.dependency 'NSEntityDescription-SYNCPrimaryKey', '~> 1.2.4'
+  s.dependency 'NSEntityDescription-SYNCPrimaryKey', '~> 1.2.6'
 end

@@ -19,6 +19,7 @@
 		14BAEF221C5F5F250023D0CA /* HYPFillWithDictionaryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14BAEF211C5F5F250023D0CA /* HYPFillWithDictionaryTests.m */; };
 		14D28F391D9459C800627442 /* DateStringTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D28F361D9459C800627442 /* DateStringTransformer.m */; };
 		14D28F3A1D9459C800627442 /* HYPTestValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D28F381D9459C800627442 /* HYPTestValueTransformer.m */; };
+		1F6513B2B464DBCF44C2EC04 /* Pods_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83B14461308119C88681D8FA /* Pods_Tests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F6513B2B464DBCF44C2EC04 /* Pods_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
