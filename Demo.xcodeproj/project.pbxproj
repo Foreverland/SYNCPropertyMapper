@@ -17,8 +17,8 @@
 		148956E11C5F6AED00CA505D /* Ordered.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 148956DF1C5F6AED00CA505D /* Ordered.xcdatamodeld */; };
 		148956E41C5F6AF500CA505D /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 148956E21C5F6AF500CA505D /* Model.xcdatamodeld */; };
 		14BAEF221C5F5F250023D0CA /* HYPFillWithDictionaryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14BAEF211C5F5F250023D0CA /* HYPFillWithDictionaryTests.m */; };
-		5FC996E91CBE3DAC00AABF9C /* DateStringTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FC996E81CBE3DAC00AABF9C /* DateStringTransformer.m */; };
-		FFC59AEE1D82BBB3000A9192 /* HYPTestValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = FFC59AED1D82BBB3000A9192 /* HYPTestValueTransformer.m */; };
+		14D28F391D9459C800627442 /* DateStringTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D28F361D9459C800627442 /* DateStringTransformer.m */; };
+		14D28F3A1D9459C800627442 /* HYPTestValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D28F381D9459C800627442 /* HYPTestValueTransformer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,14 +42,14 @@
 		14C0AF811BD6D4230009ECBE /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 		14C0AF821BD6D4230009ECBE /* CONTRIBUTING.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CONTRIBUTING.md; sourceTree = "<group>"; };
 		14C0AF831BD6D4230009ECBE /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		14D28F351D9459C800627442 /* DateStringTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateStringTransformer.h; sourceTree = "<group>"; };
+		14D28F361D9459C800627442 /* DateStringTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateStringTransformer.m; sourceTree = "<group>"; };
+		14D28F371D9459C800627442 /* HYPTestValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYPTestValueTransformer.h; sourceTree = "<group>"; };
+		14D28F381D9459C800627442 /* HYPTestValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYPTestValueTransformer.m; sourceTree = "<group>"; };
 		1D1942E6DFEC7BA1ECBCFA55 /* Pods-Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.release.xcconfig"; sourceTree = "<group>"; };
-		5FC996E71CBE3DAC00AABF9C /* DateStringTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateStringTransformer.h; sourceTree = "<group>"; };
-		5FC996E81CBE3DAC00AABF9C /* DateStringTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateStringTransformer.m; sourceTree = "<group>"; };
 		76ED3651E49292BE7F84B482 /* Pods-Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		83B14461308119C88681D8FA /* Pods_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A270238462A3030B20904C17 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		FFC59AEC1D82BBB3000A9192 /* HYPTestValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYPTestValueTransformer.h; sourceTree = "<group>"; };
-		FFC59AED1D82BBB3000A9192 /* HYPTestValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYPTestValueTransformer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,7 +77,6 @@
 		1467A3511C06057B0036EC82 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				14E39C021D7008B80083AF2E /* Classes */,
 				14828C251D700516001DEE7E /* Bug112.xcdatamodeld */,
 				148956DF1C5F6AED00CA505D /* Ordered.xcdatamodeld */,
 				148956E21C5F6AF500CA505D /* Model.xcdatamodeld */,
@@ -110,6 +109,7 @@
 		146D72AF1AB782920058798C /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				14D28F341D9459C800627442 /* Transformers */,
 				1467A3511C06057B0036EC82 /* Models */,
 				14260D2A1BDD5D2100E6A83B /* HelperTests.m */,
 				14260D2C1BDD5D2100E6A83B /* HYPDictionaryTests.m */,
@@ -118,8 +118,6 @@
 				14260D2B1BDD5D2100E6A83B /* Info.plist */,
 				146D72B01AB782920058798C /* Supporting Files */,
 				14828C2B1D70070A001DEE7E /* Helper.swift */,
-				FFC59AEC1D82BBB3000A9192 /* HYPTestValueTransformer.h */,
-				FFC59AED1D82BBB3000A9192 /* HYPTestValueTransformer.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -144,13 +142,15 @@
 			name = Metadata;
 			sourceTree = "<group>";
 		};
-		14E39C021D7008B80083AF2E /* Classes */ = {
+		14D28F341D9459C800627442 /* Transformers */ = {
 			isa = PBXGroup;
 			children = (
-				5FC996E71CBE3DAC00AABF9C /* DateStringTransformer.h */,
-				5FC996E81CBE3DAC00AABF9C /* DateStringTransformer.m */,
+				14D28F351D9459C800627442 /* DateStringTransformer.h */,
+				14D28F361D9459C800627442 /* DateStringTransformer.m */,
+				14D28F371D9459C800627442 /* HYPTestValueTransformer.h */,
+				14D28F381D9459C800627442 /* HYPTestValueTransformer.m */,
 			);
-			name = Classes;
+			path = Transformers;
 			sourceTree = "<group>";
 		};
 		89EE9DB533D15584F9C7F761 /* Frameworks */ = {
@@ -293,15 +293,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				1443F19D1D94484A004E1FA5 /* NSManagedObject+HYPPropertyMapper.m in Sources */,
+				14D28F3A1D9459C800627442 /* HYPTestValueTransformer.m in Sources */,
 				1443F19E1D94484A004E1FA5 /* NSManagedObject+HYPPropertyMapperHelpers.m in Sources */,
 				14828C271D700516001DEE7E /* Bug112.xcdatamodeld in Sources */,
+				14D28F391D9459C800627442 /* DateStringTransformer.m in Sources */,
 				14828C2A1D700649001DEE7E /* FillWithDictionaryTests.swift in Sources */,
 				14260D4E1BDD5D2100E6A83B /* HelperTests.m in Sources */,
 				148956E41C5F6AF500CA505D /* Model.xcdatamodeld in Sources */,
-				FFC59AEE1D82BBB3000A9192 /* HYPTestValueTransformer.m in Sources */,
 				14BAEF221C5F5F250023D0CA /* HYPFillWithDictionaryTests.m in Sources */,
 				14260D501BDD5D2100E6A83B /* HYPDictionaryTests.m in Sources */,
-				5FC996E91CBE3DAC00AABF9C /* DateStringTransformer.m in Sources */,
 				148956E11C5F6AED00CA505D /* Ordered.xcdatamodeld in Sources */,
 				14828C2C1D70070A001DEE7E /* Helper.swift in Sources */,
 			);

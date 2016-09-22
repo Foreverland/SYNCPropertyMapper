@@ -128,7 +128,7 @@
     [NSValueTransformer setValueTransformer:[[HYPTestValueTransformer alloc] init] forName:@"HYPTestValueTransformer"];
     
     DATAStack *dataStack = [self dataStack];
-    Attribute *attributes = [self entityNamed:@"Attributes" inContext:dataStack.mainContext];
+    Attribute *attributes = [self entityNamed:@"Attribute" inContext:dataStack.mainContext];
     [attributes hyp_fillWithDictionary:values];
 
     XCTAssertEqualObjects(attributes.integerString, @16);
@@ -175,7 +175,7 @@
     [NSValueTransformer setValueTransformer:[[HYPTestValueTransformer alloc] init] forName:@"HYPTestValueTransformer"];
     
     DATAStack *dataStack = [self dataStack];
-    Attribute *attributes = [self entityNamed:@"Attributes" inContext:dataStack.mainContext];
+    Attribute *attributes = [self entityNamed:@"Attribute" inContext:dataStack.mainContext];
     [attributes hyp_fillWithDictionary:values];
     
     XCTAssertEqualObjects(attributes.integerString, @16);
@@ -443,12 +443,30 @@
                                      }
                              };
 
-    KeyPath *keyPaths = [self entityNamed:@"KeyPaths" inContext:dataStack.mainContext];
+    KeyPath *keyPaths = [self entityNamed:@"KeyPath" inContext:dataStack.mainContext];
 
     [keyPaths hyp_fillWithDictionary:values];
 
     XCTAssertEqualObjects(keyPaths.snakeCaseDepthOne, @"Value 1");
     XCTAssertEqualObjects(keyPaths.snakeCaseDepthTwo, @"Value 2");
+}
+
+- (void)testCustomKeyPathCamelCase {
+    DATAStack *dataStack = [self dataStack];
+
+    NSDictionary *values = @{@"camelParent": @{
+                                     @"valueOne": @"Value 1",
+                                     @"depthOne": @{
+                                             @"depthTwo": @"Value 2" }
+                                     }
+                             };
+
+    KeyPath *keyPaths = [self entityNamed:@"KeyPath" inContext:dataStack.mainContext];
+
+    [keyPaths hyp_fillWithDictionary:values];
+
+    XCTAssertEqualObjects(keyPaths.camelCaseDepthOne, @"Value 1");
+    XCTAssertEqualObjects(keyPaths.camelCaseDepthTwo, @"Value 2");
 }
 
 @end

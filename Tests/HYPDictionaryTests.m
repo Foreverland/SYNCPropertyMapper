@@ -96,6 +96,15 @@
     return note;
 }
 
+- (OrderedNote *)orderedNoteWithID:(NSNumber *)remoteID
+           inContext:(NSManagedObjectContext *)context {
+    OrderedNote *note = [self entityNamed:@"OrderedNote" inContext:context];
+    note.remoteID = remoteID;
+    note.text = [NSString stringWithFormat:@"This is the text for the note %@", remoteID];
+
+    return note;
+}
+
 - (Company *)companyWithID:(NSNumber *)remoteID
                    andName:(NSString *)name
                  inContext:(NSManagedObjectContext *)context {
@@ -129,9 +138,9 @@
     [NSValueTransformer setValueTransformer:[[HYPTestValueTransformer alloc] init] forName:@"HYPTestValueTransformer"];
     
     DATAStack *dataStack = [self dataStack];
-    Attribute*attributes = [self entityNamed:@"Attributes" inContext:dataStack.mainContext];
+    Attribute *attributes = [self entityNamed:@"Attribute" inContext:dataStack.mainContext];
     [attributes hyp_fillWithDictionary:values];
-    XCTAssertEqualObjects(values[@"type"], attributes.attributesType);
+    XCTAssertEqualObjects(values[@"type"], attributes.attributeType);
 
     NSDictionary *resultDictionary = [attributes hyp_dictionary];
     XCTAssertEqualObjects(resultDictionary[@"integer_string"], @16);
@@ -233,7 +242,7 @@
                                                          bundle:[NSBundle bundleForClass:[self class]]
                                                       storeType:DATAStackStoreTypeInMemory];
 
-    User *user = [self entityNamed:@"User" inContext:dataStack.mainContext];
+    OrderedUser *user = [self entityNamed:@"OrderedUser" inContext:dataStack.mainContext];
     user.rawSigned = @"raw";
     user.age = @25;
     user.birthDate = self.testDate;
@@ -241,9 +250,9 @@
     user.driverIdentifier = @"ABC8283";
     user.firstName = @"John";
     user.lastName = @"Hyperseed";
-    user.userDescription = @"John Description";
+    user.orderedUserDescription = @"John Description";
     user.remoteID = @111;
-    user.userType = @"Manager";
+    user.orderedUserType = @"Manager";
     user.createdAt = self.testDate;
     user.updatedAt = self.testDate;
     user.numberOfAttendes = @30;
@@ -254,14 +263,14 @@
     user.expenses = [NSKeyedArchiver archivedDataWithRootObject:@{@"cake" : @12.50,
                                                                   @"juice" : @0.50}];
 
-    Note *note = [self noteWithID:@1 inContext:dataStack.mainContext];
+    OrderedNote *note = [self orderedNoteWithID:@1 inContext:dataStack.mainContext];
     note.user = user;
 
-    note = [self noteWithID:@14 inContext:dataStack.mainContext];
+    note = [self orderedNoteWithID:@14 inContext:dataStack.mainContext];
     note.user = user;
     note.destroy = @YES;
 
-    note = [self noteWithID:@7 inContext:dataStack.mainContext];
+    note = [self orderedNoteWithID:@7 inContext:dataStack.mainContext];
     note.user = user;
 
     NSDictionary *dictionary = [user hyp_dictionaryUsingRelationshipType:HYPPropertyMapperRelationshipTypeArray];
@@ -285,6 +294,7 @@
                             @"text" : @"This is the text for the note 14"};
     comparedDictionary[@"notes"] = @[note1, note2, note3];
 
+    // WARNING: This should convert `ordered_user_type` to just `type` and `ordered_user_description` to just `description`.
     XCTAssertEqualObjects(dictionary, [comparedDictionary copy]);
 }
 
