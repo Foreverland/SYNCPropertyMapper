@@ -11,6 +11,7 @@
 		14260D501BDD5D2100E6A83B /* HYPDictionaryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14260D2C1BDD5D2100E6A83B /* HYPDictionaryTests.m */; };
 		1443F19D1D94484A004E1FA5 /* NSManagedObject+HYPPropertyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1443F19A1D94484A004E1FA5 /* NSManagedObject+HYPPropertyMapper.m */; };
 		1443F19E1D94484A004E1FA5 /* NSManagedObject+HYPPropertyMapperHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 1443F19C1D94484A004E1FA5 /* NSManagedObject+HYPPropertyMapperHelpers.m */; };
+		14564F9C1D98870700C48594 /* 121.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14564F9A1D98870700C48594 /* 121.xcdatamodeld */; };
 		14828C271D700516001DEE7E /* Bug112.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 14828C251D700516001DEE7E /* Bug112.xcdatamodeld */; };
 		14828C2A1D700649001DEE7E /* FillWithDictionaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14828C291D700649001DEE7E /* FillWithDictionaryTests.swift */; };
 		14828C2C1D70070A001DEE7E /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14828C2B1D70070A001DEE7E /* Helper.swift */; };
@@ -30,6 +31,7 @@
 		1443F19A1D94484A004E1FA5 /* NSManagedObject+HYPPropertyMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+HYPPropertyMapper.m"; sourceTree = "<group>"; };
 		1443F19B1D94484A004E1FA5 /* NSManagedObject+HYPPropertyMapperHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+HYPPropertyMapperHelpers.h"; sourceTree = "<group>"; };
 		1443F19C1D94484A004E1FA5 /* NSManagedObject+HYPPropertyMapperHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+HYPPropertyMapperHelpers.m"; sourceTree = "<group>"; };
+		14564F9B1D98870700C48594 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		146D72AC1AB782920058798C /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		146D72B11AB782920058798C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		14828C261D700516001DEE7E /* hypbug.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = hypbug.xcdatamodel; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 		1467A3511C06057B0036EC82 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				14564F9A1D98870700C48594 /* 121.xcdatamodeld */,
 				14828C251D700516001DEE7E /* Bug112.xcdatamodeld */,
 				148956DF1C5F6AED00CA505D /* Ordered.xcdatamodeld */,
 				148956E21C5F6AF500CA505D /* Model.xcdatamodeld */,
@@ -305,6 +308,7 @@
 				14BAEF221C5F5F250023D0CA /* HYPFillWithDictionaryTests.m in Sources */,
 				14260D501BDD5D2100E6A83B /* HYPDictionaryTests.m in Sources */,
 				148956E11C5F6AED00CA505D /* Ordered.xcdatamodeld in Sources */,
+				14564F9C1D98870700C48594 /* 121.xcdatamodeld in Sources */,
 				14828C2C1D70070A001DEE7E /* Helper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -412,7 +416,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sample.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -427,7 +431,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sample.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -455,6 +459,16 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
+		14564F9A1D98870700C48594 /* 121.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				14564F9B1D98870700C48594 /* Model.xcdatamodel */,
+			);
+			currentVersion = 14564F9B1D98870700C48594 /* Model.xcdatamodel */;
+			path = 121.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
 		14828C251D700516001DEE7E /* Bug112.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
