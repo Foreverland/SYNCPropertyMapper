@@ -25,14 +25,29 @@ class FillWithDictionaryTests: XCTestCase {
         let taskBoby = [
             "id" : 1,
             "owner" : ownerBody
-        ]
+        ] as [String : Any]
         let expected = [
             "id" : 1,
             "owner" : ownerBody,
             "tasks" : [ taskBoby ]
-        ]
+        ] as [String : Any]
 
-        XCTAssertEqual(expected, taskList.hyp_dictionaryUsingRelationshipType(HYPPropertyMapperRelationshipType.Array))
+        XCTAssertEqual(expected as NSDictionary, taskList.hyp_dictionary(using: HYPPropertyMapperRelationshipType.array) as NSDictionary)
+
+        try! dataStack.drop()
+    }
+
+    func testBug121() {
+        let dataStack = Helper.dataStackWithModelName("121")
+
+        let album = Helper.insertEntity("Album", dataStack: dataStack) as! Album
+        let json = [
+            "id": "a",
+            "coverPhoto": ["id": "b"]
+        ] as [String : Any]
+        album.hyp_fill(with: json)
+
+        XCTAssertNotNil(album.coverPhoto)
 
         try! dataStack.drop()
     }
