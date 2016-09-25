@@ -18,7 +18,7 @@ static NSString * const HYPPropertyMapperNestedAttributesKey = @"attributes";
         NSAttributeDescription *attributeDescription = [self attributeDescriptionForRemoteKey:key];
         if (attributeDescription) {
             BOOL valueExists = (value && ![value isKindOfClass:[NSNull class]]);
-            if (valueExists && [value isKindOfClass:[NSDictionary class]]) {
+            if (valueExists && [value isKindOfClass:[NSDictionary class]] && attributeDescription.attributeType != NSBinaryDataAttributeType) {
                 NSString *remoteKey = [self remoteKeyForAttributeDescription:attributeDescription];
                 BOOL hasCustomKeyPath = remoteKey && [remoteKey rangeOfString:@"."].location != NSNotFound;
                 if (hasCustomKeyPath) {
