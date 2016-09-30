@@ -1,11 +1,11 @@
 PODS:
-  - DATAStack (6.0.0)
-  - DateParser (0.1.0)
-  - NSEntityDescription-SYNCPrimaryKey (1.2.7):
+  - DATAStack (6.0.1)
+  - DateParser (0.1.1)
+  - NSEntityDescription-SYNCPrimaryKey (1.2.8):
     - NSString-HYPNetworking (~> 1.0.6)
-  - NSManagedObject-HYPPropertyMapper (4.1.2):
-    - DateParser (~> 0.1.0)
-    - NSEntityDescription-SYNCPrimaryKey (~> 1.2.7)
+  - NSManagedObject-HYPPropertyMapper (4.1.3):
+    - DateParser (~> 0.1.1)
+    - NSEntityDescription-SYNCPrimaryKey (~> 1.2.8)
   - NSString-HYPNetworking (1.0.6)
 
 DEPENDENCIES:
@@ -17,10 +17,10 @@ EXTERNAL SOURCES:
     :path: "."
 
 SPEC CHECKSUMS:
-  DATAStack: 4cdf8e1b50f6d80c7d70f75e7a2c29545a008860
-  DateParser: 6609ccde5a21650e2f61cea718a2e5c6c34ce4e8
-  NSEntityDescription-SYNCPrimaryKey: c7942c62eb64691576451e1dc180e2067f0a5af8
-  NSManagedObject-HYPPropertyMapper: 6d26449f1eac74f140906ba2eefebc359da65826
+  DATAStack: 4138a30db76d535d04f9130847ac59748c6c16aa
+  DateParser: 17a256f651c5dd754b83aca6ef5827d796a5f292
+  NSEntityDescription-SYNCPrimaryKey: 6e0ca0958f7e05a15e2ed9317e5afeb75af6c782
+  NSManagedObject-HYPPropertyMapper: b054e2b9c8be5bb24a7f6f1729395cdb5903171c
   NSString-HYPNetworking: 97eb879c5c43663dde06f89e01e8e1551a3f5bb7
 
 PODFILE CHECKSUM: c813149079d34ea8cf7649f59d475d9fb42faa19

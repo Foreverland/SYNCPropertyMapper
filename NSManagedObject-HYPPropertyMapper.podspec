@@ -1,28 +1,25 @@
 Pod::Spec.new do |s|
   s.name = "NSManagedObject-HYPPropertyMapper"
-  s.version = "4.1.2"
+  s.version = "4.1.3"
   s.summary = "Mapping your Core Data objects with your JSON providing backend has never been this easy"
   s.description = <<-DESC
                    * Mapping your Core Data objects with your JSON providing backend has never been this easy
                    DESC
-  s.homepage = "https://github.com/hyperoslo/NSManagedObject-HYPPropertyMapper"
+  s.homepage = "https://github.com/SyncDB/NSManagedObject-HYPPropertyMapper"
   s.license = {
     :type => 'MIT',
     :file => 'LICENSE.md'
   }
-  s.author = { "Hyper Interaktiv" => "teknologi@hyper.no" }
-  s.social_media_url = "https://twitter.com/hyperoslo"
+  s.author           = { "SyncDB" => "syncdb.contact@gmail.com" }
+  s.social_media_url = "https://twitter.com/Sync_DB"
   s.ios.deployment_target = '8.0'
   s.osx.deployment_target = '10.9'
   s.watchos.deployment_target = '2.0'
   s.tvos.deployment_target = '9.0'
-  s.source = {
-    :git => 'https://github.com/hyperoslo/NSManagedObject-HYPPropertyMapper.git',
-    :tag => s.version.to_s
-  }
+  s.source           = { :git => "https://github.com/SyncDB/NSManagedObject-HYPPropertyMapper.git", :tag => s.version.to_s }
   s.source_files = 'Source'
   s.frameworks = 'Foundation'
   s.requires_arc = true
-  s.dependency 'DateParser', '~> 0.1.0'
-  s.dependency 'NSEntityDescription-SYNCPrimaryKey', '~> 1.2.7'
+  s.dependency 'DateParser', '~> 0.1.1'
+  s.dependency 'NSEntityDescription-SYNCPrimaryKey', '~> 1.2.8'
 end
