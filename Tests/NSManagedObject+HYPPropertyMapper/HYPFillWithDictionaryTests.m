@@ -2,7 +2,6 @@
 @import XCTest;
 
 #import "NSManagedObject+HYPPropertyMapper.h"
-
 #import "OrderedUser+CoreDataClass.h"
 #import "OrderedNote+CoreDataClass.h"
 #import "Company+CoreDataClass.h"
@@ -16,7 +15,6 @@
 #import "User+CoreDataClass.h"
 #import "Note+CoreDataClass.h"
 #import "KeyPath+CoreDataClass.h"
-
 #import "HYPTestValueTransformer.h"
 
 @import DATAStack;
