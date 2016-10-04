@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
   s.watchos.deployment_target = '2.0'
   s.tvos.deployment_target = '9.0'
   s.source           = { :git => "https://github.com/SyncDB/NSManagedObject-HYPPropertyMapper.git", :tag => s.version.to_s }
-  s.source_files = 'Sources'
+  s.source_files = 'Sources/**/*'
   s.frameworks = 'Foundation'
   s.requires_arc = true
 end
