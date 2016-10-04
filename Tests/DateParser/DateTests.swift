@@ -68,7 +68,7 @@ class DateTests: XCTestCase {
     }
 
     func testDateI() {
-        let resultDate = NSDate(fromDateString:"2014-01-02T00:monsterofthelakeI'mhere00:00.007450+00:00") as Date
+        let resultDate = NSDate(fromDateString:"2014-01-02T00:monsterofthelakeI'mhere00:00.007450+00:00")
         XCTAssertNil(resultDate)        
     }
 
