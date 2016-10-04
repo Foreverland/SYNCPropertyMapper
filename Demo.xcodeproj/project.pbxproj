@@ -23,10 +23,10 @@
 		44E0567B1DA3FB3600E85367 /* DATAStack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44E0567A1DA3FB3600E85367 /* DATAStack.framework */; };
 		44E0567D1DA3FB3C00E85367 /* DATAStack.framework in Resources */ = {isa = PBXBuildFile; fileRef = 44E0567C1DA3FB3C00E85367 /* DATAStack.framework */; };
 		44F8E0CD1DA3F9A6005D45AB /* NSDate+Parser.m in Sources */ = {isa = PBXBuildFile; fileRef = 44F8E0CC1DA3F9A6005D45AB /* NSDate+Parser.m */; };
-		44F8E0D01DA3F9C6005D45AB /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F8E0CF1DA3F9C6005D45AB /* Tests.swift */; };
+		44F8E0D01DA3F9C6005D45AB /* DateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F8E0CF1DA3F9C6005D45AB /* DateTests.swift */; };
 		44F8E0D41DA3FA05005D45AB /* NSEntityDescription+SYNCPrimaryKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 44F8E0D31DA3FA05005D45AB /* NSEntityDescription+SYNCPrimaryKey.m */; };
 		44F8E0D91DA3FA1F005D45AB /* Pod.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 44F8E0D61DA3FA1F005D45AB /* Pod.xcdatamodeld */; };
-		44F8E0DA1DA3FA1F005D45AB /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 44F8E0D81DA3FA1F005D45AB /* Tests.m */; };
+		44F8E0DA1DA3FA1F005D45AB /* PrimaryKeyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 44F8E0D81DA3FA1F005D45AB /* PrimaryKeyTests.m */; };
 		44F8E0DE1DA3FA48005D45AB /* NSString+HYPNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 44F8E0DD1DA3FA48005D45AB /* NSString+HYPNetworking.m */; };
 		44F8E0E11DA3FA62005D45AB /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 44F8E0E01DA3FA62005D45AB /* Tests.m */; };
 /* End PBXBuildFile section */
@@ -61,11 +61,11 @@
 		44E0567E1DA3FBE800E85367 /* BridgingHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
 		44F8E0CB1DA3F9A6005D45AB /* NSDate+Parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Parser.h"; sourceTree = "<group>"; };
 		44F8E0CC1DA3F9A6005D45AB /* NSDate+Parser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Parser.m"; sourceTree = "<group>"; };
-		44F8E0CF1DA3F9C6005D45AB /* Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
+		44F8E0CF1DA3F9C6005D45AB /* DateTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateTests.swift; sourceTree = "<group>"; };
 		44F8E0D21DA3FA05005D45AB /* NSEntityDescription+SYNCPrimaryKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSEntityDescription+SYNCPrimaryKey.h"; sourceTree = "<group>"; };
 		44F8E0D31DA3FA05005D45AB /* NSEntityDescription+SYNCPrimaryKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSEntityDescription+SYNCPrimaryKey.m"; sourceTree = "<group>"; };
 		44F8E0D71DA3FA1F005D45AB /* Demo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Demo.xcdatamodel; sourceTree = "<group>"; };
-		44F8E0D81DA3FA1F005D45AB /* Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
+		44F8E0D81DA3FA1F005D45AB /* PrimaryKeyTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrimaryKeyTests.m; sourceTree = "<group>"; };
 		44F8E0DC1DA3FA48005D45AB /* NSString+HYPNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+HYPNetworking.h"; sourceTree = "<group>"; };
 		44F8E0DD1DA3FA48005D45AB /* NSString+HYPNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+HYPNetworking.m"; sourceTree = "<group>"; };
 		44F8E0E01DA3FA62005D45AB /* Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
@@ -200,7 +200,7 @@
 		44F8E0CE1DA3F9C6005D45AB /* DateParser */ = {
 			isa = PBXGroup;
 			children = (
-				44F8E0CF1DA3F9C6005D45AB /* Tests.swift */,
+				44F8E0CF1DA3F9C6005D45AB /* DateTests.swift */,
 			);
 			path = DateParser;
 			sourceTree = "<group>";
@@ -218,7 +218,7 @@
 			isa = PBXGroup;
 			children = (
 				44F8E0D61DA3FA1F005D45AB /* Pod.xcdatamodeld */,
-				44F8E0D81DA3FA1F005D45AB /* Tests.m */,
+				44F8E0D81DA3FA1F005D45AB /* PrimaryKeyTests.m */,
 			);
 			path = "NSEntityDescription-SYNCPrimaryKey";
 			sourceTree = "<group>";
@@ -323,9 +323,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				44943ED01DA3F92A00D23F21 /* Bug112.xcdatamodeld in Sources */,
-				44F8E0D01DA3F9C6005D45AB /* Tests.swift in Sources */,
+				44F8E0D01DA3F9C6005D45AB /* DateTests.swift in Sources */,
 				44943ECF1DA3F92A00D23F21 /* 121.xcdatamodeld in Sources */,
-				44F8E0DA1DA3FA1F005D45AB /* Tests.m in Sources */,
+				44F8E0DA1DA3FA1F005D45AB /* PrimaryKeyTests.m in Sources */,
 				44943EB41DA3F91A00D23F21 /* NSManagedObject+HYPPropertyMapper.m in Sources */,
 				44943ECB1DA3F92A00D23F21 /* Helper.swift in Sources */,
 				44943ED21DA3F92A00D23F21 /* Ordered.xcdatamodeld in Sources */,

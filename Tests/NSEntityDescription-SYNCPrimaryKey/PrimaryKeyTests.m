@@ -4,11 +4,11 @@
 @import DATAStack;
 #import "NSEntityDescription+SYNCPrimaryKey.h"
 
-@interface Tests : XCTestCase
+@interface PrimaryKeyTests : XCTestCase
 
 @end
 
-@implementation Tests
+@implementation PrimaryKeyTests
 
 - (NSEntityDescription *)entityForName:(NSString *)name {
     DATAStack *dataStack = [[DATAStack alloc] initWithModelName:@"Pod"
