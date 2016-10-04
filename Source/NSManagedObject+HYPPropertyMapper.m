@@ -11,7 +11,7 @@ static NSString * const HYPPropertyMapperNestedAttributesKey = @"attributes";
 
 #pragma mark - Public methods
 
-- (void)hyp_fillWithDictionary:(NSDictionary *)dictionary {
+- (void)hyp_fillWithDictionary:(NSDictionary<NSString *, id> *)dictionary {
     for (__strong NSString *key in dictionary) {
         id value = [dictionary objectForKey:key];
 
@@ -57,23 +57,23 @@ static NSString * const HYPPropertyMapperNestedAttributesKey = @"attributes";
     }
 }
 
-- (NSDictionary *)hyp_dictionary {
+- (NSDictionary<NSString *, id> *)hyp_dictionary {
     return [self hyp_dictionaryWithDateFormatter:[self defaultDateFormatter] usingRelationshipType:HYPPropertyMapperRelationshipTypeNested];
 }
 
-- (NSDictionary *)hyp_dictionaryUsingRelationshipType:(HYPPropertyMapperRelationshipType)relationshipType {
+- (NSDictionary<NSString *, id> *)hyp_dictionaryUsingRelationshipType:(HYPPropertyMapperRelationshipType)relationshipType {
     return [self hyp_dictionaryWithDateFormatter:[self defaultDateFormatter] usingRelationshipType:relationshipType];
 }
 
-- (NSDictionary *)hyp_dictionaryWithDateFormatter:(NSDateFormatter *)dateFormatter {
+- (NSDictionary<NSString *, id> *)hyp_dictionaryWithDateFormatter:(NSDateFormatter *)dateFormatter {
     return [self hyp_dictionaryWithDateFormatter:dateFormatter parent:nil usingRelationshipType:HYPPropertyMapperRelationshipTypeNested];
 }
 
-- (NSDictionary *)hyp_dictionaryWithDateFormatter:(NSDateFormatter *)dateFormatter usingRelationshipType:(HYPPropertyMapperRelationshipType)relationshipType {
+- (NSDictionary<NSString *, id> *)hyp_dictionaryWithDateFormatter:(NSDateFormatter *)dateFormatter usingRelationshipType:(HYPPropertyMapperRelationshipType)relationshipType {
     return [self hyp_dictionaryWithDateFormatter:dateFormatter parent:nil usingRelationshipType:relationshipType];
 }
 
-- (NSDictionary *)hyp_dictionaryWithDateFormatter:(NSDateFormatter *)dateFormatter parent:(NSManagedObject *)parent usingRelationshipType:(HYPPropertyMapperRelationshipType)relationshipType {
+- (NSDictionary<NSString *, id> *)hyp_dictionaryWithDateFormatter:(NSDateFormatter *)dateFormatter parent:( NSManagedObject * _Nullable )parent usingRelationshipType:(HYPPropertyMapperRelationshipType)relationshipType {
     NSMutableDictionary *managedObjectAttributes = [NSMutableDictionary new];
 
     for (id propertyDescription in self.entity.properties) {
