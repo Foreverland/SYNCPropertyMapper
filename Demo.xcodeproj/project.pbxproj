@@ -28,7 +28,7 @@
 		44F8E0D91DA3FA1F005D45AB /* Pod.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 44F8E0D61DA3FA1F005D45AB /* Pod.xcdatamodeld */; };
 		44F8E0DA1DA3FA1F005D45AB /* PrimaryKeyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 44F8E0D81DA3FA1F005D45AB /* PrimaryKeyTests.m */; };
 		44F8E0DE1DA3FA48005D45AB /* NSString+HYPNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 44F8E0DD1DA3FA48005D45AB /* NSString+HYPNetworking.m */; };
-		44F8E0E11DA3FA62005D45AB /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 44F8E0E01DA3FA62005D45AB /* Tests.m */; };
+		44F8E0E11DA3FA62005D45AB /* NSString_HYPNetworkingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 44F8E0E01DA3FA62005D45AB /* NSString_HYPNetworkingTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,7 +68,7 @@
 		44F8E0D81DA3FA1F005D45AB /* PrimaryKeyTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrimaryKeyTests.m; sourceTree = "<group>"; };
 		44F8E0DC1DA3FA48005D45AB /* NSString+HYPNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+HYPNetworking.h"; sourceTree = "<group>"; };
 		44F8E0DD1DA3FA48005D45AB /* NSString+HYPNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+HYPNetworking.m"; sourceTree = "<group>"; };
-		44F8E0E01DA3FA62005D45AB /* Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
+		44F8E0E01DA3FA62005D45AB /* NSString_HYPNetworkingTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSString_HYPNetworkingTests.m; sourceTree = "<group>"; };
 		A270238462A3030B20904C17 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -235,7 +235,7 @@
 		44F8E0DF1DA3FA62005D45AB /* NSString-HYPNetworking */ = {
 			isa = PBXGroup;
 			children = (
-				44F8E0E01DA3FA62005D45AB /* Tests.m */,
+				44F8E0E01DA3FA62005D45AB /* NSString_HYPNetworkingTests.m */,
 			);
 			path = "NSString-HYPNetworking";
 			sourceTree = "<group>";
@@ -335,7 +335,7 @@
 				44943ECA1DA3F92A00D23F21 /* FillWithDictionaryTests.swift in Sources */,
 				44F8E0CD1DA3F9A6005D45AB /* NSDate+Parser.m in Sources */,
 				44F8E0DE1DA3FA48005D45AB /* NSString+HYPNetworking.m in Sources */,
-				44F8E0E11DA3FA62005D45AB /* Tests.m in Sources */,
+				44F8E0E11DA3FA62005D45AB /* NSString_HYPNetworkingTests.m in Sources */,
 				44943ED31DA3F92A00D23F21 /* DateStringTransformer.m in Sources */,
 				44943ED41DA3F92A00D23F21 /* HYPTestValueTransformer.m in Sources */,
 				44943ECC1DA3F92A00D23F21 /* HelperTests.m in Sources */,

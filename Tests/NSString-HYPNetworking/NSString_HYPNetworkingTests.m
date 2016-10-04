@@ -10,11 +10,11 @@
 
 @end
 
-@interface Tests : XCTestCase
+@interface NSString_HYPNetworkingTests : XCTestCase
 
 @end
 
-@implementation Tests
+@implementation NSString_HYPNetworkingTests
 
 #pragma mark - Inflections
 
