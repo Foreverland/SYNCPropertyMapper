@@ -49,7 +49,6 @@
 		142C957E1DA4178F00F9F32F /* NSDate+Parser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Parser.m"; sourceTree = "<group>"; };
 		142C95801DA4178F00F9F32F /* NSEntityDescription+SYNCPrimaryKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSEntityDescription+SYNCPrimaryKey.h"; sourceTree = "<group>"; };
 		142C95811DA4178F00F9F32F /* NSEntityDescription+SYNCPrimaryKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSEntityDescription+SYNCPrimaryKey.m"; sourceTree = "<group>"; };
-		142C95821DA4178F00F9F32F /* NSManagedObject-HYPPropertyMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject-HYPPropertyMapper.h"; sourceTree = "<group>"; };
 		142C95841DA4178F00F9F32F /* NSManagedObject+HYPPropertyMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+HYPPropertyMapper.h"; sourceTree = "<group>"; };
 		142C95851DA4178F00F9F32F /* NSManagedObject+HYPPropertyMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+HYPPropertyMapper.m"; sourceTree = "<group>"; };
 		142C95861DA4178F00F9F32F /* NSManagedObject+HYPPropertyMapperHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+HYPPropertyMapperHelpers.h"; sourceTree = "<group>"; };
@@ -268,7 +267,6 @@
 			children = (
 				142C957C1DA4178F00F9F32F /* DateParser */,
 				142C957F1DA4178F00F9F32F /* NSEntityDescription-SYNCPrimaryKey */,
-				142C95821DA4178F00F9F32F /* NSManagedObject-HYPPropertyMapper.h */,
 				142C95831DA4178F00F9F32F /* NSManagedObject+HYPPropertyMapper */,
 				142C95881DA4178F00F9F32F /* NSString-HYPNetworking */,
 			);
