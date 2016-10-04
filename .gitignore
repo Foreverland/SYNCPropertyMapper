@@ -26,6 +26,5 @@ DerivedData
 *.ipa
 *.xcuserstate
 *.xcscmblueprint
-
-# CocoaPods
-Pods
+*.gcno
+*.gcda

@@ -2,8 +2,7 @@
 
 #import "NSString+HYPNetworking.h"
 #import "NSManagedObject+HYPPropertyMapperHelpers.h"
-
-@import DateParser;
+#import "NSDate+Parser.h"
 
 static NSString * const HYPPropertyMapperNestedAttributesKey = @"attributes";
 

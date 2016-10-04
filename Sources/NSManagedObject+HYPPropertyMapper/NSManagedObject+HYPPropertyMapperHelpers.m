@@ -3,7 +3,7 @@
 #import "NSManagedObject+HYPPropertyMapper.h"
 #import "NSString+HYPNetworking.h"
 #import "NSEntityDescription+SYNCPrimaryKey.h"
-@import DateParser;
+#import "NSDate+Parser.h"
 
 @implementation NSManagedObject (HYPPropertyMapperHelpers)
 

@@ -1,7 +1,6 @@
 import CoreData
 import XCTest
 import DATAStack
-import NSManagedObject_HYPPropertyMapper
 
 class FillWithDictionaryTests: XCTestCase {
     func testBug112() {
@@ -32,7 +31,7 @@ class FillWithDictionaryTests: XCTestCase {
             "tasks" : [ taskBoby ]
         ] as [String : Any]
 
-        XCTAssertEqual(expected as NSDictionary, taskList.hyp_dictionary(using: HYPPropertyMapperRelationshipType.array) as NSDictionary)
+        XCTAssertEqual(expected as NSDictionary, taskList.hyp_dictionary(using: .array) as NSDictionary)
 
         try! dataStack.drop()
     }
