@@ -46,9 +46,9 @@ There are two exceptions to this rule:
 
 ## Custom
 
-If you want to map your Core Data attribute with a JSON attribute that has different naming, you can do by adding `hyper.remoteKey` in the user info box with the value you want to map.
-
 ![Remote mapping documentation](https://raw.githubusercontent.com/SyncDB/NSManagedObject-HYPPropertyMapper/master/Resources/userInfo_documentation.png)
+
+* If you want to map your Core Data identifier (key) attribute with a JSON attribute that has different naming, you can do by adding `hyper.remoteKey` in the user info box with the value you want to map.
 
 ## Attribute Types
 
@@ -125,6 +125,10 @@ That's it, that's all you have to do, the keys will be magically transformed int
   "last_name": "Hyperseed"
 }
 ```
+
+If you don't want to export attribute / relationship, you can prohibit exporting by adding `hyper.nonExportable` in the user info of the excluded attribute.
+
+// TODO: Include photo of user key.
 
 It supports relationships too, and we complain to the Rails rule `accepts_nested_attributes_for`, for example for a user that has many notes:
 
