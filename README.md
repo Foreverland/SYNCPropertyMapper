@@ -44,13 +44,11 @@ There are two exceptions to this rule:
 * `id`s should match `remoteID`
 * Reserved attributes should be prefixed with the `entityName` (`type` becomes `userType`, `description` becomes `userDescription` and so on). In the JSON they don't need to change, you can keep `type` and `description` for example. A full list of reserved attributes can be found [here](https://github.com/SyncDB/NSManagedObject-HYPPropertyMapper/blob/master/Source/NSManagedObject%2BHYPPropertyMapper.m#L265)
 
-## User Info keys
+## Custom
 
 ![Remote mapping documentation](https://raw.githubusercontent.com/SyncDB/NSManagedObject-HYPPropertyMapper/master/Resources/userInfo_documentation.png)
 
 * If you want to map your Core Data identifier (key) attribute with a JSON attribute that has different naming, you can do by adding `hyper.remoteKey` in the user info box with the value you want to map.
-* If you don't want to export attribute / relationship, you can prohibit exporting by adding `hyper.nonExportable` in the user info.
-
 
 ## Attribute Types
 
@@ -127,6 +125,10 @@ That's it, that's all you have to do, the keys will be magically transformed int
   "last_name": "Hyperseed"
 }
 ```
+
+If you don't want to export attribute / relationship, you can prohibit exporting by adding `hyper.nonExportable` in the user info of the excluded attribute.
+
+// TODO: Include photo of user key.
 
 It supports relationships too, and we complain to the Rails rule `accepts_nested_attributes_for`, for example for a user that has many notes:
 
