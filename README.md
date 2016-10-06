@@ -126,9 +126,13 @@ That's it, that's all you have to do, the keys will be magically transformed int
 }
 ```
 
+## Excluding
+
 If you don't want to export attribute / relationship, you can prohibit exporting by adding `hyper.nonExportable` in the user info of the excluded attribute.
 
 // TODO: Include photo of user key.
+
+## Relationships
 
 It supports relationships too, and we complain to the Rails rule `accepts_nested_attributes_for`, for example for a user that has many notes:
 
