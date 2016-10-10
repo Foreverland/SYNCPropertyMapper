@@ -82,7 +82,7 @@ If your date is not [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) compliant,
 
 ![transformable-attribute](https://raw.githubusercontent.com/SyncDB/NSManagedObject-HYPPropertyMapper/master/Resources/date-transformable.png)
 
-You can find an example of date transformer in [DateStringTransformer](https://github.com/SyncDB/NSManagedObject-HYPPropertyMapper/blob/master/Tests/Models/DateStringTransformer.m).
+You can find an example of date transformer in [DateStringTransformer](https://github.com/SyncDB/NSManagedObject-HYPPropertyMapper/blob/master/Tests/NSManagedObject%2BHYPPropertyMapper/Transformers/DateStringTransformer.m).
 
 ### Array
 ```objc
