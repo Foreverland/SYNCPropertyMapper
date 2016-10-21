@@ -47,6 +47,24 @@ There are two exceptions to this rules:
 
 * If you want to map your Core Data identifier (key) attribute with a JSON attribute that has different naming, you can do by adding `hyper.remoteKey` in the user info box with the value you want to map.
 
+## Deep mapping
+
+```json
+{
+  "id": 1
+  "name": "John Monad"
+  "company": {
+    "name": "IKEA"
+  }
+}
+```
+
+In this example, if you want to avoid creating a Core Data entity for the company, you could map straight to the company's name. By adding this to your *User Info*:
+
+```
+hyper.remoteKey = company.name
+```
+
 ## Attribute Types
 
 For mapping for arrays and dictionaries just set attributes as `Binary Data` on the Core Data modeler
