@@ -1,6 +1,6 @@
 @import Foundation;
 
-@interface NSString (HYPNetworking)
+@interface NSString (SYNCInflections)
 
 - (nonnull NSString *)hyp_remoteString;
 

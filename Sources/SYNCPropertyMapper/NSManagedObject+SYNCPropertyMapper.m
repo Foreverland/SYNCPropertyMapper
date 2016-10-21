@@ -1,6 +1,6 @@
 #import "NSManagedObject+SYNCPropertyMapper.h"
 
-#import "NSString+HYPNetworking.h"
+#import "NSString+SYNCInflections.h"
 #import "NSManagedObject+SYNCPropertyMapperHelpers.h"
 #import "NSDate+SYNCPropertyMapper.h"
 

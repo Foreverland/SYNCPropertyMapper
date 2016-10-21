@@ -1,19 +1,19 @@
-#import "NSString+HYPNetworking.h"
+#import "NSString+SYNCInflections.h"
 
-typedef void (^HYPNetworkingStringStorageBlock)(void);
+typedef void (^SYNCInflectionsStringStorageBlock)(void);
 
-@interface HYPNetworkingStringStorage : NSObject
+@interface SYNCInflectionsStringStorage : NSObject
 
 @property (nonatomic, strong) NSMutableDictionary *storage;
 @property (nonatomic, strong) dispatch_queue_t serialQueue;
 
 @end
 
-@implementation HYPNetworkingStringStorage
+@implementation SYNCInflectionsStringStorage
 
 + (instancetype)sharedInstance {
     static dispatch_once_t once;
-    static HYPNetworkingStringStorage *sharedInstance;
+    static SYNCInflectionsStringStorage *sharedInstance;
     dispatch_once(&once, ^{
         sharedInstance = [self new];
     });
@@ -23,7 +23,7 @@ typedef void (^HYPNetworkingStringStorageBlock)(void);
 - (instancetype)init {
     self = [super init];
 	if (self) {
-		_serialQueue = dispatch_queue_create("com.syncdb.NSString_HYPNetworking.serialQueue", DISPATCH_QUEUE_SERIAL);
+		_serialQueue = dispatch_queue_create("com.syncdb.NSString_SYNCInflections.serialQueue", DISPATCH_QUEUE_SERIAL);
 	}
 
 	return self;
@@ -38,7 +38,7 @@ typedef void (^HYPNetworkingStringStorageBlock)(void);
     return _storage;
 }
 
-- (void)performOnDictionary:(HYPNetworkingStringStorageBlock)block {
+- (void)performOnDictionary:(SYNCInflectionsStringStorageBlock)block {
 	dispatch_sync(_serialQueue, block);
 
 }
@@ -53,12 +53,12 @@ typedef void (^HYPNetworkingStringStorageBlock)(void);
 
 @end
 
-@implementation NSString (HYPNetworking)
+@implementation NSString (SYNCInflections)
 
 #pragma mark - Private methods
 
 - (nonnull NSString *)hyp_remoteString {
-	HYPNetworkingStringStorage *const stringStorage = [HYPNetworkingStringStorage sharedInstance];
+	SYNCInflectionsStringStorage *const stringStorage = [SYNCInflectionsStringStorage sharedInstance];
 	__block NSString *storedResult = nil;
 
 	[stringStorage performOnDictionary:^{
@@ -80,7 +80,7 @@ typedef void (^HYPNetworkingStringStorageBlock)(void);
 }
 
 - (nullable NSString *)hyp_localString {
-	HYPNetworkingStringStorage *const stringStorage = [HYPNetworkingStringStorage sharedInstance];
+	SYNCInflectionsStringStorage *const stringStorage = [SYNCInflectionsStringStorage sharedInstance];
 	__block NSString *storedResult = nil;
 
 	[stringStorage performOnDictionary:^{

@@ -1,6 +1,6 @@
 @import XCTest;
 
-#import "NSString+HYPNetworking.h"
+#import "NSString+SYNCInflections.h"
 
 @interface NSString (PrivateInflections)
 
@@ -10,11 +10,11 @@
 
 @end
 
-@interface NSString_HYPNetworkingTests : XCTestCase
+@interface NSString_SYNCInflectionsTests : XCTestCase
 
 @end
 
-@implementation NSString_HYPNetworkingTests
+@implementation NSString_SYNCInflectionsTests
 
 #pragma mark - Inflections
 

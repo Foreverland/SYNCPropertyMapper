@@ -1,6 +1,6 @@
 #import "NSEntityDescription+SYNCPrimaryKey.h"
 
-#import "NSString+HYPNetworking.h"
+#import "NSString+SYNCInflections.h"
 
 @implementation NSEntityDescription (SYNCPrimaryKey)
 
