@@ -9,7 +9,6 @@ class FillWithDictionaryTests: XCTestCase {
 
         let owner = Helper.insertEntity("Owner", dataStack: dataStack)
         owner.setValue(1, forKey: "id")
-        owner.setValue("Maria", forKey: "name")
 
         let taskList = Helper.insertEntity("TaskList", dataStack: dataStack)
         taskList.setValue(1, forKey: "id")
@@ -56,17 +55,17 @@ class FillWithDictionaryTests: XCTestCase {
     }
 
     func testBug123() {
-        let dataStack = Helper.dataStackWithModelName("Bug112")
-        let owner = Helper.insertEntity("Owner", dataStack: dataStack)
-        owner.setValue(1, forKey: "id")
-        owner.setValue("Ignore me", forKey: "name")
+        let dataStack = Helper.dataStackWithModelName("123")
+        let user = Helper.insertEntity("User", dataStack: dataStack)
+        user.setValue(1, forKey: "id")
+        user.setValue("Ignore me", forKey: "name")
 
         try! dataStack.mainContext.save()
         let expected = [
             "id": 1,
         ] as [String: Any]
 
-        XCTAssertEqual(expected as NSDictionary, owner.hyp_dictionary(using: .none) as NSDictionary)
+        XCTAssertEqual(expected as NSDictionary, user.hyp_dictionary(using: .none) as NSDictionary)
 
         try! dataStack.drop()
     }

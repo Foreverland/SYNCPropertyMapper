@@ -27,6 +27,7 @@
 		142C95AF1DA4179F00F9F32F /* DateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142C95921DA4179F00F9F32F /* DateTests.swift */; };
 		142C95B11DA4179F00F9F32F /* Pod.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 142C95961DA4179F00F9F32F /* Pod.xcdatamodeld */; };
 		142C95B21DA4179F00F9F32F /* PrimaryKeyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 142C95981DA4179F00F9F32F /* PrimaryKeyTests.m */; };
+		1476902D1DBA4E570050431C /* 123.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1476902B1DBA4E570050431C /* 123.xcdatamodeld */; };
 		14FE523F1DA4182000A55BE4 /* DATAStack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14FE523E1DA4182000A55BE4 /* DATAStack.framework */; };
 		14FE52411DA4182600A55BE4 /* DATAStack.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 14FE52401DA4182600A55BE4 /* DATAStack.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
@@ -75,6 +76,7 @@
 		142C95971DA4179F00F9F32F /* Demo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Demo.xcdatamodel; sourceTree = "<group>"; };
 		142C95981DA4179F00F9F32F /* PrimaryKeyTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrimaryKeyTests.m; sourceTree = "<group>"; };
 		146D72AC1AB782920058798C /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1476902C1DBA4E570050431C /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		14C0AF801BD6D4230009ECBE /* .travis.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .travis.yml; sourceTree = "<group>"; };
 		14C0AF811BD6D4230009ECBE /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 		14C0AF821BD6D4230009ECBE /* CONTRIBUTING.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CONTRIBUTING.md; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 				1413932D1DBA19B60027D53A /* Bug112.xcdatamodeld */,
 				1413932F1DBA19B60027D53A /* Model.xcdatamodeld */,
 				141393311DBA19B60027D53A /* Ordered.xcdatamodeld */,
+				1476902B1DBA4E570050431C /* 123.xcdatamodeld */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -349,6 +352,7 @@
 				141393421DBA19B60027D53A /* HYPTestValueTransformer.m in Sources */,
 				1413933B1DBA19B60027D53A /* HYPDictionaryTests.m in Sources */,
 				141393381DBA19B60027D53A /* FillWithDictionaryTests.swift in Sources */,
+				1476902D1DBA4E570050431C /* 123.xcdatamodeld in Sources */,
 				1413933D1DBA19B60027D53A /* 121.xcdatamodeld in Sources */,
 				1413933C1DBA19B60027D53A /* HYPFillWithDictionaryTests.m in Sources */,
 				141393221DBA19AC0027D53A /* NSManagedObject+SYNCPropertyMapper.m in Sources */,
@@ -563,6 +567,16 @@
 			);
 			currentVersion = 142C95971DA4179F00F9F32F /* Demo.xcdatamodel */;
 			path = Pod.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		1476902B1DBA4E570050431C /* 123.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				1476902C1DBA4E570050431C /* Model.xcdatamodel */,
+			);
+			currentVersion = 1476902C1DBA4E570050431C /* Model.xcdatamodel */;
+			path = 123.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

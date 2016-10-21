@@ -2,11 +2,6 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11232" systemVersion="15G1004" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
     <entity name="Owner" representedClassName="Owner" syncable="YES" codeGenerationType="class">
         <attribute name="id" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES">
-            <userInfo>
-                <entry key="hyper.nonExportable" value="value"/>
-            </userInfo>
-        </attribute>
         <relationship name="task" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Task" inverseName="owner" inverseEntity="Task" syncable="YES">
             <userInfo>
                 <entry key="hyper.nonExportable" value="true"/>
@@ -29,7 +24,7 @@
         <relationship name="tasks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Task" inverseName="taskList" inverseEntity="Task" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Owner" positionX="-54" positionY="-54" width="128" height="105"/>
+        <element name="Owner" positionX="-54" positionY="-54" width="128" height="90"/>
         <element name="Task" positionX="169" positionY="84" width="128" height="90"/>
         <element name="TaskList" positionX="-245" positionY="99" width="128" height="90"/>
     </elements>
