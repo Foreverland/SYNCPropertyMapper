@@ -21,7 +21,7 @@ Your Core Data entities should match your backend models. Your attributes should
 There are two exceptions to this rule:
 
 * `id`s should match `remoteID`
-* Reserved attributes should be prefixed with the `entityName` (`type` becomes `userType`, `description` becomes `userDescription` and so on). In the JSON they don't need to change, you can keep `type` and `description` for example. A full list of reserved attributes can be found [here](https://github.com/SyncDB/NSManagedObject-HYPPropertyMapper/blob/master/Source/NSManagedObject%2BHYPPropertyMapper.m#L265)
+* Reserved attributes should be prefixed with the `entityName` (`type` becomes `userType`, `description` becomes `userDescription` and so on). In the JSON they don't need to change, you can keep `type` and `description` for example. A full list of reserved attributes can be found [here](https://github.com/SyncDB/NSManagedObject-HYPPropertyMapper/blob/master/Sources/NSManagedObject%2BHYPPropertyMapper/NSManagedObject%2BHYPPropertyMapperHelpers.m#L240).
 
 ## JSON in snake_case
 
@@ -42,7 +42,7 @@ Your Core Data entities should match your backend models but in `camelCase`. You
 There are two exceptions to this rule:
 
 * `id`s should match `remoteID`
-* Reserved attributes should be prefixed with the `entityName` (`type` becomes `userType`, `description` becomes `userDescription` and so on). In the JSON they don't need to change, you can keep `type` and `description` for example. A full list of reserved attributes can be found [here](https://github.com/SyncDB/NSManagedObject-HYPPropertyMapper/blob/master/Source/NSManagedObject%2BHYPPropertyMapper.m#L265)
+* Reserved attributes should be prefixed with the `entityName` (`type` becomes `userType`, `description` becomes `userDescription` and so on). In the JSON they don't need to change, you can keep `type` and `description` for example. A full list of reserved attributes can be found [here](https://github.com/SyncDB/NSManagedObject-HYPPropertyMapper/blob/master/Sources/NSManagedObject%2BHYPPropertyMapper/NSManagedObject%2BHYPPropertyMapperHelpers.m#L240).
 
 ## Custom
 
