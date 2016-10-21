@@ -51,8 +51,8 @@ There are two exceptions to this rules:
 
 ```json
 {
-  "id": 1
-  "name": "John Monad"
+  "id": 1,
+  "name": "John Monad",
   "company": {
     "name": "IKEA"
   }
