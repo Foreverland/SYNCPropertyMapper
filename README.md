@@ -9,7 +9,7 @@
   * [Custom](#custom)
   * [Deep mapping](#deep-mapping)
   * [Attribute Types](#attribute-types)
-    * [Dates](#dates)
+    * [Date](#date)
     * [Array](#array)
     * [Dictionary](#dictionary)
   * [Value Transformations](#value-transformations)
@@ -94,7 +94,7 @@ For mapping for arrays and dictionaries just set attributes as `Binary Data` on 
 
 ![screen shot 2015-04-02 at 11 10 11 pm](https://cloud.githubusercontent.com/assets/1088217/6973785/7d3767dc-d98d-11e4-8add-9c9421b5ed47.png)
 
-### Dates
+### Date
 
 We went for supporting [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) and unix timestamp out of the box because those are the most common formats when parsing dates, also we have a [quite performant way to parse this strings](https://github.com/3lvis/DateParser) which overcomes the [performance issues of using `NSDateFormatter`](http://blog.soff.es/how-to-drastically-improve-your-app-with-an-afternoon-and-instruments/).
 
