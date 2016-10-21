@@ -3,6 +3,7 @@ import CoreData
 import DATAStack
 
 @objc class Helper: NSObject {
+
     class func dataStackWithModelName(_ modelName: String) -> DATAStack {
         let bundle = Bundle(for: Helper.self)
         let dataStack = DATAStack(modelName: modelName, bundle: bundle, storeType: .sqLite)
