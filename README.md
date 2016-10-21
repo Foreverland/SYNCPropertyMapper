@@ -1,5 +1,7 @@
 ![Sync](https://raw.githubusercontent.com/SyncDB/NSManagedObject-HYPPropertyMapper/master/GitHub/logo.png)
 
+**HYPPropertyMapper** leverages on your Core Data model to infer how to map your JSON values into Core Data. It's simple and it's obvious. Why the hell isn't everybody doing this?
+
 # Table of Contents
 
 * [Filling a NSManagedObject with JSON](#filling-a-nsmanagedobject-with-json)
