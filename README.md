@@ -308,7 +308,7 @@ pod 'SYNCPropertyMapper'
 
 ## Contributing
 
-Please check our [playbook](https://github.com/SyncDB/playbook/blob/master/GIT_AND_GITHUB.md) for guidelines on contributing.
+Please Hyper's [playbook](https://github.com/hyperoslo/playbook/blob/master/GIT_AND_GITHUB.md) for guidelines on contributing.
 
 ## Credits
 
