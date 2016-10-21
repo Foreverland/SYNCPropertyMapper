@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = "SYNCPropertyMapper"
-  s.version = "5.0"
+  s.version = "5.0.0"
   s.summary = "Mapping your Core Data objects with your JSON providing backend has never been this easy"
   s.description = <<-DESC
                    * Mapping your Core Data objects with your JSON providing backend has never been this easy
