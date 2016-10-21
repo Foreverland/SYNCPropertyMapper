@@ -122,6 +122,80 @@ NSDictionary *expenses = [NSKeyedUnarchiver unarchiveObjectWithData:managedObjec
 // ==> "cake" : 12.50, "juice" : 0.50
 ```
 
+## Value Transformations
+
+Sometimes values in a REST API are not formatted in the way you want them, resulting in you having to extend your model classes with methods and/or properties for transformed values.
+
+For example, what if I want to encode this title before setting it to my model?
+
+```json
+{
+  "title": "Foo &#038; bar"
+}
+```
+
+This requires your client to handle HTML entitles each time you need `title`, or using transformable attributes which would make your `title` a NSData.
+
+Welp, not anymore!
+
+First, open your Core Data model and the name of your transformer to `hyper.valueTransformer`. For this example we'll use `HYPTitleEncodingValueTransformer`.
+
+```objc
+#import "HYPTitleEncodingValueTransformer.h"
+
+@implementation HYPTitleEncodingValueTransformer
+
++ (Class)transformedValueClass {
+    return [NSString class];
+}
+
++ (BOOL)allowsReverseTransformation {
+    return YES;
+}
+
+- (id)transformedValue:(id)value {
+    if (value == nil) return nil;
+    
+    NSString *stringValue = nil;
+    
+    if ([value isKindOfClass:[NSString class]]) {
+        stringValue = (NSString *)value;
+    } else {
+        [NSException raise:NSInternalInconsistencyException
+                    format:@"Value (%@) is not of type NSString.", [value class]];
+    }
+    
+    return [stringValue stringByReplacingOccurrencesOfString:@"&amp;" withString:@"&"];
+}
+
+- (id)reverseTransformedValue:(id)value {
+    if (value == nil) return nil;
+    
+    NSString *stringValue = nil;
+    
+    if ([value isKindOfClass:[NSString class]]) {
+        stringValue = (NSString *)value;
+    } else {
+        [NSException raise:NSInternalInconsistencyException
+                    format:@"Value (%@) is not of type NSString.", [value class]];
+    }
+    
+    return [stringValue stringByReplacingOccurrencesOfString:@"&" withString:@"&amp;"];
+}
+
+@end
+```
+
+Then before `hyp_fillWithDictionary` we'll do
+
+```objc
+[NSValueTransformer setValueTransformer:[[HYPTitleEncodingValueTransformer alloc] init] forName:@"HYPTitleEncodingValueTransformer"];
+```
+
+That's it! Then your title will be `"Foo & bar"`.
+
+It works the other way as well! So using `hyp_dictionary` will return `"Foo &#038; bar"`
+
 # JSON representation from a NSManagedObject
 
 ``` objc
