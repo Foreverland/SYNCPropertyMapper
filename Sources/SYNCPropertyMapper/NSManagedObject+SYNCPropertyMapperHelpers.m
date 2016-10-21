@@ -9,13 +9,13 @@
 
 - (id)valueForAttributeDescription:(NSAttributeDescription *)attributeDescription
                      dateFormatter:(NSDateFormatter *)dateFormatter
-                  relationshipType:(HYPPropertyMapperRelationshipType)relationshipType {
+                  relationshipType:(SYNCPropertyMapperRelationshipType)relationshipType {
     id value;
     if (attributeDescription.attributeType != NSTransformableAttributeType) {
         value = [self valueForKey:attributeDescription.name];
         BOOL nilOrNullValue = (!value ||
                                [value isKindOfClass:[NSNull class]]);
-        NSString *customTransformerName = attributeDescription.userInfo[HYPPropertyMapperCustomValueTransformerKey];
+        NSString *customTransformerName = attributeDescription.userInfo[SYNCPropertyMapperCustomValueTransformerKey];
         if (nilOrNullValue) {
             value = [NSNull null];
         } else if ([value isKindOfClass:[NSDate class]]) {
@@ -39,7 +39,7 @@
             NSAttributeDescription *attributeDescription = (NSAttributeDescription *)propertyDescription;
 
             NSDictionary *userInfo = [self.entity.propertiesByName[attributeDescription.name] userInfo];
-            NSString *customRemoteKey = userInfo[HYPPropertyMapperCustomRemoteKey];
+            NSString *customRemoteKey = userInfo[SYNCPropertyMapperCustomRemoteKey];
             BOOL currentAttributeHasTheSameRemoteKey = (customRemoteKey.length > 0 && [customRemoteKey isEqualToString:remoteKey]);
             if (currentAttributeHasTheSameRemoteKey) {
                 foundAttributeDescription = attributeDescription;
@@ -100,7 +100,7 @@
             NSAttributeDescription *attributeDescription = (NSAttributeDescription *)propertyDescription;
             
             NSDictionary *userInfo = [self.entity.propertiesByName[attributeDescription.name] userInfo];
-            NSString *customRemoteKeyPath = userInfo[HYPPropertyMapperCustomRemoteKey];
+            NSString *customRemoteKeyPath = userInfo[SYNCPropertyMapperCustomRemoteKey];
             NSString *customRootRemoteKey = [[customRemoteKeyPath componentsSeparatedByString:@"."] firstObject];
             NSString *rootRemoteKey = [[remoteKey componentsSeparatedByString:@"."] firstObject];
             BOOL currentAttributeHasTheSameRootRemoteKey = (customRootRemoteKey.length > 0 && [customRootRemoteKey isEqualToString:rootRemoteKey]);
@@ -114,22 +114,22 @@
 }
 
 - (NSString *)remoteKeyForAttributeDescription:(NSAttributeDescription *)attributeDescription {
-    return [self remoteKeyForAttributeDescription:attributeDescription usingRelationshipType:HYPPropertyMapperRelationshipTypeNested];
+    return [self remoteKeyForAttributeDescription:attributeDescription usingRelationshipType:SYNCPropertyMapperRelationshipTypeNested];
 }
 
-- (NSString *)remoteKeyForAttributeDescription:(NSAttributeDescription *)attributeDescription usingRelationshipType:(HYPPropertyMapperRelationshipType)relationshipType {
+- (NSString *)remoteKeyForAttributeDescription:(NSAttributeDescription *)attributeDescription usingRelationshipType:(SYNCPropertyMapperRelationshipType)relationshipType {
     NSDictionary *userInfo = attributeDescription.userInfo;
     NSString *localKey = attributeDescription.name;
     NSString *remoteKey;
 
-    NSString *customRemoteKey = userInfo[HYPPropertyMapperCustomRemoteKey];
+    NSString *customRemoteKey = userInfo[SYNCPropertyMapperCustomRemoteKey];
     if (customRemoteKey) {
         remoteKey = customRemoteKey;
     } else if ([localKey isEqualToString:SYNCDefaultLocalPrimaryKey] || [localKey isEqualToString:SYNCDefaultLocalCompatiblePrimaryKey]) {
         remoteKey = SYNCDefaultRemotePrimaryKey;
-    } else if ([localKey isEqualToString:HYPPropertyMapperDestroyKey] &&
-               relationshipType == HYPPropertyMapperRelationshipTypeNested) {
-        remoteKey = [NSString stringWithFormat:@"_%@", HYPPropertyMapperDestroyKey];
+    } else if ([localKey isEqualToString:SYNCPropertyMapperDestroyKey] &&
+               relationshipType == SYNCPropertyMapperRelationshipTypeNested) {
+        remoteKey = [NSString stringWithFormat:@"_%@", SYNCPropertyMapperDestroyKey];
     } else {
         remoteKey = [localKey hyp_remoteString];
     }
@@ -157,7 +157,7 @@
         value = remoteValue;
     }
 
-    NSString *customTransformerName = attributeDescription.userInfo[HYPPropertyMapperCustomValueTransformerKey];
+    NSString *customTransformerName = attributeDescription.userInfo[SYNCPropertyMapperCustomValueTransformerKey];
     if (customTransformerName) {
         NSValueTransformer *transformer = [NSValueTransformer valueTransformerForName:customTransformerName];
         if (transformer) {

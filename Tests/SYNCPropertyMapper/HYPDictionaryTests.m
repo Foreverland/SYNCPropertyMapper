@@ -201,7 +201,7 @@
 - (void)testDictionaryNoRelationships {
     DATAStack *dataStack = [self dataStack];
     User *user = [self userUsingDataStack:dataStack];
-    NSDictionary *dictionary = [user hyp_dictionaryUsingRelationshipType:HYPPropertyMapperRelationshipTypeNone];
+    NSDictionary *dictionary = [user hyp_dictionaryUsingRelationshipType:SYNCPropertyMapperRelationshipTypeNone];
     NSDictionary *comparedDictionary = [self userDictionaryWithNoRelationships];
     XCTAssertEqualObjects(dictionary, [comparedDictionary copy]);
 }
@@ -209,7 +209,7 @@
 - (void)testDictionaryArrayRelationships {
     DATAStack *dataStack = [self dataStack];
     User *user = [self userUsingDataStack:dataStack];
-    NSDictionary *dictionary = [user hyp_dictionaryUsingRelationshipType:HYPPropertyMapperRelationshipTypeArray];
+    NSDictionary *dictionary = [user hyp_dictionaryUsingRelationshipType:SYNCPropertyMapperRelationshipTypeArray];
     NSMutableDictionary *comparedDictionary = [[self userDictionaryWithNoRelationships] mutableCopy];
     comparedDictionary[@"company"] = @{@"id" : @1,
                                        @"name" : @"Facebook"};
@@ -271,7 +271,7 @@
     note = [self orderedNoteWithID:@7 inContext:dataStack.mainContext];
     note.user = user;
 
-    NSDictionary *dictionary = [user hyp_dictionaryUsingRelationshipType:HYPPropertyMapperRelationshipTypeArray];
+    NSDictionary *dictionary = [user hyp_dictionaryUsingRelationshipType:SYNCPropertyMapperRelationshipTypeArray];
     NSMutableDictionary *comparedDictionary = [[self userDictionaryWithNoRelationships] mutableCopy];
 
     NSArray *notes = dictionary[@"notes"];
@@ -345,7 +345,7 @@
 
     [building addApartmentsObject:apartment];
 
-    NSDictionary *buildingDictionary = [building hyp_dictionaryUsingRelationshipType:HYPPropertyMapperRelationshipTypeArray];
+    NSDictionary *buildingDictionary = [building hyp_dictionaryUsingRelationshipType:SYNCPropertyMapperRelationshipTypeArray];
     NSMutableDictionary *compared = [NSMutableDictionary new];
     NSArray *rooms = @[@{@"id" : @1}];
     NSArray *apartments = @[@{@"id" : @1,
@@ -419,7 +419,7 @@
     [parent addRecursivesObject:child];
     child.recursive = parent;
 
-    NSDictionary *dictionary = [parent hyp_dictionaryUsingRelationshipType:HYPPropertyMapperRelationshipTypeArray];
+    NSDictionary *dictionary = [parent hyp_dictionaryUsingRelationshipType:SYNCPropertyMapperRelationshipTypeArray];
     NSArray *megachildArray = @[@{@"id" : @"megachild", @"recursives": @[]}];
     NSArray *grandchildArray = @[@{@"id" : @"grandchild", @"recursives": megachildArray}];
     NSArray *childArray = @[@{@"id" : @"child", @"recursives": grandchildArray}];

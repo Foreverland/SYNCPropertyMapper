@@ -2,13 +2,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-static NSString * const HYPPropertyMapperCustomRemoteKey = @"hyper.remoteKey";
-static NSString * const HYPPropertyMapperNonExportableKey = @"hyper.nonExportable";
+static NSString * const SYNCPropertyMapperCustomRemoteKey = @"hyper.remoteKey";
+static NSString * const SYNCPropertyMapperNonExportableKey = @"hyper.nonExportable";
 
-typedef NS_ENUM(NSInteger, HYPPropertyMapperRelationshipType) {
-    HYPPropertyMapperRelationshipTypeNone = 0,
-    HYPPropertyMapperRelationshipTypeArray,
-    HYPPropertyMapperRelationshipTypeNested
+typedef NS_ENUM(NSInteger, SYNCPropertyMapperRelationshipType) {
+    SYNCPropertyMapperRelationshipTypeNone = 0,
+    SYNCPropertyMapperRelationshipTypeArray,
+    SYNCPropertyMapperRelationshipTypeNested
 };
 
 @interface NSManagedObject (SYNCPropertyMapper)
@@ -30,7 +30,7 @@ typedef NS_ENUM(NSInteger, HYPPropertyMapperRelationshipType) {
  * \param relationshipType - It indicates wheter the result dictionary should include no relationships, nested attributes or normal attributes
  * \return NSDictionary of values that can be serialized
  */
-- (NSDictionary<NSString *, id> *)hyp_dictionaryUsingRelationshipType:(HYPPropertyMapperRelationshipType)relationshipType;
+- (NSDictionary<NSString *, id> *)hyp_dictionaryUsingRelationshipType:(SYNCPropertyMapperRelationshipType)relationshipType;
 
 /*! Creates a NSDictionary of values based on the NSManagedObject subclass that can be serialized by NSJSONSerialization. Includes relationships to other models using Ruby on Rail's nested attributes model.
  * \param dateFormatter - A custom date formatter that turns NSDate objects into NSString objects. Do not pass nil, instead use the 'hyp_dictionary' method
@@ -43,7 +43,7 @@ typedef NS_ENUM(NSInteger, HYPPropertyMapperRelationshipType) {
  * \param relationshipType - It indicates wheter the result dictionary should include no relationships, nested attributes or normal attributes
  * \return NSDictionary of values that can be serialized
  */
-- (NSDictionary<NSString *, id> *)hyp_dictionaryWithDateFormatter:(NSDateFormatter *)dateFormatter usingRelationshipType:(HYPPropertyMapperRelationshipType)relationshipType;
+- (NSDictionary<NSString *, id> *)hyp_dictionaryWithDateFormatter:(NSDateFormatter *)dateFormatter usingRelationshipType:(SYNCPropertyMapperRelationshipType)relationshipType;
 
 /*! Creates a NSDictionary of values based on the NSManagedObject subclass that can be serialized by NSJSONSerialization. Could include relationships to other models using Ruby on Rail's nested attributes model.
  * \param dateFormatter - A custom date formatter that turns NSDate objects into NSString objects. Do not pass nil, instead use the 'hyp_dictionary' method
@@ -51,7 +51,7 @@ typedef NS_ENUM(NSInteger, HYPPropertyMapperRelationshipType) {
  * \param relationshipType - It indicates wheter the result dictionary should include no relationships, nested attributes or normal attributes
  * \return NSDictionary of values that can be serialized
  */
-- (NSDictionary<NSString *, id> *)hyp_dictionaryWithDateFormatter:(NSDateFormatter *)dateFormatter parent:( NSManagedObject * _Nullable )parent usingRelationshipType:(HYPPropertyMapperRelationshipType)relationshipType;
+- (NSDictionary<NSString *, id> *)hyp_dictionaryWithDateFormatter:(NSDateFormatter *)dateFormatter parent:( NSManagedObject * _Nullable )parent usingRelationshipType:(SYNCPropertyMapperRelationshipType)relationshipType;
 
 @end
 

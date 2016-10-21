@@ -1,6 +1,6 @@
 ![Sync](https://raw.githubusercontent.com/SyncDB/SYNCPropertyMapper/master/GitHub/logo.png)
 
-**HYPPropertyMapper** leverages on your Core Data model to infer how to map your JSON values into Core Data. It's simple and it's obvious. Why the hell isn't everybody doing this?
+**SYNCPropertyMapper** leverages on your Core Data model to infer how to map your JSON values into Core Data. It's simple and it's obvious. Why the hell isn't everybody doing this?
 
 # Table of Contents
 
@@ -64,7 +64,7 @@ Your Core Data entities should match your backend models but in `camelCase`. You
 There are two exceptions to this rules:
 
 * `id`s should match `remoteID`
-* Reserved attributes should be prefixed with the `entityName` (`type` becomes `userType`, `description` becomes `userDescription` and so on). In the JSON they don't need to change, you can keep `type` and `description` for example. A full list of reserved attributes can be found [here](https://github.com/SyncDB/SYNCPropertyMapper/blob/master/Sources/NSManagedObject%2BHYPPropertyMapper/NSManagedObject%2BHYPPropertyMapperHelpers.m#L240).
+* Reserved attributes should be prefixed with the `entityName` (`type` becomes `userType`, `description` becomes `userDescription` and so on). In the JSON they don't need to change, you can keep `type` and `description` for example. A full list of reserved attributes can be found [here](https://github.com/SyncDB/SYNCPropertyMapper/blob/master/Sources/NSManagedObject%2BSYNCPropertyMapper/NSManagedObject%2BSYNCPropertyMapperHelpers.m#L240).
 
 ## Custom
 
@@ -122,7 +122,7 @@ If your date is not [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) compliant,
 
 ![transformable-attribute](https://raw.githubusercontent.com/SyncDB/SYNCPropertyMapper/master/Resources/date-transformable.png)
 
-You can find an example of date transformer in [DateStringTransformer](https://github.com/SyncDB/SYNCPropertyMapper/blob/master/Tests/NSManagedObject%2BHYPPropertyMapper/Transformers/DateStringTransformer.m).
+You can find an example of date transformer in [DateStringTransformer](https://github.com/SyncDB/SYNCPropertyMapper/blob/master/Tests/NSManagedObject%2BSYNCPropertyMapper/Transformers/DateStringTransformer.m).
 
 ### Array
 ```objc
@@ -270,7 +270,7 @@ It supports relationships too, and we complain to the Rails rule `accepts_nested
 If you don't want to get nested relationships you can also ignore relationships:
 
 ```objc
-NSDictionary *dictionary = [user hyp_dictionaryUsingRelationshipType:HYPPropertyMapperRelationshipTypeNone];
+NSDictionary *dictionary = [user hyp_dictionaryUsingRelationshipType:SYNCPropertyMapperRelationshipTypeNone];
 ```
 
 ```json
@@ -281,7 +281,7 @@ NSDictionary *dictionary = [user hyp_dictionaryUsingRelationshipType:HYPProperty
 Or get them as an array:
 
 ```objc
-NSDictionary *dictionary = [user hyp_dictionaryUsingRelationshipType:HYPPropertyMapperRelationshipTypeArray];
+NSDictionary *dictionary = [user hyp_dictionaryUsingRelationshipType:SYNCPropertyMapperRelationshipTypeArray];
 ```
 ```json
 "first_name": "John",

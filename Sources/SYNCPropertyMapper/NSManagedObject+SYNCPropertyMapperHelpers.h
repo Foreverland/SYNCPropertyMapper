@@ -2,14 +2,14 @@
 
 #import "NSManagedObject+SYNCPropertyMapper.h"
 
-static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
-static NSString * const HYPPropertyMapperCustomValueTransformerKey = @"hyper.valueTransformer";
+static NSString * const SYNCPropertyMapperDestroyKey = @"destroy";
+static NSString * const SYNCPropertyMapperCustomValueTransformerKey = @"hyper.valueTransformer";
 
 @interface NSManagedObject (SYNCPropertyMapperHelpers)
 
 - (id)valueForAttributeDescription:(NSAttributeDescription *)attributeDescription
                      dateFormatter:(NSDateFormatter *)dateFormatter
-                  relationshipType:(HYPPropertyMapperRelationshipType)relationshipType;
+                  relationshipType:(SYNCPropertyMapperRelationshipType)relationshipType;
 
 - (NSAttributeDescription *)attributeDescriptionForRemoteKey:(NSString *)key;
 - (NSArray *)attributeDescriptionsForRemoteKeyPath:(NSString *)key;
@@ -19,7 +19,7 @@ static NSString * const HYPPropertyMapperCustomValueTransformerKey = @"hyper.val
 
 - (NSString *)remoteKeyForAttributeDescription:(NSAttributeDescription *)attributeDescription;
 
-- (NSString *)remoteKeyForAttributeDescription:(NSAttributeDescription *)attributeDescription usingRelationshipType:(HYPPropertyMapperRelationshipType)relationshipType;
+- (NSString *)remoteKeyForAttributeDescription:(NSAttributeDescription *)attributeDescription usingRelationshipType:(SYNCPropertyMapperRelationshipType)relationshipType;
 
 + (NSArray *)reservedAttributes;
 
