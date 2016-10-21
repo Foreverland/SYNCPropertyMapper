@@ -11,7 +11,7 @@ typedef NS_ENUM(NSInteger, HYPPropertyMapperRelationshipType) {
     HYPPropertyMapperRelationshipTypeNested
 };
 
-@interface NSManagedObject (HYPPropertyMapper)
+@interface NSManagedObject (SYNCPropertyMapper)
 
 /*! Fills the NSManagedObject with the contents of the dictionary
  *  using a convention-over-configuration paradigm mapping the

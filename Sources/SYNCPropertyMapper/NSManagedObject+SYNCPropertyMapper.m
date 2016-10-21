@@ -1,12 +1,12 @@
-#import "NSManagedObject+HYPPropertyMapper.h"
+#import "NSManagedObject+SYNCPropertyMapper.h"
 
 #import "NSString+HYPNetworking.h"
-#import "NSManagedObject+HYPPropertyMapperHelpers.h"
-#import "NSDate+Parser.h"
+#import "NSManagedObject+SYNCPropertyMapperHelpers.h"
+#import "NSDate+SYNCPropertyMapper.h"
 
 static NSString * const HYPPropertyMapperNestedAttributesKey = @"attributes";
 
-@implementation NSManagedObject (HYPPropertyMapper)
+@implementation NSManagedObject (SYNCPropertyMapper)
 
 #pragma mark - Public methods
 

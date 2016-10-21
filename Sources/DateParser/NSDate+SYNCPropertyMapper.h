@@ -8,7 +8,7 @@ typedef NS_ENUM(NSInteger, DateType) {
     unixTimestamp
 };
 
-@interface NSDate (Parser)
+@interface NSDate (SYNCPropertyMapper)
 
 + (NSDate *)dateFromDateString:(NSString *)dateString;
 

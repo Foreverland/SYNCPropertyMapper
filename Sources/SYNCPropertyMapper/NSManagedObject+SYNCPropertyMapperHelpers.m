@@ -1,11 +1,11 @@
-#import "NSManagedObject+HYPPropertyMapperHelpers.h"
+#import "NSManagedObject+SYNCPropertyMapperHelpers.h"
 
-#import "NSManagedObject+HYPPropertyMapper.h"
+#import "NSManagedObject+SYNCPropertyMapper.h"
 #import "NSString+HYPNetworking.h"
 #import "NSEntityDescription+SYNCPrimaryKey.h"
-#import "NSDate+Parser.h"
+#import "NSDate+SYNCPropertyMapper.h"
 
-@implementation NSManagedObject (HYPPropertyMapperHelpers)
+@implementation NSManagedObject (SYNCPropertyMapperHelpers)
 
 - (id)valueForAttributeDescription:(NSAttributeDescription *)attributeDescription
                      dateFormatter:(NSDateFormatter *)dateFormatter

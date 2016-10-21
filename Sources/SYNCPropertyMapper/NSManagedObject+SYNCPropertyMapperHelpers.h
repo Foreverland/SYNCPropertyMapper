@@ -1,11 +1,11 @@
 @import CoreData;
 
-#import "NSManagedObject+HYPPropertyMapper.h"
+#import "NSManagedObject+SYNCPropertyMapper.h"
 
 static NSString * const HYPPropertyMapperDestroyKey = @"destroy";
 static NSString * const HYPPropertyMapperCustomValueTransformerKey = @"hyper.valueTransformer";
 
-@interface NSManagedObject (HYPPropertyMapperHelpers)
+@interface NSManagedObject (SYNCPropertyMapperHelpers)
 
 - (id)valueForAttributeDescription:(NSAttributeDescription *)attributeDescription
                      dateFormatter:(NSDateFormatter *)dateFormatter
