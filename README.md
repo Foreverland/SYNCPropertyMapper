@@ -1,6 +1,6 @@
 ![Sync](https://raw.githubusercontent.com/SyncDB/NSManagedObject-HYPPropertyMapper/master/GitHub/logo.png)
 
-## Table of Contents
+# Table of Contents
 
 * [Filling a NSManagedObject with JSON](#filling-a-nsmanagedobject-with-json)
   * [JSON in CamelCase](#json-in-camelcase)
