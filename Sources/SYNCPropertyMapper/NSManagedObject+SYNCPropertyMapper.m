@@ -77,13 +77,18 @@ static NSString * const SYNCPropertyMapperNestedAttributesKey = @"attributes";
 
     for (id propertyDescription in self.entity.properties) {
         if ([propertyDescription isKindOfClass:[NSAttributeDescription class]]) {
-            id value = [self valueForAttributeDescription:propertyDescription
-                                            dateFormatter:dateFormatter
-                                         relationshipType:relationshipType];
-            if (value) {
-                NSString *remoteKey = [self remoteKeyForAttributeDescription:propertyDescription
-                                                       usingRelationshipType:relationshipType];
-                managedObjectAttributes[remoteKey] = value;
+            NSPropertyDescription *description = (NSRelationshipDescription *)propertyDescription;
+            NSDictionary *userInfo = description.userInfo;
+            NSString *nonExportableKey = userInfo[SYNCPropertyMapperNonExportableKey];
+            if (nonExportableKey == nil) {
+                id value = [self valueForAttributeDescription:propertyDescription
+                                                dateFormatter:dateFormatter
+                                             relationshipType:relationshipType];
+                if (value) {
+                    NSString *remoteKey = [self remoteKeyForAttributeDescription:propertyDescription
+                                                           usingRelationshipType:relationshipType];
+                    managedObjectAttributes[remoteKey] = value;
+                }
             }
         } else if ([propertyDescription isKindOfClass:[NSRelationshipDescription class]] &&
                    relationshipType != SYNCPropertyMapperRelationshipTypeNone) {
