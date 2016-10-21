@@ -15,7 +15,7 @@
   * [Value Transformations](#value-transformations)
 * [JSON representation from a NSManagedObject](#json-representation-from-a-nsmanagedobject)
   * [Excluding](#excluding)
-  * [relationships](#relationships)
+  * [Relationships](#relationships)
 * [Installation](#installation)
 * [Contributing](#contributing)
 * [Credits](#credits)
