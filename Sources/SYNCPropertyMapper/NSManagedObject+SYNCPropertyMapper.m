@@ -132,9 +132,9 @@ static NSString * const SYNCPropertyMapperNestedAttributesKey = @"attributes";
                                                                       parent:parent
                                                        usingRelationshipType:relationshipType];
     if (attributes.count > 0) {
-        NSString *key = [relationshipName hyp_remoteString];
+        NSString *key = [relationshipName hyp_snakeCase];
         if (relationshipType == SYNCPropertyMapperRelationshipTypeNested) {
-            key = [NSString stringWithFormat:@"%@_%@", [relationshipName hyp_remoteString], SYNCPropertyMapperNestedAttributesKey];
+            key = [NSString stringWithFormat:@"%@_%@", [relationshipName hyp_snakeCase], SYNCPropertyMapperNestedAttributesKey];
         }
 
         [attributesForToOneRelationship setValue:attributes forKey:key];
@@ -168,9 +168,9 @@ static NSString * const SYNCPropertyMapperNestedAttributesKey = @"attributes";
     }
 
     if (relationshipType == SYNCPropertyMapperRelationshipTypeArray) {
-        [attributesForToManyRelationship setValue:relationsArray forKey:[relationshipName hyp_remoteString]];
+        [attributesForToManyRelationship setValue:relationsArray forKey:[relationshipName hyp_snakeCase]];
     } else if (relationshipType == SYNCPropertyMapperRelationshipTypeNested) {
-        NSString *nestedAttributesPrefix = [NSString stringWithFormat:@"%@_%@", [relationshipName hyp_remoteString], SYNCPropertyMapperNestedAttributesKey];
+        NSString *nestedAttributesPrefix = [NSString stringWithFormat:@"%@_%@", [relationshipName hyp_snakeCase], SYNCPropertyMapperNestedAttributesKey];
         [attributesForToManyRelationship setValue:relationsDictionary forKey:nestedAttributesPrefix];
     }
 

@@ -57,7 +57,7 @@ typedef void (^SYNCInflectionsStringStorageBlock)(void);
 
 #pragma mark - Private methods
 
-- (nonnull NSString *)hyp_remoteString {
+- (nonnull NSString *)hyp_snakeCase {
 	SYNCInflectionsStringStorage *const stringStorage = [SYNCInflectionsStringStorage sharedInstance];
 	__block NSString *storedResult = nil;
 
@@ -79,7 +79,7 @@ typedef void (^SYNCInflectionsStringStorageBlock)(void);
     }
 }
 
-- (nullable NSString *)hyp_localString {
+- (nullable NSString *)hyp_camelCase {
 	SYNCInflectionsStringStorage *const stringStorage = [SYNCInflectionsStringStorage sharedInstance];
 	__block NSString *storedResult = nil;
 

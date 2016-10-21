@@ -58,11 +58,11 @@
                 *stop = YES;
             }
 
-            NSString *localKey = [remoteKey hyp_localString];
+            NSString *localKey = [remoteKey hyp_camelCase];
             BOOL isReservedKey = ([[NSManagedObject reservedAttributes] containsObject:remoteKey]);
             if (isReservedKey) {
                 NSString *prefixedRemoteKey = [self prefixedAttribute:remoteKey];
-                localKey = [prefixedRemoteKey hyp_localString];
+                localKey = [prefixedRemoteKey hyp_camelCase];
             }
 
             if ([attributeDescription.name isEqualToString:localKey]) {
@@ -131,7 +131,7 @@
                relationshipType == SYNCPropertyMapperRelationshipTypeNested) {
         remoteKey = [NSString stringWithFormat:@"_%@", SYNCPropertyMapperDestroyKey];
     } else {
-        remoteKey = [localKey hyp_remoteString];
+        remoteKey = [localKey hyp_snakeCase];
     }
 
     BOOL isReservedKey = ([[self reservedKeys] containsObject:remoteKey]);
@@ -218,7 +218,7 @@
 }
 
 - (NSString *)remotePrefix {
-    return [NSString stringWithFormat:@"%@_", [self.entity.name hyp_remoteString]];
+    return [NSString stringWithFormat:@"%@_", [self.entity.name hyp_snakeCase]];
 }
 
 - (NSString *)prefixedAttribute:(NSString *)attribute {

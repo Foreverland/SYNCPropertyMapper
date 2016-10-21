@@ -42,93 +42,93 @@
     NSString *localKey = @"age";
     NSString *remoteKey = @"age";
 
-    XCTAssertEqualObjects(remoteKey, [localKey hyp_remoteString]);
+    XCTAssertEqualObjects(remoteKey, [localKey hyp_snakeCase]);
 
     localKey = @"id";
     remoteKey = @"id";
 
-    XCTAssertEqualObjects(remoteKey, [localKey hyp_remoteString]);
+    XCTAssertEqualObjects(remoteKey, [localKey hyp_snakeCase]);
 
     localKey = @"pdf";
     remoteKey = @"pdf";
 
-    XCTAssertEqualObjects(remoteKey, [localKey hyp_remoteString]);
+    XCTAssertEqualObjects(remoteKey, [localKey hyp_snakeCase]);
 
     localKey = @"driverIdentifier";
     remoteKey = @"driver_identifier";
 
-    XCTAssertEqualObjects(remoteKey, [localKey hyp_remoteString]);
+    XCTAssertEqualObjects(remoteKey, [localKey hyp_snakeCase]);
 
     localKey = @"integer16";
     remoteKey = @"integer16";
 
-    XCTAssertEqualObjects(remoteKey, [localKey hyp_remoteString]);
+    XCTAssertEqualObjects(remoteKey, [localKey hyp_snakeCase]);
 
     localKey = @"userID";
     remoteKey = @"user_id";
 
-    XCTAssertEqualObjects(remoteKey, [localKey hyp_remoteString]);
+    XCTAssertEqualObjects(remoteKey, [localKey hyp_snakeCase]);
 
     localKey = @"createdAt";
     remoteKey = @"created_at";
 
-    XCTAssertEqualObjects(remoteKey, [localKey hyp_remoteString]);
+    XCTAssertEqualObjects(remoteKey, [localKey hyp_snakeCase]);
 
     localKey = @"userIDFirst";
     remoteKey = @"user_id_first";
 
-    XCTAssertEqualObjects(remoteKey, [localKey hyp_remoteString]);
+    XCTAssertEqualObjects(remoteKey, [localKey hyp_snakeCase]);
 
     localKey = @"OrderedUser";
     remoteKey = @"ordered_user";
 
-    XCTAssertEqualObjects(remoteKey, [localKey hyp_remoteString]);
+    XCTAssertEqualObjects(remoteKey, [localKey hyp_snakeCase]);
 }
 
 - (void)testLocalString {
     NSString *remoteKey = @"age";
     NSString *localKey = @"age";
 
-    XCTAssertEqualObjects(localKey, [remoteKey hyp_localString]);
+    XCTAssertEqualObjects(localKey, [remoteKey hyp_camelCase]);
 
     remoteKey = @"id";
     localKey = @"id";
 
-    XCTAssertEqualObjects(localKey, [remoteKey hyp_localString]);
+    XCTAssertEqualObjects(localKey, [remoteKey hyp_camelCase]);
 
     remoteKey = @"pdf";
     localKey = @"pdf";
 
-    XCTAssertEqualObjects(localKey, [remoteKey hyp_localString]);
+    XCTAssertEqualObjects(localKey, [remoteKey hyp_camelCase]);
 
     remoteKey = @"driver_identifier";
     localKey = @"driverIdentifier";
 
-    XCTAssertEqualObjects(localKey, [remoteKey hyp_localString]);
+    XCTAssertEqualObjects(localKey, [remoteKey hyp_camelCase]);
 
     remoteKey = @"integer16";
     localKey = @"integer16";
 
-    XCTAssertEqualObjects(remoteKey, [localKey hyp_localString]);
+    XCTAssertEqualObjects(remoteKey, [localKey hyp_camelCase]);
 
     remoteKey = @"user_id";
     localKey = @"userID";
 
-    XCTAssertEqualObjects(localKey, [remoteKey hyp_localString]);
+    XCTAssertEqualObjects(localKey, [remoteKey hyp_camelCase]);
 
     remoteKey = @"updated_at";
     localKey = @"updatedAt";
 
-    XCTAssertEqualObjects(localKey, [remoteKey hyp_localString]);
+    XCTAssertEqualObjects(localKey, [remoteKey hyp_camelCase]);
 
     remoteKey = @"user_id_first";
     localKey = @"userIDFirst";
 
-    XCTAssertEqualObjects(localKey, [remoteKey hyp_localString]);
+    XCTAssertEqualObjects(localKey, [remoteKey hyp_camelCase]);
 
     remoteKey = @"test_!_key";
 
-    XCTAssertNil([remoteKey hyp_localString]);
+    XCTAssertNil([remoteKey hyp_camelCase]);
 }
 
 - (void)testConcurrentAccess {

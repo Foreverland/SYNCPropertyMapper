@@ -2,8 +2,8 @@
 
 @interface NSString (SYNCInflections)
 
-- (nonnull NSString *)hyp_remoteString;
+- (nonnull NSString *)hyp_snakeCase;
 
-- (nullable NSString *)hyp_localString;
+- (nullable NSString *)hyp_camelCase;
 
 @end

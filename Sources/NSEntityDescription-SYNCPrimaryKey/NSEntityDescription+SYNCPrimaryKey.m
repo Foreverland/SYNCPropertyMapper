@@ -41,7 +41,7 @@
         if ([primaryKeyAttribute.name isEqualToString:SYNCDefaultLocalPrimaryKey] || [primaryKeyAttribute.name isEqualToString:SYNCDefaultLocalCompatiblePrimaryKey]) {
             remoteKey = SYNCDefaultRemotePrimaryKey;
         } else {
-            remoteKey = [primaryKeyAttribute.name hyp_remoteString];
+            remoteKey = [primaryKeyAttribute.name hyp_snakeCase];
         }
 
     }
