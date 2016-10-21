@@ -1,8 +1,29 @@
 ![Sync](https://raw.githubusercontent.com/SyncDB/NSManagedObject-HYPPropertyMapper/master/GitHub/logo.png)
 
+## Table of Contents
+
+* [Filling a NSManagedObject with JSON](#filling-a-nsmanagedobject-with-json)
+  * [JSON in CamelCase](#json-in-camelcase)
+  * [JSON in snake_case](#json-in-snake_case)
+  * [Exceptions](#exceptions)
+  * [Custom](#custom)
+  * [Deep mapping](#deep-mapping)
+  * [Attribute Types](#attribute-types)
+    * [Dates](#dates)
+    * [Array](#array)
+    * [Dictionary](#dictionary)
+  * [Value Transformations](#value-transformations)
+* [JSON representation from a NSManagedObject](#json-representation-from-a-nsmanagedobject)
+  * [Excluding](#excluding)
+  * [relationships](#relationships)
+* [Installation](#installation)
+* [Contributing](#contributing)
+* [Credits](#credits)
+* [License](#license)
+
 # Filling a NSManagedObject with JSON
 
-Mapping your Core Data objects with your JSON providing backend has never been this easy. 
+Mapping your Core Data objects with your JSON providing backend has never been this easy.
 
 ## JSON in CamelCase
 
@@ -86,13 +107,13 @@ NSDictionary *values = @{@"created_at" : @"2014-01-01T00:00:00+00:00",
 [managedObject hyp_fillWithDictionary:values];
 
 NSDate *createdAt = [managedObject valueForKey:@"createdAt"];
-// ==> "2014-01-01 00:00:00 +00:00" 
+// ==> "2014-01-01 00:00:00 +00:00"
 
 NSDate *updatedAt = [managedObject valueForKey:@"updatedAt"];
-// ==> "2014-01-02 00:00:00 +00:00" 
+// ==> "2014-01-02 00:00:00 +00:00"
 
 NSDate *publishedAt = [managedObject valueForKey:@"publishedAt"];
-// ==> "2015-09-10 00:00:00 +00:00" 
+// ==> "2015-09-10 00:00:00 +00:00"
 ```
 
 If your date is not [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) compliant, you can use a transformer attribute to parse your date, too. First set your attribute to `Transformable`, and set the name of your transformer like, in this example is `DateStringTransformer`:
@@ -110,7 +131,7 @@ NSDictionary *values = @{@"hobbies" : @[@"football",
 [managedObject hyp_fillWithDictionary:values];
 
 NSArray *hobbies = [NSKeyedUnarchiver unarchiveObjectWithData:managedObject.hobbies];
-// ==> "football", "soccer", "code" 
+// ==> "football", "soccer", "code"
 ```
 
 ### Dictionary
@@ -157,31 +178,31 @@ First, open your Core Data model and the name of your transformer to `hyper.valu
 
 - (id)transformedValue:(id)value {
     if (value == nil) return nil;
-    
+
     NSString *stringValue = nil;
-    
+
     if ([value isKindOfClass:[NSString class]]) {
         stringValue = (NSString *)value;
     } else {
         [NSException raise:NSInternalInconsistencyException
                     format:@"Value (%@) is not of type NSString.", [value class]];
     }
-    
+
     return [stringValue stringByReplacingOccurrencesOfString:@"&amp;" withString:@"&"];
 }
 
 - (id)reverseTransformedValue:(id)value {
     if (value == nil) return nil;
-    
+
     NSString *stringValue = nil;
-    
+
     if ([value isKindOfClass:[NSString class]]) {
         stringValue = (NSString *)value;
     } else {
         [NSException raise:NSInternalInconsistencyException
                     format:@"Value (%@) is not of type NSString.", [value class]];
     }
-    
+
     return [stringValue stringByReplacingOccurrencesOfString:@"&" withString:@"&amp;"];
 }
 
@@ -275,7 +296,7 @@ NSDictionary *dictionary = [user hyp_dictionaryUsingRelationshipType:HYPProperty
 ]
 ```
 
-### Installation
+## Installation
 
 **NSManagedObject-HYPPropertyMapper** is available through [CocoaPods](http://cocoapods.org). To install it, simply add the following line to your Podfile:
 
