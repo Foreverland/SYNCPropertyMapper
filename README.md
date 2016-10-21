@@ -1,4 +1,4 @@
-![Sync](https://raw.githubusercontent.com/SyncDB/SYNCPropertyMapper/master/GitHub/logo.png)
+![Sync](https://raw.githubusercontent.com/SyncDB/SYNCPropertyMapper/master/GitHub/logo-v2.png)
 
 **SYNCPropertyMapper** leverages on your Core Data model to infer how to map your JSON values into Core Data. It's simple and it's obvious. Why the hell isn't everybody doing this?
 
