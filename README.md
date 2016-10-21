@@ -1,4 +1,4 @@
-![Sync](https://raw.githubusercontent.com/SyncDB/NSManagedObject-HYPPropertyMapper/master/GitHub/logo.png)
+![Sync](https://raw.githubusercontent.com/SyncDB/SYNCPropertyMapper/master/GitHub/logo.png)
 
 **HYPPropertyMapper** leverages on your Core Data model to infer how to map your JSON values into Core Data. It's simple and it's obvious. Why the hell isn't everybody doing this?
 
@@ -64,11 +64,11 @@ Your Core Data entities should match your backend models but in `camelCase`. You
 There are two exceptions to this rules:
 
 * `id`s should match `remoteID`
-* Reserved attributes should be prefixed with the `entityName` (`type` becomes `userType`, `description` becomes `userDescription` and so on). In the JSON they don't need to change, you can keep `type` and `description` for example. A full list of reserved attributes can be found [here](https://github.com/SyncDB/NSManagedObject-HYPPropertyMapper/blob/master/Sources/NSManagedObject%2BHYPPropertyMapper/NSManagedObject%2BHYPPropertyMapperHelpers.m#L240).
+* Reserved attributes should be prefixed with the `entityName` (`type` becomes `userType`, `description` becomes `userDescription` and so on). In the JSON they don't need to change, you can keep `type` and `description` for example. A full list of reserved attributes can be found [here](https://github.com/SyncDB/SYNCPropertyMapper/blob/master/Sources/NSManagedObject%2BHYPPropertyMapper/NSManagedObject%2BHYPPropertyMapperHelpers.m#L240).
 
 ## Custom
 
-![Remote mapping documentation](https://raw.githubusercontent.com/SyncDB/NSManagedObject-HYPPropertyMapper/master/Resources/userInfo_documentation.png)
+![Remote mapping documentation](https://raw.githubusercontent.com/SyncDB/SYNCPropertyMapper/master/Resources/userInfo_documentation.png)
 
 * If you want to map your Core Data identifier (key) attribute with a JSON attribute that has different naming, you can do by adding `hyper.remoteKey` in the user info box with the value you want to map.
 
@@ -120,9 +120,9 @@ NSDate *publishedAt = [managedObject valueForKey:@"publishedAt"];
 
 If your date is not [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) compliant, you can use a transformer attribute to parse your date, too. First set your attribute to `Transformable`, and set the name of your transformer like, in this example is `DateStringTransformer`:
 
-![transformable-attribute](https://raw.githubusercontent.com/SyncDB/NSManagedObject-HYPPropertyMapper/master/Resources/date-transformable.png)
+![transformable-attribute](https://raw.githubusercontent.com/SyncDB/SYNCPropertyMapper/master/Resources/date-transformable.png)
 
-You can find an example of date transformer in [DateStringTransformer](https://github.com/SyncDB/NSManagedObject-HYPPropertyMapper/blob/master/Tests/NSManagedObject%2BHYPPropertyMapper/Transformers/DateStringTransformer.m).
+You can find an example of date transformer in [DateStringTransformer](https://github.com/SyncDB/SYNCPropertyMapper/blob/master/Tests/NSManagedObject%2BHYPPropertyMapper/Transformers/DateStringTransformer.m).
 
 ### Array
 ```objc
@@ -300,10 +300,10 @@ NSDictionary *dictionary = [user hyp_dictionaryUsingRelationshipType:HYPProperty
 
 ## Installation
 
-**NSManagedObject-HYPPropertyMapper** is available through [CocoaPods](http://cocoapods.org). To install it, simply add the following line to your Podfile:
+**SYNCPropertyMapper** is available through [CocoaPods](http://cocoapods.org). To install it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'NSManagedObject-HYPPropertyMapper'
+pod 'SYNCPropertyMapper'
 ```
 
 ## Contributing
@@ -317,4 +317,4 @@ and if you're using this library we probably want to [hire you](http://www.hyper
 
 ## License
 
-NSManagedObject-HYPPropertyMapper is available under the MIT license. See the [LICENSE](https://raw.githubusercontent.com/SyncDB/NSManagedObject-HYPPropertyMapper/master/LICENSE.md) file for more info.
+SYNCPropertyMapper is available under the MIT license. See the [LICENSE](https://raw.githubusercontent.com/SyncDB/SYNCPropertyMapper/master/LICENSE.md) file for more info.

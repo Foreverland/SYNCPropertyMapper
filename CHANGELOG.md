@@ -1,1 +1,1 @@
-Check https://github.com/SyncDB/NSManagedObject-HYPPropertyMapper/releases for more information.
+Check https://github.com/SyncDB/SYNCPropertyMapper/releases for more information.
