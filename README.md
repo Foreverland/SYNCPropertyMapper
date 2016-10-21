@@ -1,3 +1,5 @@
+![Sync](https://raw.githubusercontent.com/SyncDB/NSManagedObject-HYPPropertyMapper/master/GitHub/logo.png)
+
 # Filling a NSManagedObject with JSON
 
 Mapping your Core Data objects with your JSON providing backend has never been this easy. 
