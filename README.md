@@ -59,7 +59,7 @@ There are two exceptions to this rules:
 }
 ```
 
-In this example, if you want to avoid creating a Core Data entity for the company, you could map straight to the company's name. By adding this to your *User Info*:
+In this example, if you want to avoid creating a Core Data entity for the company, you could map straight to the company's name. By adding this to the *User Info* of your `companyName` field:
 
 ```
 hyper.remoteKey = company.name
