@@ -69,4 +69,20 @@ class FillWithDictionaryTests: XCTestCase {
 
         try! dataStack.drop()
     }
+
+    func testBug129() {
+        ValueTransformer.setValueTransformer(BadAPIValueTransformer(), forName: NSValueTransformerName(rawValue: "BadAPIValueTransformer"))
+
+        let dataStack = Helper.dataStackWithModelName("129")
+
+        let user = Helper.insertEntity("User", dataStack: dataStack)
+        let json = [
+            "name": ["bad-backend-dev"],
+            ] as [String: Any]
+        user.hyp_fill(with: json)
+
+        XCTAssertEqual(user.value(forKey: "name") as? String, "bad-backend-dev")
+
+        try! dataStack.drop()
+    }
 }

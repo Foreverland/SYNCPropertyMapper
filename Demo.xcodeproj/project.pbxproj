@@ -21,6 +21,8 @@
 		141393401DBA19B60027D53A /* Ordered.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 141393311DBA19B60027D53A /* Ordered.xcdatamodeld */; };
 		141393411DBA19B60027D53A /* DateStringTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 141393351DBA19B60027D53A /* DateStringTransformer.m */; };
 		141393421DBA19B60027D53A /* HYPTestValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 141393371DBA19B60027D53A /* HYPTestValueTransformer.m */; };
+		141FFA851DBBE95500356E72 /* BadAPIValueTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141FFA841DBBE95500356E72 /* BadAPIValueTransformer.swift */; };
+		141FFA881DBBE99B00356E72 /* 129.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 141FFA861DBBE99B00356E72 /* 129.xcdatamodeld */; };
 		142C958B1DA4178F00F9F32F /* NSDate+SYNCPropertyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 142C957E1DA4178F00F9F32F /* NSDate+SYNCPropertyMapper.m */; };
 		142C958C1DA4178F00F9F32F /* NSEntityDescription+SYNCPrimaryKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 142C95811DA4178F00F9F32F /* NSEntityDescription+SYNCPrimaryKey.m */; };
 		142C95AF1DA4179F00F9F32F /* DateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142C95921DA4179F00F9F32F /* DateTests.swift */; };
@@ -65,6 +67,8 @@
 		141393351DBA19B60027D53A /* DateStringTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateStringTransformer.m; sourceTree = "<group>"; };
 		141393361DBA19B60027D53A /* HYPTestValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYPTestValueTransformer.h; sourceTree = "<group>"; };
 		141393371DBA19B60027D53A /* HYPTestValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYPTestValueTransformer.m; sourceTree = "<group>"; };
+		141FFA841DBBE95500356E72 /* BadAPIValueTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BadAPIValueTransformer.swift; sourceTree = "<group>"; };
+		141FFA871DBBE99B00356E72 /* hypbug.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = hypbug.xcdatamodel; sourceTree = "<group>"; };
 		142C957D1DA4178F00F9F32F /* NSDate+SYNCPropertyMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+SYNCPropertyMapper.h"; sourceTree = "<group>"; };
 		142C957E1DA4178F00F9F32F /* NSDate+SYNCPropertyMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+SYNCPropertyMapper.m"; sourceTree = "<group>"; };
 		142C95801DA4178F00F9F32F /* NSEntityDescription+SYNCPrimaryKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSEntityDescription+SYNCPrimaryKey.h"; sourceTree = "<group>"; };
@@ -159,6 +163,7 @@
 				1413932F1DBA19B60027D53A /* Model.xcdatamodeld */,
 				141393311DBA19B60027D53A /* Ordered.xcdatamodeld */,
 				1476902B1DBA4E570050431C /* 123.xcdatamodeld */,
+				141FFA861DBBE99B00356E72 /* 129.xcdatamodeld */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -170,6 +175,7 @@
 				141393351DBA19B60027D53A /* DateStringTransformer.m */,
 				141393361DBA19B60027D53A /* HYPTestValueTransformer.h */,
 				141393371DBA19B60027D53A /* HYPTestValueTransformer.m */,
+				141FFA841DBBE95500356E72 /* BadAPIValueTransformer.swift */,
 			);
 			path = Transformers;
 			sourceTree = "<group>";
@@ -350,6 +356,7 @@
 			files = (
 				141393391DBA19B60027D53A /* Helper.swift in Sources */,
 				141393421DBA19B60027D53A /* HYPTestValueTransformer.m in Sources */,
+				141FFA851DBBE95500356E72 /* BadAPIValueTransformer.swift in Sources */,
 				1413933B1DBA19B60027D53A /* HYPDictionaryTests.m in Sources */,
 				141393381DBA19B60027D53A /* FillWithDictionaryTests.swift in Sources */,
 				1476902D1DBA4E570050431C /* 123.xcdatamodeld in Sources */,
@@ -367,6 +374,7 @@
 				14441D131DBBE0770082F633 /* 112.xcdatamodeld in Sources */,
 				142C95B21DA4179F00F9F32F /* PrimaryKeyTests.m in Sources */,
 				141393231DBA19AC0027D53A /* NSManagedObject+SYNCPropertyMapperHelpers.m in Sources */,
+				141FFA881DBBE99B00356E72 /* 129.xcdatamodeld in Sources */,
 				142C958B1DA4178F00F9F32F /* NSDate+SYNCPropertyMapper.m in Sources */,
 				141393401DBA19B60027D53A /* Ordered.xcdatamodeld in Sources */,
 			);
@@ -547,6 +555,16 @@
 			);
 			currentVersion = 141393321DBA19B60027D53A /* Ordered.xcdatamodel */;
 			path = Ordered.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		141FFA861DBBE99B00356E72 /* 129.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				141FFA871DBBE99B00356E72 /* hypbug.xcdatamodel */,
+			);
+			currentVersion = 141FFA871DBBE99B00356E72 /* hypbug.xcdatamodel */;
+			path = 129.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
