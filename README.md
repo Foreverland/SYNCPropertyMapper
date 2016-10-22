@@ -242,7 +242,7 @@ That's it, that's all you have to do, the keys will be magically transformed int
 
 If you don't want to export attribute / relationship, you can prohibit exporting by adding `hyper.nonExportable` in the user info of the excluded attribute.
 
-// TODO: Include photo of user key.
+![non-exportable](https://raw.githubusercontent.com/SyncDB/SYNCPropertyMapper/master/GitHub/non-exportable.png)
 
 ## Relationships
 
