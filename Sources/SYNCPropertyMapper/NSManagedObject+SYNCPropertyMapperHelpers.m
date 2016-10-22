@@ -161,7 +161,7 @@
     if (customTransformerName) {
         NSValueTransformer *transformer = [NSValueTransformer valueTransformerForName:customTransformerName];
         if (transformer) {
-            value = [transformer transformedValue:value];
+            value = [transformer transformedValue:remoteValue];
         }
     }
 
