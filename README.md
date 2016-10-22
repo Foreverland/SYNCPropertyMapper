@@ -203,7 +203,7 @@ class BadAPIValueTransformer : ValueTransformer {
 
 Then we'll add another item in the user key of our Core Data attribute. The key will be `hyper.valueTransformer` and the value `BadAPIValueTransformer`.
 
-![value-transformer](https://raw.githubusercontent.com/SyncDB/SYNCPropertyMapper/master/GitHub/value-transformer.png)
+![value-transformer](https://raw.githubusercontent.com/SyncDB/SYNCPropertyMapper/master/GitHub/value-transformer-v2.png)
 
 Then before `hyp_fill(with:)` we'll do
 
