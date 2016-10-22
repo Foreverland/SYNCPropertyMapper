@@ -270,7 +270,7 @@ It supports relationships too, and we complain to the Rails rule `accepts_nested
 If you don't want to get nested relationships you can also ignore relationships:
 
 ```objc
-NSDictionary *dictionary = [user hyp_dictionaryUsingRelationshipType:SYNCPropertyMapperRelationshipTypeNone];
+let dictionary = user.hyp_dictionary(using: .none)
 ```
 
 ```json
@@ -281,7 +281,7 @@ NSDictionary *dictionary = [user hyp_dictionaryUsingRelationshipType:SYNCPropert
 Or get them as an array:
 
 ```objc
-NSDictionary *dictionary = [user hyp_dictionaryUsingRelationshipType:SYNCPropertyMapperRelationshipTypeArray];
+let dictionary = user.hyp_dictionary(using: .array)
 ```
 ```json
 "first_name": "John",
