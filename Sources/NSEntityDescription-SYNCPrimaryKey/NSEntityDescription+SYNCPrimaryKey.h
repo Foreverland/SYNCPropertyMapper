@@ -29,14 +29,4 @@ static NSString * _Nonnull const SYNCCustomRemoteKey = @"hyper.remoteKey";
  */
 - (nonnull NSString *)sync_remotePrimaryKey;
 
-/**
- Returns the local primary key for the entity.
- */
-- (nonnull NSString *)sync_localKey __attribute__((deprecated("Use sync_localPrimaryKey instead")));
-
-/**
- Returns the remote primary key for the entity.
- */
-- (nonnull NSString *)sync_remoteKey __attribute__((deprecated("Use sync_remotePrimaryKey instead")));
-
 @end

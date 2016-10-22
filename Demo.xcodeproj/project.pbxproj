@@ -84,6 +84,18 @@
 		14BE981E1DBC02260071B2CB /* DateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142C95921DA4179F00F9F32F /* DateTests.swift */; };
 		14BE981F1DBC02260071B2CB /* Pod.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 142C95961DA4179F00F9F32F /* Pod.xcdatamodeld */; };
 		14BE98201DBC02260071B2CB /* PrimaryKeyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 142C95981DA4179F00F9F32F /* PrimaryKeyTests.m */; };
+		14C0463F1DBC1BA000CB6C16 /* NSDate+SYNCPropertyMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 142C957D1DA4178F00F9F32F /* NSDate+SYNCPropertyMapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		14C046401DBC1BA200CB6C16 /* NSEntityDescription+SYNCPrimaryKey.h in Headers */ = {isa = PBXBuildFile; fileRef = 142C95801DA4178F00F9F32F /* NSEntityDescription+SYNCPrimaryKey.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		14C046411DBC1BF500CB6C16 /* NSDate+SYNCPropertyMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 142C957D1DA4178F00F9F32F /* NSDate+SYNCPropertyMapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		14C046421DBC1BF700CB6C16 /* NSEntityDescription+SYNCPrimaryKey.h in Headers */ = {isa = PBXBuildFile; fileRef = 142C95801DA4178F00F9F32F /* NSEntityDescription+SYNCPrimaryKey.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		14C046441DBC1C2500CB6C16 /* NSDate+SYNCPropertyMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 142C957D1DA4178F00F9F32F /* NSDate+SYNCPropertyMapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		14C046451DBC1C2500CB6C16 /* NSEntityDescription+SYNCPrimaryKey.h in Headers */ = {isa = PBXBuildFile; fileRef = 142C95801DA4178F00F9F32F /* NSEntityDescription+SYNCPrimaryKey.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		14C046461DBC1C2A00CB6C16 /* NSDate+SYNCPropertyMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 142C957D1DA4178F00F9F32F /* NSDate+SYNCPropertyMapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		14C046471DBC1C2A00CB6C16 /* NSEntityDescription+SYNCPrimaryKey.h in Headers */ = {isa = PBXBuildFile; fileRef = 142C95801DA4178F00F9F32F /* NSEntityDescription+SYNCPrimaryKey.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		14C046481DBC1C5100CB6C16 /* SYNCPropertyMapperHelpers.h in Headers */ = {isa = PBXBuildFile; fileRef = 141393201DBA19AC0027D53A /* SYNCPropertyMapperHelpers.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		14C046491DBC1C5300CB6C16 /* SYNCPropertyMapperHelpers.h in Headers */ = {isa = PBXBuildFile; fileRef = 141393201DBA19AC0027D53A /* SYNCPropertyMapperHelpers.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		14C0464A1DBC1C5E00CB6C16 /* SYNCPropertyMapperHelpers.h in Headers */ = {isa = PBXBuildFile; fileRef = 141393201DBA19AC0027D53A /* SYNCPropertyMapperHelpers.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		14C0464B1DBC1C6000CB6C16 /* SYNCPropertyMapperHelpers.h in Headers */ = {isa = PBXBuildFile; fileRef = 141393201DBA19AC0027D53A /* SYNCPropertyMapperHelpers.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		14F2C6C11DBC0ED800EC5282 /* SYNCPropertyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1413931F1DBA19AC0027D53A /* SYNCPropertyMapper.m */; };
 		14F2C6C21DBC0ED800EC5282 /* SYNCPropertyMapperHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 141393211DBA19AC0027D53A /* SYNCPropertyMapperHelpers.m */; };
 		14F2C6C31DBC0ED800EC5282 /* NSString+SYNCInflections.m in Sources */ = {isa = PBXBuildFile; fileRef = 140679681DBA1C4F00381990 /* NSString+SYNCInflections.m */; };
@@ -440,6 +452,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				148947EE1DBC108D00A28C07 /* SYNCPropertyMapper.h in Headers */,
+				14C0463F1DBC1BA000CB6C16 /* NSDate+SYNCPropertyMapper.h in Headers */,
+				14C046401DBC1BA200CB6C16 /* NSEntityDescription+SYNCPrimaryKey.h in Headers */,
+				14C046481DBC1C5100CB6C16 /* SYNCPropertyMapperHelpers.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -448,6 +463,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				148947EF1DBC109200A28C07 /* SYNCPropertyMapper.h in Headers */,
+				14C046411DBC1BF500CB6C16 /* NSDate+SYNCPropertyMapper.h in Headers */,
+				14C046421DBC1BF700CB6C16 /* NSEntityDescription+SYNCPrimaryKey.h in Headers */,
+				14C046491DBC1C5300CB6C16 /* SYNCPropertyMapperHelpers.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -456,6 +474,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				148947F01DBC109600A28C07 /* SYNCPropertyMapper.h in Headers */,
+				14C046441DBC1C2500CB6C16 /* NSDate+SYNCPropertyMapper.h in Headers */,
+				14C046451DBC1C2500CB6C16 /* NSEntityDescription+SYNCPrimaryKey.h in Headers */,
+				14C0464A1DBC1C5E00CB6C16 /* SYNCPropertyMapperHelpers.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -464,6 +485,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				148947F11DBC109A00A28C07 /* SYNCPropertyMapper.h in Headers */,
+				14C046461DBC1C2A00CB6C16 /* NSDate+SYNCPropertyMapper.h in Headers */,
+				14C046471DBC1C2A00CB6C16 /* NSEntityDescription+SYNCPrimaryKey.h in Headers */,
+				14C0464B1DBC1C6000CB6C16 /* SYNCPropertyMapperHelpers.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

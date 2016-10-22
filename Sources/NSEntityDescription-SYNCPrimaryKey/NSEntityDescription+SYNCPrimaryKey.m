@@ -49,12 +49,4 @@
     return remoteKey;
 }
 
-- (nonnull NSString *)sync_localKey {
-    return [self sync_localPrimaryKey];
-}
-
-- (nonnull NSString *)sync_remoteKey {
-    return [self sync_remotePrimaryKey];
-}
-
 @end

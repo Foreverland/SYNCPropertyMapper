@@ -5,6 +5,9 @@
 static NSString * const SYNCPropertyMapperDestroyKey = @"destroy";
 static NSString * const SYNCPropertyMapperCustomValueTransformerKey = @"hyper.valueTransformer";
 
+/**
+ Internal helpers, not meant to be included in the public APIs.
+ */
 @interface NSManagedObject (SYNCPropertyMapperHelpers)
 
 - (id)valueForAttributeDescription:(NSAttributeDescription *)attributeDescription
