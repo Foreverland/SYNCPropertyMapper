@@ -1,6 +1,10 @@
 @import CoreData;
 @import Foundation;
 
+#import "NSDate+SYNCPropertyMapper.h"
+#import "NSEntityDescription+SYNCPrimaryKey.h"
+#import "NSString+SYNCInflections.h"
+
 FOUNDATION_EXPORT double SYNCPropertyMapperVersionNumber;
 FOUNDATION_EXPORT const unsigned char SYNCPropertyMapperVersionString[];
 
