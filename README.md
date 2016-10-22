@@ -14,7 +14,7 @@
     * [Date](#date)
     * [Array](#array)
     * [Dictionary](#dictionary)
-  * [Dealing with bad APIs](#dealing-with-bad-apis)
+  * [Value Transformations](#value-transformations)
 * [JSON representation from a NSManagedObject](#json-representation-from-a-nsmanagedobject)
   * [Excluding](#excluding)
   * [Relationships](#relationships)
@@ -147,73 +147,79 @@ NSDictionary *expenses = [NSKeyedUnarchiver unarchiveObjectWithData:managedObjec
 // ==> "cake" : 12.50, "juice" : 0.50
 ```
 
-## Dealing with bad APIs
+## Value Transformations
 
-Sometimes values in a REST API are not formatted in the way you want them, resulting in you having to extend your model classes with methods and/or properties for transformed values. You might even have to pre-process the JSON so you can use it with **SYNCPropertyMapper**, luckily most of this cases could be solved by using a `ValueTransformer`.
+Sometimes values in a REST API are not formatted in the way you want them, resulting in you having to extend your model classes with methods and/or properties for transformed values.
 
-For example, in my user model instead of getting this:
-
-```json
-{
-  "name": "Bob Dylan"
-}
-```
-
-Our backend developer decided he likes arrays, so we're getting this:
+For example, what if I want to encode this title before setting it to my model?
 
 ```json
 {
-  "name": [
-    "Bob Dylan"
-  ]
+  "title": "Foo &#038; bar"
 }
 ```
 
-Since **SYNCPropertyMapper** expects just a `name` with value `Bob Dylan`, we have to pre-process this value before getting it into Core Data. For this, first we'll create a subclass of `ValueTransformer`.
+This requires your client to handle HTML entitles each time you need `title`, or using transformable attributes which would make your `title` a NSData.
 
-```swift
-import Foundation
+Welp, not anymore!
 
-class BadAPIValueTransformer : ValueTransformer {
-    override class func transformedValueClass() -> AnyClass {
-        return String.self as! AnyClass
-    }
+First, open your Core Data model and the name of your transformer to `hyper.valueTransformer`. For this example we'll use `HYPTitleEncodingValueTransformer`.
 
-    override class func allowsReverseTransformation() -> Bool {
-        return true
-    }
+```objc
+#import "HYPTitleEncodingValueTransformer.h"
 
-    // Used to transform before inserting into Core Data using `hyp_fill(with:)
-    override func transformedValue(_ value: Any?) -> Any? {
-        guard let valueToTransform = value as? Array<String> else {
-            return value
-        }
+@implementation HYPTitleEncodingValueTransformer
 
-        return valueToTransform.first!
-    }
-
-    // Used to transform before exporting into JSON using `hyp_dictionary`
-    override func reverseTransformedValue(_ value: Any?) -> Any? {
-        guard let stringValue = value as? String else { return value }
-
-        return [stringValue]
-    }
++ (Class)transformedValueClass {
+    return [NSString class];
 }
+
++ (BOOL)allowsReverseTransformation {
+    return YES;
+}
+
+- (id)transformedValue:(id)value {
+    if (value == nil) return nil;
+
+    NSString *stringValue = nil;
+
+    if ([value isKindOfClass:[NSString class]]) {
+        stringValue = (NSString *)value;
+    } else {
+        [NSException raise:NSInternalInconsistencyException
+                    format:@"Value (%@) is not of type NSString.", [value class]];
+    }
+
+    return [stringValue stringByReplacingOccurrencesOfString:@"&amp;" withString:@"&"];
+}
+
+- (id)reverseTransformedValue:(id)value {
+    if (value == nil) return nil;
+
+    NSString *stringValue = nil;
+
+    if ([value isKindOfClass:[NSString class]]) {
+        stringValue = (NSString *)value;
+    } else {
+        [NSException raise:NSInternalInconsistencyException
+                    format:@"Value (%@) is not of type NSString.", [value class]];
+    }
+
+    return [stringValue stringByReplacingOccurrencesOfString:@"&" withString:@"&amp;"];
+}
+
+@end
 ```
 
-Then we'll add another item in the user key of our Core Data attribute. The key will be `hyper.valueTransformer` and the value `BadAPIValueTransformer`.
+Then before `hyp_fillWithDictionary` we'll do
 
-![value-transformer](https://raw.githubusercontent.com/SyncDB/SYNCPropertyMapper/master/GitHub/value-transformer.png)
-
-Then before `hyp_fill(with:)` we'll do
-
-```swift
-ValueTransformer.setValueTransformer(BadAPIValueTransformer(), forName: NSValueTransformerName(rawValue: "BadAPIValueTransformer"))
+```objc
+[NSValueTransformer setValueTransformer:[[HYPTitleEncodingValueTransformer alloc] init] forName:@"HYPTitleEncodingValueTransformer"];
 ```
 
-That's it! Then your name will be `Bob Dylan`, congrats with the Peace Nobel Prize.
+That's it! Then your title will be `"Foo & bar"`.
 
-By the way, it works the other way as well! So using `hyp_dictionary` will return `["Bob Dylan"]`.
+It works the other way as well! So using `hyp_dictionary` will return `"Foo &#038; bar"`
 
 # JSON representation from a NSManagedObject
 
