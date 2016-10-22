@@ -68,7 +68,7 @@ There are two exceptions to this rules:
 
 ## Custom
 
-![Remote mapping documentation](https://raw.githubusercontent.com/SyncDB/SYNCPropertyMapper/master/Resources/userInfo_documentation.png)
+![Remote mapping documentation](https://raw.githubusercontent.com/SyncDB/SYNCPropertyMapper/master/GitHub/userInfo_documentation.png)
 
 * If you want to map your Core Data identifier (key) attribute with a JSON attribute that has different naming, you can do by adding `hyper.remoteKey` in the user info box with the value you want to map.
 
@@ -120,7 +120,7 @@ NSDate *publishedAt = [managedObject valueForKey:@"publishedAt"];
 
 If your date is not [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) compliant, you can use a transformer attribute to parse your date, too. First set your attribute to `Transformable`, and set the name of your transformer like, in this example is `DateStringTransformer`:
 
-![transformable-attribute](https://raw.githubusercontent.com/SyncDB/SYNCPropertyMapper/master/Resources/date-transformable.png)
+![transformable-attribute](https://raw.githubusercontent.com/SyncDB/SYNCPropertyMapper/master/GitHub/date-transformable.png)
 
 You can find an example of date transformer in [DateStringTransformer](https://github.com/SyncDB/SYNCPropertyMapper/blob/master/Tests/NSManagedObject%2BSYNCPropertyMapper/Transformers/DateStringTransformer.m).
 
