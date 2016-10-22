@@ -7,13 +7,13 @@
 * [Filling a NSManagedObject with JSON](#filling-a-nsmanagedobject-with-json)
   * [JSON in CamelCase](#json-in-camelcase)
   * [JSON in snake_case](#json-in-snake_case)
-  * [Exceptions](#exceptions)
-  * [Custom](#custom)
-  * [Deep mapping](#deep-mapping)
   * [Attribute Types](#attribute-types)
     * [Date](#date)
     * [Array](#array)
     * [Dictionary](#dictionary)
+  * [Exceptions](#exceptions)
+  * [Custom](#custom)
+  * [Deep mapping](#deep-mapping)
   * [Dealing with bad APIs](#dealing-with-bad-apis)
 * [JSON representation from a NSManagedObject](#json-representation-from-a-nsmanagedobject)
   * [Excluding](#excluding)
@@ -59,6 +59,50 @@ NSDictionary *values = [JSON valueForKey:@"user"];
 
 Your Core Data entities should match your backend models but in `camelCase`. Your attributes should match their JSON counterparts. For example `first_name` maps to `firstName`, `address` to `address`.
 
+                         @"published_at": @"1441843200"
+                         @"number_of_attendes": @20};
+
+[managedObject hyp_fillWithDictionary:values];
+
+NSDate *createdAt = [managedObject valueForKey:@"createdAt"];
+// ==> "2014-01-01 00:00:00 +00:00"
+
+NSDate *updatedAt = [managedObject valueForKey:@"updatedAt"];
+// ==> "2014-01-02 00:00:00 +00:00"
+
+NSDate *publishedAt = [managedObject valueForKey:@"publishedAt"];
+// ==> "2015-09-10 00:00:00 +00:00"
+```
+
+If your date is not [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) compliant, you can use a transformer attribute to parse your date, too. First set your attribute to `Transformable`, and set the name of your transformer like, in this example is `DateStringTransformer`:
+
+![transformable-attribute](https://raw.githubusercontent.com/SyncDB/SYNCPropertyMapper/master/GitHub/date-transformable.png)
+
+You can find an example of date transformer in [DateStringTransformer](https://github.com/SyncDB/SYNCPropertyMapper/blob/master/Tests/NSManagedObject%2BSYNCPropertyMapper/Transformers/DateStringTransformer.m).
+
+### Array
+```objc
+NSDictionary *values = @{@"hobbies" : @[@"football",
+                                        @"soccer",
+                                        @"code"]};
+
+[managedObject hyp_fillWithDictionary:values];
+
+NSArray *hobbies = [NSKeyedUnarchiver unarchiveObjectWithData:managedObject.hobbies];
+// ==> "football", "soccer", "code"
+```
+
+### Dictionary
+```objc
+NSDictionary *values = @{@"expenses" : @{@"cake" : @12.50,
+                                         @"juice" : @0.50}};
+
+[managedObject hyp_fillWithDictionary:values];
+
+NSDictionary *expenses = [NSKeyedUnarchiver unarchiveObjectWithData:managedObject.expenses];
+// ==> "cake" : 12.50, "juice" : 0.50
+```
+
 ## Exceptions
 
 There are two exceptions to this rules:
@@ -103,49 +147,6 @@ We went for supporting [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) and uni
 ```objc
 NSDictionary *values = @{@"created_at" : @"2014-01-01T00:00:00+00:00",
                          @"updated_at" : @"2014-01-02",
-                         @"published_at": @"1441843200"
-                         @"number_of_attendes": @20};
-
-[managedObject hyp_fillWithDictionary:values];
-
-NSDate *createdAt = [managedObject valueForKey:@"createdAt"];
-// ==> "2014-01-01 00:00:00 +00:00"
-
-NSDate *updatedAt = [managedObject valueForKey:@"updatedAt"];
-// ==> "2014-01-02 00:00:00 +00:00"
-
-NSDate *publishedAt = [managedObject valueForKey:@"publishedAt"];
-// ==> "2015-09-10 00:00:00 +00:00"
-```
-
-If your date is not [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) compliant, you can use a transformer attribute to parse your date, too. First set your attribute to `Transformable`, and set the name of your transformer like, in this example is `DateStringTransformer`:
-
-![transformable-attribute](https://raw.githubusercontent.com/SyncDB/SYNCPropertyMapper/master/GitHub/date-transformable.png)
-
-You can find an example of date transformer in [DateStringTransformer](https://github.com/SyncDB/SYNCPropertyMapper/blob/master/Tests/NSManagedObject%2BSYNCPropertyMapper/Transformers/DateStringTransformer.m).
-
-### Array
-```objc
-NSDictionary *values = @{@"hobbies" : @[@"football",
-                                        @"soccer",
-                                        @"code"]};
-
-[managedObject hyp_fillWithDictionary:values];
-
-NSArray *hobbies = [NSKeyedUnarchiver unarchiveObjectWithData:managedObject.hobbies];
-// ==> "football", "soccer", "code"
-```
-
-### Dictionary
-```objc
-NSDictionary *values = @{@"expenses" : @{@"cake" : @12.50,
-                                         @"juice" : @0.50}};
-
-[managedObject hyp_fillWithDictionary:values];
-
-NSDictionary *expenses = [NSKeyedUnarchiver unarchiveObjectWithData:managedObject.expenses];
-// ==> "cake" : 12.50, "juice" : 0.50
-```
 
 ## Dealing with bad APIs
 
