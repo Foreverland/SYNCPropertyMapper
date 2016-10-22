@@ -4,7 +4,7 @@ class DateTests: XCTestCase {
 
     func testDateA() {
         let date = Date.dateWithHourAndTimeZoneString(dateString: "2015-06-23T12:40:08.000")
-        let resultDate = NSDate(fromDateString: "2015-06-23T14:40:08.000+02:00") as Date
+        let resultDate = NSDate(fromDateString: "2015-06-23T14:40:08.000+02:00") as! Date
 
         XCTAssertNotNil(resultDate)
         XCTAssertEqual(date.timeIntervalSince1970, resultDate.timeIntervalSince1970)
@@ -12,7 +12,7 @@ class DateTests: XCTestCase {
 
     func testDateB() {
         let date = Date.dateWithDayString(dateString: "2014-01-01")
-        let resultDate = NSDate(fromDateString: "2014-01-01T00:00:00+00:00") as Date
+        let resultDate = NSDate(fromDateString: "2014-01-01T00:00:00+00:00") as! Date
 
         XCTAssertNotNil(resultDate)
         XCTAssertEqual(date, resultDate)
@@ -20,7 +20,7 @@ class DateTests: XCTestCase {
 
     func testDateC() {
         let date = Date.dateWithDayString(dateString: "2014-01-02")
-        let resultDate = NSDate(fromDateString: "2014-01-02") as Date
+        let resultDate = NSDate(fromDateString: "2014-01-02") as! Date
 
         XCTAssertNotNil(resultDate)
         XCTAssertEqual(date, resultDate)
@@ -28,7 +28,7 @@ class DateTests: XCTestCase {
 
     func testDateD() {
         let date = Date.dateWithDayString(dateString: "2014-01-02")
-        let resultDate = NSDate(fromDateString: "2014-01-02T00:00:00.000000+00:00") as Date
+        let resultDate = NSDate(fromDateString: "2014-01-02T00:00:00.000000+00:00") as! Date
 
         XCTAssertNotNil(resultDate)
         XCTAssertEqual(date, resultDate)
@@ -36,7 +36,7 @@ class DateTests: XCTestCase {
 
     func testDateE() {
         let date = Date.dateWithDayString(dateString: "2015-09-10")
-        let resultDate = NSDate(fromDateString: "2015-09-10T00:00:00.116+0000") as Date
+        let resultDate = NSDate(fromDateString: "2015-09-10T00:00:00.116+0000") as! Date
 
         XCTAssertNotNil(resultDate)
         XCTAssertEqual(date, resultDate)
@@ -44,7 +44,7 @@ class DateTests: XCTestCase {
 
     func testDateF() {
         let date = Date.dateWithDayString(dateString: "2015-09-10")
-        let resultDate = NSDate(fromDateString: "2015-09-10T00:00:00.184968Z") as Date
+        let resultDate = NSDate(fromDateString: "2015-09-10T00:00:00.184968Z") as! Date
 
         XCTAssertNotNil(resultDate)
         XCTAssertEqual(date, resultDate)
@@ -52,7 +52,7 @@ class DateTests: XCTestCase {
 
     func testDateG() {
         let date = Date.dateWithHourAndTimeZoneString(dateString: "2015-06-23T19:04:19.911Z")
-        let resultDate = NSDate(fromDateString: "2015-06-23T19:04:19.911Z") as Date
+        let resultDate = NSDate(fromDateString: "2015-06-23T19:04:19.911Z") as! Date
         print(date.timeIntervalSince1970)
         print(resultDate.timeIntervalSince1970)
         date.prettyPrint()
@@ -63,7 +63,7 @@ class DateTests: XCTestCase {
 
     func testDateH() {
         let date = Date.dateWithHourAndTimeZoneString(dateString: "2014-03-30T09:13:00.000Z")
-        let resultDate = NSDate(fromDateString: "2014-03-30T09:13:00Z") as Date
+        let resultDate = NSDate(fromDateString: "2014-03-30T09:13:00Z") as! Date
         XCTAssertNotNil(resultDate)
         XCTAssertEqual(date, resultDate)
     }
@@ -75,14 +75,14 @@ class DateTests: XCTestCase {
 
     func testDateJ() {
         let date = Date.dateWithDayString(dateString: "2016-01-09")
-        let resultDate = NSDate(fromDateString: "2016-01-09T00:00:00.00") as Date
+        let resultDate = NSDate(fromDateString: "2016-01-09T00:00:00.00") as! Date
         XCTAssertNotNil(resultDate)
         XCTAssertEqual(date, resultDate)
     }
 
     func testDateK() {
         let date = Date.dateWithDayString(dateString: "2016-01-09")
-        let resultDate = NSDate(fromDateString: "2016-01-09T00:00:00") as Date
+        let resultDate = NSDate(fromDateString: "2016-01-09T00:00:00") as! Date
         XCTAssertNotNil(resultDate)
         XCTAssertEqual(date, resultDate)
     }
@@ -92,7 +92,7 @@ class TimestampDateTests: XCTestCase {
 
     func testTimestampA() {
         let date = Date.dateWithDayString(dateString: "2015-09-10")
-        let resultDate = NSDate(fromDateString: "1441843200") as Date
+        let resultDate = NSDate(fromDateString: "1441843200") as! Date
 
         XCTAssertNotNil(resultDate)
         XCTAssertEqual(date, resultDate)
@@ -100,7 +100,7 @@ class TimestampDateTests: XCTestCase {
 
     func testTimestampB() {
         let date = Date.dateWithDayString(dateString: "2015-09-10")
-        let resultDate = NSDate(fromDateString: "1441843200000000") as Date
+        let resultDate = NSDate(fromDateString: "1441843200000000") as! Date
 
         XCTAssertNotNil(resultDate)
         XCTAssertEqual(date, resultDate)
@@ -108,7 +108,7 @@ class TimestampDateTests: XCTestCase {
 
     func testTimestampC() {
         let date = Date.dateWithDayString(dateString: "2015-09-10")
-        let resultDate = NSDate(fromUnixTimestampNumber: 1441843200) as Date
+        let resultDate = NSDate(fromUnixTimestampNumber: 1441843200) as! Date
 
         XCTAssertNotNil(resultDate)
         XCTAssertEqual(date, resultDate)
@@ -116,7 +116,7 @@ class TimestampDateTests: XCTestCase {
 
     func testTimestampD() {
         let date = Date.dateWithDayString(dateString: "2015-09-10")
-        let resultDate = NSDate(fromUnixTimestampNumber: NSNumber(value: 1441843200000000.0)) as Date
+        let resultDate = NSDate(fromUnixTimestampNumber: NSNumber(value: 1441843200000000.0)) as! Date
 
         XCTAssertNotNil(resultDate)
         XCTAssertEqual(date, resultDate)

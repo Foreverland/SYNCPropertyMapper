@@ -6,9 +6,6 @@ FOUNDATION_EXPORT const unsigned char SYNCPropertyMapperVersionString[];
 
 NS_ASSUME_NONNULL_BEGIN
 
-static NSString * const SYNCPropertyMapperCustomRemoteKey = @"hyper.remoteKey";
-static NSString * const SYNCPropertyMapperNonExportableKey = @"hyper.nonExportable";
-
 /**
  The relationship type used to export the NSManagedObject as JSON.
 
@@ -59,7 +56,7 @@ typedef NS_ENUM(NSInteger, SYNCPropertyMapperRelationshipType) {
 
  @param dateFormatter A custom date formatter that turns NSDate objects into NSString objects. Do not pass nil, instead use the 'hyp_dictionary' method
 
- @return
+ @return The JSON representation of the NSManagedObject in the form of a NSDictionary.
  */
 - (NSDictionary<NSString *, id> *)hyp_dictionaryWithDateFormatter:(NSDateFormatter *)dateFormatter;
 

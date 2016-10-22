@@ -4,6 +4,8 @@
 
 static NSString * const SYNCPropertyMapperDestroyKey = @"destroy";
 static NSString * const SYNCPropertyMapperCustomValueTransformerKey = @"hyper.valueTransformer";
+static NSString * const SYNCPropertyMapperCustomRemoteKey = @"hyper.remoteKey";
+static NSString * const SYNCPropertyMapperNonExportableKey = @"hyper.nonExportable";
 
 /**
  Internal helpers, not meant to be included in the public APIs.

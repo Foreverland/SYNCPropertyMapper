@@ -1,32 +1,42 @@
 @import CoreData;
 
-static NSString * _Nonnull const SYNCDefaultLocalPrimaryKey = @"id";
-static NSString * _Nonnull const SYNCDefaultLocalCompatiblePrimaryKey = @"remoteID";
+NS_ASSUME_NONNULL_BEGIN
 
-static NSString * _Nonnull const SYNCDefaultRemotePrimaryKey = @"id";
+static NSString * const SYNCDefaultLocalPrimaryKey = @"id";
+static NSString * const SYNCDefaultLocalCompatiblePrimaryKey = @"remoteID";
 
-static NSString * _Nonnull const SYNCCustomLocalPrimaryKey = @"hyper.isPrimaryKey";
-static NSString * _Nonnull const SYNCCustomLocalPrimaryKeyValue = @"YES";
-static NSString * _Nonnull const SYNCCustomLocalPrimaryKeyAlternativeValue = @"true";
+static NSString * const SYNCDefaultRemotePrimaryKey = @"id";
 
-static NSString * _Nonnull const SYNCCustomRemoteKey = @"hyper.remoteKey";
+static NSString * const SYNCCustomLocalPrimaryKey = @"hyper.isPrimaryKey";
+static NSString * const SYNCCustomLocalPrimaryKeyValue = @"YES";
+static NSString * const SYNCCustomLocalPrimaryKeyAlternativeValue = @"true";
+
+static NSString * const SYNCCustomRemoteKey = @"hyper.remoteKey";
 
 @interface NSEntityDescription (SYNCPrimaryKey)
 
 /**
  Returns the Core Data attribute used as the primary key. By default it will look for the attribute named `id`.
  You can mark any attribute as primary key by adding `hyper.isPrimaryKey` and the value `YES` to the Core Data model userInfo.
+
+ @return The attribute description that represents the primary key.
  */
-- (nonnull NSAttributeDescription *)sync_primaryKeyAttribute;
+- (NSAttributeDescription *)sync_primaryKeyAttribute;
 
 /**
  Returns the local primary key for the entity.
+
+ @return The name of the attribute that represents the local primary key;.
  */
-- (nonnull NSString *)sync_localPrimaryKey;
+- (NSString *)sync_localPrimaryKey;
 
 /**
  Returns the remote primary key for the entity.
+
+ @return The name of the attribute that represents the remote primary key.
  */
-- (nonnull NSString *)sync_remotePrimaryKey;
+- (NSString *)sync_remotePrimaryKey;
 
 @end
+
+NS_ASSUME_NONNULL_END
