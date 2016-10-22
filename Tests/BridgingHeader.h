@@ -1,3 +1,3 @@
-#import "SYNCPropertyMapper.h"
+#import "NSManagedObject+SYNCPropertyMapper.h"
 #import "NSDate+SYNCPropertyMapper.h"
-#import "SYNCPropertyMapperHelpers.h"
+#import "NSManagedObject+SYNCPropertyMapperHelpers.h"

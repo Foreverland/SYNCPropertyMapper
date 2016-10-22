@@ -1,6 +1,6 @@
 @import CoreData;
 
-#import "SYNCPropertyMapper.h"
+#import "NSManagedObject+SYNCPropertyMapper.h"
 
 static NSString * const SYNCPropertyMapperDestroyKey = @"destroy";
 static NSString * const SYNCPropertyMapperCustomValueTransformerKey = @"hyper.valueTransformer";
