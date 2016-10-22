@@ -1,4 +1,4 @@
-#import "NSManagedObject+SYNCPropertyMapper.h"
+#import "SYNCPropertyMapper.h"
 
 #import "NSString+SYNCInflections.h"
 #import "NSManagedObject+SYNCPropertyMapperHelpers.h"

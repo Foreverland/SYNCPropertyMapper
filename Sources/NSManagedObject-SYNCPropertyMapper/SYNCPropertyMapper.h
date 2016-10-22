@@ -1,4 +1,8 @@
 @import CoreData;
+@import Foundation;
+
+FOUNDATION_EXPORT double SYNCPropertyMapperVersionNumber;
+FOUNDATION_EXPORT const unsigned char SYNCPropertyMapperVersionString[];
 
 NS_ASSUME_NONNULL_BEGIN
 

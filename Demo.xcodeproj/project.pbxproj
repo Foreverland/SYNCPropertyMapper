@@ -80,13 +80,13 @@
 		14C046451DBC1C2500CB6C16 /* NSEntityDescription+SYNCPrimaryKey.h in Headers */ = {isa = PBXBuildFile; fileRef = 142C95801DA4178F00F9F32F /* NSEntityDescription+SYNCPrimaryKey.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		14C046461DBC1C2A00CB6C16 /* NSDate+SYNCPropertyMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 142C957D1DA4178F00F9F32F /* NSDate+SYNCPropertyMapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		14C046471DBC1C2A00CB6C16 /* NSEntityDescription+SYNCPrimaryKey.h in Headers */ = {isa = PBXBuildFile; fileRef = 142C95801DA4178F00F9F32F /* NSEntityDescription+SYNCPrimaryKey.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		14E9F4CF1DBC2D1300CF8C5F /* NSManagedObject+SYNCPropertyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E9F4C81DBC2D1300CF8C5F /* NSManagedObject+SYNCPropertyMapper.m */; };
-		14E9F4D01DBC2D1300CF8C5F /* NSManagedObject+SYNCPropertyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E9F4C81DBC2D1300CF8C5F /* NSManagedObject+SYNCPropertyMapper.m */; };
-		14E9F4D11DBC2D1300CF8C5F /* NSManagedObject+SYNCPropertyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E9F4C81DBC2D1300CF8C5F /* NSManagedObject+SYNCPropertyMapper.m */; };
-		14E9F4D21DBC2D1300CF8C5F /* NSManagedObject+SYNCPropertyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E9F4C81DBC2D1300CF8C5F /* NSManagedObject+SYNCPropertyMapper.m */; };
-		14E9F4D31DBC2D1300CF8C5F /* NSManagedObject+SYNCPropertyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E9F4C81DBC2D1300CF8C5F /* NSManagedObject+SYNCPropertyMapper.m */; };
-		14E9F4D41DBC2D1300CF8C5F /* NSManagedObject+SYNCPropertyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E9F4C81DBC2D1300CF8C5F /* NSManagedObject+SYNCPropertyMapper.m */; };
-		14E9F4D51DBC2D1300CF8C5F /* NSManagedObject+SYNCPropertyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E9F4C81DBC2D1300CF8C5F /* NSManagedObject+SYNCPropertyMapper.m */; };
+		14E9F4CF1DBC2D1300CF8C5F /* SYNCPropertyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E9F4C81DBC2D1300CF8C5F /* SYNCPropertyMapper.m */; };
+		14E9F4D01DBC2D1300CF8C5F /* SYNCPropertyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E9F4C81DBC2D1300CF8C5F /* SYNCPropertyMapper.m */; };
+		14E9F4D11DBC2D1300CF8C5F /* SYNCPropertyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E9F4C81DBC2D1300CF8C5F /* SYNCPropertyMapper.m */; };
+		14E9F4D21DBC2D1300CF8C5F /* SYNCPropertyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E9F4C81DBC2D1300CF8C5F /* SYNCPropertyMapper.m */; };
+		14E9F4D31DBC2D1300CF8C5F /* SYNCPropertyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E9F4C81DBC2D1300CF8C5F /* SYNCPropertyMapper.m */; };
+		14E9F4D41DBC2D1300CF8C5F /* SYNCPropertyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E9F4C81DBC2D1300CF8C5F /* SYNCPropertyMapper.m */; };
+		14E9F4D51DBC2D1300CF8C5F /* SYNCPropertyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E9F4C81DBC2D1300CF8C5F /* SYNCPropertyMapper.m */; };
 		14E9F4DA1DBC2D1300CF8C5F /* NSManagedObject+SYNCPropertyMapperHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E9F4CA1DBC2D1300CF8C5F /* NSManagedObject+SYNCPropertyMapperHelpers.m */; };
 		14E9F4DB1DBC2D1300CF8C5F /* NSManagedObject+SYNCPropertyMapperHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E9F4CA1DBC2D1300CF8C5F /* NSManagedObject+SYNCPropertyMapperHelpers.m */; };
 		14E9F4DC1DBC2D1300CF8C5F /* NSManagedObject+SYNCPropertyMapperHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E9F4CA1DBC2D1300CF8C5F /* NSManagedObject+SYNCPropertyMapperHelpers.m */; };
@@ -94,24 +94,20 @@
 		14E9F4DE1DBC2D1300CF8C5F /* NSManagedObject+SYNCPropertyMapperHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E9F4CA1DBC2D1300CF8C5F /* NSManagedObject+SYNCPropertyMapperHelpers.m */; };
 		14E9F4DF1DBC2D1300CF8C5F /* NSManagedObject+SYNCPropertyMapperHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E9F4CA1DBC2D1300CF8C5F /* NSManagedObject+SYNCPropertyMapperHelpers.m */; };
 		14E9F4E01DBC2D1300CF8C5F /* NSManagedObject+SYNCPropertyMapperHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E9F4CA1DBC2D1300CF8C5F /* NSManagedObject+SYNCPropertyMapperHelpers.m */; };
-		14E9F4E41DBC2D7E00CF8C5F /* SYNCPropertyMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 14E9F4E11DBC2D2700CF8C5F /* SYNCPropertyMapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		14E9F4E51DBC2D8800CF8C5F /* NSManagedObject+SYNCPropertyMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 14E9F4C71DBC2D1300CF8C5F /* NSManagedObject+SYNCPropertyMapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		14E9F4E51DBC2D8800CF8C5F /* SYNCPropertyMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 14E9F4C71DBC2D1300CF8C5F /* SYNCPropertyMapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		14E9F4E61DBC2D8800CF8C5F /* NSManagedObject+SYNCPropertyMapperHelpers.h in Headers */ = {isa = PBXBuildFile; fileRef = 14E9F4C91DBC2D1300CF8C5F /* NSManagedObject+SYNCPropertyMapperHelpers.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		14E9F4E71DBC2D8800CF8C5F /* NSString+SYNCInflections.h in Headers */ = {isa = PBXBuildFile; fileRef = 140679671DBA1C4F00381990 /* NSString+SYNCInflections.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		14E9F4E81DBC2D8800CF8C5F /* NSDate+SYNCPropertyMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 142C957D1DA4178F00F9F32F /* NSDate+SYNCPropertyMapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		14E9F4E91DBC2D8800CF8C5F /* NSEntityDescription+SYNCPrimaryKey.h in Headers */ = {isa = PBXBuildFile; fileRef = 142C95801DA4178F00F9F32F /* NSEntityDescription+SYNCPrimaryKey.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		14E9F4EA1DBC2D8F00CF8C5F /* NSManagedObject+SYNCPropertyMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 14E9F4C71DBC2D1300CF8C5F /* NSManagedObject+SYNCPropertyMapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		14E9F4EA1DBC2D8F00CF8C5F /* SYNCPropertyMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 14E9F4C71DBC2D1300CF8C5F /* SYNCPropertyMapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		14E9F4EB1DBC2D8F00CF8C5F /* NSManagedObject+SYNCPropertyMapperHelpers.h in Headers */ = {isa = PBXBuildFile; fileRef = 14E9F4C91DBC2D1300CF8C5F /* NSManagedObject+SYNCPropertyMapperHelpers.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		14E9F4EC1DBC2D8F00CF8C5F /* NSString+SYNCInflections.h in Headers */ = {isa = PBXBuildFile; fileRef = 140679671DBA1C4F00381990 /* NSString+SYNCInflections.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		14E9F4ED1DBC2D9400CF8C5F /* NSManagedObject+SYNCPropertyMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 14E9F4C71DBC2D1300CF8C5F /* NSManagedObject+SYNCPropertyMapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		14E9F4ED1DBC2D9400CF8C5F /* SYNCPropertyMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 14E9F4C71DBC2D1300CF8C5F /* SYNCPropertyMapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		14E9F4EE1DBC2D9400CF8C5F /* NSManagedObject+SYNCPropertyMapperHelpers.h in Headers */ = {isa = PBXBuildFile; fileRef = 14E9F4C91DBC2D1300CF8C5F /* NSManagedObject+SYNCPropertyMapperHelpers.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		14E9F4EF1DBC2D9400CF8C5F /* NSString+SYNCInflections.h in Headers */ = {isa = PBXBuildFile; fileRef = 140679671DBA1C4F00381990 /* NSString+SYNCInflections.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		14E9F4F01DBC2D9700CF8C5F /* NSManagedObject+SYNCPropertyMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 14E9F4C71DBC2D1300CF8C5F /* NSManagedObject+SYNCPropertyMapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		14E9F4F01DBC2D9700CF8C5F /* SYNCPropertyMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 14E9F4C71DBC2D1300CF8C5F /* SYNCPropertyMapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		14E9F4F11DBC2D9700CF8C5F /* NSManagedObject+SYNCPropertyMapperHelpers.h in Headers */ = {isa = PBXBuildFile; fileRef = 14E9F4C91DBC2D1300CF8C5F /* NSManagedObject+SYNCPropertyMapperHelpers.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		14E9F4F21DBC2D9700CF8C5F /* NSString+SYNCInflections.h in Headers */ = {isa = PBXBuildFile; fileRef = 140679671DBA1C4F00381990 /* NSString+SYNCInflections.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		14E9F4F31DBC2DC000CF8C5F /* SYNCPropertyMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 14E9F4E11DBC2D2700CF8C5F /* SYNCPropertyMapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		14E9F4F41DBC2DC300CF8C5F /* SYNCPropertyMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 14E9F4E11DBC2D2700CF8C5F /* SYNCPropertyMapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		14E9F4F51DBC2DC500CF8C5F /* SYNCPropertyMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 14E9F4E11DBC2D2700CF8C5F /* SYNCPropertyMapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		14F2C6C31DBC0ED800EC5282 /* NSString+SYNCInflections.m in Sources */ = {isa = PBXBuildFile; fileRef = 140679681DBA1C4F00381990 /* NSString+SYNCInflections.m */; };
 		14F2C6C41DBC0ED800EC5282 /* NSDate+SYNCPropertyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 142C957E1DA4178F00F9F32F /* NSDate+SYNCPropertyMapper.m */; };
 		14F2C6C51DBC0ED800EC5282 /* NSEntityDescription+SYNCPrimaryKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 142C95811DA4178F00F9F32F /* NSEntityDescription+SYNCPrimaryKey.m */; };
@@ -206,11 +202,10 @@
 		14C0AF821BD6D4230009ECBE /* CONTRIBUTING.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CONTRIBUTING.md; sourceTree = "<group>"; };
 		14C0AF831BD6D4230009ECBE /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		14C47E0D1CD2AE5F004A48DF /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		14E9F4C71DBC2D1300CF8C5F /* NSManagedObject+SYNCPropertyMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+SYNCPropertyMapper.h"; sourceTree = "<group>"; };
-		14E9F4C81DBC2D1300CF8C5F /* NSManagedObject+SYNCPropertyMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+SYNCPropertyMapper.m"; sourceTree = "<group>"; };
+		14E9F4C71DBC2D1300CF8C5F /* SYNCPropertyMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYNCPropertyMapper.h; sourceTree = "<group>"; };
+		14E9F4C81DBC2D1300CF8C5F /* SYNCPropertyMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYNCPropertyMapper.m; sourceTree = "<group>"; };
 		14E9F4C91DBC2D1300CF8C5F /* NSManagedObject+SYNCPropertyMapperHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+SYNCPropertyMapperHelpers.h"; sourceTree = "<group>"; };
 		14E9F4CA1DBC2D1300CF8C5F /* NSManagedObject+SYNCPropertyMapperHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+SYNCPropertyMapperHelpers.m"; sourceTree = "<group>"; };
-		14E9F4E11DBC2D2700CF8C5F /* SYNCPropertyMapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SYNCPropertyMapper.h; sourceTree = "<group>"; };
 		14F393951CC6512400616696 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		14F393961CC6517E00616696 /* LICENSE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
 		14FE523E1DA4182000A55BE4 /* DATAStack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DATAStack.framework; path = Carthage/Build/iOS/DATAStack.framework; sourceTree = "<group>"; };
@@ -434,7 +429,6 @@
 		14C31A8C1CD294C70056A33F /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				14E9F4E11DBC2D2700CF8C5F /* SYNCPropertyMapper.h */,
 				14E9F4C61DBC2D1300CF8C5F /* NSManagedObject-SYNCPropertyMapper */,
 				140679661DBA1C4F00381990 /* NSString-SYNCInflections */,
 				142C957C1DA4178F00F9F32F /* DateParser */,
@@ -446,8 +440,8 @@
 		14E9F4C61DBC2D1300CF8C5F /* NSManagedObject-SYNCPropertyMapper */ = {
 			isa = PBXGroup;
 			children = (
-				14E9F4C71DBC2D1300CF8C5F /* NSManagedObject+SYNCPropertyMapper.h */,
-				14E9F4C81DBC2D1300CF8C5F /* NSManagedObject+SYNCPropertyMapper.m */,
+				14E9F4C71DBC2D1300CF8C5F /* SYNCPropertyMapper.h */,
+				14E9F4C81DBC2D1300CF8C5F /* SYNCPropertyMapper.m */,
 				14E9F4C91DBC2D1300CF8C5F /* NSManagedObject+SYNCPropertyMapperHelpers.h */,
 				14E9F4CA1DBC2D1300CF8C5F /* NSManagedObject+SYNCPropertyMapperHelpers.m */,
 			);
@@ -461,8 +455,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				14E9F4E41DBC2D7E00CF8C5F /* SYNCPropertyMapper.h in Headers */,
-				14E9F4E51DBC2D8800CF8C5F /* NSManagedObject+SYNCPropertyMapper.h in Headers */,
+				14E9F4E51DBC2D8800CF8C5F /* SYNCPropertyMapper.h in Headers */,
 				14E9F4E81DBC2D8800CF8C5F /* NSDate+SYNCPropertyMapper.h in Headers */,
 				14E9F4E91DBC2D8800CF8C5F /* NSEntityDescription+SYNCPrimaryKey.h in Headers */,
 				14E9F4E71DBC2D8800CF8C5F /* NSString+SYNCInflections.h in Headers */,
@@ -474,8 +467,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				14E9F4F31DBC2DC000CF8C5F /* SYNCPropertyMapper.h in Headers */,
-				14E9F4EA1DBC2D8F00CF8C5F /* NSManagedObject+SYNCPropertyMapper.h in Headers */,
+				14E9F4EA1DBC2D8F00CF8C5F /* SYNCPropertyMapper.h in Headers */,
 				14C046411DBC1BF500CB6C16 /* NSDate+SYNCPropertyMapper.h in Headers */,
 				14C046421DBC1BF700CB6C16 /* NSEntityDescription+SYNCPrimaryKey.h in Headers */,
 				14E9F4EC1DBC2D8F00CF8C5F /* NSString+SYNCInflections.h in Headers */,
@@ -487,8 +479,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				14E9F4F41DBC2DC300CF8C5F /* SYNCPropertyMapper.h in Headers */,
-				14E9F4ED1DBC2D9400CF8C5F /* NSManagedObject+SYNCPropertyMapper.h in Headers */,
+				14E9F4ED1DBC2D9400CF8C5F /* SYNCPropertyMapper.h in Headers */,
 				14C046441DBC1C2500CB6C16 /* NSDate+SYNCPropertyMapper.h in Headers */,
 				14C046451DBC1C2500CB6C16 /* NSEntityDescription+SYNCPrimaryKey.h in Headers */,
 				14E9F4EF1DBC2D9400CF8C5F /* NSString+SYNCInflections.h in Headers */,
@@ -500,8 +491,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				14E9F4F51DBC2DC500CF8C5F /* SYNCPropertyMapper.h in Headers */,
-				14E9F4F01DBC2D9700CF8C5F /* NSManagedObject+SYNCPropertyMapper.h in Headers */,
+				14E9F4F01DBC2D9700CF8C5F /* SYNCPropertyMapper.h in Headers */,
 				14C046461DBC1C2A00CB6C16 /* NSDate+SYNCPropertyMapper.h in Headers */,
 				14C046471DBC1C2A00CB6C16 /* NSEntityDescription+SYNCPrimaryKey.h in Headers */,
 				14E9F4F21DBC2D9700CF8C5F /* NSString+SYNCInflections.h in Headers */,
@@ -761,7 +751,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				14E9F4D21DBC2D1300CF8C5F /* NSManagedObject+SYNCPropertyMapper.m in Sources */,
+				14E9F4D21DBC2D1300CF8C5F /* SYNCPropertyMapper.m in Sources */,
 				14F2C6C31DBC0ED800EC5282 /* NSString+SYNCInflections.m in Sources */,
 				14E9F4DD1DBC2D1300CF8C5F /* NSManagedObject+SYNCPropertyMapperHelpers.m in Sources */,
 				14F2C6C41DBC0ED800EC5282 /* NSDate+SYNCPropertyMapper.m in Sources */,
@@ -773,7 +763,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				14E9F4D31DBC2D1300CF8C5F /* NSManagedObject+SYNCPropertyMapper.m in Sources */,
+				14E9F4D31DBC2D1300CF8C5F /* SYNCPropertyMapper.m in Sources */,
 				14F2C6C81DBC0F0A00EC5282 /* NSString+SYNCInflections.m in Sources */,
 				14E9F4DE1DBC2D1300CF8C5F /* NSManagedObject+SYNCPropertyMapperHelpers.m in Sources */,
 				14F2C6C91DBC0F0A00EC5282 /* NSDate+SYNCPropertyMapper.m in Sources */,
@@ -785,7 +775,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				14E9F4D41DBC2D1300CF8C5F /* NSManagedObject+SYNCPropertyMapper.m in Sources */,
+				14E9F4D41DBC2D1300CF8C5F /* SYNCPropertyMapper.m in Sources */,
 				14F2C6CD1DBC0F1400EC5282 /* NSString+SYNCInflections.m in Sources */,
 				14E9F4DF1DBC2D1300CF8C5F /* NSManagedObject+SYNCPropertyMapperHelpers.m in Sources */,
 				14F2C6CE1DBC0F1400EC5282 /* NSDate+SYNCPropertyMapper.m in Sources */,
@@ -797,7 +787,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				14E9F4D51DBC2D1300CF8C5F /* NSManagedObject+SYNCPropertyMapper.m in Sources */,
+				14E9F4D51DBC2D1300CF8C5F /* SYNCPropertyMapper.m in Sources */,
 				14F2C6D21DBC0F1C00EC5282 /* NSString+SYNCInflections.m in Sources */,
 				14E9F4E01DBC2D1300CF8C5F /* NSManagedObject+SYNCPropertyMapperHelpers.m in Sources */,
 				14F2C6D31DBC0F1C00EC5282 /* NSDate+SYNCPropertyMapper.m in Sources */,
@@ -821,7 +811,7 @@
 				14BE98151DBC02260071B2CB /* 112.xcdatamodeld in Sources */,
 				14BE98161DBC02260071B2CB /* 121.xcdatamodeld in Sources */,
 				14BE98171DBC02260071B2CB /* Model.xcdatamodeld in Sources */,
-				14E9F4D01DBC2D1300CF8C5F /* NSManagedObject+SYNCPropertyMapper.m in Sources */,
+				14E9F4D01DBC2D1300CF8C5F /* SYNCPropertyMapper.m in Sources */,
 				14E9F4DB1DBC2D1300CF8C5F /* NSManagedObject+SYNCPropertyMapperHelpers.m in Sources */,
 				14BE98181DBC02260071B2CB /* Ordered.xcdatamodeld in Sources */,
 				14BE98191DBC02260071B2CB /* 123.xcdatamodeld in Sources */,
@@ -851,7 +841,7 @@
 				1454269C1DBC045C0090F6FC /* 112.xcdatamodeld in Sources */,
 				1454269D1DBC045C0090F6FC /* 121.xcdatamodeld in Sources */,
 				1454269E1DBC045C0090F6FC /* Model.xcdatamodeld in Sources */,
-				14E9F4D11DBC2D1300CF8C5F /* NSManagedObject+SYNCPropertyMapper.m in Sources */,
+				14E9F4D11DBC2D1300CF8C5F /* SYNCPropertyMapper.m in Sources */,
 				14E9F4DC1DBC2D1300CF8C5F /* NSManagedObject+SYNCPropertyMapperHelpers.m in Sources */,
 				1454269F1DBC045C0090F6FC /* Ordered.xcdatamodeld in Sources */,
 				145426A01DBC045C0090F6FC /* 123.xcdatamodeld in Sources */,
@@ -882,7 +872,7 @@
 				142C95B11DA4179F00F9F32F /* Pod.xcdatamodeld in Sources */,
 				140679691DBA1C4F00381990 /* NSString+SYNCInflections.m in Sources */,
 				141393411DBA19B60027D53A /* DateStringTransformer.m in Sources */,
-				14E9F4CF1DBC2D1300CF8C5F /* NSManagedObject+SYNCPropertyMapper.m in Sources */,
+				14E9F4CF1DBC2D1300CF8C5F /* SYNCPropertyMapper.m in Sources */,
 				14E9F4DA1DBC2D1300CF8C5F /* NSManagedObject+SYNCPropertyMapperHelpers.m in Sources */,
 				142C95AF1DA4179F00F9F32F /* DateTests.swift in Sources */,
 				1413933A1DBA19B60027D53A /* HelperTests.m in Sources */,
