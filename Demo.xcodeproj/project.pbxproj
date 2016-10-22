@@ -358,13 +358,6 @@
 			path = DateParser;
 			sourceTree = "<group>";
 		};
-		142C95941DA4179F00F9F32F /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
 		142C95951DA4179F00F9F32F /* NSEntityDescription-SYNCPrimaryKey */ = {
 			isa = PBXGroup;
 			children = (
@@ -409,7 +402,6 @@
 				142C95901DA4179F00F9F32F /* BridgingHeader.h */,
 				142C95911DA4179F00F9F32F /* DateParser */,
 				142C95931DA4179F00F9F32F /* Info.plist */,
-				142C95941DA4179F00F9F32F /* Models */,
 				142C95951DA4179F00F9F32F /* NSEntityDescription-SYNCPrimaryKey */,
 			);
 			path = Tests;
