@@ -1,4 +1,9 @@
-![Sync](https://raw.githubusercontent.com/SyncDB/SYNCPropertyMapper/master/GitHub/logo-v2.png)
+![SYNCPropertyMapper](https://raw.githubusercontent.com/SyncDB/SYNCPropertyMapper/master/GitHub/logo-v2.png)
+
+[![Version](https://img.shields.io/cocoapods/v/SYNCPropertyMapper.svg?style=flat)](https://cocoapods.org/pods/SYNCPropertyMapper)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/3lvis/SYNCPropertyMapper)
+![platforms](https://img.shields.io/badge/platforms-iOS%20%7C%20OS%20X%20%7C%20watchOS%20%7C%20tvOS%20-lightgrey.svg)
+[![License](https://img.shields.io/cocoapods/l/SYNCPropertyMapper.svg?style=flat)](https://cocoapods.org/pods/SYNCPropertyMapper)
 
 **SYNCPropertyMapper** leverages on your Core Data model to infer how to map your JSON values into Core Data. It's simple and it's obvious. Why the hell isn't everybody doing this?
 
