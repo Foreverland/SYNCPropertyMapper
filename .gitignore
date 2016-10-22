@@ -27,3 +27,9 @@ DerivedData
 *.xcscmblueprint
 *.gcno
 *.gcda
+
+Carthage/Build/watchOS/SYNCPropertyMapper*
+Carthage/Build/tvOS/SYNCPropertyMapper*
+Carthage/Build/Mac/SYNCPropertyMapper*
+Carthage/Build/iOS/SYNCPropertyMapper*
+SYNCPropertyMapper.framework.zip

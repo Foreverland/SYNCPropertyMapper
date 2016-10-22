@@ -57,6 +57,10 @@
 		145426A71DBC045C0090F6FC /* Pod.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 142C95961DA4179F00F9F32F /* Pod.xcdatamodeld */; };
 		145426A81DBC045C0090F6FC /* PrimaryKeyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 142C95981DA4179F00F9F32F /* PrimaryKeyTests.m */; };
 		1476902D1DBA4E570050431C /* 123.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1476902B1DBA4E570050431C /* 123.xcdatamodeld */; };
+		148947EE1DBC108D00A28C07 /* SYNCPropertyMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 1413931E1DBA19AC0027D53A /* SYNCPropertyMapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		148947EF1DBC109200A28C07 /* SYNCPropertyMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 1413931E1DBA19AC0027D53A /* SYNCPropertyMapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		148947F01DBC109600A28C07 /* SYNCPropertyMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 1413931E1DBA19AC0027D53A /* SYNCPropertyMapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		148947F11DBC109A00A28C07 /* SYNCPropertyMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 1413931E1DBA19AC0027D53A /* SYNCPropertyMapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		14BE980A1DBC02260071B2CB /* SYNCPropertyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1413931F1DBA19AC0027D53A /* SYNCPropertyMapper.m */; };
 		14BE980B1DBC02260071B2CB /* SYNCPropertyMapperHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 141393211DBA19AC0027D53A /* SYNCPropertyMapperHelpers.m */; };
 		14BE980C1DBC02260071B2CB /* NSString+SYNCInflections.m in Sources */ = {isa = PBXBuildFile; fileRef = 140679681DBA1C4F00381990 /* NSString+SYNCInflections.m */; };
@@ -443,6 +447,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				148947EE1DBC108D00A28C07 /* SYNCPropertyMapper.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -450,6 +455,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				148947EF1DBC109200A28C07 /* SYNCPropertyMapper.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -457,6 +463,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				148947F01DBC109600A28C07 /* SYNCPropertyMapper.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -464,6 +471,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				148947F11DBC109A00A28C07 /* SYNCPropertyMapper.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
