@@ -1,7 +1,7 @@
 @import CoreData;
 @import XCTest;
 
-#import "NSManagedObject+SYNCPropertyMapperHelpers.h"
+#import "SYNCPropertyMapperHelpers.h"
 #import "Company+CoreDataClass.h"
 #import "Market+CoreDataClass.h"
 #import "User+CoreDataClass.h"

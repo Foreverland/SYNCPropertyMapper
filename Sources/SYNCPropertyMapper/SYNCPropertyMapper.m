@@ -1,7 +1,7 @@
-#import "NSManagedObject+SYNCPropertyMapper.h"
+#import "SYNCPropertyMapper.h"
 
 #import "NSString+SYNCInflections.h"
-#import "NSManagedObject+SYNCPropertyMapperHelpers.h"
+#import "SYNCPropertyMapperHelpers.h"
 #import "NSDate+SYNCPropertyMapper.h"
 
 static NSString * const SYNCPropertyMapperNestedAttributesKey = @"attributes";

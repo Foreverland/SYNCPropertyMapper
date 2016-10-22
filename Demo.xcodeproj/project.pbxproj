@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		140679691DBA1C4F00381990 /* NSString+SYNCInflections.m in Sources */ = {isa = PBXBuildFile; fileRef = 140679681DBA1C4F00381990 /* NSString+SYNCInflections.m */; };
 		1406796C1DBA1C9B00381990 /* NSString_SYNCInflectionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1406796B1DBA1C9B00381990 /* NSString_SYNCInflectionsTests.m */; };
-		141393221DBA19AC0027D53A /* NSManagedObject+SYNCPropertyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1413931F1DBA19AC0027D53A /* NSManagedObject+SYNCPropertyMapper.m */; };
-		141393231DBA19AC0027D53A /* NSManagedObject+SYNCPropertyMapperHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 141393211DBA19AC0027D53A /* NSManagedObject+SYNCPropertyMapperHelpers.m */; };
+		141393221DBA19AC0027D53A /* SYNCPropertyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1413931F1DBA19AC0027D53A /* SYNCPropertyMapper.m */; };
+		141393231DBA19AC0027D53A /* SYNCPropertyMapperHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 141393211DBA19AC0027D53A /* SYNCPropertyMapperHelpers.m */; };
 		141393381DBA19B60027D53A /* FillWithDictionaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141393251DBA19B60027D53A /* FillWithDictionaryTests.swift */; };
 		141393391DBA19B60027D53A /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141393261DBA19B60027D53A /* Helper.swift */; };
 		1413933A1DBA19B60027D53A /* HelperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 141393271DBA19B60027D53A /* HelperTests.m */; };
@@ -51,10 +51,10 @@
 		140679671DBA1C4F00381990 /* NSString+SYNCInflections.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SYNCInflections.h"; sourceTree = "<group>"; };
 		140679681DBA1C4F00381990 /* NSString+SYNCInflections.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+SYNCInflections.m"; sourceTree = "<group>"; };
 		1406796B1DBA1C9B00381990 /* NSString_SYNCInflectionsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSString_SYNCInflectionsTests.m; sourceTree = "<group>"; };
-		1413931E1DBA19AC0027D53A /* NSManagedObject+SYNCPropertyMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+SYNCPropertyMapper.h"; sourceTree = "<group>"; };
-		1413931F1DBA19AC0027D53A /* NSManagedObject+SYNCPropertyMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+SYNCPropertyMapper.m"; sourceTree = "<group>"; };
-		141393201DBA19AC0027D53A /* NSManagedObject+SYNCPropertyMapperHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+SYNCPropertyMapperHelpers.h"; sourceTree = "<group>"; };
-		141393211DBA19AC0027D53A /* NSManagedObject+SYNCPropertyMapperHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+SYNCPropertyMapperHelpers.m"; sourceTree = "<group>"; };
+		1413931E1DBA19AC0027D53A /* SYNCPropertyMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYNCPropertyMapper.h; sourceTree = "<group>"; };
+		1413931F1DBA19AC0027D53A /* SYNCPropertyMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYNCPropertyMapper.m; sourceTree = "<group>"; };
+		141393201DBA19AC0027D53A /* SYNCPropertyMapperHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYNCPropertyMapperHelpers.h; sourceTree = "<group>"; };
+		141393211DBA19AC0027D53A /* SYNCPropertyMapperHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYNCPropertyMapperHelpers.m; sourceTree = "<group>"; };
 		141393251DBA19B60027D53A /* FillWithDictionaryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FillWithDictionaryTests.swift; sourceTree = "<group>"; };
 		141393261DBA19B60027D53A /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		141393271DBA19B60027D53A /* HelperTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelperTests.m; sourceTree = "<group>"; };
@@ -81,7 +81,6 @@
 		14441D121DBBE0770082F633 /* hypbug.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = hypbug.xcdatamodel; sourceTree = "<group>"; };
 		146D72AC1AB782920058798C /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1476902C1DBA4E570050431C /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
-		147B193E1DBBF8DC00CAD9B7 /* SYNCPropertyMapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SYNCPropertyMapper.h; sourceTree = "<group>"; };
 		14C0AF801BD6D4230009ECBE /* .travis.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .travis.yml; sourceTree = "<group>"; };
 		14C0AF811BD6D4230009ECBE /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 		14C0AF821BD6D4230009ECBE /* CONTRIBUTING.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CONTRIBUTING.md; sourceTree = "<group>"; };
@@ -134,10 +133,10 @@
 		1413931D1DBA19AC0027D53A /* SYNCPropertyMapper */ = {
 			isa = PBXGroup;
 			children = (
-				1413931E1DBA19AC0027D53A /* NSManagedObject+SYNCPropertyMapper.h */,
-				1413931F1DBA19AC0027D53A /* NSManagedObject+SYNCPropertyMapper.m */,
-				141393201DBA19AC0027D53A /* NSManagedObject+SYNCPropertyMapperHelpers.h */,
-				141393211DBA19AC0027D53A /* NSManagedObject+SYNCPropertyMapperHelpers.m */,
+				1413931E1DBA19AC0027D53A /* SYNCPropertyMapper.h */,
+				1413931F1DBA19AC0027D53A /* SYNCPropertyMapper.m */,
+				141393201DBA19AC0027D53A /* SYNCPropertyMapperHelpers.h */,
+				141393211DBA19AC0027D53A /* SYNCPropertyMapperHelpers.m */,
 			);
 			path = SYNCPropertyMapper;
 			sourceTree = "<group>";
@@ -275,7 +274,6 @@
 		14C31A8C1CD294C70056A33F /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				147B193E1DBBF8DC00CAD9B7 /* SYNCPropertyMapper.h */,
 				1413931D1DBA19AC0027D53A /* SYNCPropertyMapper */,
 				140679661DBA1C4F00381990 /* NSString-SYNCInflections */,
 				142C957C1DA4178F00F9F32F /* DateParser */,
@@ -364,7 +362,7 @@
 				1476902D1DBA4E570050431C /* 123.xcdatamodeld in Sources */,
 				1413933D1DBA19B60027D53A /* 121.xcdatamodeld in Sources */,
 				1413933C1DBA19B60027D53A /* HYPFillWithDictionaryTests.m in Sources */,
-				141393221DBA19AC0027D53A /* NSManagedObject+SYNCPropertyMapper.m in Sources */,
+				141393221DBA19AC0027D53A /* SYNCPropertyMapper.m in Sources */,
 				142C958C1DA4178F00F9F32F /* NSEntityDescription+SYNCPrimaryKey.m in Sources */,
 				1413933F1DBA19B60027D53A /* Model.xcdatamodeld in Sources */,
 				142C95B11DA4179F00F9F32F /* Pod.xcdatamodeld in Sources */,
@@ -375,7 +373,7 @@
 				1406796C1DBA1C9B00381990 /* NSString_SYNCInflectionsTests.m in Sources */,
 				14441D131DBBE0770082F633 /* 112.xcdatamodeld in Sources */,
 				142C95B21DA4179F00F9F32F /* PrimaryKeyTests.m in Sources */,
-				141393231DBA19AC0027D53A /* NSManagedObject+SYNCPropertyMapperHelpers.m in Sources */,
+				141393231DBA19AC0027D53A /* SYNCPropertyMapperHelpers.m in Sources */,
 				141FFA881DBBE99B00356E72 /* 129.xcdatamodeld in Sources */,
 				142C958B1DA4178F00F9F32F /* NSDate+SYNCPropertyMapper.m in Sources */,
 				141393401DBA19B60027D53A /* Ordered.xcdatamodeld in Sources */,
