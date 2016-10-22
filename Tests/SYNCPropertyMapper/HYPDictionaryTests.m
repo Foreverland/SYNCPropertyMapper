@@ -292,8 +292,13 @@
                             @"text" : @"This is the text for the note 14"};
     comparedDictionary[@"notes"] = @[note1, note2, note3];
 
-    // WARNING: This should convert `ordered_user_type` to just `type` and `ordered_user_description` to just `description`.
     XCTAssertEqualObjects(dictionary, [comparedDictionary copy]);
+
+    NSString *description = (NSString *)dictionary[@"description"];
+    XCTAssertEqualObjects(description, @"John Description");
+
+    NSString *type = (NSString *)dictionary[@"type"];
+    XCTAssertEqualObjects(type, @"Manager");
 }
 
 - (void)testDictionaryNestedRelationships {
