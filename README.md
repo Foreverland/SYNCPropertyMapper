@@ -269,7 +269,7 @@ It supports relationships too, and we complain to the Rails rule `accepts_nested
 
 If you don't want to get nested relationships you can also ignore relationships:
 
-```objc
+```swift
 let dictionary = user.hyp_dictionary(using: .none)
 ```
 
@@ -280,7 +280,7 @@ let dictionary = user.hyp_dictionary(using: .none)
 
 Or get them as an array:
 
-```objc
+```swift
 let dictionary = user.hyp_dictionary(using: .array)
 ```
 ```json
