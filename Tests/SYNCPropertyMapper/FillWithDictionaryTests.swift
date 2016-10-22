@@ -5,7 +5,7 @@ import DATAStack
 class FillWithDictionaryTests: XCTestCase {
 
     func testBug112() {
-        let dataStack = Helper.dataStackWithModelName("Bug112")
+        let dataStack = Helper.dataStackWithModelName("112")
 
         let owner = Helper.insertEntity("Owner", dataStack: dataStack)
         owner.setValue(1, forKey: "id")
@@ -49,7 +49,7 @@ class FillWithDictionaryTests: XCTestCase {
         ] as [String: Any]
         album.hyp_fill(with: json)
 
-        XCTAssertNotNil(album.coverPhoto)
+        XCTAssertNotNil(album.value(forKey: "coverPhoto"))
 
         try! dataStack.drop()
     }
