@@ -80,6 +80,26 @@
 		14BE981E1DBC02260071B2CB /* DateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142C95921DA4179F00F9F32F /* DateTests.swift */; };
 		14BE981F1DBC02260071B2CB /* Pod.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 142C95961DA4179F00F9F32F /* Pod.xcdatamodeld */; };
 		14BE98201DBC02260071B2CB /* PrimaryKeyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 142C95981DA4179F00F9F32F /* PrimaryKeyTests.m */; };
+		14F2C6C11DBC0ED800EC5282 /* SYNCPropertyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1413931F1DBA19AC0027D53A /* SYNCPropertyMapper.m */; };
+		14F2C6C21DBC0ED800EC5282 /* SYNCPropertyMapperHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 141393211DBA19AC0027D53A /* SYNCPropertyMapperHelpers.m */; };
+		14F2C6C31DBC0ED800EC5282 /* NSString+SYNCInflections.m in Sources */ = {isa = PBXBuildFile; fileRef = 140679681DBA1C4F00381990 /* NSString+SYNCInflections.m */; };
+		14F2C6C41DBC0ED800EC5282 /* NSDate+SYNCPropertyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 142C957E1DA4178F00F9F32F /* NSDate+SYNCPropertyMapper.m */; };
+		14F2C6C51DBC0ED800EC5282 /* NSEntityDescription+SYNCPrimaryKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 142C95811DA4178F00F9F32F /* NSEntityDescription+SYNCPrimaryKey.m */; };
+		14F2C6C61DBC0F0A00EC5282 /* SYNCPropertyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1413931F1DBA19AC0027D53A /* SYNCPropertyMapper.m */; };
+		14F2C6C71DBC0F0A00EC5282 /* SYNCPropertyMapperHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 141393211DBA19AC0027D53A /* SYNCPropertyMapperHelpers.m */; };
+		14F2C6C81DBC0F0A00EC5282 /* NSString+SYNCInflections.m in Sources */ = {isa = PBXBuildFile; fileRef = 140679681DBA1C4F00381990 /* NSString+SYNCInflections.m */; };
+		14F2C6C91DBC0F0A00EC5282 /* NSDate+SYNCPropertyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 142C957E1DA4178F00F9F32F /* NSDate+SYNCPropertyMapper.m */; };
+		14F2C6CA1DBC0F0A00EC5282 /* NSEntityDescription+SYNCPrimaryKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 142C95811DA4178F00F9F32F /* NSEntityDescription+SYNCPrimaryKey.m */; };
+		14F2C6CB1DBC0F1400EC5282 /* SYNCPropertyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1413931F1DBA19AC0027D53A /* SYNCPropertyMapper.m */; };
+		14F2C6CC1DBC0F1400EC5282 /* SYNCPropertyMapperHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 141393211DBA19AC0027D53A /* SYNCPropertyMapperHelpers.m */; };
+		14F2C6CD1DBC0F1400EC5282 /* NSString+SYNCInflections.m in Sources */ = {isa = PBXBuildFile; fileRef = 140679681DBA1C4F00381990 /* NSString+SYNCInflections.m */; };
+		14F2C6CE1DBC0F1400EC5282 /* NSDate+SYNCPropertyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 142C957E1DA4178F00F9F32F /* NSDate+SYNCPropertyMapper.m */; };
+		14F2C6CF1DBC0F1400EC5282 /* NSEntityDescription+SYNCPrimaryKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 142C95811DA4178F00F9F32F /* NSEntityDescription+SYNCPrimaryKey.m */; };
+		14F2C6D01DBC0F1C00EC5282 /* SYNCPropertyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1413931F1DBA19AC0027D53A /* SYNCPropertyMapper.m */; };
+		14F2C6D11DBC0F1C00EC5282 /* SYNCPropertyMapperHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 141393211DBA19AC0027D53A /* SYNCPropertyMapperHelpers.m */; };
+		14F2C6D21DBC0F1C00EC5282 /* NSString+SYNCInflections.m in Sources */ = {isa = PBXBuildFile; fileRef = 140679681DBA1C4F00381990 /* NSString+SYNCInflections.m */; };
+		14F2C6D31DBC0F1C00EC5282 /* NSDate+SYNCPropertyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 142C957E1DA4178F00F9F32F /* NSDate+SYNCPropertyMapper.m */; };
+		14F2C6D41DBC0F1C00EC5282 /* NSEntityDescription+SYNCPrimaryKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 142C95811DA4178F00F9F32F /* NSEntityDescription+SYNCPrimaryKey.m */; };
 		14FE523F1DA4182000A55BE4 /* DATAStack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14FE523E1DA4182000A55BE4 /* DATAStack.framework */; };
 		14FE52411DA4182600A55BE4 /* DATAStack.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 14FE52401DA4182600A55BE4 /* DATAStack.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
@@ -699,6 +719,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14F2C6C11DBC0ED800EC5282 /* SYNCPropertyMapper.m in Sources */,
+				14F2C6C21DBC0ED800EC5282 /* SYNCPropertyMapperHelpers.m in Sources */,
+				14F2C6C31DBC0ED800EC5282 /* NSString+SYNCInflections.m in Sources */,
+				14F2C6C41DBC0ED800EC5282 /* NSDate+SYNCPropertyMapper.m in Sources */,
+				14F2C6C51DBC0ED800EC5282 /* NSEntityDescription+SYNCPrimaryKey.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -706,6 +731,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14F2C6C61DBC0F0A00EC5282 /* SYNCPropertyMapper.m in Sources */,
+				14F2C6C71DBC0F0A00EC5282 /* SYNCPropertyMapperHelpers.m in Sources */,
+				14F2C6C81DBC0F0A00EC5282 /* NSString+SYNCInflections.m in Sources */,
+				14F2C6C91DBC0F0A00EC5282 /* NSDate+SYNCPropertyMapper.m in Sources */,
+				14F2C6CA1DBC0F0A00EC5282 /* NSEntityDescription+SYNCPrimaryKey.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -713,6 +743,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14F2C6CB1DBC0F1400EC5282 /* SYNCPropertyMapper.m in Sources */,
+				14F2C6CC1DBC0F1400EC5282 /* SYNCPropertyMapperHelpers.m in Sources */,
+				14F2C6CD1DBC0F1400EC5282 /* NSString+SYNCInflections.m in Sources */,
+				14F2C6CE1DBC0F1400EC5282 /* NSDate+SYNCPropertyMapper.m in Sources */,
+				14F2C6CF1DBC0F1400EC5282 /* NSEntityDescription+SYNCPrimaryKey.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -720,6 +755,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14F2C6D01DBC0F1C00EC5282 /* SYNCPropertyMapper.m in Sources */,
+				14F2C6D11DBC0F1C00EC5282 /* SYNCPropertyMapperHelpers.m in Sources */,
+				14F2C6D21DBC0F1C00EC5282 /* NSString+SYNCInflections.m in Sources */,
+				14F2C6D31DBC0F1C00EC5282 /* NSDate+SYNCPropertyMapper.m in Sources */,
+				14F2C6D41DBC0F1C00EC5282 /* NSEntityDescription+SYNCPrimaryKey.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
