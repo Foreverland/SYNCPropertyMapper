@@ -32,6 +32,17 @@
             dateString = [mutableRemoteValue copy];
         }
 
+        // Convert NSDate description to NSDate
+        // Current date: 2009-10-09 00:00:00
+        // Will become:  2009-10-09T00:00:00
+        // Unit test L
+        if ([dateString length] == [DateParserDescriptionDate length]) {
+            NSString *spaceString = [dateString substringWithRange:NSMakeRange(10, 1)];
+            if ([spaceString isEqualToString:@" "]) {
+                dateString = [dateString stringByReplacingCharactersInRange:NSMakeRange(10, 1) withString:@"T"];
+            }
+        }
+
         const char *originalString = [dateString cStringUsingEncoding:NSUTF8StringEncoding];
         size_t originalLength = strlen(originalString);
         if (originalLength == 0) {

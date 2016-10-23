@@ -86,6 +86,13 @@ class DateTests: XCTestCase {
         XCTAssertNotNil(resultDate)
         XCTAssertEqual(date, resultDate)
     }
+
+    func testDateL() {
+        let date = Date.dateWithDayString(dateString: "2009-10-09")
+        let resultDate = NSDate(fromDateString: "2009-10-09 00:00:00") as! Date
+        XCTAssertNotNil(resultDate)
+        XCTAssertEqual(date, resultDate)
+    }
 }
 
 class TimestampDateTests: XCTestCase {
