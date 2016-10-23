@@ -321,7 +321,16 @@ let dictionary = user.hyp_dictionary(using: .array)
 **SYNCPropertyMapper** is available through [CocoaPods](http://cocoapods.org). To install it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'SYNCPropertyMapper'
+use_frameworks!
+
+pod 'SYNCPropertyMapper', '~> 5'
+```
+
+**SYNCPropertyMapper** is also available through [Carthage](https://github.com/Carthage/Carthage). To install
+it, simply add the following line to your Cartfile:
+
+```ruby
+github "SyncDB/SYNCPropertyMapper" ~> 5.0
 ```
 
 ## Contributing
