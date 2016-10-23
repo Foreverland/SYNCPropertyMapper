@@ -4,17 +4,23 @@
   <a href="https://cocoapods.org/pods/SYNCPropertyMapper">
     <img src="https://img.shields.io/cocoapods/v/SYNCPropertyMapper.svg?style=flat" />
   </a>
-  <a href="https://github.com/3lvis/SYNCPropertyMapper">
+  <a href="https://github.com/SyncDB/SYNCPropertyMapper">
     <img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat" />
   </a>
   <a href="https://github.com/SyncDB/SYNCPropertyMapper#installation">
     <img src="https://img.shields.io/badge/compatible-swift%202.3%20and%203.0-orange.svg" />
   </a>
+</div>
+
+<div align = "center">
   <a href="https://cocoapods.org/pods/SYNCPropertyMapper" target="blank">
     <img src="https://img.shields.io/cocoapods/p/SYNCPropertyMapper.svg?style=flat" />
   </a>
   <a href="https://cocoapods.org/pods/SYNCPropertyMapper" target="blank">
     <img src="https://img.shields.io/cocoapods/l/SYNCPropertyMapper.svg?style=flat" />
+  </a>
+  <a href="https://gitter.im/SyncDB/Lobby?utm_source=share-link&utm_medium=link&utm_campaign=share-link">
+    <img src="https://img.shields.io/gitter/room/nwjs/nw.js.svg" />
   </a>
   <br>
   <br>
