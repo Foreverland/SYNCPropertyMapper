@@ -19,7 +19,7 @@
   <a href="https://cocoapods.org/pods/SYNCPropertyMapper" target="blank">
     <img src="https://img.shields.io/cocoapods/l/SYNCPropertyMapper.svg?style=flat" />
   </a>
-  <a href="https://gitter.im/SyncDB/general?utm_source=share-link&utm_medium=link&utm_campaign=share-link">
+  <a href="https://gitter.im/SyncDB/project-propertymapper?utm_source=share-link&utm_medium=link&utm_campaign=share-link">
     <img src="https://img.shields.io/gitter/room/nwjs/nw.js.svg" />
   </a>
   <br>
