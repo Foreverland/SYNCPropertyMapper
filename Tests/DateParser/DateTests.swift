@@ -139,7 +139,7 @@ extension Date {
     static func dateWithDayString(dateString: String) -> Date {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
-        formatter.timeZone = TimeZone(identifier: "GMT")
+        formatter.timeZone = TimeZone(identifier: "UTC")
         let date = formatter.date(from: dateString)!
 
         return date
@@ -148,7 +148,7 @@ extension Date {
     static func dateWithHourAndTimeZoneString(dateString: String) -> Date {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
-        formatter.timeZone = TimeZone(identifier: "GMT")
+        formatter.timeZone = TimeZone(identifier: "UTC")
         let date = formatter.date(from: dateString)!
 
         return date
