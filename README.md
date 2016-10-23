@@ -30,6 +30,8 @@
 
 # Table of Contents
 
+[![Join the chat at https://gitter.im/SyncDB/SYNCPropertyMapper](https://badges.gitter.im/SyncDB/SYNCPropertyMapper.svg)](https://gitter.im/SyncDB/SYNCPropertyMapper?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 * [Filling a NSManagedObject with JSON](#filling-a-nsmanagedobject-with-json)
   * [JSON in CamelCase](#json-in-camelcase)
   * [JSON in snake_case](#json-in-snake_case)
