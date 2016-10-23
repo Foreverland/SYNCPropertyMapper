@@ -19,7 +19,7 @@
   <a href="https://cocoapods.org/pods/SYNCPropertyMapper" target="blank">
     <img src="https://img.shields.io/cocoapods/l/SYNCPropertyMapper.svg?style=flat" />
   </a>
-  <a href="https://gitter.im/SyncDB/project-propertymapper?utm_source=share-link&utm_medium=link&utm_campaign=share-link">
+  <a href="https://gitter.im/SyncDB/SYNCPropertyMapper?utm_source=share-link&utm_medium=link&utm_campaign=share-link">
     <img src="https://img.shields.io/gitter/room/nwjs/nw.js.svg" />
   </a>
   <br>
@@ -29,8 +29,6 @@
 **SYNCPropertyMapper** leverages on your Core Data model to infer how to map your JSON values into Core Data. It's simple and it's obvious. Why the hell isn't everybody doing this?
 
 # Table of Contents
-
-[![Join the chat at https://gitter.im/SyncDB/SYNCPropertyMapper](https://badges.gitter.im/SyncDB/SYNCPropertyMapper.svg)](https://gitter.im/SyncDB/SYNCPropertyMapper?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 * [Filling a NSManagedObject with JSON](#filling-a-nsmanagedobject-with-json)
   * [JSON in CamelCase](#json-in-camelcase)
