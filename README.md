@@ -68,6 +68,11 @@ NSDictionary *values = [JSON valueForKey:@"user"];
 [user hyp_fillWithDictionary:values];
 ```
 
+```swift
+let userJSON = JSON["user"]
+user.hyp_fill(with: userJSON)
+```
+
 Your Core Data entities should match your backend models. Your attributes should match their JSON counterparts. For example `firstName` maps to `firstName`, `address` to `address`.
 
 ## JSON in snake_case
@@ -82,6 +87,11 @@ Your Core Data entities should match your backend models. Your attributes should
 ``` objc
 NSDictionary *values = [JSON valueForKey:@"user"];
 [user hyp_fillWithDictionary:values];
+```
+
+```swift
+let userJSON = JSON["user"]
+user.hyp_fill(with: userJSON)
 ```
 
 Your Core Data entities should match your backend models but in `camelCase`. Your attributes should match their JSON counterparts. For example `first_name` maps to `firstName`, `address` to `address`.
