@@ -53,6 +53,9 @@
 		145426A71DBC045C0090F6FC /* Pod.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 142C95961DA4179F00F9F32F /* Pod.xcdatamodeld */; };
 		145426A81DBC045C0090F6FC /* PrimaryKeyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 142C95981DA4179F00F9F32F /* PrimaryKeyTests.m */; };
 		1476902D1DBA4E570050431C /* 123.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1476902B1DBA4E570050431C /* 123.xcdatamodeld */; };
+		1497123D1DC2BFAA00AA1900 /* DictionaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1497123C1DC2BFAA00AA1900 /* DictionaryTests.swift */; };
+		1497123E1DC2BFAA00AA1900 /* DictionaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1497123C1DC2BFAA00AA1900 /* DictionaryTests.swift */; };
+		1497123F1DC2BFAA00AA1900 /* DictionaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1497123C1DC2BFAA00AA1900 /* DictionaryTests.swift */; };
 		14BE980C1DBC02260071B2CB /* NSString+SYNCInflections.m in Sources */ = {isa = PBXBuildFile; fileRef = 140679681DBA1C4F00381990 /* NSString+SYNCInflections.m */; };
 		14BE980D1DBC02260071B2CB /* NSDate+SYNCPropertyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 142C957E1DA4178F00F9F32F /* NSDate+SYNCPropertyMapper.m */; };
 		14BE980E1DBC02260071B2CB /* NSEntityDescription+SYNCPrimaryKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 142C95811DA4178F00F9F32F /* NSEntityDescription+SYNCPrimaryKey.m */; };
@@ -197,6 +200,7 @@
 		1454268F1DBC02AC0090F6FC /* DATAStack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DATAStack.framework; path = Carthage/Build/Mac/DATAStack.framework; sourceTree = "<group>"; };
 		146D72AC1AB782920058798C /* iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1476902C1DBA4E570050431C /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		1497123C1DC2BFAA00AA1900 /* DictionaryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryTests.swift; sourceTree = "<group>"; };
 		14C0AF801BD6D4230009ECBE /* .travis.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .travis.yml; sourceTree = "<group>"; };
 		14C0AF811BD6D4230009ECBE /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 		14C0AF821BD6D4230009ECBE /* CONTRIBUTING.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CONTRIBUTING.md; sourceTree = "<group>"; };
@@ -308,6 +312,7 @@
 				141393291DBA19B60027D53A /* HYPFillWithDictionaryTests.m */,
 				1413932A1DBA19B60027D53A /* Models */,
 				141393331DBA19B60027D53A /* Transformers */,
+				1497123C1DC2BFAA00AA1900 /* DictionaryTests.swift */,
 			);
 			path = SYNCPropertyMapper;
 			sourceTree = "<group>";
@@ -812,6 +817,7 @@
 				14BE98161DBC02260071B2CB /* 121.xcdatamodeld in Sources */,
 				14BE98171DBC02260071B2CB /* Model.xcdatamodeld in Sources */,
 				14E9F4D01DBC2D1300CF8C5F /* SYNCPropertyMapper.m in Sources */,
+				1497123E1DC2BFAA00AA1900 /* DictionaryTests.swift in Sources */,
 				14E9F4DB1DBC2D1300CF8C5F /* NSManagedObject+SYNCPropertyMapperHelpers.m in Sources */,
 				14BE98181DBC02260071B2CB /* Ordered.xcdatamodeld in Sources */,
 				14BE98191DBC02260071B2CB /* 123.xcdatamodeld in Sources */,
@@ -842,6 +848,7 @@
 				1454269D1DBC045C0090F6FC /* 121.xcdatamodeld in Sources */,
 				1454269E1DBC045C0090F6FC /* Model.xcdatamodeld in Sources */,
 				14E9F4D11DBC2D1300CF8C5F /* SYNCPropertyMapper.m in Sources */,
+				1497123F1DC2BFAA00AA1900 /* DictionaryTests.swift in Sources */,
 				14E9F4DC1DBC2D1300CF8C5F /* NSManagedObject+SYNCPropertyMapperHelpers.m in Sources */,
 				1454269F1DBC045C0090F6FC /* Ordered.xcdatamodeld in Sources */,
 				145426A01DBC045C0090F6FC /* 123.xcdatamodeld in Sources */,
@@ -872,6 +879,7 @@
 				142C95B11DA4179F00F9F32F /* Pod.xcdatamodeld in Sources */,
 				140679691DBA1C4F00381990 /* NSString+SYNCInflections.m in Sources */,
 				141393411DBA19B60027D53A /* DateStringTransformer.m in Sources */,
+				1497123D1DC2BFAA00AA1900 /* DictionaryTests.swift in Sources */,
 				14E9F4CF1DBC2D1300CF8C5F /* SYNCPropertyMapper.m in Sources */,
 				14E9F4DA1DBC2D1300CF8C5F /* NSManagedObject+SYNCPropertyMapperHelpers.m in Sources */,
 				142C95AF1DA4179F00F9F32F /* DateTests.swift in Sources */,
