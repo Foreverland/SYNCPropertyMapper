@@ -36,4 +36,26 @@ class DictionaryTests: XCTestCase {
 
         try! dataStack.drop()
     }
+
+    func testExportDictionaryWithCamelCase() {
+        // Fill in transformable attributes is not supported in Swift 3. Crashes when saving the context.
+        let dataStack = Helper.dataStackWithModelName("137")
+        let user = NSEntityDescription.insertNewObject(forEntityName: "InflectionUser", into: dataStack.mainContext)
+        user.hyp_fill(with: self.sampleSnakeCaseJSON)
+        try! dataStack.mainContext.save()
+
+        let compared = [
+            "userDescription": "reserved",
+            "inflectionBinaryData": NSKeyedArchiver.archivedData(withRootObject: ["one", "two"]),
+            "inflectionDate": "1970-01-01T01:00:00+01:00",
+            "randomRemoteKey": "randomRemoteKey",
+            "inflectionID": 1,
+            "inflectionString": "string",
+            "inflectionInteger": 1
+            ] as [String : Any]
+
+        XCTAssertEqual(compared as NSDictionary, user.hyp_dictionary(.camelCase) as NSDictionary)
+
+        try! dataStack.drop()
+    }
 }
