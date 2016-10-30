@@ -34,3 +34,7 @@ Carthage/Build/tvOS/SYNCPropertyMapper*
 Carthage/Build/Mac/SYNCPropertyMapper*
 Carthage/Build/iOS/SYNCPropertyMapper*
 SYNCPropertyMapper.framework.zip
+
+Carthage/Build/watchOS/DATAStack.*
+Carthage/Build/tvOS/DATAStack.*
+Carthage/Build/Mac/DATAStack*
