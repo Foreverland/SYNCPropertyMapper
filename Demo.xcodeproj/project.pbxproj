@@ -125,6 +125,9 @@
 		14F2C6D41DBC0F1C00EC5282 /* NSEntityDescription+SYNCPrimaryKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 142C95811DA4178F00F9F32F /* NSEntityDescription+SYNCPrimaryKey.m */; };
 		14FE523F1DA4182000A55BE4 /* DATAStack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14FE523E1DA4182000A55BE4 /* DATAStack.framework */; };
 		14FE52411DA4182600A55BE4 /* DATAStack.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 14FE52401DA4182600A55BE4 /* DATAStack.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		44A7526A1DC6925B00FDBE83 /* 137.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 44A752681DC6925B00FDBE83 /* 137.xcdatamodeld */; };
+		44A7526B1DC6925B00FDBE83 /* 137.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 44A752681DC6925B00FDBE83 /* 137.xcdatamodeld */; };
+		44A7526C1DC6925B00FDBE83 /* 137.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 44A752681DC6925B00FDBE83 /* 137.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -214,6 +217,7 @@
 		14F393961CC6517E00616696 /* LICENSE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
 		14FE523E1DA4182000A55BE4 /* DATAStack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DATAStack.framework; path = Carthage/Build/iOS/DATAStack.framework; sourceTree = "<group>"; };
 		14FE52401DA4182600A55BE4 /* DATAStack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DATAStack.framework; path = Carthage/Build/iOS/DATAStack.framework; sourceTree = "<group>"; };
+		44A752691DC6925B00FDBE83 /* hypbug.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = hypbug.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -305,14 +309,14 @@
 		141393241DBA19B60027D53A /* SYNCPropertyMapper */ = {
 			isa = PBXGroup;
 			children = (
-				141393251DBA19B60027D53A /* FillWithDictionaryTests.swift */,
 				141393261DBA19B60027D53A /* Helper.swift */,
 				141393271DBA19B60027D53A /* HelperTests.m */,
-				141393281DBA19B60027D53A /* HYPDictionaryTests.m */,
 				141393291DBA19B60027D53A /* HYPFillWithDictionaryTests.m */,
+				141393251DBA19B60027D53A /* FillWithDictionaryTests.swift */,
+				141393281DBA19B60027D53A /* HYPDictionaryTests.m */,
+				1497123C1DC2BFAA00AA1900 /* DictionaryTests.swift */,
 				1413932A1DBA19B60027D53A /* Models */,
 				141393331DBA19B60027D53A /* Transformers */,
-				1497123C1DC2BFAA00AA1900 /* DictionaryTests.swift */,
 			);
 			path = SYNCPropertyMapper;
 			sourceTree = "<group>";
@@ -322,10 +326,11 @@
 			children = (
 				14441D111DBBE0770082F633 /* 112.xcdatamodeld */,
 				1413932B1DBA19B60027D53A /* 121.xcdatamodeld */,
-				1413932F1DBA19B60027D53A /* Model.xcdatamodeld */,
-				141393311DBA19B60027D53A /* Ordered.xcdatamodeld */,
 				1476902B1DBA4E570050431C /* 123.xcdatamodeld */,
 				141FFA861DBBE99B00356E72 /* 129.xcdatamodeld */,
+				44A752681DC6925B00FDBE83 /* 137.xcdatamodeld */,
+				1413932F1DBA19B60027D53A /* Model.xcdatamodeld */,
+				141393311DBA19B60027D53A /* Ordered.xcdatamodeld */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -409,10 +414,10 @@
 			children = (
 				1406796A1DBA1C9B00381990 /* NSString-SYNCInflections */,
 				141393241DBA19B60027D53A /* SYNCPropertyMapper */,
-				142C95901DA4179F00F9F32F /* BridgingHeader.h */,
 				142C95911DA4179F00F9F32F /* DateParser */,
-				142C95931DA4179F00F9F32F /* Info.plist */,
 				142C95951DA4179F00F9F32F /* NSEntityDescription-SYNCPrimaryKey */,
+				142C95931DA4179F00F9F32F /* Info.plist */,
+				142C95901DA4179F00F9F32F /* BridgingHeader.h */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -820,6 +825,7 @@
 				1497123E1DC2BFAA00AA1900 /* DictionaryTests.swift in Sources */,
 				14E9F4DB1DBC2D1300CF8C5F /* NSManagedObject+SYNCPropertyMapperHelpers.m in Sources */,
 				14BE98181DBC02260071B2CB /* Ordered.xcdatamodeld in Sources */,
+				44A7526B1DC6925B00FDBE83 /* 137.xcdatamodeld in Sources */,
 				14BE98191DBC02260071B2CB /* 123.xcdatamodeld in Sources */,
 				14BE981A1DBC02260071B2CB /* 129.xcdatamodeld in Sources */,
 				14BE981B1DBC02260071B2CB /* DateStringTransformer.m in Sources */,
@@ -851,6 +857,7 @@
 				1497123F1DC2BFAA00AA1900 /* DictionaryTests.swift in Sources */,
 				14E9F4DC1DBC2D1300CF8C5F /* NSManagedObject+SYNCPropertyMapperHelpers.m in Sources */,
 				1454269F1DBC045C0090F6FC /* Ordered.xcdatamodeld in Sources */,
+				44A7526C1DC6925B00FDBE83 /* 137.xcdatamodeld in Sources */,
 				145426A01DBC045C0090F6FC /* 123.xcdatamodeld in Sources */,
 				145426A11DBC045C0090F6FC /* 129.xcdatamodeld in Sources */,
 				145426A21DBC045C0090F6FC /* DateStringTransformer.m in Sources */,
@@ -882,6 +889,7 @@
 				1497123D1DC2BFAA00AA1900 /* DictionaryTests.swift in Sources */,
 				14E9F4CF1DBC2D1300CF8C5F /* SYNCPropertyMapper.m in Sources */,
 				14E9F4DA1DBC2D1300CF8C5F /* NSManagedObject+SYNCPropertyMapperHelpers.m in Sources */,
+				44A7526A1DC6925B00FDBE83 /* 137.xcdatamodeld in Sources */,
 				142C95AF1DA4179F00F9F32F /* DateTests.swift in Sources */,
 				1413933A1DBA19B60027D53A /* HelperTests.m in Sources */,
 				1406796C1DBA1C9B00381990 /* NSString_SYNCInflectionsTests.m in Sources */,
@@ -1478,6 +1486,16 @@
 			);
 			currentVersion = 1476902C1DBA4E570050431C /* Model.xcdatamodel */;
 			path = 123.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		44A752681DC6925B00FDBE83 /* 137.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				44A752691DC6925B00FDBE83 /* hypbug.xcdatamodel */,
+			);
+			currentVersion = 44A752691DC6925B00FDBE83 /* hypbug.xcdatamodel */;
+			path = 137.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

@@ -60,6 +60,10 @@ static NSString * const SYNCPropertyMapperNestedAttributesKey = @"attributes";
     return [self hyp_dictionary:SYNCPropertyMapperDictionaryTypeSnakeCase];
 }
 
+- (NSDictionary<NSString *, id> *)hyp_dictionary:(SYNCPropertyMapperDictionaryType)dictionaryType {
+    return [self hyp_dictionaryWithDateFormatter:[self defaultDateFormatter] parent:nil usingRelationshipType:SYNCPropertyMapperRelationshipTypeNested dictionaryType:dictionaryType];
+}
+
 - (NSDictionary<NSString *, id> *)hyp_dictionaryUsingDictionaryType:(SYNCPropertyMapperDictionaryType)dictionaryType andRelationshipType:(SYNCPropertyMapperRelationshipType)relationshipType {
     return [self hyp_dictionaryWithDateFormatter:[self defaultDateFormatter] parent:nil usingRelationshipType:relationshipType dictionaryType:dictionaryType];
 }
