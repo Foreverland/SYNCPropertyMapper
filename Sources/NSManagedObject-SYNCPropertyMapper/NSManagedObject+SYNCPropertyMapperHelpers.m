@@ -114,18 +114,18 @@
 }
 
 - (NSString *)remoteKeyForAttributeDescription:(NSAttributeDescription *)attributeDescription {
-    return [self remoteKeyForAttributeDescription:attributeDescription usingRelationshipType:SYNCPropertyMapperRelationshipTypeNested dictionaryType:SYNCPropertyMapperInflectionTypeSnakeCase];
+    return [self remoteKeyForAttributeDescription:attributeDescription usingRelationshipType:SYNCPropertyMapperRelationshipTypeNested inflectionType:SYNCPropertyMapperInflectionTypeSnakeCase];
 }
 
-- (NSString *)remoteKeyForAttributeDescription:(NSAttributeDescription *)attributeDescription dictionaryType:(SYNCPropertyMapperInflectionType)dictionaryType {
-    return [self remoteKeyForAttributeDescription:attributeDescription usingRelationshipType:SYNCPropertyMapperRelationshipTypeNested dictionaryType:dictionaryType];
+- (NSString *)remoteKeyForAttributeDescription:(NSAttributeDescription *)attributeDescription inflectionType:(SYNCPropertyMapperInflectionType)inflectionType {
+    return [self remoteKeyForAttributeDescription:attributeDescription usingRelationshipType:SYNCPropertyMapperRelationshipTypeNested inflectionType:inflectionType];
 }
 
 - (NSString *)remoteKeyForAttributeDescription:(NSAttributeDescription *)attributeDescription usingRelationshipType:(SYNCPropertyMapperRelationshipType)relationshipType {
-    return [self remoteKeyForAttributeDescription:attributeDescription usingRelationshipType:relationshipType dictionaryType:SYNCPropertyMapperInflectionTypeSnakeCase];
+    return [self remoteKeyForAttributeDescription:attributeDescription usingRelationshipType:relationshipType inflectionType:SYNCPropertyMapperInflectionTypeSnakeCase];
 }
 
-- (NSString *)remoteKeyForAttributeDescription:(NSAttributeDescription *)attributeDescription usingRelationshipType:(SYNCPropertyMapperRelationshipType)relationshipType dictionaryType:(SYNCPropertyMapperInflectionType)dictionaryType {
+- (NSString *)remoteKeyForAttributeDescription:(NSAttributeDescription *)attributeDescription usingRelationshipType:(SYNCPropertyMapperRelationshipType)relationshipType inflectionType:(SYNCPropertyMapperInflectionType)inflectionType {
     NSDictionary *userInfo = attributeDescription.userInfo;
     NSString *localKey = attributeDescription.name;
     NSString *remoteKey;
@@ -139,7 +139,7 @@
                relationshipType == SYNCPropertyMapperRelationshipTypeNested) {
         remoteKey = [NSString stringWithFormat:@"_%@", SYNCPropertyMapperDestroyKey];
     } else {
-        switch (dictionaryType) {
+        switch (inflectionType) {
             case SYNCPropertyMapperInflectionTypeSnakeCase:
                 remoteKey = [localKey hyp_snakeCase];
                 break;
