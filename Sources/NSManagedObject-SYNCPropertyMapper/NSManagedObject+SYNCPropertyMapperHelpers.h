@@ -24,7 +24,11 @@ static NSString * const SYNCPropertyMapperNonExportableKey = @"hyper.nonExportab
 
 - (NSString *)remoteKeyForAttributeDescription:(NSAttributeDescription *)attributeDescription;
 
+- (NSString *)remoteKeyForAttributeDescription:(NSAttributeDescription *)attributeDescription inflectionType:(SYNCPropertyMapperInflectionType)inflectionType;
+
 - (NSString *)remoteKeyForAttributeDescription:(NSAttributeDescription *)attributeDescription usingRelationshipType:(SYNCPropertyMapperRelationshipType)relationshipType;
+
+- (NSString *)remoteKeyForAttributeDescription:(NSAttributeDescription *)attributeDescription usingRelationshipType:(SYNCPropertyMapperRelationshipType)relationshipType inflectionType:(SYNCPropertyMapperInflectionType)inflectionType;
 
 + (NSArray *)reservedAttributes;
 

@@ -114,10 +114,18 @@
 }
 
 - (NSString *)remoteKeyForAttributeDescription:(NSAttributeDescription *)attributeDescription {
-    return [self remoteKeyForAttributeDescription:attributeDescription usingRelationshipType:SYNCPropertyMapperRelationshipTypeNested];
+    return [self remoteKeyForAttributeDescription:attributeDescription usingRelationshipType:SYNCPropertyMapperRelationshipTypeNested inflectionType:SYNCPropertyMapperInflectionTypeSnakeCase];
+}
+
+- (NSString *)remoteKeyForAttributeDescription:(NSAttributeDescription *)attributeDescription inflectionType:(SYNCPropertyMapperInflectionType)inflectionType {
+    return [self remoteKeyForAttributeDescription:attributeDescription usingRelationshipType:SYNCPropertyMapperRelationshipTypeNested inflectionType:inflectionType];
 }
 
 - (NSString *)remoteKeyForAttributeDescription:(NSAttributeDescription *)attributeDescription usingRelationshipType:(SYNCPropertyMapperRelationshipType)relationshipType {
+    return [self remoteKeyForAttributeDescription:attributeDescription usingRelationshipType:relationshipType inflectionType:SYNCPropertyMapperInflectionTypeSnakeCase];
+}
+
+- (NSString *)remoteKeyForAttributeDescription:(NSAttributeDescription *)attributeDescription usingRelationshipType:(SYNCPropertyMapperRelationshipType)relationshipType inflectionType:(SYNCPropertyMapperInflectionType)inflectionType {
     NSDictionary *userInfo = attributeDescription.userInfo;
     NSString *localKey = attributeDescription.name;
     NSString *remoteKey;
@@ -131,7 +139,14 @@
                relationshipType == SYNCPropertyMapperRelationshipTypeNested) {
         remoteKey = [NSString stringWithFormat:@"_%@", SYNCPropertyMapperDestroyKey];
     } else {
-        remoteKey = [localKey hyp_snakeCase];
+        switch (inflectionType) {
+            case SYNCPropertyMapperInflectionTypeSnakeCase:
+                remoteKey = [localKey hyp_snakeCase];
+                break;
+            case SYNCPropertyMapperInflectionTypeCamelCase:
+                remoteKey = localKey;
+                break;
+        }
     }
 
     BOOL isReservedKey = ([[self reservedKeys] containsObject:remoteKey]);

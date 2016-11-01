@@ -18,12 +18,12 @@ static NSString * const SYNCPropertyMapperNestedAttributesKey = @"attributes";
         if (attributeDescription) {
             BOOL valueExists = (value && ![value isKindOfClass:[NSNull class]]);
             if (valueExists && [value isKindOfClass:[NSDictionary class]] && attributeDescription.attributeType != NSBinaryDataAttributeType) {
-                NSString *remoteKey = [self remoteKeyForAttributeDescription:attributeDescription];
+                NSString *remoteKey = [self remoteKeyForAttributeDescription:attributeDescription inflectionType:SYNCPropertyMapperInflectionTypeSnakeCase];
                 BOOL hasCustomKeyPath = remoteKey && [remoteKey rangeOfString:@"."].location != NSNotFound;
                 if (hasCustomKeyPath) {
                     NSArray *keyPathAttributeDescriptions = [self attributeDescriptionsForRemoteKeyPath:remoteKey];
                     for (NSAttributeDescription *keyPathAttributeDescription in keyPathAttributeDescriptions) {
-                        NSString *remoteKey = [self remoteKeyForAttributeDescription:keyPathAttributeDescription];
+                        NSString *remoteKey = [self remoteKeyForAttributeDescription:keyPathAttributeDescription inflectionType:SYNCPropertyMapperInflectionTypeSnakeCase];
                         NSString *localKey = keyPathAttributeDescription.name;
                         [self hyp_setDictionaryValue:[dictionary valueForKeyPath:remoteKey]
                                               forKey:localKey
@@ -57,7 +57,15 @@ static NSString * const SYNCPropertyMapperNestedAttributesKey = @"attributes";
 }
 
 - (NSDictionary<NSString *, id> *)hyp_dictionary {
-    return [self hyp_dictionaryWithDateFormatter:[self defaultDateFormatter] usingRelationshipType:SYNCPropertyMapperRelationshipTypeNested];
+    return [self hyp_dictionary:SYNCPropertyMapperInflectionTypeSnakeCase];
+}
+
+- (NSDictionary<NSString *, id> *)hyp_dictionary:(SYNCPropertyMapperInflectionType)inflectionType {
+    return [self hyp_dictionaryWithDateFormatter:[self defaultDateFormatter] parent:nil usingRelationshipType:SYNCPropertyMapperRelationshipTypeNested inflectionType:inflectionType];
+}
+
+- (NSDictionary<NSString *, id> *)hyp_dictionaryUsinginflectionType:(SYNCPropertyMapperInflectionType)inflectionType andRelationshipType:(SYNCPropertyMapperRelationshipType)relationshipType {
+    return [self hyp_dictionaryWithDateFormatter:[self defaultDateFormatter] parent:nil usingRelationshipType:relationshipType inflectionType:inflectionType];
 }
 
 - (NSDictionary<NSString *, id> *)hyp_dictionaryUsingRelationshipType:(SYNCPropertyMapperRelationshipType)relationshipType {
@@ -73,6 +81,10 @@ static NSString * const SYNCPropertyMapperNestedAttributesKey = @"attributes";
 }
 
 - (NSDictionary<NSString *, id> *)hyp_dictionaryWithDateFormatter:(NSDateFormatter *)dateFormatter parent:( NSManagedObject * _Nullable )parent usingRelationshipType:(SYNCPropertyMapperRelationshipType)relationshipType {
+    return [self hyp_dictionaryWithDateFormatter:dateFormatter parent:parent usingRelationshipType:relationshipType inflectionType:SYNCPropertyMapperInflectionTypeSnakeCase];
+}
+
+- (NSDictionary<NSString *, id> *)hyp_dictionaryWithDateFormatter:(NSDateFormatter *)dateFormatter parent:( NSManagedObject * _Nullable )parent usingRelationshipType:(SYNCPropertyMapperRelationshipType)relationshipType inflectionType:(SYNCPropertyMapperInflectionType)inflectionType {
     NSMutableDictionary *managedObjectAttributes = [NSMutableDictionary new];
 
     for (id propertyDescription in self.entity.properties) {
@@ -85,8 +97,7 @@ static NSString * const SYNCPropertyMapperNestedAttributesKey = @"attributes";
                                                 dateFormatter:dateFormatter
                                              relationshipType:relationshipType];
                 if (value) {
-                    NSString *remoteKey = [self remoteKeyForAttributeDescription:propertyDescription
-                                                           usingRelationshipType:relationshipType];
+                    NSString *remoteKey = [self remoteKeyForAttributeDescription:propertyDescription usingRelationshipType:relationshipType inflectionType:inflectionType];
                     managedObjectAttributes[remoteKey] = value;
                 }
             }
