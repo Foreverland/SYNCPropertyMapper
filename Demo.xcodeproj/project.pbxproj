@@ -412,8 +412,8 @@
 		146D72AF1AB782920058798C /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				1406796A1DBA1C9B00381990 /* NSString-SYNCInflections */,
 				141393241DBA19B60027D53A /* SYNCPropertyMapper */,
+				1406796A1DBA1C9B00381990 /* NSString-SYNCInflections */,
 				142C95911DA4179F00F9F32F /* DateParser */,
 				142C95951DA4179F00F9F32F /* NSEntityDescription-SYNCPrimaryKey */,
 				142C95931DA4179F00F9F32F /* Info.plist */,

@@ -32,7 +32,8 @@ class DictionaryTests: XCTestCase {
             "inflection_integer": 1
             ] as [String : Any]
 
-        XCTAssertEqual(compared as NSDictionary, user.hyp_dictionary() as NSDictionary)
+        let result = user.hyp_dictionary(using: .snakeCase)
+        XCTAssertEqual(compared as NSDictionary, result as NSDictionary)
 
         try! dataStack.drop()
     }
@@ -54,8 +55,139 @@ class DictionaryTests: XCTestCase {
             "inflectionInteger": 1
             ] as [String : Any]
 
-        XCTAssertEqual(compared as NSDictionary, user.hyp_dictionary(.camelCase) as NSDictionary)
+        let result = user.hyp_dictionary(using: .camelCase)
+        XCTAssertEqual(compared as NSDictionary, result as NSDictionary)
 
+        try! dataStack.drop()
+    }
+
+    let sampleSnakeCaseJSONWithRelationship = ["inflection_id": 1] as [String : Any]
+
+    func testExportDictionaryWithSnakeCaseRelationshipArray() {
+        // Fill in transformable attributes is not supported in Swift 3. Crashes when saving the context.
+        let dataStack = Helper.dataStackWithModelName("137")
+        let user = NSEntityDescription.insertNewObject(forEntityName: "InflectionUser", into: dataStack.mainContext)
+        user.hyp_fill(with: self.sampleSnakeCaseJSONWithRelationship)
+
+        let company = NSEntityDescription.insertNewObject(forEntityName: "InflectionCompany", into: dataStack.mainContext)
+        company.setValue(NSNumber(value: 1), forKey: "inflectionID")
+        user.setValue(company, forKey: "camelCaseCompany")
+
+        try! dataStack.mainContext.save()
+
+        let compared = [
+            "inflection_binary_data": NSNull(),
+            "inflection_date": NSNull(),
+            "inflection_id": 1,
+            "inflection_integer": NSNull(),
+            "inflection_string": NSNull(),
+            "randomRemoteKey": NSNull(),
+            "user_description": NSNull(),
+            "camel_case_company": [
+                "inflection_id": 1
+            ]
+            ] as [String : Any]
+
+        let result = user.hyp_dictionary(using: .snakeCase, andRelationshipType: .array)
+        print(result)
+        XCTAssertEqual(compared as NSDictionary, result as NSDictionary)
+
+        try! dataStack.drop()
+    }
+
+    func testExportDictionaryWithCamelCaseRelationshipArray() {
+        // Fill in transformable attributes is not supported in Swift 3. Crashes when saving the context.
+        let dataStack = Helper.dataStackWithModelName("137")
+        let user = NSEntityDescription.insertNewObject(forEntityName: "InflectionUser", into: dataStack.mainContext)
+        user.hyp_fill(with: self.sampleSnakeCaseJSONWithRelationship)
+
+        let company = NSEntityDescription.insertNewObject(forEntityName: "InflectionCompany", into: dataStack.mainContext)
+        company.setValue(NSNumber(value: 1), forKey: "inflectionID")
+        user.setValue(company, forKey: "camelCaseCompany")
+
+        try! dataStack.mainContext.save()
+
+        let compared = [
+            "inflectionBinaryData": NSNull(),
+            "inflectionDate": NSNull(),
+            "inflectionID": 1,
+            "inflectionInteger": NSNull(),
+            "inflectionString": NSNull(),
+            "randomRemoteKey": NSNull(),
+            "userDescription": NSNull(),
+            "camelCaseCompany": [
+                "inflectionID": 1
+            ]
+            ] as [String : Any]
+
+        let result = user.hyp_dictionary(using: .camelCase, andRelationshipType: .array)
+        print(result)
+        XCTAssertEqual(compared as NSDictionary, result as NSDictionary)
+
+        try! dataStack.drop()
+    }
+
+    func testExportDictionaryWithSnakeCaseRelationshipNested() {
+        // Fill in transformable attributes is not supported in Swift 3. Crashes when saving the context.
+        let dataStack = Helper.dataStackWithModelName("137")
+        let user = NSEntityDescription.insertNewObject(forEntityName: "InflectionUser", into: dataStack.mainContext)
+        user.hyp_fill(with: self.sampleSnakeCaseJSONWithRelationship)
+
+        let company = NSEntityDescription.insertNewObject(forEntityName: "InflectionCompany", into: dataStack.mainContext)
+        company.setValue(NSNumber(value: 1), forKey: "inflectionID")
+        user.setValue(company, forKey: "camelCaseCompany")
+
+        try! dataStack.mainContext.save()
+
+        let compared = [
+            "inflection_binary_data": NSNull(),
+            "inflection_date": NSNull(),
+            "inflection_id": 1,
+            "inflection_integer": NSNull(),
+            "inflection_string": NSNull(),
+            "randomRemoteKey": NSNull(),
+            "user_description": NSNull(),
+            "camel_case_company_attributes": [
+                "inflection_id": 1
+            ]
+            ] as [String : Any]
+
+        let result = user.hyp_dictionary(using: .snakeCase, andRelationshipType: .nested)
+        print(result)
+        XCTAssertEqual(compared as NSDictionary, result as NSDictionary)
+
+        try! dataStack.drop()
+    }
+
+    func testExportDictionaryWithCamelCaseRelationshipNested() {
+        // Fill in transformable attributes is not supported in Swift 3. Crashes when saving the context.
+        let dataStack = Helper.dataStackWithModelName("137")
+        let user = NSEntityDescription.insertNewObject(forEntityName: "InflectionUser", into: dataStack.mainContext)
+        user.hyp_fill(with: self.sampleSnakeCaseJSONWithRelationship)
+
+        let company = NSEntityDescription.insertNewObject(forEntityName: "InflectionCompany", into: dataStack.mainContext)
+        company.setValue(NSNumber(value: 1), forKey: "inflectionID")
+        user.setValue(company, forKey: "camelCaseCompany")
+
+        try! dataStack.mainContext.save()
+
+        let compared = [
+            "inflectionBinaryData": NSNull(),
+            "inflectionDate": NSNull(),
+            "inflectionID": 1,
+            "inflectionInteger": NSNull(),
+            "inflectionString": NSNull(),
+            "randomRemoteKey": NSNull(),
+            "userDescription": NSNull(),
+            "camelCaseCompanyAttributes": [
+                "inflectionID": 1
+            ]
+            ] as [String : Any]
+
+        let result = user.hyp_dictionary(using: .camelCase, andRelationshipType: .nested)
+        print(result)
+        XCTAssertEqual(compared as NSDictionary, result as NSDictionary)
+        
         try! dataStack.drop()
     }
 }
