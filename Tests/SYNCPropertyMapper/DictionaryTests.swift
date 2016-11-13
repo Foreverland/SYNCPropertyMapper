@@ -15,6 +15,13 @@ class DictionaryTests: XCTestCase {
         "ignore_transformable": "string",
         ] as [String : Any]
 
+    let sampleSnakeCaseJSONWithRelationship = [
+        "inflection_id": 1,
+        "camel_case_company": [
+            "inflection_id": 1
+        ]
+        ] as [String : Any]
+
     func testExportDictionaryWithSnakeCase() {
         // Fill in transformable attributes is not supported in Swift 3. Crashes when saving the context.
         let dataStack = Helper.dataStackWithModelName("137")
@@ -54,7 +61,7 @@ class DictionaryTests: XCTestCase {
             "inflectionInteger": 1
             ] as [String : Any]
 
-        XCTAssertEqual(compared as NSDictionary, user.hyp_dictionary(.camelCase) as NSDictionary)
+        XCTAssertEqual(compared as NSDictionary, user.hyp_dictionary(using: .camelCase) as NSDictionary)
 
         try! dataStack.drop()
     }
