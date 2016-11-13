@@ -25,11 +25,11 @@
         <attribute name="inflectionID" optional="YES" attributeType="Integer 32" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="inflectionInteger" optional="YES" attributeType="Integer 16" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="inflectionString" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="userDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="inflectionUserDescription" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="camelCaseCompany" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="InflectionCompany" inverseName="camelCaseUser" inverseEntity="InflectionCompany" syncable="YES"/>
     </entity>
     <elements>
         <element name="InflectionCompany" positionX="-54" positionY="126" width="128" height="73"/>
-        <element name="InflectionUser" positionX="-263" positionY="36" width="128" height="193"/>
+        <element name="InflectionUser" positionX="-263" positionY="36" width="128" height="195"/>
     </elements>
 </model>

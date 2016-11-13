@@ -4,7 +4,7 @@ import DATAStack
 
 class DictionaryTests: XCTestCase {
     let sampleSnakeCaseJSON = [
-        "user_description": "reserved",
+        "description": "reserved",
         "inflection_binary_data": ["one", "two"],
         "inflection_date": "1970-01-01",
         "custom_remote_key": "randomRemoteKey",
@@ -23,7 +23,7 @@ class DictionaryTests: XCTestCase {
         try! dataStack.mainContext.save()
 
         let compared = [
-            "user_description": "reserved",
+            "description": "reserved",
             "inflection_binary_data": NSKeyedArchiver.archivedData(withRootObject: ["one", "two"]),
             "inflection_date": "1970-01-01T01:00:00+01:00",
             "randomRemoteKey": "randomRemoteKey",
@@ -46,7 +46,7 @@ class DictionaryTests: XCTestCase {
         try! dataStack.mainContext.save()
 
         let compared = [
-            "userDescription": "reserved",
+            "description": "reserved",
             "inflectionBinaryData": NSKeyedArchiver.archivedData(withRootObject: ["one", "two"]),
             "inflectionDate": "1970-01-01T01:00:00+01:00",
             "randomRemoteKey": "randomRemoteKey",
@@ -56,6 +56,7 @@ class DictionaryTests: XCTestCase {
             ] as [String : Any]
 
         let result = user.hyp_dictionary(using: .camelCase)
+        print(result)
         XCTAssertEqual(compared as NSDictionary, result as NSDictionary)
 
         try! dataStack.drop()
@@ -82,7 +83,7 @@ class DictionaryTests: XCTestCase {
             "inflection_integer": NSNull(),
             "inflection_string": NSNull(),
             "randomRemoteKey": NSNull(),
-            "user_description": NSNull(),
+            "description": NSNull(),
             "camel_case_company": [
                 "inflection_id": 1
             ]
@@ -114,7 +115,7 @@ class DictionaryTests: XCTestCase {
             "inflectionInteger": NSNull(),
             "inflectionString": NSNull(),
             "randomRemoteKey": NSNull(),
-            "userDescription": NSNull(),
+            "description": NSNull(),
             "camelCaseCompany": [
                 "inflectionID": 1
             ]
@@ -146,7 +147,7 @@ class DictionaryTests: XCTestCase {
             "inflection_integer": NSNull(),
             "inflection_string": NSNull(),
             "randomRemoteKey": NSNull(),
-            "user_description": NSNull(),
+            "description": NSNull(),
             "camel_case_company_attributes": [
                 "inflection_id": 1
             ]
@@ -178,7 +179,7 @@ class DictionaryTests: XCTestCase {
             "inflectionInteger": NSNull(),
             "inflectionString": NSNull(),
             "randomRemoteKey": NSNull(),
-            "userDescription": NSNull(),
+            "description": NSNull(),
             "camelCaseCompanyAttributes": [
                 "inflectionID": 1
             ]
@@ -188,6 +189,21 @@ class DictionaryTests: XCTestCase {
         print(result)
         XCTAssertEqual(compared as NSDictionary, result as NSDictionary)
         
+        try! dataStack.drop()
+    }
+
+    func testReservedAttributeNotExportingWell() {
+        let dataStack = Helper.dataStackWithModelName("142")
+        let user = NSEntityDescription.insertNewObject(forEntityName: "TwoLetterEntity", into: dataStack.mainContext)
+        user.hyp_fill(with: ["description": "test"])
+        try! dataStack.mainContext.save()
+
+        let compared = ["description": "test"] as [String : Any]
+
+        let result = user.hyp_dictionary(using: .camelCase)
+        print(result)
+        XCTAssertEqual(compared as NSDictionary, result as NSDictionary)
+
         try! dataStack.drop()
     }
 }

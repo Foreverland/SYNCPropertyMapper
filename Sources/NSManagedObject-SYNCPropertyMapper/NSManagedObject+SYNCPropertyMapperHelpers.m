@@ -32,6 +32,11 @@
 }
 
 - (NSAttributeDescription *)attributeDescriptionForRemoteKey:(NSString *)remoteKey {
+    return [self attributeDescriptionForRemoteKey:remoteKey usingInflectionType:SYNCPropertyMapperInflectionTypeSnakeCase];
+}
+
+- (NSAttributeDescription *)attributeDescriptionForRemoteKey:(NSString *)remoteKey
+                                         usingInflectionType:(SYNCPropertyMapperInflectionType)inflectionType {
     __block NSAttributeDescription *foundAttributeDescription;
 
     [self.entity.properties enumerateObjectsUsingBlock:^(id propertyDescription, NSUInteger idx, BOOL *stop) {
@@ -61,7 +66,7 @@
             NSString *localKey = [remoteKey hyp_camelCase];
             BOOL isReservedKey = ([[NSManagedObject reservedAttributes] containsObject:remoteKey]);
             if (isReservedKey) {
-                NSString *prefixedRemoteKey = [self prefixedAttribute:remoteKey];
+                NSString *prefixedRemoteKey = [self prefixedAttribute:remoteKey usingInflectionType:inflectionType];
                 localKey = [prefixedRemoteKey hyp_camelCase];
             }
 
@@ -117,15 +122,19 @@
     return [self remoteKeyForAttributeDescription:attributeDescription usingRelationshipType:SYNCPropertyMapperRelationshipTypeNested inflectionType:SYNCPropertyMapperInflectionTypeSnakeCase];
 }
 
-- (NSString *)remoteKeyForAttributeDescription:(NSAttributeDescription *)attributeDescription inflectionType:(SYNCPropertyMapperInflectionType)inflectionType {
+- (NSString *)remoteKeyForAttributeDescription:(NSAttributeDescription *)attributeDescription
+                                inflectionType:(SYNCPropertyMapperInflectionType)inflectionType {
     return [self remoteKeyForAttributeDescription:attributeDescription usingRelationshipType:SYNCPropertyMapperRelationshipTypeNested inflectionType:inflectionType];
 }
 
-- (NSString *)remoteKeyForAttributeDescription:(NSAttributeDescription *)attributeDescription usingRelationshipType:(SYNCPropertyMapperRelationshipType)relationshipType {
+- (NSString *)remoteKeyForAttributeDescription:(NSAttributeDescription *)attributeDescription
+                         usingRelationshipType:(SYNCPropertyMapperRelationshipType)relationshipType {
     return [self remoteKeyForAttributeDescription:attributeDescription usingRelationshipType:relationshipType inflectionType:SYNCPropertyMapperInflectionTypeSnakeCase];
 }
 
-- (NSString *)remoteKeyForAttributeDescription:(NSAttributeDescription *)attributeDescription usingRelationshipType:(SYNCPropertyMapperRelationshipType)relationshipType inflectionType:(SYNCPropertyMapperInflectionType)inflectionType {
+- (NSString *)remoteKeyForAttributeDescription:(NSAttributeDescription *)attributeDescription
+                         usingRelationshipType:(SYNCPropertyMapperRelationshipType)relationshipType
+                                inflectionType:(SYNCPropertyMapperInflectionType)inflectionType {
     NSDictionary *userInfo = attributeDescription.userInfo;
     NSString *localKey = attributeDescription.name;
     NSString *remoteKey;
@@ -149,14 +158,17 @@
         }
     }
 
-    BOOL isReservedKey = ([[self reservedKeys] containsObject:remoteKey]);
+    BOOL isReservedKey = ([[self reservedKeysUsingInflectionType:inflectionType] containsObject:remoteKey]);
     if (isReservedKey) {
         NSMutableString *prefixedKey = [remoteKey mutableCopy];
-        [prefixedKey replaceOccurrencesOfString:[self remotePrefix]
+        [prefixedKey replaceOccurrencesOfString:[self remotePrefixUsingInflectionType:inflectionType]
                                      withString:@""
                                         options:NSCaseInsensitiveSearch
                                           range:NSMakeRange(0, prefixedKey.length)];
         remoteKey = [prefixedKey copy];
+        if (inflectionType == SYNCPropertyMapperInflectionTypeCamelCase) {
+            remoteKey = [remoteKey hyp_camelCase];
+        }
     }
 
     return remoteKey;
@@ -232,20 +244,36 @@
     return value;
 }
 
-- (NSString *)remotePrefix {
-    return [NSString stringWithFormat:@"%@_", [self.entity.name hyp_snakeCase]];
+- (NSString *)remotePrefixUsingInflectionType:(SYNCPropertyMapperInflectionType)inflectionType {
+    switch (inflectionType) {
+        case SYNCPropertyMapperInflectionTypeSnakeCase:
+            return [NSString stringWithFormat:@"%@_", [self.entity.name hyp_snakeCase]];
+            break;
+        case SYNCPropertyMapperInflectionTypeCamelCase:
+            return [self.entity.name hyp_camelCase];
+            break;
+    }
 }
 
-- (NSString *)prefixedAttribute:(NSString *)attribute {
-    return [NSString stringWithFormat:@"%@%@", [self remotePrefix], attribute];
+- (NSString *)prefixedAttribute:(NSString *)attribute usingInflectionType:(SYNCPropertyMapperInflectionType)inflectionType {
+    NSString *remotePrefix = [self remotePrefixUsingInflectionType:inflectionType];
+
+    switch (inflectionType) {
+        case SYNCPropertyMapperInflectionTypeSnakeCase: {
+            return [NSString stringWithFormat:@"%@%@", remotePrefix, attribute];
+        } break;
+        case SYNCPropertyMapperInflectionTypeCamelCase: {
+            return [NSString stringWithFormat:@"%@%@", remotePrefix, [attribute capitalizedString]];
+        } break;
+    }
 }
 
-- (NSArray *)reservedKeys {
+- (NSArray *)reservedKeysUsingInflectionType:(SYNCPropertyMapperInflectionType)inflectionType {
     NSMutableArray *keys = [NSMutableArray new];
     NSArray *reservedAttributes = [NSManagedObject reservedAttributes];
 
     for (NSString *attribute in reservedAttributes) {
-        [keys addObject:[self prefixedAttribute:attribute]];
+        [keys addObject:[self prefixedAttribute:attribute usingInflectionType:inflectionType]];
     }
 
     return keys;
