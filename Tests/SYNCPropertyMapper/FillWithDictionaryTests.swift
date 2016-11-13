@@ -23,16 +23,16 @@ class FillWithDictionaryTests: XCTestCase {
 
         let ownerBody = [
             "id": 1,
-        ] as [String: Any]
+            ] as [String: Any]
         let taskBoby = [
             "id": 1,
             "owner": ownerBody,
-        ] as [String: Any]
+            ] as [String: Any]
         let expected = [
             "id": 1,
             "owner": ownerBody,
             "tasks": [taskBoby],
-        ] as [String: Any]
+            ] as [String: Any]
 
         XCTAssertEqual(expected as NSDictionary, taskList.hyp_dictionary(using: .array) as NSDictionary)
 
@@ -46,7 +46,7 @@ class FillWithDictionaryTests: XCTestCase {
         let json = [
             "id": "a",
             "coverPhoto": ["id": "b"],
-        ] as [String: Any]
+            ] as [String: Any]
         album.hyp_fill(with: json)
 
         XCTAssertNotNil(album.value(forKey: "coverPhoto"))
@@ -63,7 +63,7 @@ class FillWithDictionaryTests: XCTestCase {
         try! dataStack.mainContext.save()
         let expected = [
             "id": 1,
-        ] as [String: Any]
+            ] as [String: Any]
 
         XCTAssertEqual(expected as NSDictionary, user.hyp_dictionary(using: .none) as NSDictionary)
 
@@ -80,9 +80,9 @@ class FillWithDictionaryTests: XCTestCase {
             "name": ["bad-backend-dev"],
             ] as [String: Any]
         user.hyp_fill(with: json)
-
+        
         XCTAssertEqual(user.value(forKey: "name") as? String, "bad-backend-dev")
-
+        
         try! dataStack.drop()
     }
 }
