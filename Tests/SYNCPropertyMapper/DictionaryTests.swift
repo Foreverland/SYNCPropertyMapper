@@ -56,6 +56,7 @@ class DictionaryTests: XCTestCase {
             ] as [String : Any]
 
         let result = user.hyp_dictionary(using: .camelCase)
+        print(result)
         XCTAssertEqual(compared as NSDictionary, result as NSDictionary)
 
         try! dataStack.drop()
@@ -188,6 +189,21 @@ class DictionaryTests: XCTestCase {
         print(result)
         XCTAssertEqual(compared as NSDictionary, result as NSDictionary)
         
+        try! dataStack.drop()
+    }
+
+    func testReservedAttributeNotExportingWell() {
+        let dataStack = Helper.dataStackWithModelName("142")
+        let user = NSEntityDescription.insertNewObject(forEntityName: "TwoLetterEntity", into: dataStack.mainContext)
+        user.hyp_fill(with: ["description": "test"])
+        try! dataStack.mainContext.save()
+
+        let compared = ["description": "test"] as [String : Any]
+
+        let result = user.hyp_dictionary(using: .camelCase)
+        print(result)
+        XCTAssertEqual(compared as NSDictionary, result as NSDictionary)
+
         try! dataStack.drop()
     }
 }

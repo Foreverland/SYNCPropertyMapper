@@ -4,7 +4,8 @@ typedef void (^SYNCInflectionsStringStorageBlock)(void);
 
 @interface SYNCInflectionsStringStorage : NSObject
 
-@property (nonatomic, strong) NSMutableDictionary *storage;
+@property (nonatomic, strong) NSMutableDictionary *snakeCaseStorage;
+@property (nonatomic, strong) NSMutableDictionary *camelCaseStorage;
 @property (nonatomic, strong) dispatch_queue_t serialQueue;
 
 @end
@@ -30,12 +31,20 @@ typedef void (^SYNCInflectionsStringStorageBlock)(void);
 
 }
 
-- (NSMutableDictionary *)storage {
-    if (!_storage) {
-        _storage = [NSMutableDictionary new];
+- (NSMutableDictionary *)snakeCaseStorage {
+    if (!_snakeCaseStorage) {
+        _snakeCaseStorage = [NSMutableDictionary new];
     }
 
-    return _storage;
+    return _snakeCaseStorage;
+}
+
+- (NSMutableDictionary *)camelCaseStorage {
+    if (!_camelCaseStorage) {
+        _camelCaseStorage = [NSMutableDictionary new];
+    }
+
+    return _camelCaseStorage;
 }
 
 - (void)performOnDictionary:(SYNCInflectionsStringStorageBlock)block {
@@ -62,7 +71,7 @@ typedef void (^SYNCInflectionsStringStorageBlock)(void);
 	__block NSString *storedResult = nil;
 
 	[stringStorage performOnDictionary:^{
-		storedResult = [[stringStorage storage] objectForKey:self];
+		storedResult = [[stringStorage snakeCaseStorage] objectForKey:self];
 	}];
 
     if (storedResult) {
@@ -72,7 +81,7 @@ typedef void (^SYNCInflectionsStringStorageBlock)(void);
         NSString *result = [firstLetterLowercase hyp_replaceIdentifierWithString:@"_"];
 
 		[stringStorage performOnDictionary:^{
-			[stringStorage storage][self] = result;
+			[stringStorage snakeCaseStorage][self] = result;
 		}];
 
         return result;
@@ -84,20 +93,26 @@ typedef void (^SYNCInflectionsStringStorageBlock)(void);
 	__block NSString *storedResult = nil;
 
 	[stringStorage performOnDictionary:^{
-		storedResult = [[stringStorage storage] objectForKey:self];
+		storedResult = [[stringStorage camelCaseStorage] objectForKey:self];
 	}];
 
     if (storedResult) {
         return storedResult;
     } else {
-        NSString *processedString = self;
-        processedString = [processedString hyp_replaceIdentifierWithString:@""];
-        BOOL remoteStringIsAnAcronym = ([[NSString acronyms] containsObject:[processedString lowercaseString]]);
-        NSString *result = (remoteStringIsAnAcronym) ? [processedString lowercaseString] : [processedString hyp_lowerCaseFirstLetter];
+        NSString *result;
 
-		[stringStorage performOnDictionary:^{
-			[stringStorage storage][self] = result;
-		}];
+        if ([self containsString:@"_"]) {
+            NSString *processedString = self;
+            processedString = [processedString hyp_replaceIdentifierWithString:@""];
+            BOOL remoteStringIsAnAcronym = ([[NSString acronyms] containsObject:[processedString lowercaseString]]);
+            result = (remoteStringIsAnAcronym) ? [processedString lowercaseString] : [processedString hyp_lowerCaseFirstLetter];
+        } else {
+            result = [self hyp_lowerCaseFirstLetter];
+        }
+
+        [stringStorage performOnDictionary:^{
+            [stringStorage camelCaseStorage][self] = result;
+        }];
 
         return result;
     }

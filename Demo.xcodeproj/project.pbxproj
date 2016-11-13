@@ -128,6 +128,9 @@
 		44A940A61DD8FC80007E9BB8 /* DateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142C95921DA4179F00F9F32F /* DateTests.swift */; };
 		44A940A71DD8FC80007E9BB8 /* Pod.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 142C95961DA4179F00F9F32F /* Pod.xcdatamodeld */; };
 		44A940A81DD8FC80007E9BB8 /* PrimaryKeyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 142C95981DA4179F00F9F32F /* PrimaryKeyTests.m */; };
+		44F61D331DD8FDD80073C4FC /* 142.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 44F61D311DD8FDD80073C4FC /* 142.xcdatamodeld */; };
+		44F61D341DD8FDD80073C4FC /* 142.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 44F61D311DD8FDD80073C4FC /* 142.xcdatamodeld */; };
+		44F61D351DD8FDD80073C4FC /* 142.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 44F61D311DD8FDD80073C4FC /* 142.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -218,6 +221,7 @@
 		14FE523E1DA4182000A55BE4 /* DATAStack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DATAStack.framework; path = Carthage/Build/iOS/DATAStack.framework; sourceTree = "<group>"; };
 		14FE52401DA4182600A55BE4 /* DATAStack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DATAStack.framework; path = Carthage/Build/iOS/DATAStack.framework; sourceTree = "<group>"; };
 		44A752691DC6925B00FDBE83 /* hypbug.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = hypbug.xcdatamodel; sourceTree = "<group>"; };
+		44F61D321DD8FDD80073C4FC /* hypbug.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = hypbug.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -329,6 +333,7 @@
 				1476902B1DBA4E570050431C /* 123.xcdatamodeld */,
 				141FFA861DBBE99B00356E72 /* 129.xcdatamodeld */,
 				44A752681DC6925B00FDBE83 /* 137.xcdatamodeld */,
+				44F61D311DD8FDD80073C4FC /* 142.xcdatamodeld */,
 				1413932F1DBA19B60027D53A /* Model.xcdatamodeld */,
 				141393311DBA19B60027D53A /* Ordered.xcdatamodeld */,
 			);
@@ -816,6 +821,7 @@
 				14BE98101DBC02260071B2CB /* FillWithDictionaryTests.swift in Sources */,
 				14BE98111DBC02260071B2CB /* Helper.swift in Sources */,
 				14BE98121DBC02260071B2CB /* HelperTests.m in Sources */,
+				44F61D341DD8FDD80073C4FC /* 142.xcdatamodeld in Sources */,
 				14BE98131DBC02260071B2CB /* HYPDictionaryTests.m in Sources */,
 				14BE98141DBC02260071B2CB /* HYPFillWithDictionaryTests.m in Sources */,
 				14BE98151DBC02260071B2CB /* 112.xcdatamodeld in Sources */,
@@ -848,6 +854,7 @@
 				44A940991DD8FC80007E9BB8 /* HYPDictionaryTests.m in Sources */,
 				44A9409A1DD8FC80007E9BB8 /* DictionaryTests.swift in Sources */,
 				44A9409B1DD8FC80007E9BB8 /* 112.xcdatamodeld in Sources */,
+				44F61D351DD8FDD80073C4FC /* 142.xcdatamodeld in Sources */,
 				44A9409C1DD8FC80007E9BB8 /* 121.xcdatamodeld in Sources */,
 				44A9409D1DD8FC80007E9BB8 /* 123.xcdatamodeld in Sources */,
 				44A9409E1DD8FC80007E9BB8 /* 129.xcdatamodeld in Sources */,
@@ -880,6 +887,7 @@
 				44A9408C1DD8F8FC007E9BB8 /* 137.xcdatamodeld in Sources */,
 				44A9408D1DD8F8FC007E9BB8 /* Model.xcdatamodeld in Sources */,
 				44A9408E1DD8F8FC007E9BB8 /* Ordered.xcdatamodeld in Sources */,
+				44F61D331DD8FDD80073C4FC /* 142.xcdatamodeld in Sources */,
 				44A9408F1DD8F8FC007E9BB8 /* Pod.xcdatamodeld in Sources */,
 				44A940821DD8F8E9007E9BB8 /* DateStringTransformer.m in Sources */,
 				44A940831DD8F8E9007E9BB8 /* HYPTestValueTransformer.m in Sources */,
@@ -1496,6 +1504,16 @@
 			);
 			currentVersion = 44A752691DC6925B00FDBE83 /* hypbug.xcdatamodel */;
 			path = 137.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		44F61D311DD8FDD80073C4FC /* 142.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				44F61D321DD8FDD80073C4FC /* hypbug.xcdatamodel */,
+			);
+			currentVersion = 44F61D321DD8FDD80073C4FC /* hypbug.xcdatamodel */;
+			path = 142.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

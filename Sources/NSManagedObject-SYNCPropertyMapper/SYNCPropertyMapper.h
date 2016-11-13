@@ -84,7 +84,8 @@ typedef NS_ENUM(NSInteger, SYNCPropertyMapperInflectionType) {
  @param relationshipType It indicates wheter the result dictionary should include no relationships, nested attributes or normal attributes.
  @return The JSON representation of the @c NSManagedObject in the form of a @c NSDictionary.
  */
-- (NSDictionary<NSString *, id> *)hyp_dictionaryUsingInflectionType:(SYNCPropertyMapperInflectionType)inflectionType andRelationshipType:(SYNCPropertyMapperRelationshipType)relationshipType;
+- (NSDictionary<NSString *, id> *)hyp_dictionaryUsingInflectionType:(SYNCPropertyMapperInflectionType)inflectionType
+                                                andRelationshipType:(SYNCPropertyMapperRelationshipType)relationshipType;
 
 /**
  Creates a @c NSDictionary of values based on the @c NSManagedObject subclass that can be serialized by @c NSJSONSerialization. Includes relationships to other models using Ruby on Rail's nested attributes model.
@@ -103,7 +104,8 @@ typedef NS_ENUM(NSInteger, SYNCPropertyMapperInflectionType) {
 
  @return The JSON representation of the @c NSManagedObject in the form of a @c NSDictionary.
  */
-- (NSDictionary<NSString *, id> *)hyp_dictionaryWithDateFormatter:(NSDateFormatter *)dateFormatter usingRelationshipType:(SYNCPropertyMapperRelationshipType)relationshipType;
+- (NSDictionary<NSString *, id> *)hyp_dictionaryWithDateFormatter:(NSDateFormatter *)dateFormatter
+                                            usingRelationshipType:(SYNCPropertyMapperRelationshipType)relationshipType;
 
 /**
  Creates a @c NSDictionary of values based on the @c NSManagedObject subclass that can be serialized by @c NSJSONSerialization. Could include relationships to other models using Ruby on Rail's nested attributes model.
@@ -114,7 +116,9 @@ typedef NS_ENUM(NSInteger, SYNCPropertyMapperInflectionType) {
 
  @return The JSON representation of the @c NSManagedObject in the form of a @c NSDictionary.
  */
-- (NSDictionary<NSString *, id> *)hyp_dictionaryWithDateFormatter:(NSDateFormatter *)dateFormatter parent:( NSManagedObject * _Nullable )parent usingRelationshipType:(SYNCPropertyMapperRelationshipType)relationshipType;
+- (NSDictionary<NSString *, id> *)hyp_dictionaryWithDateFormatter:(NSDateFormatter *)dateFormatter
+                                                           parent:( NSManagedObject * _Nullable)parent
+                                            usingRelationshipType:(SYNCPropertyMapperRelationshipType)relationshipType;
 
 @end
 
