@@ -237,10 +237,19 @@ static NSString * const SYNCPropertyMapperNestedAttributesKey = @"attributes";
         }
     }
 
+    NSString *key;
+    switch (inflectionType) {
+        case SYNCPropertyMapperInflectionTypeSnakeCase: {
+            key = [relationshipName hyp_snakeCase];
+        } break;
+        case SYNCPropertyMapperInflectionTypeCamelCase: {
+            key = [relationshipName hyp_camelCase];
+        } break;
+    }
     if (relationshipType == SYNCPropertyMapperRelationshipTypeArray) {
-        [attributesForToManyRelationship setValue:relationsArray forKey:[relationshipName hyp_snakeCase]];
+        [attributesForToManyRelationship setValue:relationsArray forKey:key];
     } else if (relationshipType == SYNCPropertyMapperRelationshipTypeNested) {
-        NSString *nestedAttributesPrefix = [NSString stringWithFormat:@"%@_%@", [relationshipName hyp_snakeCase], SYNCPropertyMapperNestedAttributesKey];
+        NSString *nestedAttributesPrefix = [NSString stringWithFormat:@"%@_%@", key, SYNCPropertyMapperNestedAttributesKey];
         [attributesForToManyRelationship setValue:relationsDictionary forKey:nestedAttributesPrefix];
     }
 
