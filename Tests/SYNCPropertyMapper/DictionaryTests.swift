@@ -206,4 +206,82 @@ class DictionaryTests: XCTestCase {
 
         try! dataStack.drop()
     }
+
+    func setUpWorkout(dataStack: DATAStack) -> NSManagedObject {
+        let workout = NSEntityDescription.insertNewObject(forEntityName: "Workout", into: dataStack.mainContext)
+        workout.setValue(UUID().uuidString, forKey: "id")
+        workout.setValue(UUID().uuidString, forKey: "workoutDesc")
+        workout.setValue(UUID().uuidString, forKey: "workoutName")
+
+        let calendar = NSEntityDescription.insertNewObject(forEntityName: "Calendar", into: dataStack.mainContext)
+        calendar.setValue(UUID().uuidString, forKey: "eventSourceType")
+        calendar.setValue(UUID().uuidString, forKey: "id")
+        calendar.setValue(NSNumber(value: true), forKey: "isCompleted")
+        calendar.setValue(Date(timeIntervalSince1970: 0), forKey: "start")
+
+        let plannedToIDs = NSMutableSet()
+        plannedToIDs.add(calendar)
+        workout.setValue(plannedToIDs, forKey: "plannedToIDs")
+
+        let exercise = NSEntityDescription.insertNewObject(forEntityName: "Exercise", into: dataStack.mainContext)
+        exercise.setValue(UUID().uuidString, forKey: "exerciseDesc")
+        exercise.setValue(UUID().uuidString, forKey: "exerciseName")
+        exercise.setValue(UUID().uuidString, forKey: "id")
+        exercise.setValue(UUID().uuidString, forKey: "mainMuscle")
+
+        let exerciseSet = NSEntityDescription.insertNewObject(forEntityName: "ExerciseSet", into: dataStack.mainContext)
+        exerciseSet.setValue(UUID().uuidString, forKey: "id")
+        exerciseSet.setValue(NSNumber(value: true), forKey: "isCompleted")
+        exerciseSet.setValue(NSNumber(value: 0), forKey: "setNumber")
+        exerciseSet.setValue(NSNumber(value: 0), forKey: "setReps")
+        exerciseSet.setValue(NSNumber(value: 0), forKey: "setWeight")
+
+        let exerciseSets = NSMutableSet()
+        exerciseSets.add(exerciseSet)
+        exercise.setValue(exerciseSets, forKey: "exerciseSets")
+
+        let workoutExercises = NSMutableSet()
+        workoutExercises.add(exercise)
+        workout.setValue(workoutExercises, forKey: "workoutExercises")
+
+        try! dataStack.mainContext.save()
+
+        return workout
+    }
+
+    func testBug140CamelCase() {
+        let dataStack = Helper.dataStackWithModelName("140")
+
+        let workout = self.setUpWorkout(dataStack: dataStack)
+
+        let result = workout.hyp_dictionary(using: .camelCase, andRelationshipType: .array)
+
+        let rootKeys = Array(result.keys)
+        XCTAssertEqual(rootKeys.count, 5)
+        XCTAssertEqual(rootKeys[0], "plannedToIDs")
+        XCTAssertEqual(rootKeys[1], "workoutName")
+        XCTAssertEqual(rootKeys[2], "_id")
+        XCTAssertEqual(rootKeys[3], "workoutExercises")
+        XCTAssertEqual(rootKeys[4], "workoutDesc")
+
+        try! dataStack.drop()
+    }
+
+    func testBug140SnakeCase() {
+        let dataStack = Helper.dataStackWithModelName("140")
+
+        let workout = self.setUpWorkout(dataStack: dataStack)
+
+        let result = workout.hyp_dictionary(using: .snakeCase, andRelationshipType: .array)
+
+        let rootKeys = Array(result.keys)
+        XCTAssertEqual(rootKeys.count, 5)
+        XCTAssertEqual(rootKeys[0], "planned_to_ids")
+        XCTAssertEqual(rootKeys[1], "_id")
+        XCTAssertEqual(rootKeys[2], "workout_desc")
+        XCTAssertEqual(rootKeys[3], "workout_name")
+        XCTAssertEqual(rootKeys[4], "workout_exercises")
+
+        try! dataStack.drop()
+    }
 }
