@@ -121,8 +121,8 @@
 
     XCTAssertEqualObjects(camelCase, [snakeCase hyp_camelCase]);
 
-    snakeCase = @"user_id_first";
-    camelCase = @"userIDFirst";
+    snakeCase = @"f2f_url";
+    camelCase = @"f2fURL";
 
     XCTAssertEqualObjects(camelCase, [snakeCase hyp_camelCase]);
 
